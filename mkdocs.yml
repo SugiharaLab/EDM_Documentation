@@ -1,0 +1,17 @@
+site_name: EDM Documentation
+theme: 
+    name: readthedocs
+extra_css: [extra.css]
+
+nav:
+
+- Home : index.md
+- Getting Started : getting_started.md
+- Examples : examples.md
+- Documentation : 
+    - General Parameters : general_parameters.md
+    - EDM Functions : edm_functions.md
+- EDM Algorithms :
+    - Algorithms High Level : algorithms_high_level.md
+    - Algorithms In-Depth  : algorithms_in_depth.md
+- Update Log : updates.md

@@ -1,0 +1,6 @@
+h1, h2, * {
+    font-family: arial
+}
+.wy-side-nav-search, .wy-nav-top {
+    background: #800000;
+}
