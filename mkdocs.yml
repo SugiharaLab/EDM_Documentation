@@ -8,7 +8,7 @@ nav:
 - Home : index.md
 - Getting Started :
     - Installation : installation.md
-    - Examples : examples.md
+    - EDM Usage : edm_intro.md
 - Documentation : 
     - General Parameters : general_parameters.md
     - EDM Functions : edm_functions.md
