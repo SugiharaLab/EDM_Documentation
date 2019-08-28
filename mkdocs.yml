@@ -6,8 +6,9 @@ extra_css: [extra.css]
 nav:
 
 - Home : index.md
-- Getting Started : getting_started.md
-- Examples : examples.md
+- Getting Started :
+    - Installation : installation.md
+    - Examples : examples.md
 - Documentation : 
     - General Parameters : general_parameters.md
     - EDM Functions : edm_functions.md
