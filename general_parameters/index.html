@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>General Parameters - EDM Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "General Parameters";
+    var mkdocs_page_input_path = "general_parameters.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> EDM Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Getting Started</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../installation/">Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../edm_intro/">EDM Usage</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Documentation</span>
+    <ul class="subnav">
+                <li class=" current">
+                    
+    <a class="current" href="./">General Parameters</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#general-parameters">General Parameters</a></li>
+    
+
+    </ul>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../edm_functions/">EDM Functions</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EDM Algorithms</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../algorithms_high_level/">Algorithms High Level</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../algorithms_in_depth/">Algorithms In-Depth</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../updates.md">Update Log</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">EDM Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Documentation &raquo;</li>
+        
+      
+    
+    <li>General Parameters</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="general-parameters">General Parameters</h1>
+<p>Many of the EDM functions use the same prediction engine, 
+and so they share many of the following parameters. 
+Please refer to the documentation according to the specific function
+to verify which parameters are applicable as well as the default values 
+(which can change from function to function).</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pathIn</td>
+<td>string</td>
+<td>"./"</td>
+<td>Input data file path</td>
+</tr>
+<tr>
+<td>dataFile</td>
+<td>string</td>
+<td>""</td>
+<td>Data file name</td>
+</tr>
+<tr>
+<td>dataFrame</td>
+<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>None</td>
+<td>Input DataFrame</td>
+</tr>
+<tr>
+<td>pathOut</td>
+<td>string</td>
+<td>"./"</td>
+<td>Output file path</td>
+</tr>
+<tr>
+<td>predictFile</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction output file</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>string</td>
+<td>""</td>
+<td>[library start index : library stop index]</td>
+</tr>
+<tr>
+<td>pred</td>
+<td>string</td>
+<td>""</td>
+<td>[prediction start index : prediction stop index]</td>
+</tr>
+<tr>
+<td>E</td>
+<td>int</td>
+<td>0</td>
+<td>Data dimension</td>
+</tr>
+<tr>
+<td>Tp</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction Interval</td>
+</tr>
+<tr>
+<td>knn</td>
+<td>int</td>
+<td>0</td>
+<td>Number nearest neighbors</td>
+</tr>
+<tr>
+<td>tau</td>
+<td>int</td>
+<td>1</td>
+<td>Embedding delay</td>
+</tr>
+<tr>
+<td>theta</td>
+<td>int</td>
+<td>0</td>
+<td>SMap localization</td>
+</tr>
+<tr>
+<td>exclusionRadius</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
+</tr>
+<tr>
+<td>columns</td>
+<td>string</td>
+<td>""</td>
+<td>Column names or indices for prediction</td>
+</tr>
+<tr>
+<td>target</td>
+<td>string</td>
+<td>""</td>
+<td>Target library column name or index</td>
+</tr>
+<tr>
+<td>embedded</td>
+<td>bool</td>
+<td>False</td>
+<td>Is data an embedding</td>
+</tr>
+<tr>
+<td>const_pred</td>
+<td>bool</td>
+<td>False</td>
+<td>Include non projected forecast data</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>bool</td>
+<td>False</td>
+<td>Echo messages</td>
+</tr>
+<tr>
+<td>smapFile</td>
+<td>string</td>
+<td>""</td>
+<td>SMap coefficient output file</td>
+</tr>
+<tr>
+<td>libSizes_str</td>
+<td>string</td>
+<td>""</td>
+<td>CCM library sizes</td>
+</tr>
+<tr>
+<td>sample</td>
+<td>int</td>
+<td>0</td>
+<td>CCM number of random samples</td>
+</tr>
+<tr>
+<td>random</td>
+<td>bool</td>
+<td>True</td>
+<td>CCM use random samples?</td>
+</tr>
+<tr>
+<td>seed</td>
+<td>unsigned</td>
+<td>0</td>
+<td>RNG seed, 0 = random seed</td>
+</tr>
+</tbody>
+</table>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../edm_functions/" class="btn btn-neutral float-right" title="EDM Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../edm_intro/" class="btn btn-neutral" title="EDM Usage"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../edm_intro/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../edm_functions/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
