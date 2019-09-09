@@ -1,5 +1,9 @@
 # <function> Embed </function>
 
+Below are brief descriptions of the functions available in the pyEDM and rEDM
+packages. See [general parameters](../general_parameters) 
+for descriptions of the parameters used in these functions
+
 ** Description **  :   
 Creates a data block of Takens (1981) time-delay embedding from each of the 
 columns in the csv file or dataFrame.  

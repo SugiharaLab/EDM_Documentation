@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>EDM Usage - EDM Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "EDM Usage";
+    var mkdocs_page_input_path = "edm_intro.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> EDM Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Getting Started</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../installation/">Installation</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">EDM Usage</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#a-beginners-guide-to-using-edm">A Beginners Guide to Using EDM</a></li>
+    
+        <ul>
+        
+            <li><a class="toctree-l4" href="#high-level-edm-workflow">High level EDM Workflow :</a></li>
+        
+        </ul>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Documentation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../general_parameters/">General Parameters</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../edm_functions/">EDM Functions</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EDM Algorithms</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../algorithms_high_level/">Algorithms High Level</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../algorithms_in_depth/">Algorithms In-Depth</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../updates.md">Update Log</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">EDM Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Getting Started &raquo;</li>
+        
+      
+    
+    <li>EDM Usage</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="a-beginners-guide-to-using-edm">A Beginners Guide to Using EDM</h1>
+<p>EDM is a toolkit for analyzing time series of nonlinear dynamical systems, 
+with primary applications of forecasting, causal inference, and more.</p>
+<h2 id="high-level-edm-workflow">High level EDM Workflow :</h2>
+<h3 id="system-prediction">System prediction :</h3>
+<p>Typically we start our analysis with the <a href="" title="">Simplex</a> function to find 
+the optimal embedding dimension of our data. Conveniently, we can use the
+<a href="" title="">EmbedDimension</a> function to automate this trial and error of varying
+<code>E</code> to find the best <code>rho</code> value. Note the <code>E</code> corresponding to the highest 
+<code>rho</code> value, but prefer a lower embedding dimension if there are close <code>rho</code> 
+values. <br />
+We typically only use Simplex to find the embedding dimension as it is fast but
+<a href="" title="">SMap</a> predicts better for nonlinear systems.<br />
+Next we will investigate how nonlinear the system is and find the 
+best <code>theta</code> value for SMap. SMap uses the <code>theta</code> value to give points closer
+to the query point on the system manifold higher weight in our prediction. You
+can learn more about SMap and how it uses <code>theta</code> <a href="" title="">here</a>. Use the 
+<a href="" title="">PredictNonlinear</a> function to determine the <code>theta</code> value with the 
+highest prediction value. If the prediction accuracy increases with <code>theta</code>, 
+the system is identified to have state dependence (nonlinearity) to a degree
+proportional to <code>theta</code>.<br />
+You can optionally investigate the prediction decay with the 
+<a href="" title="">PredictInterval</a> function. <br />
+Now you can use SMap with your optimally found arguments to perform the 
+system prediction. Use the <a href="" title="">SMap</a> function to perform the prediction.   </p>
+<h3 id="system-analysis">System analysis :</h3>
+<p>To study the optimal embedding dimension and the degree of 
+nonlinearity of your data, read the <a href="" title="">System Prediction</a> introduction on 
+using the functions <a href="" title="">EmbedDimension</a> and <a href="" title="">PredictNonlinear</a>.<br />
+To study the causal relationships between two observers of your system, we use 
+the <a href="" title="">CCM</a> (Convergent Cross Mapping) function. We use CCM rather than 
+correlation analysis to avoid mistaking <a href="" title="">mirage correlation</a> for causality 
+and for the fact that <a href="" title="">causation does not necessarily imply correlation</a>. 
+CCM basically evaluates a <a href="" title="">Granger Causality</a> test for two time series 
+variables to evaluate causality in both directions. </p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../general_parameters/" class="btn btn-neutral float-right" title="General Parameters">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../installation/" class="btn btn-neutral" title="Installation"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../installation/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../general_parameters/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>

@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>EDM Functions - EDM Documentation</title>
+  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
+
+  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
+  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
+  <link href="../extra.css" rel="stylesheet">
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "EDM Functions";
+    var mkdocs_page_input_path = "edm_functions.md";
+    var mkdocs_page_url = null;
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+  
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> EDM Documentation</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+	<ul class="current">
+	  
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="..">Home</a>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Getting Started</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../installation/">Installation</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../edm_intro/">EDM Usage</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">Documentation</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../general_parameters/">General Parameters</a>
+                </li>
+                <li class=" current">
+                    
+    <a class="current" href="./">EDM Functions</a>
+    <ul class="subnav">
+            
+    <li class="toctree-l3"><a href="#embed"> Embed </a></li>
+    
+
+    <li class="toctree-l3"><a href="#simplex"> Simplex </a></li>
+    
+
+    <li class="toctree-l3"><a href="#smap"> SMap </a></li>
+    
+
+    <li class="toctree-l3"><a href="#ccm"> CCM </a></li>
+    
+
+    <li class="toctree-l3"><a href="#multiview"> Multiview </a></li>
+    
+
+    <li class="toctree-l3"><a href="#embeddimension"> EmbedDimension </a></li>
+    
+
+    <li class="toctree-l3"><a href="#predictinterval"> PredictInterval </a></li>
+    
+
+    <li class="toctree-l3"><a href="#predictnonlinear"> PredictNonlinear </a></li>
+    
+
+    <li class="toctree-l3"><a href="#computeerror"> ComputeError </a></li>
+    
+
+    </ul>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <span class="caption-text">EDM Algorithms</span>
+    <ul class="subnav">
+                <li class="">
+                    
+    <a class="" href="../algorithms_high_level/">Algorithms High Level</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="../algorithms_in_depth/">Algorithms In-Depth</a>
+                </li>
+    </ul>
+	    </li>
+          
+            <li class="toctree-l1">
+		
+    <a class="" href="../updates.md">Update Log</a>
+	    </li>
+          
+        </ul>
+      </div>
+      &nbsp;
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">EDM Documentation</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+        
+          <li>Documentation &raquo;</li>
+        
+      
+    
+    <li>EDM Functions</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="embed"><function> Embed </function></h1>
+<p>Below are brief descriptions of the functions available in the pyEDM and rEDM
+packages. See <a href="../general_parameters">general parameters</a> 
+for descriptions of the parameters used in these functions</p>
+<p><strong> Description </strong>  : <br />
+Creates a data block of Takens (1981) time-delay embedding from each of the 
+columns in the csv file or dataFrame.<br />
+See the Parameters table for parameter definitions.<br />
+The columns parameter can be a list of column names, or a list of 
+column indices. <br />
+If columns is a list of indices, then column names are created as V1, V2...<br />
+Note: The returned DataFrame will have tau * (E-1) fewer 
+rows than the input data from the removal of partial vectors as 
+a result of the embedding.</p>
+<p><strong> Parameters </strong>  :   </p>
+<pre><code class="python">pathIn = &quot;&quot;, dataFile = &quot;&quot;, dataFrame = None, E = 0, tau = 0, columns = &quot;&quot;, 
+verbose = False
+</code></pre>
+
+<p><strong> Returns </strong>  : <br />
+Constructed DataFrame with embedded columns.</p>
+<h1 id="simplex"><function> Simplex </function></h1>
+<p><strong> Description </strong>  : <br />
+Simplex projection of the input data file or DataFrame.   <br />
+See the Parameters table for parameter definitions.   </p>
+<p>nan values are inserted in the output DataFrame where there is 
+no observation or prediction.<br />
+If embedded is false the data columns are embedded to dimension E with delay tau .<br />
+If embedded is true the data columns are assumed to be a multivariable data block.  </p>
+<p><strong> Parameters </strong>  :   </p>
+<pre><code class="python">pathIn = &quot;&quot;, dataFile = &quot;&quot;, dataFrame = None, pathOut = &quot;&quot;, predictFile = &quot;&quot;,
+lib = &quot;&quot;, pred = &quot;&quot;, E = 0, Tp = 1, knn = 0, tau = 1, columns = &quot;&quot;, 
+target = &quot;&quot;, embedded = False, const_pred = False, verbose = False
+</code></pre>
+
+<p><strong> Returns </strong>  : <br />
+Constructed DataFrame with columns "Time", "Observations", and "Predictions".</p>
+<h1 id="smap"><function> SMap </function></h1>
+<p><strong> Description </strong>  : <br />
+SMap projection of the input data file or DataFrame. 
+See the Parameters table for parameter definitions.<br />
+nan values are inserted in the output DataFrame where there is 
+no observation or prediction.<br />
+If embedded is false the data columns are embedded to dimension E with delay tau . <br />
+If embedded is true the data columns are assumed to be a multivariable data block. <br />
+If predictFile is provided the predictions will be written to it in csv format.
+If smapFile is provided the coefficients will be written to it in csv format.
+If knn is not specified, it is set equal to the library size. 
+If knn is specified, it must be greater than E .</p>
+<p><strong> Parameters </strong>  :   </p>
+<pre><code class="python">pathIn = &quot;&quot;, dataFile = &quot;&quot;, dataFrame = None, pathOut = &quot;&quot;, predictFile = &quot;&quot;,
+lib = &quot;&quot;, pred = &quot;&quot;, E = 0, Tp = 1, knn = 0, tau = 1, theta = 0,  
+exclusionRadius = 0, columns = &quot;&quot;,  target = &quot;&quot;, smapFile = &quot;&quot;,  
+embedded = False, const_pred = False, verbose = False
+</code></pre>
+
+<p><strong> Returns </strong>  : <br />
+[Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with two DataFrames: {<br />
+<code>predictions</code> - 3 columns : "Time", "Observations", "Predictions";<br />
+<code>coefficients</code>- 'E+2' columns : Time, and then 'E+1' SMap SVD fit coefficents.<br />
+}</p>
+<h1 id="ccm"><function> CCM </function></h1>
+<p><strong> Description </strong>  : <br />
+Convergent cross mapping via Simplex of the first vector specified in columns against target . The
+data cannot be multivariable, the first vector in columns is time-delay embedded to dimension E . See
+the Parameters table for parameter definitions.</p>
+<p><code>libSizes</code> specifies a string with "start stop increment" 
+row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 
+in increments of 10.<br />
+If <code>random</code> is true , sample observations are randomly selected from the 
+subset of each library size.<br />
+If seed=0 , then a random seed is generated for the random number generator. 
+Otherwise, seed is used to initialise the random number generator.<br />
+If <code>random</code> is false, sample is ignored and contiguous library rows up to the 
+current library size are used.<br />
+Note: Cross mappings are performed between column : target , and target : column . </p>
+<p><strong> Parameters </strong>  :   </p>
+<pre><code class="python">pathIn = &quot;&quot;, dataFile = &quot;&quot;, dataFrame = None, pathOut = &quot;&quot;, predictFile = &quot;&quot;,  
+E = 0, Tp = 0, knn = 0, tau = 1, columns = &quot;&quot;,  target = &quot;&quot;, libSizes = &quot;&quot;,   
+sample = 0, random = True, seed = 0, verbose = False
+</code></pre>
+
+<p><strong> Returns </strong>  : <br />
+The returned DataFrame has 3 columns. <br />
+The first column is <code>LibSize</code>, the second and third columns
+are Pearson correlation coefficients for <code>column</code> : <code>target</code> 
+and <code>target</code> : <code>column</code> cross mapping.</p>
+<h1 id="multiview"><function> Multiview </function></h1>
+<p><strong> Description </strong>  : <br />
+Multiview embedding and forecasting of the input data file or DataFrame. <br />
+See the Parameters table for parameter definitions.
+nan values are inserted where there is no observation or prediction.
+If <code>predictFile</code> is provided the Predictions will be written to it in csv format.
+If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the number of 
+<code>E</code>-dimensional combinations out of all available data vectors.
+If knn is not specified, it is set equal to E+1.</p>
+<p><strong> Parameters </strong>  :   </p>
+<pre><code class="python">pathIn = &quot;&quot;, dataFile = &quot;&quot;, dataFrame = None, pathOut = &quot;&quot;, predictFile = &quot;&quot;,  
+lib = &quot;&quot;, pred = &quot;&quot;, E = 0, Tp = 1, knn = 0, tau = 1, columns = &quot;&quot;,  target = &quot;&quot;,
+multiview = 0, verbose = False, nThreads = 4
+</code></pre>
+
+<p><strong> Returns </strong>  : <br />
+[Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with two DataFrames: { 
+Combo_rho, Predictions }
+The <code>Predictions</code> DataFrame has 3 columns <code>Time</code>, <code>Observations</code>, <code>Predictions</code>. <br />
+The <code>Combo_rho</code> DataFrame will have <code>E</code>+3 columns. <br />
+The first <code>E</code> columns are the the column indices in the input data DataFrame 
+that are embedded and applied to Simplex prediction. <br />
+The last three columns are "rho", "MAE", "RMSE" corresponding to the prediction 
+Pearson correlation, maximum absolute error and root mean square error.</p>
+<h1 id="embeddimension"><function> EmbedDimension </function></h1>
+<p><strong> Description </strong>  : <br />
+Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE</code>.<br />
+See the Parameters table for parameter definitions.<br />
+Note: nThreads defines the number of worker threads for the 10 embeddings. 
+The maximum number of threads is 10.</p>
+<p><strong> Parameters </strong>  :   </p>
+<pre><code class="python">pathIn = &quot;&quot;, dataFile = &quot;&quot;, dataFrame = None, pathOut = &quot;&quot;, predictFile = &quot;&quot;,  
+lib = &quot;&quot;, maxE = 10, pred = &quot;&quot;, Tp = 1, tau = 1, columns = &quot;&quot;,  target = &quot;&quot;,
+embedded = False, verbose = True, nThreads = 4
+</code></pre>
+
+<p><strong> Returns </strong>  : <br />
+The returned DataFrame has columns <code>E</code> and <code>rho</code>.   </p>
+<h1 id="predictinterval"><function> PredictInterval </function></h1>
+<p><strong> Description </strong>  : <br />
+Evaluate Simplex prediction skill for forecast intervals from 1 to 10. <br />
+See the Parameters table for parameter definitions.<br />
+Note: <code>nThreads</code> defines the number of worker threads for the 10 prediction 
+interval forecasts. The maximum number of threads is 10.</p>
+<p><strong> Parameters </strong>  :   </p>
+<pre><code class="python">pathIn = &quot;&quot;, dataFile = &quot;&quot;, dataFrame = None, pathOut = &quot;&quot;, predictFile = &quot;&quot;,  
+lib = &quot;&quot;, pred = &quot;&quot;, maxTp = 10, tau = 1, columns = &quot;&quot;, target = &quot;&quot;,
+embedded = False, verbose = True, nThreads = 4
+</code></pre>
+
+<p><strong> Returns </strong>  : <br />
+The returned DataFrame has columns <code>Tp</code> and <code>rho</code>. </p>
+<h1 id="predictnonlinear"><function> PredictNonlinear </function></h1>
+<p><strong> Description </strong>  : <br />
+Evaluate SMap prediction skill for localization parameter 
+<code>θ</code>  (default from 0.01 to 9). <br />
+<code>theta</code> is a string of theta values with a delimiter of [',', '\t', '\n'].
+See the Parameters table for parameter definitions.</p>
+<p><strong> Parameters </strong>  :   </p>
+<pre><code class="python">pathIn = &quot;&quot;, dataFile = &quot;&quot;, dataFrame = None, pathOut = &quot;&quot;, predictFile = &quot;&quot;,  
+lib = &quot;&quot;, pred = &quot;&quot;, theta = &quot;&quot;, E = 0, Tp = 1, tau = 1,   
+columns = &quot;&quot;, target = &quot;&quot;, embedded = False, verbose = True, nThreads = 4
+</code></pre>
+
+<p><strong> Returns </strong>  : <br />
+The returned DataFrame has columns <code>theta</code> and <code>rho</code>. </p>
+<h1 id="computeerror"><function> ComputeError </function></h1>
+<p><strong> Description </strong>  : <br />
+Compute Pearson correlation coefficient, maximum absolute error (MAE) 
+and root mean square error (RMSE) between two vectors.</p>
+<p><strong> Parameters </strong>  :   </p>
+<pre><code class="python">obsIn , predIn 
+</code></pre>
+
+<p><strong> Returns </strong>  : <br />
+[Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with computed <code>rho</code>, <code>RMSE</code>, <code>MAE</code>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="../algorithms_high_level/" class="btn btn-neutral float-right" title="Algorithms High Level">Next <span class="icon icon-circle-arrow-right"></span></a>
+      
+      
+        <a href="../general_parameters/" class="btn btn-neutral" title="General Parameters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" style="cursor: pointer">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      
+      
+        <span><a href="../general_parameters/" style="color: #fcfcfc;">&laquo; Previous</a></span>
+      
+      
+        <span style="margin-left: 15px"><a href="../algorithms_high_level/" style="color: #fcfcfc">Next &raquo;</a></span>
+      
+    </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+
+</body>
+</html>
