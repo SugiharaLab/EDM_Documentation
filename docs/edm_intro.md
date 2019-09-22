@@ -6,7 +6,7 @@ with primary applications of forecasting, causal inference, and more.
 
 ## High level EDM Workflow :
 ### System prediction : 
-Typically we start our analysis with the [Simplex]("") function to find 
+We typicallystart our analysis with the [Simplex]("") function to find 
 the optimal embedding dimension of our data. Conveniently, we can use the
 [EmbedDimension]("") function to automate this trial and error of varying
 `E` to find the best `rho` value. Note the `E` corresponding to the highest 
