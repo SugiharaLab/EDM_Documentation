@@ -1,4 +1,4 @@
-site_name: EDM Documentation
+site_name: EDM (pyEDM, rEDM)
 theme: 
     name: readthedocs
 extra_css: [extra.css]
@@ -8,11 +8,9 @@ nav:
 - Home : index.md
 - Getting Started :
     - Installation : installation.md
-    - EDM Usage : edm_intro.md
+    - EDM Framework : edm_intro.md
 - Documentation : 
-    - General Parameters : general_parameters.md
     - EDM Functions : edm_functions.md
 - EDM Algorithms :
     - Examples : algorithms_high_level.md
     - EDM Algorithms in Depth : algorithms_in_depth.md
-- Update Log : updates.md
