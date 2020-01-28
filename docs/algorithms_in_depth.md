@@ -33,17 +33,14 @@ attractor to the space of the target variable (linear maps).
 <iframe width="100%" height="335" src="https://www.youtube.com/embed/NrFdIz-D2yM" 
 frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe>  
   
-**Algorithm pseudocode taken from the **[Wikpedia page on CCM](https://en.wikipedia.org/wiki/Convergent_cross_mapping#cite_note-8):  
-1. Create the shadow manifold for X, called MX.  
-2. Find the nearest neighbors to a point in the shadow manifold at time t.  
-3. Create weights using the nearest neighbors.  
-4. Estimate Y using the weights; (this estimate is called  Y |  MX ).  
-5. Compute the correlation between Y and Y | MX.
-  
-Briefly, the intuition behind Convergent Cross Mapping:  
-Takens' Theorem states that it is possible to reconstruct an attractor of a
-dynamical system by lagged observations of an observer of the system. 
-If variable X had some influence on variable Y (X causes Y), 
-there should exist some "imprint" or "artifact" of X in Y's reconstructed 
-attractor that should allow us to predict X from Y's reconstructed
-attractor. Note that the reverse direction is not necessarily true. 
+Suppose that in some dynamical system involving variables X and Y, X causes Y. 
+Takens' Theorem suggests that because X and Y belong to the system, their
+reconstructions (via embeddings) Mx and My map to the same system, and so Mx and My 
+should map to each other as well. CCM leverages this property to detect causality 
+by predicting X from My's library (or vice versa for other direction of causality).  
+The intuition is that if X causes Y, then there should be some artifact of X 
+embedded in Y that we can extract by performing state space reconstruction on Y, 
+and approximate how much X drives Y by how well Simplex can predict X from Y's 
+reconstruction. The prediction is performed via Simplex, using My's library to search 
+for the nearest neighbors to a query point in X, and measuring the correlation 
+between X predicted from My and X.
