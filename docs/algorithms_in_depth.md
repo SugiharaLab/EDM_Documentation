@@ -22,7 +22,9 @@ Jupyter notebook: [S-MAP Notebook ](https://github.com/cameronosmith/EDM_noteboo
 tldr: For every query point, S-MAP constructs a linear function from all 
 state-space neighbors. However, each neighbor is weighted with an exponential 
 function based on theta, such that nearby points to the query point 
-have a higher weight than those further from it. Hopefully it makes sense now 
+have a higher weight than those further from it, such that a locally linear 
+approximation to the nonlinear system of study is appropriate (as long as theta 
+is weighted proportionately to how nonlinear the system is). Hopefully it makes sense now 
 why SMAP stands for sequentially weighted global linear maps, since the algorithm: 
 for every query point (sequentially) weights the entire library (weighted global) 
 and then computes a linear solution mapping the local space on the reconstructed 
@@ -33,14 +35,17 @@ attractor to the space of the target variable (linear maps).
 <iframe width="100%" height="335" src="https://www.youtube.com/embed/NrFdIz-D2yM" 
 frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe>  
   
-Suppose that in some dynamical system involving variables X and Y, X causes Y. 
-Takens' Theorem suggests that because X and Y belong to the system, their
+Suppose that in some dynamical system involving variables X and Y, X causes Y 
+(if you were trying to define Y as an explicit function, X would be a term in this 
+equation).  
+Takens' Theorem suggests that because X and Y belong to the same dynamical system, their
 reconstructions (via embeddings) Mx and My map to the same system, and so Mx and My 
 should map to each other as well. CCM leverages this property to detect causality 
-by predicting X from My's library (or vice versa for other direction of causality).  
+by predicting X using My's library of points (or vice versa for other direction of 
+causality).
 The intuition is that if X causes Y, then there should be some artifact of X 
 embedded in Y that we can extract by performing state space reconstruction on Y, 
-and approximate how much X drives Y by how well Simplex can predict X from Y's 
-reconstruction. The prediction is performed via Simplex, using My's library to search 
+and approximate how much X drives Y by how well Simplex can predict X from My's 
+attractor. The prediction is performed via Simplex, using My's library to search 
 for the nearest neighbors to a query point in X, and measuring the correlation 
 between X predicted from My and X.

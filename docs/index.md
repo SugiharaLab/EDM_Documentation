@@ -9,8 +9,6 @@
 EDM is a toolkit for analyzing time series of nonlinear dynamical systems,
 with primary applications of forecasting and causal inference.  
   
-The algorithms which comprise EDM, developed by George Sugihara, perform 
-state space reconstruction via time delayed embeddings of time series data.
 An overview of the algorithms provided is provided below and a more in-depth 
 tutorial will be provided further in the documentation.   
   
@@ -25,6 +23,13 @@ respectively.
 
 <iframe width="100%" height="335" src="https://www.youtube.com/embed/QQwtrWBwxQg" 
 frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe>
+
+Once the state space is reconstructed via lagged embedding, system prediction is performed 
+via locally weighted linear models, and causal analysis is performed by attempting 
+to recover a causal variable from the dependent variable's state space reconstruction. 
+See the [algorithms in depth section](./algorithms_in_depth) for details on these 
+functions, respectively, Sequentially Locally Weighted Global Linear Maps (S-MAP) 
+and Convergent Cross Mapping (CCM).
 
 ------
 
