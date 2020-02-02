@@ -9,8 +9,8 @@
 EDM is a toolkit for analyzing time series of nonlinear dynamical systems,
 with primary applications of forecasting and causal inference.  
   
-An overview of the algorithms provided is provided below and a more in-depth 
-tutorial will be provided further in the documentation.   
+An overview of the algorithms comprising the EDM framework 
+is provided below and a more in-depth tutorial exists further in the documentation.   
   
 The EDM algorithms are available in Python and R, in the packages pyEDM and rEDM, 
 respectively.
