@@ -54,22 +54,17 @@
     <a class="current" href=".">Home</a>
     <ul class="subnav">
             
-    <li class="toctree-l2"><a href="#empirical-dynamic-modeling-edm-documentation">Empirical Dynamic Modeling (EDM) Documentation</a></li>
-    
-
-    <li class="toctree-l2"><a href="#edm">EDM</a></li>
-    
-
-    <li class="toctree-l2"><a href="#foundations-of-edm">Foundations of EDM</a></li>
+    <li class="toctree-l2"><a href="#empirical-dynamic-modeling-edm">Empirical Dynamic Modeling (EDM)</a></li>
     
         <ul>
+        
+            <li><a class="toctree-l3" href="#motivation">Motivation</a></li>
+        
+            <li><a class="toctree-l3" href="#foundations-of-edm">Foundations of EDM</a></li>
         
             <li><a class="toctree-l3" href="#time-series-as-observations-of-a-dynamic-system">Time Series as Observations of a Dynamic System</a></li>
         
         </ul>
-    
-
-    <li class="toctree-l2"><a href="#why-edm-is-necessary-for-todays-data">Why EDM is Necessary for Today's Data</a></li>
     
 
     </ul>
@@ -97,6 +92,10 @@
                 <li class="">
                     
     <a class="" href="edm_functions/">EDM Functions</a>
+                </li>
+                <li class="">
+                    
+    <a class="" href="parameters/">Parameters</a>
                 </li>
     </ul>
 	    </li>
@@ -148,40 +147,54 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="empirical-dynamic-modeling-edm-documentation">Empirical Dynamic Modeling (EDM) Documentation</h1>
-<p><img alt="lorenz-logo" src="imgs/Lorenz_logo.png" /></p>
+                <h1 id="empirical-dynamic-modeling-edm">Empirical Dynamic Modeling (EDM)</h1>
+<p>Empirical dynamic modeling (EDM) is an emerging non-parametric framework
+for modeling nonlinear dynamic systems. EDM is based on the mathematical
+theory of reconstructing attractor manifolds from time series data
+(<a href="https://en.wikipedia.org/wiki/Takens%27s_theorem">Takens 1981</a>).
+EDM algorithms include simplex projection
+(<a href="https://www.nature.com/articles/344734a0">Sugihara and May 1990</a>),
+S-map
+(<a href="https://royalsocietypublishing.org/doi/abs/10.1098/rsta.1994.0106">Sugihara 1994</a>),
+multivariate embedding
+(<a href="https://science.sciencemag.org/content/283/5407/1528">Dixon, Milicich, and Sugihara 1999</a>),
+convergent cross mapping
+(<a href="https://science.sciencemag.org/content/338/6106/496">Sugihara et al. 2012</a>),
+and multiview embedding
+(<a href="https://science.sciencemag.org/content/353/6302/922">Ye and Sugihara 2016</a>).
+These documents introduce the underlying theory, and illustrate analytical 
+functionality with examples.  </p>
+<p>The core EDM algorithms are implemented in the
+<a href="https://github.com/SugiharaLab/cppEDM" title="cppEDM">cppEDM library</a>.
+Python and R interfaces to the library are provided in the
+<a href="https://github.com/SugiharaLab/pyEDM" title="pyEDM">pyEDM</a> and
+<a href="https://github.com/SugiharaLab/rEDM" title="rEDM">rEDM</a> packages.  </p>
 <hr />
-<h1 id="edm">EDM</h1>
-<p>EDM is a toolkit for analyzing time series of nonlinear dynamical systems,
-with primary applications of forecasting and causal inference.  </p>
-<p>An overview of the algorithms comprising the EDM framework 
-is provided below and a more in-depth tutorial exists further in the documentation.   </p>
-<p>The EDM algorithms are available in Python and R, in the packages pyEDM and rEDM, 
-respectively.</p>
+<h2 id="motivation">Motivation</h2>
+<p>Many analytic approaches use models as approximations of real world
+systems (e.g. testing hypotheses to explain mechanisms or processes,
+or, for predicting future outcomes). However, real world systems are
+often nonlinear and multidimensional, rendering explicit parametric
+equations problematic. Empirical models, which infer patterns and
+associations from the data instead of using discrete, hypothesized
+equations, represent a natural and flexible approach to modeling 
+complex dynamics.  </p>
 <hr />
-<h1 id="foundations-of-edm">Foundations of EDM</h1>
+<h2 id="foundations-of-edm">Foundations of EDM</h2>
 <h2 id="time-series-as-observations-of-a-dynamic-system">Time Series as Observations of a Dynamic System</h2>
-<iframe width="100%" height="335" src="https://www.youtube.com/embed/QQwtrWBwxQg" 
-frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="335"
+src="https://www.youtube.com/embed/QQwtrWBwxQg" 
+frameborder="0" allow="autoplay; gyroscope; 
+picture-in-picture" allowfullscreen></iframe>
 
-<p>Once the state space is reconstructed via lagged embedding, system prediction is performed 
-via locally weighted linear models, and causal analysis is performed by attempting 
-to recover a causal variable from the dependent variable's state space reconstruction. 
-See the <a href="./algorithms_in_depth">algorithms in depth section</a> for details on these 
-functions, respectively, Sequentially Locally Weighted Global Linear Maps (S-MAP) 
-and Convergent Cross Mapping (CCM).</p>
-<hr />
-<h1 id="why-edm-is-necessary-for-todays-data">Why EDM is Necessary for Today's Data</h1>
-<p>Many fields use models as approximations of real world systems (e.g. testing 
-hypotheses to explain mechanisms or processes or predicting future outcomes).   </p>
-<p>However, real world systems are most often nonlinear and 
-high dimensional, making explicit parametric equations impractical. Empirical
-models, which infer patterns and associations from the data (instead of using 
-discrete, hypothesized equations), represent a more natural and flexible 
-approach to modeling the real world.  </p>
-<p>Empirical Dynamic Modeling (EDM) provides a framework for predicting and
-analyzing nonlinear dynamical systems which are typically problematic for 
-traditional modeling approaches. </p>
+<p>Given a state space reconstructed via lagged embedding, or, from
+multivariate observations, system prediction can be performed using
+simplex or S-map projections. S-map (Sequentially Locally Weighted
+Global Linear Maps) can also be used to assess variable interactions.
+To infer causal relationships between variables,  Convergent Cross
+Mapping (CCM) can be applied.  See the
+<a href="./algorithms_in_depth">algorithms in depth section</a> for details on
+these functions.</p>
 <hr />
               
             </div>
@@ -231,5 +244,5 @@ traditional modeling approaches. </p>
 
 <!--
 MkDocs version : 1.0.4
-Build Date UTC : 2020-02-02 22:19:00
+Build Date UTC : 2020-02-04 23:19:57
 -->
