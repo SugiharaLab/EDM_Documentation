@@ -1,14 +1,19 @@
-## Installation Instructions
+# Installation Instructions
 
-# pyEDM
+### pyEDM
+pip install pyEDM
 
-    pip install pyEDM
+See: [pyEDM on PyPI](https://pypi.org/project/pyEDM/)
 
-# rEDM
+### rEDM
+install.packages("devtools")
 
-    install.packages("rEDM")
+devtools::install_github("SugiharaLab/rEDM")
 
-# Note for Linux Users
-We do not provide pyEDM or rEDM binaries for Linux machines currently. Instead our
-setup script should build the respective package from scratch. We use 
-a C++ base EDM engine in our packages, so you will need a modern gcc compiler.
+See: [rEDM](https://github.com/SugiharaLab/rEDM "rEDM")
+
+## Note for Linux Users
+We do not provide pyEDM or rEDM binaries for Linux.
+The packages can be built from the github packages, please see:
+[pyEDM](https://github.com/SugiharaLab/pyEDM "pyEDM"), or, 
+[rEDM](https://github.com/SugiharaLab/rEDM "rEDM").

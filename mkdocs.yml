@@ -3,14 +3,17 @@ theme:
     name: readthedocs
 extra_css: [extra.css]
 
-nav:
+markdown_extensions:
+  - attr_list
 
+nav:
 - Home : index.md
 - Getting Started :
     - Installation : installation.md
     - EDM Framework : edm_intro.md
 - Documentation : 
     - EDM Functions : edm_functions.md
+    - Parameters : parameters.md
 - EDM Algorithms :
     - Examples : algorithms_high_level.md
     - EDM Algorithms in Depth : algorithms_in_depth.md

@@ -8,7 +8,7 @@
   
   
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Algorithms In-Depth - EDM Documentation</title>
+  <title>EDM Algorithms in Depth - EDM (pyEDM, rEDM)</title>
   <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
 
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
@@ -18,7 +18,7 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Algorithms In-Depth";
+    var mkdocs_page_name = "EDM Algorithms in Depth";
     var mkdocs_page_input_path = "algorithms_in_depth.md";
     var mkdocs_page_url = null;
   </script>
@@ -37,7 +37,7 @@
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> EDM Documentation</a>
+        <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -64,7 +64,7 @@
                 </li>
                 <li class="">
                     
-    <a class="" href="../edm_intro/">EDM Usage</a>
+    <a class="" href="../edm_intro/">EDM Framework</a>
                 </li>
     </ul>
 	    </li>
@@ -75,11 +75,11 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../general_parameters/">General Parameters</a>
+    <a class="" href="../edm_functions/">EDM Functions</a>
                 </li>
                 <li class="">
                     
-    <a class="" href="../edm_functions/">EDM Functions</a>
+    <a class="" href="../parameters/">Parameters</a>
                 </li>
     </ul>
 	    </li>
@@ -90,20 +90,20 @@
     <ul class="subnav">
                 <li class="">
                     
-    <a class="" href="../algorithms_high_level/">Algorithms High Level</a>
+    <a class="" href="../algorithms_high_level/">Examples</a>
                 </li>
                 <li class=" current">
                     
-    <a class="current" href="./">Algorithms In-Depth</a>
+    <a class="current" href="./">EDM Algorithms in Depth</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#edm-algorithms-in-depth">EDM Algorithms In-Depth</a></li>
+    <li class="toctree-l3"><a href="#edm-algorithms">EDM Algorithms</a></li>
     
         <ul>
         
             <li><a class="toctree-l4" href="#simplex-nearest-neighbor-projection">Simplex : Nearest Neighbor Projection</a></li>
         
-            <li><a class="toctree-l4" href="#smap-sequential-locally-weighted-global-linear-maps">SMap : Sequential Locally Weighted Global Linear Maps</a></li>
+            <li><a class="toctree-l4" href="#s-map-sequential-locally-weighted-global-linear-maps">S-Map : Sequential Locally Weighted Global Linear Maps</a></li>
         
             <li><a class="toctree-l4" href="#ccm-convergent-cross-mapping">CCM : Convergent Cross Mapping</a></li>
         
@@ -113,11 +113,6 @@
     </ul>
                 </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="../updates.md">Update Log</a>
 	    </li>
           
         </ul>
@@ -130,7 +125,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">EDM Documentation</a>
+        <a href="..">EDM (pyEDM, rEDM)</a>
       </nav>
 
       
@@ -146,7 +141,7 @@
         
       
     
-    <li>Algorithms In-Depth</li>
+    <li>EDM Algorithms in Depth</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -156,13 +151,57 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="edm-algorithms-in-depth">EDM Algorithms In-Depth</h1>
+                <h1 id="edm-algorithms">EDM Algorithms</h1>
 <h2 id="simplex-nearest-neighbor-projection">Simplex : Nearest Neighbor Projection</h2>
-<p>Simplex </p>
-<h2 id="smap-sequential-locally-weighted-global-linear-maps">SMap : Sequential Locally Weighted Global Linear Maps</h2>
-<p>SMap </p>
+<p>The <code>Simplex</code> algorithm is a nearest neighbor projection. It finds the <code>knn</code> 
+nearest neighbors to the query point in phase-space, then calculates the
+prediction as the average of the normalized weighted phase-space points of
+each neighbor.  Each neighbor is weighted proportional to their distance to
+the query point as described in
+<a href="https://www.nature.com/articles/344734a0">Sugihara and May 1990</a>.
+<code>Simplex</code> is the most direct projection technique in the
+EDM package, operates with minimal assumptions, and is the core algorithm
+for the evaluation of embedding dimension
+<a href="../edm_functions/#embeddimension"><code>EmbedDimension()</code></a>, evaluation of
+temporal forecast predictability
+<a href="../edm_functions/#predictinterval"><code>PredictInterval()</code></a>, 
+convergent cross mapping <a href="../edm_functions/#ccm"><code>CCM()</code></a>,
+and multiview embedding <a href="../edm_functions/#multiview"><code>Multiview()</code></a>.</p>
+<h2 id="s-map-sequential-locally-weighted-global-linear-maps">S-Map : Sequential Locally Weighted Global Linear Maps</h2>
+<p>S-Map extends the phase space prediction in <code>Simplex</code> from an
+average of the E+1 knn neighbors, to a linear regression fit to all
+neighbors, but localised with an exponential decay kernel as described
+in <a href="https://royalsocietypublishing.org/doi/abs/10.1098/rsta.1994.0106">Sugihara 1994</a>. In this way, neighbors close to the query point have a higher weight
+than those further from it, such that a locally linear approximation to
+the nonlinear system is reasonable. This <em>localisation</em> ability allows
+one to identify an optimal local scale that my provide improved
+predictability over a <code>Simplex</code> projection. </p>
+<p>For a demonstration of this localisation, see the
+<a href="https://github.com/cameronosmith/EDM_notebooks/blob/master/SMAP.ipynb">S-MAP Notebook</a>.</p>
+<p>Another advantage of S-Map is that for a properly fit model, the regression
+coefficients between variables have been shown (<a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2015.2258">Deyle et al. 2016</a>) to approximate
+the gradient (directional derivative) of variables along the manifold.
+These Jacobians represent the time-varying interaction strengths between
+system variables. </p>
 <h2 id="ccm-convergent-cross-mapping">CCM : Convergent Cross Mapping</h2>
-<p>CCM </p>
+<p>One of the corollaries to the Generalized Takens Theorem is that it
+should be possible to cross predict or cross map between variables that
+are observed from the same system. Suppose that in some dynamical system
+involving variables X and Y, X causes Y. 
+Since X and Y belong to the same dynamical system, their reconstructions
+(via embeddings) Mx, and My, also map to the same system.</p>
+<p>The causal variable X leaves a signature on the affected variable Y,
+and consequently, the reconstructed states based on Y can be used to
+cross predict the values of X. CCM leverages this property to infer
+causality by predicting X using My's library of points (or vice versa
+for the other direction of causality), while assessing improvements in
+cross map predictability as larger and larger random samplings of My
+are used. If the prediction skill of X increases and saturates as the
+entire My is used, this provides evidence that X is casually
+influencing Y as described in
+<a href="https://science.sciencemag.org/content/338/6106/496">Sugihara et al. 2012</a>.</p>
+<iframe width="100%" height="335" src="https://www.youtube.com/embed/NrFdIz-D2yM" 
+frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe>
               
             </div>
           </div>
@@ -171,7 +210,7 @@
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
       
-        <a href="../algorithms_high_level/" class="btn btn-neutral" title="Algorithms High Level"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../algorithms_high_level/" class="btn btn-neutral" title="Examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
       
     </div>
   

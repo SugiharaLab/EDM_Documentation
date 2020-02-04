@@ -1,62 +1,72 @@
-# The EDM Framework:
+## The EDM Framework
+The EDM framework is predicated on the availability of a multidimensional
+representation of the system dynamics.  For example, the well-known
+[Rössler attractor](https://en.wikipedia.org/wiki/R%C3%B6ssler_attractor)
+is a 3-dimensional (3-D) system that can express chaotic dynamics.
+The set of 3 equations that define the Rössler system define an _attractor_
+or _manifold_ defining the _state-space_ or _phase-space_ of the system. 
+Often, one does not have complete information regarding the system
+dynamics, in which case we can invoke the Taken's embedding theorem.
 
-EDM is a toolkit for analyzing time series of nonlinear dynamical systems, 
-with primary applications of forecasting, causal inference, and more.
-
-The EDM framework leverages 
+### Taken's Theorem
 [Taken's theorem](https://en.wikipedia.org/wiki/Takens%27s_theorem) 
-to better predict data and analyze the relationship between different variables 
-of the system. Taken's theorem is relevantly powerful for these nonlinear, 
-high-dimensional systems as rarely can we record all variables of a system, and 
-the embedding allows us to reconstruct a shadow manifold containing relevant 
-variables from a limited set of observers.
+is a remarkable mathematical result that allows one to reconstruct a
+representation of the system dynamics (state-space manifold) from a
+single (univariate, 1-D) timeseries observed from the system.  The result
+is the generation of a higher-dimensional representation of the system.
 
+The process of creating this representation is termed _embedding_.  In the
+EDM packages we can use the [`Embed()`](../edm_functions/#embeddimension)
+function to create an embedding.  This function creates successively
+time-lagged vectors from the input vectors.  Embedding is implicitly
+performed by default in the EDM functions
+[`Simplex()`](../edm_functions/#simplex),[`SMap()`](../edm_functions/#smap),
+[`CCM()`](../edm_functions/#ccm), unless the `embedded` argument
+is set `True` indicating that the data are already embedded.
 
+<!--- ![lorenz-logo](imgs/Lorenz_logo.png){: style="height:200px;width:200px"}--->
 
-### Analysis begins with finding the optimal embedding dimension:
-#### Finding the optimal embedding dimension:  
-##### Why: 
-[Taken's theorem](https://en.wikipedia.org/wiki/Takens%27s_theorem) states that
-it is possible to reconstruct the attractor of a chaotic dynamical system from 
-its observations. EDM analysis begins with finding the optimal embedding 
-dimension, which is the number of lags on the input data that produces the 
-highest prediction accuracy. Basically, by searching for the optimal embedding, 
-we are trying to "organize" and "disentangle" this manifold, as well as recover 
-some unrecorded actors on the system, such that our model can predict better.
+### Finding the optimal embedding dimension
+In the case of the Rössler attractor we know that 3 dimensions will
+best represent the system.  If Taken's theorem is used to create an
+embedding, there will exist an optimal number of dimensions that represent
+the true dynamics.  We can estimate an optimal embedding dimension
+with the [`EmbedDimension()`](../edm_functions/#embeddimension) function.
+This function evaluates simplex prediction accuracy over a range of embedding
+dimensions, the embedding dimension with the highest predictive accuracy is
+selected for system analysis.  This embedding is presumed to best represent
+and "disentangle" the manifold.
 
-##### How: 
-We automate this optimal embedding search with the function 
-[EmbedDimension](../edm_functions/#embeddimension). This function evaluates 
-prediction accuracy on a range of embedding dimension. Pick the embedding 
-dimension with the highest accuracy (rho) for future forecasting and system analysis, 
-but prefer a lower embedding dimension if accuracy is comparable to the highest 
-dimension's score. 
+### Nearerst Neighbor Forecasting: Simplex and S-map
+EDM implements two timeseries prediction algorithms: Simplex, and S-map.
+Both operate in the embedding state-space, using nearest neighbors
+of a query point (location in the state-space from which a prediction is
+desired) to project a new estimate along the manifold.
 
-### To Simplex or to S-MAP?
-Simplex and S-MAP are both prediction algorithms. For details on the 
-algorithms, see the [EDM Algorithms in Depth](../algorithms_in_depth) 
-section. The relevant gist is that Simplex is a more crude prediction algorithm 
-than S-MAP, but useful as we are interested in simple prediction model that 
-computes a general estimate of how well organized the attractor is for prediction, 
-independent of the theta parameter for S-MAP.  
-This function is primarily used to evaluate the embedding
-dimension and in the CCM algorithm. S-Map is the more comprehensive 
-prediction algorithm and should be used over Simplex for the most robust 
-system prediction.
+Simplex uses the centroid of the k nearest neighbors (knn) of the query
+point as the estimate.  The number of neighbors, knn, is conventionally
+set as the number of dimensions plus one: knn = E + 1. 
 
-### S-MAP for Robust Predictions on Nonlinear Systems
-The S-MAP algorithm's predictive success depends on the parameter theta used for
-exponential weighting of state-space neighbors. For details on the algorithm
-and how the theta parameter is used, see the
-[EDM Algorithms in Depth](../algorithms_in_depth) section. Similar to how 
-EmbedDimension is used to find the optimal embedding dimension parameter, 
-the function  [PredictNonlinear](../edm_functions/#predictnonlinear) 
-evaluates the prediction accuracy on a range of theta values.
+S-map uses a linear regression of the query point knn to project a new
+estimate along the manifold.  By default, number of knn are set to the
+total number of state-space observation points. An exponential localisation
+function (f = exp( -θ D )) is used to selectively ignore neighbors beyond
+the localisation radius.  This allows one to vary the extent to which
+local neighbors are considered in the linear projection, effectively
+modeling different local "resolutions" on the attractor.  The effect of
+this knn localisation can be assessed with the
+[`PredictNonlinear()`](../edm_functions/#predictnonlinear) function that
+evaluates S-map predictive skill over a range of localisations θ.
 
-### System analysis: 
-In addition to analyzing how nonlinear the system of study is (via the 
-`PredictNonlinear` function as we saw, EDM has a function `CCM`
-(Convergent Cross Mapping) which analyzes the causal relationship between 
-two observers of the system of study. This algorithm avoids the pitfalls of 
-mirage correlation and causation without correlation. For details on the 
-CCM algorithm, see the section [EDM Algorithms in Depth](../algorithms_in_depth).
+### Variable interactions
+EDM also provides methods to assess interactions between state-space
+variables, as well as inference of causal relationships.
+[`SMap()`](../edm_functions/#smap) returns the regression coefficients
+between variables, and these have been shown to approximate the gradient
+(directional derivative) of variables along the manifold
+([Deyle et al. 2016](https://royalsocietypublishing.org/doi/full/10.1098/rspb.2015.2258)).
+
+[`CCM()`](../edm_functions/#ccm) applies convergent cross mapping
+to pairs of variables to infer possible causal links between variables.
+Details on these algorithms are provided in the section
+[EDM Algorithms in Depth](../algorithms_in_depth).
