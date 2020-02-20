@@ -7,9 +7,11 @@ See: [pyEDM on PyPI](https://pypi.org/project/pyEDM/)
 
 ### rEDM
 From the CRAN respository:
+
      install.packages("rEDM")
 
 Latest development version:
+
        install.packages("devtools")
        devtools::install_github("SugiharaLab/rEDM")
 
