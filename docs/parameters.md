@@ -19,6 +19,7 @@ exclusionRadius|Excludes vectors from the search space of nearest neighbors if t
 columns     |String of whitespace separated column name(s) in the input data used to create the library.
 target      |String of column name in the input data used for prediction.
 smapFile    |Output file containing S-map coefficients.
+solver      |In pyEDM: An instance of a sklearn.linear_model object.
 embedded    |Logical specifying if the input data are embedded.
 libSizes    |String of 3 whitespace separated integer values specifying the intial library size; the final library size; and the library size increment for CCM.
 sample      |Integer specifying the number of random samples to draw at each library size evaluation for CCM.

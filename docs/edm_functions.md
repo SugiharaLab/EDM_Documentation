@@ -37,11 +37,11 @@ If embedded is false (default) the data columns are embedded to dimension `E` wi
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None |Input DataFrame| 
+| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None |Input DataFrame|
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index] | 
+| pred      | string | ""    | [prediction start index : prediction stop index]|
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set as E+1)| 
@@ -61,22 +61,28 @@ SMap projection of the input data file or DataFrame.
 
 See the Parameters table for parameter definitions.  
 `nan` values are inserted in the output DataFrame where there is 
-no observation or prediction.  
-If embedded is false the data columns are embedded to dimension E with delay tau .
-If predictFile is provided the predictions will be written in csv format.
-If smapFile is provided the coefficients will be written in csv format.
+no observation or prediction.
+
+If embedded is false, data columns are embedded to dimension E with delay tau.
+If predictFile is provided the predictions are written in csv format.
+If smapFile is provided the coefficients are written in csv format.
 If knn is not specified, it is set equal to the library size. 
-If knn is specified, it must be greater than E .
+If knn is specified, it must be greater than E.
+
+In PyEDM: The default LAPACK SVD solver `dgelss()` can be replaced with
+a class object instantiated from the sklearn.linear_model class.
+Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
+`ElasticNet`, `RidgeCV`, `LassoCV`, `ElasticNetCV`.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None |Input DataFrame| 
+| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None |Input DataFrame|
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index] | 
+| pred      | string | ""    | [prediction start index : prediction stop index]|
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors | 
@@ -86,8 +92,9 @@ If knn is specified, it must be greater than E .
 | columns   | string | ""    | Column names or indices for prediction | 
 | target    | string | ""    | Target library column name or index |
 | smapFile  | string | ""    | SMap coefficient output file |
+| solver    | sklearn.linear_model | None | Linear system solver |
 | embedded  | bool   | False | Is data an embedding |
-| const\_pred| bool   | False | Include non projected forecast data |
+| const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
 
 ** Returns **  :   
@@ -123,7 +130,7 @@ Note: Cross mappings are performed between column : target , and target : column
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index] | 
+| pred      | string | ""    | [prediction start index : prediction stop index]|
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set as E+1)| 
@@ -160,7 +167,7 @@ If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index] | 
+| pred      | string | ""    | [prediction start index : prediction stop index]|
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
@@ -195,7 +202,7 @@ The maximum number of threads is 10.
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index] | 
+| pred      | string | ""    | [prediction start index : prediction stop index]|
 | maxE      | int    | 10    | Evaluate embedding up to maxE | 
 | Tp        | int    | 1     | Prediction Interval | 
 | tau       | int    | -1    | Embedding delay | 
@@ -224,7 +231,7 @@ interval forecasts. The maximum number of threads is 10.
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index] | 
+| pred      | string | ""    | [prediction start index : prediction stop index]|
 | maxTp     | int    | 10    | Evaluate forecast with Tp up to maxTp | 
 | E         | int    | 0     | Embedding dimension | 
 | tau       | int    | -1    | Embedding delay | 
@@ -254,7 +261,7 @@ See the Parameters table for parameter definitions.
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index] | 
+| pred      | string | ""    | [prediction start index : prediction stop index]|
 | theta     | string | ""    | `theta` is a string of theta values with a delimiter of [',' , '\t', '\n']. |
 | E         | int    | 0     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
