@@ -351,12 +351,16 @@ Constructed DataFrame with columns "Time", "Observations", and "Predictions".</p
 SMap projection of the input data file or DataFrame.</p>
 <p>See the Parameters table for parameter definitions.<br />
 <code>nan</code> values are inserted in the output DataFrame where there is 
-no observation or prediction.<br />
-If embedded is false the data columns are embedded to dimension E with delay tau .
-If predictFile is provided the predictions will be written in csv format.
-If smapFile is provided the coefficients will be written in csv format.
+no observation or prediction.</p>
+<p>If embedded is false, data columns are embedded to dimension E with delay tau.
+If predictFile is provided the predictions are written in csv format.
+If smapFile is provided the coefficients are written in csv format.
 If knn is not specified, it is set equal to the library size. 
-If knn is specified, it must be greater than E .</p>
+If knn is specified, it must be greater than E.</p>
+<p>In PyEDM: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
+a class object instantiated from the sklearn.linear_model class.
+Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
+<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>.</p>
 <table>
 <thead>
 <tr>
@@ -462,6 +466,12 @@ If knn is specified, it must be greater than E .</p>
 <td>string</td>
 <td>""</td>
 <td>SMap coefficient output file</td>
+</tr>
+<tr>
+<td>solver</td>
+<td>sklearn.linear_model</td>
+<td>None</td>
+<td>Linear system solver</td>
 </tr>
 <tr>
 <td>embedded</td>
