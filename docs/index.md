@@ -21,7 +21,7 @@ The core EDM algorithms are implemented in the
 [cppEDM library](https://github.com/SugiharaLab/cppEDM "cppEDM").
 Python and R interfaces to the library are provided in the
 [pyEDM](https://github.com/SugiharaLab/pyEDM "pyEDM") and
-[rEDM](https://github.com/SugiharaLab/rEDM "rEDM") packages.  
+[EDM](https://github.com/SoftwareLiteracyFoundation/cpp-R-EDM "EDM") packages.  
 
 ------
 
