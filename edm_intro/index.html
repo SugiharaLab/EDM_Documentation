@@ -9,8 +9,6 @@
   
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>EDM Framework - EDM (pyEDM, rEDM)</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -71,7 +69,7 @@
     
         <ul>
         
-            <li><a class="toctree-l4" href="#takens-theorem">Taken's Theorem</a></li>
+            <li><a class="toctree-l4" href="#takens-theorem">Takens Theorem</a></li>
         
             <li><a class="toctree-l4" href="#finding-the-optimal-embedding-dimension">Finding the optimal embedding dimension</a></li>
         
@@ -161,31 +159,32 @@ is a 3-dimensional (3-D) system that can express chaotic dynamics.
 The set of 3 equations that define the Rössler system define an <em>attractor</em>
 or <em>manifold</em> defining the <em>state-space</em> or <em>phase-space</em> of the system. 
 Often, one does not have complete information regarding the system
-dynamics, in which case we can invoke the Taken's embedding theorem.</p>
-<h3 id="takens-theorem">Taken's Theorem</h3>
-<p><a href="https://en.wikipedia.org/wiki/Takens%27s_theorem">Taken's theorem</a> 
+dynamics, in which case we can invoke Takens embedding theorem.</p>
+<h3 id="takens-theorem">Takens Theorem</h3>
+<p><a href="https://en.wikipedia.org/wiki/Takens%27s_theorem">Takens theorem</a> 
 is a remarkable mathematical result that allows one to reconstruct a
 representation of the system dynamics (state-space manifold) from a
-single (univariate, 1-D) timeseries observed from the system.  The result
-is the generation of a higher-dimensional representation of the system.</p>
+single (univariate, 1-D) timeseries observed from the system.  The embedding
+results in generation of a higher-dimensional representation of the system.</p>
 <p>The process of creating this representation is termed <em>embedding</em>.  In the
 EDM packages we can use the <a href="../edm_functions/#embeddimension"><code>Embed()</code></a>
 function to create an embedding.  This function creates successively
-time-lagged vectors from the input vectors.  Embedding is implicitly
-performed by default in the EDM functions
-<a href="../edm_functions/#simplex"><code>Simplex()</code></a>,<a href="../edm_functions/#smap"><code>SMap()</code></a>,
-<a href="../edm_functions/#ccm"><code>CCM()</code></a>, unless the <code>embedded</code> argument
-is set <code>True</code> indicating that the data are already embedded.</p>
+time-lagged, if <em>τ</em> &lt; 0, or, time-advanced if <em>τ</em> &gt; 0, observation vectors
+from the input vectors.  Embedding (with default <em>τ</em> = -1) is performed
+implicitly in EDM functions <a href="../edm_functions/#simplex"><code>Simplex()</code></a>,
+<a href="../edm_functions/#smap"><code>SMap()</code></a>, and <a href="../edm_functions/#ccm"><code>CCM()</code></a>,
+unless the <code>embedded</code> argument is set <code>True</code> indicating that the data are
+already embedded.</p>
 <!--- ![lorenz-logo](imgs/Lorenz_logo.png){: style="height:200px;width:200px"}--->
 
 <h3 id="finding-the-optimal-embedding-dimension">Finding the optimal embedding dimension</h3>
 <p>In the case of the Rössler attractor we know that 3 dimensions will
-best represent the system.  If Taken's theorem is used to create an
-embedding, there will exist an optimal number of dimensions that represent
-the true dynamics.  We can estimate an optimal embedding dimension
-with the <a href="../edm_functions/#embeddimension"><code>EmbedDimension()</code></a> function.
+best represent the system.  If Takens theorem is used to create an
+embedding, there will exist an optimal number of dimensions that best represent
+the dynamics.  We can estimate an optimal embedding dimension with the
+<a href="../edm_functions/#embeddimension"><code>EmbedDimension()</code></a> function.
 This function evaluates simplex prediction accuracy over a range of embedding
-dimensions, the embedding dimension with the highest predictive accuracy is
+dimensions, the embedding dimension E with the highest predictive accuracy is
 selected for system analysis.  This embedding is presumed to best represent
 and "disentangle" the manifold.</p>
 <h3 id="nearerst-neighbor-forecasting-simplex-and-s-map">Nearerst Neighbor Forecasting: Simplex and S-map</h3>
@@ -193,24 +192,25 @@ and "disentangle" the manifold.</p>
 Both operate in the embedding state-space, using nearest neighbors
 of a query point (location in the state-space from which a prediction is
 desired) to project a new estimate along the manifold.</p>
-<p>Simplex uses the centroid of the k nearest neighbors (knn) of the query
+<p>Simplex uses the centroid of the k-nearest neighbors (knn) of the query
 point as the estimate.  The number of neighbors, knn, is conventionally
 set as the number of dimensions plus one: knn = E + 1. </p>
-<p>S-map uses a linear regression of the query point knn to project a new
-estimate along the manifold.  By default, number of knn are set to the
-total number of state-space observation points. An exponential localisation
-function (f = exp( -θ D )) is used to selectively ignore neighbors beyond
-the localisation radius.  This allows one to vary the extent to which
-local neighbors are considered in the linear projection, effectively
-modeling different local "resolutions" on the attractor.  The effect of
-this knn localisation can be assessed with the
+<p>S-map uses a linear regression of the query point to project a new
+estimate along the manifold.  By default, number of neighbors knn in the
+regression are set to the total number of state-space observation points.
+An exponential localisation function (F(θ) = exp(-θd/D), where d is the
+neighbor distance, D the mean distance) is used to selectively ignore
+neighbors beyond the localisation radius.  This allows one to vary the
+extent to which local neighbors are considered in the linear projection,
+effectively modeling different local "resolutions" on the attractor.
+The effect of this knn localisation can be assessed with the
 <a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a> function that
 evaluates S-map predictive skill over a range of localisations θ.</p>
 <h3 id="variable-interactions">Variable interactions</h3>
 <p>EDM also provides methods to assess interactions between state-space
 variables, as well as inference of causal relationships.
 <a href="../edm_functions/#smap"><code>SMap()</code></a> returns the regression coefficients
-between variables, and these have been shown to approximate the gradient
+between variables, which have been shown to approximate the gradient
 (directional derivative) of variables along the manifold
 (<a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2015.2258">Deyle et al. 2016</a>).</p>
 <p><a href="../edm_functions/#ccm"><code>CCM()</code></a> applies convergent cross mapping

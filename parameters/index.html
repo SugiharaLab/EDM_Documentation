@@ -9,8 +9,6 @@
   
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Parameters - EDM (pyEDM, rEDM)</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -172,11 +170,11 @@
 </tr>
 <tr>
 <td>lib</td>
-<td>String with start and stop indices of input data rows used to create the library of observations. A single contiguous range is supported. <code>rEDM</code> accepts a 2-vector.</td>
+<td>String or vector with pairs of start and stop indices of input data rows used to create the library of observations. String indices must be whitespace separated.</td>
 </tr>
 <tr>
 <td>pred</td>
-<td>String with start and stop indices of input data rows used for predictions. A single contiguous range is supported. <code>rEDM</code> accepts a 2-vector.</td>
+<td>String or vector with pairs of start and stop indices of input data rows predictions. String indices must be whitespace separated.</td>
 </tr>
 <tr>
 <td>E</td>
@@ -188,11 +186,11 @@
 </tr>
 <tr>
 <td>knn</td>
-<td>Number of nearest neighbors. If knn=0; knn is set to E+1 for Simplex(); set to number of lib data rows for SMap().</td>
+<td>Number of nearest neighbors. If knn=0; knn is set to E+1 for <code>Simplex()</code>; set to number of lib data rows for <code>SMap()</code>.</td>
 </tr>
 <tr>
 <td>tau</td>
-<td>Lag of time delay embedding specified as number of time column rows.</td>
+<td>Time delay of embedding specified as number of time column rows. tau &lt; 0 are lags, tau &gt; 0 future values.</td>
 </tr>
 <tr>
 <td>theta</td>
@@ -208,7 +206,7 @@
 </tr>
 <tr>
 <td>columns</td>
-<td>String of whitespace separated column name(s) in the input data used to create the library.</td>
+<td>String or vector of column name(s) in the input data used to create the library. String names must be whitespace separated.</td>
 </tr>
 <tr>
 <td>target</td>
@@ -224,11 +222,11 @@
 </tr>
 <tr>
 <td>embedded</td>
-<td>Logical specifying if the input data are embedded.</td>
+<td>Logical specifying if the input data are embedded.  If <code>embedded = True</code>, no emedding is performed.  If <code>embedded = False</code>, the input data are embedded to dimension <code>E</code> with time shift <code>tau</code>.</td>
 </tr>
 <tr>
 <td>libSizes</td>
-<td>String of 3 whitespace separated integer values specifying the intial library size; the final library size; and the library size increment for CCM.</td>
+<td>String or vector of 3 integer values specifying the intial library size; the final library size; and the library size increment for CCM. String values must be whitespace separated.</td>
 </tr>
 <tr>
 <td>sample</td>

@@ -9,8 +9,6 @@
   
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>Installation - EDM (pyEDM, rEDM)</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -63,13 +61,13 @@
     <a class="current" href="./">Installation</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#installation-instructions">Installation Instructions</a></li>
+    <li class="toctree-l3"><a href="#installation">Installation</a></li>
     
         <ul>
         
-            <li><a class="toctree-l4" href="#pyedm">pyEDM</a></li>
+            <li><a class="toctree-l4" href="#python-pyedm">Python: pyEDM</a></li>
         
-            <li><a class="toctree-l4" href="#edm">EDM</a></li>
+            <li><a class="toctree-l4" href="#r-edm">R: EDM</a></li>
         
             <li><a class="toctree-l4" href="#note">Note</a></li>
         
@@ -151,26 +149,28 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="installation-instructions">Installation Instructions</h1>
-<h3 id="pyedm">pyEDM</h3>
+                <h1 id="installation">Installation</h1>
+<h3 id="python-pyedm">Python: pyEDM</h3>
 <pre><code>pip install pyEDM
 </code></pre>
-<p>See: <a href="https://pypi.org/project/pyEDM/">pyEDM on PyPI</a></p>
-<h3 id="edm">EDM</h3>
-<!----
-From the CRAN respository:
 
+<p>See: <a href="https://pypi.org/project/pyEDM/">pyEDM on PyPI</a></p>
+<h3 id="r-edm">R: EDM</h3>
+<pre><code>&gt; install.packages(&quot;devtools&quot;)
+</code></pre>
+
+<pre><code>&gt; devtools::install_github(&quot;SoftwareLiteracyFoundation/cpp-R-EDM&quot;)
+</code></pre>
+
+<p>See: <a href="https://github.com/SoftwareLiteracyFoundation/cpp-R-EDM" title="EDM">EDM</a></p>
+<!----
+From the CRAN respository:  
      install.packages("rEDM")
 ---->
 
-<p>Latest development version:</p>
-<pre><code>   install.packages("devtools")
-   devtools::install_github("SoftwareLiteracyFoundation/cpp-R-EDM")
-</code></pre>
-<p>See: <a href="https://github.com/SoftwareLiteracyFoundation/cpp-R-EDM" title="EDM">EDM</a></p>
 <h2 id="note">Note</h2>
 <p>For OS's not supported by CRAN or PyPI, the packages can be built
-from the github packages, please see:
+from github. Please see:
 <a href="https://github.com/SugiharaLab/pyEDM" title="pyEDM">pyEDM</a>, or, 
 <a href="https://github.com/SoftwareLiteracyFoundation/cpp-R-EDM" title="EDM">EDM</a>.</p>
               

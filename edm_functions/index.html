@@ -9,8 +9,6 @@
   
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>EDM Functions - EDM (pyEDM, rEDM)</title>
-  <link href='https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700' rel='stylesheet' type='text/css'>
-
   <link rel="stylesheet" href="../css/theme.css" type="text/css" />
   <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
   <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
@@ -166,12 +164,12 @@
             <div class="section">
               
                 <h1 id="embed"><function> Embed </function></h1>
-<p><strong> Description </strong>  : <br />
+<p><strong> Description </strong>  :
 Creates a data block of time-delay embedding from each of the 
 columns in the csv file or dataFrame.  </p>
-<p>The columns parameter can be a list of column names, or a list of 
-column indices.</p>
-<p>Note: The returned DataFrame will have tau * (E-1) fewer 
+<p>The columns parameter can be a list of column names, a list of 
+column indices, or a whitespace separated string of column names or indices.</p>
+<p>Note: The returned DataFrame will have |tau| * (E-1) fewer 
 rows than the input data from the removal of partial vectors as 
 a result of the embedding.</p>
 <table>
@@ -212,11 +210,11 @@ a result of the embedding.</p>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding delay</td>
+<td>Embedding shift. Negative: lag, positive: future</td>
 </tr>
 <tr>
 <td>columns</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
 <td>Column names</td>
 </tr>
@@ -229,13 +227,13 @@ a result of the embedding.</p>
 </tbody>
 </table>
 <p><strong> Returns </strong>  : <br />
-Constructed DataFrame with embedded columns.</p>
+DataFrame with embedded columns.</p>
 <h1 id="simplex"><function> Simplex </function></h1>
 <p><strong> Description </strong>  : <br />
 Simplex projection of the input data file or DataFrame.</p>
 <p><code>nan</code> values are inserted in the output DataFrame where there is 
 no observation or prediction.</p>
-<p>If embedded is false (default) the data columns are embedded to dimension <code>E</code> with delay <code>tau</code>.  </p>
+<p>If embedded is false (default) the data columns are embedded to dimension <code>E</code> with time shift <code>tau</code>.  If knn = 0, it is set to E+1.</p>
 <table>
 <thead>
 <tr>
@@ -278,15 +276,15 @@ no observation or prediction.</p>
 </tr>
 <tr>
 <td>lib</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[library start index : library stop index]</td>
+<td>Pairs of library start stop row indices</td>
 </tr>
 <tr>
 <td>pred</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[prediction start index : prediction stop index]</td>
+<td>Pairs of prediction start stop row indices</td>
 </tr>
 <tr>
 <td>E</td>
@@ -304,17 +302,17 @@ no observation or prediction.</p>
 <td>knn</td>
 <td>int</td>
 <td>0</td>
-<td>Number nearest neighbors (if 0 then set as E+1)</td>
+<td>Number nearest neighbors (if 0 then set to E+1)</td>
 </tr>
 <tr>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding delay</td>
+<td>Embedding time shift</td>
 </tr>
 <tr>
 <td>columns</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
 <td>Column names for library</td>
 </tr>
@@ -322,13 +320,13 @@ no observation or prediction.</p>
 <td>target</td>
 <td>string</td>
 <td>""</td>
-<td>Target library column name</td>
+<td>Prediction target column name</td>
 </tr>
 <tr>
 <td>embedded</td>
 <td>bool</td>
 <td>False</td>
-<td>Is data an embedding</td>
+<td>Is data an embedding? If False, embed to E</td>
 </tr>
 <tr>
 <td>const_pred</td>
@@ -345,14 +343,14 @@ no observation or prediction.</p>
 </tbody>
 </table>
 <p><strong> Returns </strong>  : <br />
-Constructed DataFrame with columns "Time", "Observations", and "Predictions".</p>
+DataFrame with columns "Time", "Observations", and "Predictions".</p>
 <h1 id="smap"><function> SMap </function></h1>
 <p><strong> Description </strong>  : <br />
 SMap projection of the input data file or DataFrame.</p>
 <p>See the Parameters table for parameter definitions.<br />
 <code>nan</code> values are inserted in the output DataFrame where there is 
 no observation or prediction.</p>
-<p>If embedded is false, data columns are embedded to dimension E with delay tau.
+<p>If embedded is false, data columns are embedded to dimension E with shift tau.
 If predictFile is provided the predictions are written in csv format.
 If smapFile is provided the coefficients are written in csv format.
 If knn is not specified, it is set equal to the library size. 
@@ -403,15 +401,15 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 </tr>
 <tr>
 <td>lib</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[library start index : library stop index]</td>
+<td>Pairs of library start stop row indices</td>
 </tr>
 <tr>
 <td>pred</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[prediction start index : prediction stop index]</td>
+<td>Pairs of prediction start stop row indices</td>
 </tr>
 <tr>
 <td>E</td>
@@ -435,7 +433,7 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding delay</td>
+<td>Embedding time shift</td>
 </tr>
 <tr>
 <td>theta</td>
@@ -451,15 +449,15 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 </tr>
 <tr>
 <td>columns</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>Column names or indices for prediction</td>
+<td>Column names for library</td>
 </tr>
 <tr>
 <td>target</td>
 <td>string</td>
 <td>""</td>
-<td>Target library column name or index</td>
+<td>Prediction target column name or index</td>
 </tr>
 <tr>
 <td>smapFile</td>
@@ -494,8 +492,8 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 </tbody>
 </table>
 <p><strong> Returns </strong>  : <br />
-[Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with two DataFrames:</p>
-<p>{<br />
+[Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with two DataFrames:
+{<br />
 <code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br />
 <code>coefficients</code>[ 'E+2' columns : "Time", and 'E+1' SMap SVD fit coefficents]
 }</p>
@@ -503,7 +501,7 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 <p>Convergent cross mapping of the first vector specified in columns 
 against target.</p>
 <p>The data cannot be multivariable; the first vector in columns 
-is time-delay embedded to dimension E.
+is time-delay embedded to dimension E with time shift tau.
 <code>libSizes</code> specifies a string with "start stop increment" 
 row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 
 in increments of 10.<br />
@@ -513,7 +511,7 @@ If <code>seed=0</code> , then a random seed is generated for the random number g
 Otherwise, seed is used to initialise the random number generator.<br />
 If <code>random</code> is false, sample is ignored and contiguous library rows up to the 
 current library size are used.<br />
-Note: Cross mappings are performed between column : target , and target : column . </p>
+Note: Cross mappings are performed between column : target , and target : column.</p>
 <table>
 <thead>
 <tr>
@@ -556,15 +554,15 @@ Note: Cross mappings are performed between column : target , and target : column
 </tr>
 <tr>
 <td>lib</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[library start index : library stop index]</td>
+<td>Pairs of library start stop row indices</td>
 </tr>
 <tr>
 <td>pred</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[prediction start index : prediction stop index]</td>
+<td>Pairs of prediction start stop row indices</td>
 </tr>
 <tr>
 <td>E</td>
@@ -588,19 +586,19 @@ Note: Cross mappings are performed between column : target , and target : column
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding delay</td>
+<td>Embedding time shift</td>
 </tr>
 <tr>
 <td>columns</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>Column names for library</td>
+<td>Column name for library</td>
 </tr>
 <tr>
 <td>target</td>
 <td>string</td>
 <td>""</td>
-<td>Target library column name</td>
+<td>Prediction target column name</td>
 </tr>
 <tr>
 <td>libSizes</td>
@@ -689,15 +687,15 @@ If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the
 </tr>
 <tr>
 <td>lib</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[library start index : library stop index]</td>
+<td>Pairs of library start stop row indices</td>
 </tr>
 <tr>
 <td>pred</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[prediction start index : prediction stop index]</td>
+<td>Pairs of prediction start stop row indices</td>
 </tr>
 <tr>
 <td>E</td>
@@ -721,11 +719,11 @@ If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding delay</td>
+<td>Embedding time shift</td>
 </tr>
 <tr>
 <td>columns</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
 <td>Column names for library</td>
 </tr>
@@ -733,7 +731,7 @@ If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the
 <td>target</td>
 <td>string</td>
 <td>""</td>
-<td>Target library column name</td>
+<td>Prediction target library column name</td>
 </tr>
 <tr>
 <td>multiview</td>
@@ -805,15 +803,15 @@ The maximum number of threads is 10.</p>
 </tr>
 <tr>
 <td>lib</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[library start index : library stop index]</td>
+<td>Pairs of library start stop row indices</td>
 </tr>
 <tr>
 <td>pred</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[prediction start index : prediction stop index]</td>
+<td>Pairs of prediction start stop row indices</td>
 </tr>
 <tr>
 <td>maxE</td>
@@ -831,11 +829,11 @@ The maximum number of threads is 10.</p>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding delay</td>
+<td>Embedding time shift</td>
 </tr>
 <tr>
 <td>columns</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
 <td>Column names for library</td>
 </tr>
@@ -843,7 +841,7 @@ The maximum number of threads is 10.</p>
 <td>target</td>
 <td>string</td>
 <td>""</td>
-<td>Target library column name</td>
+<td>Prediction target column name</td>
 </tr>
 <tr>
 <td>embedded</td>
@@ -920,15 +918,15 @@ interval forecasts. The maximum number of threads is 10.</p>
 </tr>
 <tr>
 <td>lib</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[library start index : library stop index]</td>
+<td>Pairs of library start stop row indices</td>
 </tr>
 <tr>
 <td>pred</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[prediction start index : prediction stop index]</td>
+<td>Pairs of prediction start stop row indices</td>
 </tr>
 <tr>
 <td>maxTp</td>
@@ -946,11 +944,11 @@ interval forecasts. The maximum number of threads is 10.</p>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding delay</td>
+<td>Embedding shift</td>
 </tr>
 <tr>
 <td>columns</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
 <td>Column names for library</td>
 </tr>
@@ -958,7 +956,7 @@ interval forecasts. The maximum number of threads is 10.</p>
 <td>target</td>
 <td>string</td>
 <td>""</td>
-<td>Target library column name</td>
+<td>Prediction target column name</td>
 </tr>
 <tr>
 <td>embedded</td>
@@ -1036,15 +1034,15 @@ See the Parameters table for parameter definitions.</p>
 </tr>
 <tr>
 <td>lib</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[library start index : library stop index]</td>
+<td>Pairs of library start stop row indices</td>
 </tr>
 <tr>
 <td>pred</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
-<td>[prediction start index : prediction stop index]</td>
+<td>Pairs of prediction start stop row indices</td>
 </tr>
 <tr>
 <td>theta</td>
@@ -1068,11 +1066,11 @@ See the Parameters table for parameter definitions.</p>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding delay</td>
+<td>Embedding time shift</td>
 </tr>
 <tr>
 <td>columns</td>
-<td>string</td>
+<td>string or []</td>
 <td>""</td>
 <td>Column names for library</td>
 </tr>
@@ -1080,7 +1078,7 @@ See the Parameters table for parameter definitions.</p>
 <td>target</td>
 <td>string</td>
 <td>""</td>
-<td>Target library column name</td>
+<td>Prediction target column name</td>
 </tr>
 <tr>
 <td>embedded</td>
