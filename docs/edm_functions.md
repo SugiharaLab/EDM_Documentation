@@ -1,28 +1,28 @@
 # <function> Embed </function>
 
-** Description **  :   
+** Description **  :
 Creates a data block of time-delay embedding from each of the 
 columns in the csv file or dataFrame.  
 
-The columns parameter can be a list of column names, or a list of 
-column indices.
+The columns parameter can be a list of column names, a list of 
+column indices, or a whitespace separated string of column names or indices.
 
-Note: The returned DataFrame will have tau * (E-1) fewer 
+Note: The returned DataFrame will have |tau| * (E-1) fewer 
 rows than the input data from the removal of partial vectors as 
 a result of the embedding.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
-| pathIn    | string | "./"  | Input data file path | 
-| dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame| 
+| pathIn    | string | "./"  | Input data file path |
+| dataFile  | string | ""    | Data file name |
+| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame|
 | E         | int    | 0     | Data dimension | 
-| tau       | int    | -1    | Embedding delay | 
-| columns   | string | ""    | Column names | 
+| tau       | int    | -1    |Embedding shift. Negative: lag, positive: future|
+| columns   | string or [] | "" | Column names  |
 | verbose   | bool   | False | Echo messages |
 
 ** Returns **  :   
-Constructed DataFrame with embedded columns.
+DataFrame with embedded columns.
 
 # <function> Simplex </function> 
 ** Description **  :   
@@ -31,7 +31,7 @@ Simplex projection of the input data file or DataFrame.
 `nan` values are inserted in the output DataFrame where there is 
 no observation or prediction.
 
-If embedded is false (default) the data columns are embedded to dimension `E` with delay `tau`.  
+If embedded is false (default) the data columns are embedded to dimension `E` with time shift `tau`.  If knn = 0, it is set to E+1.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
@@ -40,20 +40,20 @@ If embedded is false (default) the data columns are embedded to dimension `E` wi
 | dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None |Input DataFrame|
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
-| lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index]|
+| lib   | string or [] | ""  | Pairs of library start stop row indices |
+| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
-| knn       | int    | 0     | Number nearest neighbors (if 0 then set as E+1)| 
-| tau       | int    | -1    | Embedding delay | 
-| columns   | string | ""    | Column names for library| 
-| target    | string | ""    | Target library column name |
-| embedded  | bool   | False | Is data an embedding |
+| knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
+| tau       | int    | -1    | Embedding time shift | 
+| columns | string or []| "" | Column names for library | 
+| target    | string | ""    | Prediction target column name |
+| embedded  | bool   | False | Is data an embedding? If False, embed to E|
 | const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
 
 ** Returns **  :   
-Constructed DataFrame with columns "Time", "Observations", and "Predictions".
+DataFrame with columns "Time", "Observations", and "Predictions".
 
 # <function> SMap </function> 
 ** Description **  :   
@@ -63,7 +63,7 @@ See the Parameters table for parameter definitions.
 `nan` values are inserted in the output DataFrame where there is 
 no observation or prediction.
 
-If embedded is false, data columns are embedded to dimension E with delay tau.
+If embedded is false, data columns are embedded to dimension E with shift tau.
 If predictFile is provided the predictions are written in csv format.
 If smapFile is provided the coefficients are written in csv format.
 If knn is not specified, it is set equal to the library size. 
@@ -81,16 +81,16 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 | dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None |Input DataFrame|
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
-| lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index]|
+| lib   | string or [] | ""  | Pairs of library start stop row indices |
+| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors | 
-| tau       | int    | -1    | Embedding delay | 
+| tau       | int    | -1    | Embedding time shift | 
 | theta     | int    | 0     | SMap localization | 
 | exclusionRadius | int | 0  | Prediction vector exclusion radius | 
-| columns   | string | ""    | Column names or indices for prediction | 
-| target    | string | ""    | Target library column name or index |
+| columns | string or []| "" | Column names for library | 
+| target    | string | ""    | Prediction target column name or index |
 | smapFile  | string | ""    | SMap coefficient output file |
 | solver    | sklearn.linear_model | None | Linear system solver |
 | embedded  | bool   | False | Is data an embedding |
@@ -99,7 +99,6 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 
 ** Returns **  :   
 [Dict in `pyEDM`, named List in `rEDM`] with two DataFrames:
-
 {  
 `predictions` [ 3 columns : "Time", "Observations", "Predictions"],  
 `coefficients`[ 'E+2' columns : "Time", and 'E+1' SMap SVD fit coefficents]
@@ -110,7 +109,7 @@ Convergent cross mapping of the first vector specified in columns
 against target.
 
 The data cannot be multivariable; the first vector in columns 
-is time-delay embedded to dimension E.
+is time-delay embedded to dimension E with time shift tau.
 `libSizes` specifies a string with "start stop increment" 
 row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 
 in increments of 10.  
@@ -120,7 +119,7 @@ If `seed=0` , then a random seed is generated for the random number generator.
 Otherwise, seed is used to initialise the random number generator.  
 If `random` is false, sample is ignored and contiguous library rows up to the 
 current library size are used.  
-Note: Cross mappings are performed between column : target , and target : column . 
+Note: Cross mappings are performed between column : target , and target : column.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
@@ -129,14 +128,14 @@ Note: Cross mappings are performed between column : target , and target : column
 | dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
-| lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index]|
+| lib   | string or [] | ""  | Pairs of library start stop row indices |
+| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set as E+1)| 
-| tau       | int    | -1    | Embedding delay | 
-| columns   | string | ""    | Column names for library| 
-| target    | string | ""    | Target library column name |
+| tau       | int    | -1    | Embedding time shift | 
+| columns | string or []| "" | Column name for library | 
+| target    | string | ""    | Prediction target column name |
 | libSizes| string | ""      | CCM library sizes |
 | sample    | int    | 0     | CCM number of random samples |
 | random    | bool   | True  | CCM use random samples? |
@@ -166,14 +165,14 @@ If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of
 | dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
-| lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index]|
+| lib   | string or [] | ""  | Pairs of library start stop row indices |
+| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
-| tau       | int    | -1    | Embedding delay | 
-| columns   | string | ""    | Column names for library| 
-| target    | string | ""    | Target library column name |
+| tau       | int    | -1    | Embedding time shift | 
+| columns | string or []| "" | Column names for library | 
+| target    | string | ""    | Prediction target library column name |
 | multiview | int    | 0     | Multiview parameter : (if 0 then set to 'sqrt(C)' where C is the number of  E-dimensional combinations out of all available data vectors)|
 | nthreads  | int    | 4     | Number of threads to use |
 
@@ -201,13 +200,13 @@ The maximum number of threads is 10.
 | dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
-| lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index]|
+| lib   | string or [] | ""  | Pairs of library start stop row indices |
+| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | maxE      | int    | 10    | Evaluate embedding up to maxE | 
 | Tp        | int    | 1     | Prediction Interval | 
-| tau       | int    | -1    | Embedding delay | 
-| columns   | string | ""    | Column names for library| 
-| target    | string | ""    | Target library column name |
+| tau       | int    | -1    | Embedding time shift | 
+| columns | string or []| "" | Column names for library | 
+| target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding |
 | verbose   | bool   | False | Echo messages |
 | nthreads  | int    | 4     | Number of threads to use |
@@ -230,13 +229,13 @@ interval forecasts. The maximum number of threads is 10.
 | dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
-| lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index]|
+| lib   | string or [] | ""  | Pairs of library start stop row indices |
+| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | maxTp     | int    | 10    | Evaluate forecast with Tp up to maxTp | 
 | E         | int    | 0     | Embedding dimension | 
-| tau       | int    | -1    | Embedding delay | 
-| columns   | string | ""    | Column names for library| 
-| target    | string | ""    | Target library column name |
+| tau       | int    | -1    | Embedding shift | 
+| columns | string or []| "" | Column names for library | 
+| target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding |
 | verbose   | bool   | False | Echo messages |
 | nthreads  | int    | 4     | Number of threads to use |
@@ -260,14 +259,14 @@ See the Parameters table for parameter definitions.
 | dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
-| lib       | string | ""    | [library start index : library stop index] | 
-| pred      | string | ""    | [prediction start index : prediction stop index]|
+| lib   | string or [] | ""  | Pairs of library start stop row indices |
+| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | theta     | string | ""    | `theta` is a string of theta values with a delimiter of [',' , '\t', '\n']. |
 | E         | int    | 0     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
-| tau       | int    | -1    | Embedding delay | 
-| columns   | string | ""    | Column names for library| 
-| target    | string | ""    | Target library column name |
+| tau       | int    | -1    | Embedding time shift | 
+| columns | string or []| "" | Column names for library | 
+| target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding |
 | verbose   | bool   | False | Echo messages |
 | nthreads  | int    | 4     | Number of threads to use |
