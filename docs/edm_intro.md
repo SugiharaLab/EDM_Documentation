@@ -19,11 +19,11 @@ The process of creating this representation is termed _embedding_.  In the
 EDM packages we can use the [`Embed()`](../edm_functions/#embeddimension)
 function to create an embedding.  This function creates successively
 time-lagged, if _τ_ < 0, or, time-advanced if _τ_ > 0, observation vectors
-from the input vectors.  Embedding (with default _τ_ = -1) is performed
-implicitly in EDM functions [`Simplex()`](../edm_functions/#simplex),
+from the input vectors.  Embedding is performed implicitly in EDM functions
+[`Simplex()`](../edm_functions/#simplex),
 [`SMap()`](../edm_functions/#smap), and [`CCM()`](../edm_functions/#ccm),
 unless the `embedded` argument is set `True` indicating that the data are
-already embedded.
+already embedded. Default embeddings are time-delay (lagged) with _τ_ = -1.
 
 <!--- ![lorenz-logo](imgs/Lorenz_logo.png){: style="height:200px;width:200px"}--->
 
@@ -39,30 +39,35 @@ selected for system analysis.  This embedding is presumed to best represent
 and "disentangle" the manifold.
 
 ### Nearerst Neighbor Forecasting: Simplex and S-map
-EDM implements two timeseries prediction algorithms: Simplex, and S-map.
+EDM implements two timeseries prediction algorithms:
+[`Simplex()`](../edm_functions/#simplex), and
+[`SMap()`](../edm_functions/#smap).
 Both operate in the embedding state-space, using nearest neighbors
 of a query point (location in the state-space from which a prediction is
 desired) to project a new estimate along the manifold.
 
-Simplex uses the centroid of the k-nearest neighbors (knn) of the query
-point as the estimate.  The number of neighbors, knn, is conventionally
-set as the number of dimensions plus one: knn = E + 1. 
+[`Simplex()`](../edm_functions/#simplex) uses the centroid of the k-nearest
+neighbors (knn) of the query point as the estimate.  The number of neighbors,
+knn, is conventionally set as the number of dimensions plus one: knn = E + 1. 
 
-S-map uses a linear regression of the query point to project a new
-estimate along the manifold.  By default, number of neighbors knn in the
-regression are set to the total number of state-space observation points.
-An exponential localisation function (F(θ) = exp(-θd/D), where d is the
-neighbor distance, D the mean distance) is used to selectively ignore
-neighbors beyond the localisation radius.  This allows one to vary the
+[`SMap()`](../edm_functions/#smap) uses a linear regression of query
+point neighbors to project a new estimate along the manifold.  By default,
+the number of
+neighbors knn in the regression are set to the total number of state-space
+observation points. An exponential localisation function F(θ) = exp(-θd/D)
+is used to selectively ignore neighbors beyond the localisation radius. 
+θ is the localisation parameter, d a neighbor distance, and D the mean
+distance to all neighbors.  This allows one to vary the
 extent to which local neighbors are considered in the linear projection,
 effectively modeling different local "resolutions" on the attractor.
 The effect of this knn localisation can be assessed with the
 [`PredictNonlinear()`](../edm_functions/#predictnonlinear) function that
-evaluates S-map predictive skill over a range of localisations θ.
+evaluates S-map predictive skill over a range of localisations θ. 
 
 ### Variable interactions
 EDM also provides methods to assess interactions between state-space
 variables, as well as inference of causal relationships.
+
 [`SMap()`](../edm_functions/#smap) returns the regression coefficients
 between variables, which have been shown to approximate the gradient
 (directional derivative) of variables along the manifold
