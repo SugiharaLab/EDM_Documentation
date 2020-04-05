@@ -170,11 +170,11 @@ results in generation of a higher-dimensional representation of the system.</p>
 EDM packages we can use the <a href="../edm_functions/#embeddimension"><code>Embed()</code></a>
 function to create an embedding.  This function creates successively
 time-lagged, if <em>τ</em> &lt; 0, or, time-advanced if <em>τ</em> &gt; 0, observation vectors
-from the input vectors.  Embedding (with default <em>τ</em> = -1) is performed
-implicitly in EDM functions <a href="../edm_functions/#simplex"><code>Simplex()</code></a>,
+from the input vectors.  Embedding is performed implicitly in EDM functions
+<a href="../edm_functions/#simplex"><code>Simplex()</code></a>,
 <a href="../edm_functions/#smap"><code>SMap()</code></a>, and <a href="../edm_functions/#ccm"><code>CCM()</code></a>,
 unless the <code>embedded</code> argument is set <code>True</code> indicating that the data are
-already embedded.</p>
+already embedded. Default embeddings are time-delay (lagged) with <em>τ</em> = -1.</p>
 <!--- ![lorenz-logo](imgs/Lorenz_logo.png){: style="height:200px;width:200px"}--->
 
 <h3 id="finding-the-optimal-embedding-dimension">Finding the optimal embedding dimension</h3>
@@ -188,28 +188,32 @@ dimensions, the embedding dimension E with the highest predictive accuracy is
 selected for system analysis.  This embedding is presumed to best represent
 and "disentangle" the manifold.</p>
 <h3 id="nearerst-neighbor-forecasting-simplex-and-s-map">Nearerst Neighbor Forecasting: Simplex and S-map</h3>
-<p>EDM implements two timeseries prediction algorithms: Simplex, and S-map.
+<p>EDM implements two timeseries prediction algorithms:
+<a href="../edm_functions/#simplex"><code>Simplex()</code></a>, and
+<a href="../edm_functions/#smap"><code>SMap()</code></a>.
 Both operate in the embedding state-space, using nearest neighbors
 of a query point (location in the state-space from which a prediction is
 desired) to project a new estimate along the manifold.</p>
-<p>Simplex uses the centroid of the k-nearest neighbors (knn) of the query
-point as the estimate.  The number of neighbors, knn, is conventionally
-set as the number of dimensions plus one: knn = E + 1. </p>
-<p>S-map uses a linear regression of the query point to project a new
-estimate along the manifold.  By default, number of neighbors knn in the
-regression are set to the total number of state-space observation points.
-An exponential localisation function (F(θ) = exp(-θd/D), where d is the
-neighbor distance, D the mean distance) is used to selectively ignore
-neighbors beyond the localisation radius.  This allows one to vary the
+<p><a href="../edm_functions/#simplex"><code>Simplex()</code></a> uses the centroid of the k-nearest
+neighbors (knn) of the query point as the estimate.  The number of neighbors,
+knn, is conventionally set as the number of dimensions plus one: knn = E + 1. </p>
+<p><a href="../edm_functions/#smap"><code>SMap()</code></a> uses a linear regression of query
+point neighbors to project a new estimate along the manifold.  By default,
+the number of
+neighbors knn in the regression are set to the total number of state-space
+observation points. An exponential localisation function F(θ) = exp(-θd/D)
+is used to selectively ignore neighbors beyond the localisation radius. 
+θ is the localisation parameter, d a neighbor distance, and D the mean
+distance to all neighbors.  This allows one to vary the
 extent to which local neighbors are considered in the linear projection,
 effectively modeling different local "resolutions" on the attractor.
 The effect of this knn localisation can be assessed with the
 <a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a> function that
-evaluates S-map predictive skill over a range of localisations θ.</p>
+evaluates S-map predictive skill over a range of localisations θ. </p>
 <h3 id="variable-interactions">Variable interactions</h3>
 <p>EDM also provides methods to assess interactions between state-space
-variables, as well as inference of causal relationships.
-<a href="../edm_functions/#smap"><code>SMap()</code></a> returns the regression coefficients
+variables, as well as inference of causal relationships.</p>
+<p><a href="../edm_functions/#smap"><code>SMap()</code></a> returns the regression coefficients
 between variables, which have been shown to approximate the gradient
 (directional derivative) of variables along the manifold
 (<a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2015.2258">Deyle et al. 2016</a>).</p>
