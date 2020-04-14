@@ -9,6 +9,7 @@ pathOut     | Filesystem path for `predictFile` containing output predictions.
 predictFile |Observation and Prediction output file name. CSV format.
 lib         |String or vector with pairs of start and stop indices of input data rows used to create the library of observations. String indices must be whitespace separated.
 pred        |String or vector with pairs of start and stop indices of input data rows predictions. String indices must be whitespace separated.
+D           |Multiview dimension.
 E           |Embedding dimension.
 Tp          |Prediction horizon (number of time column rows).
 knn         |Number of nearest neighbors. If knn=0; knn is set to E+1 for `Simplex()`; set to number of lib data rows for `SMap()`.

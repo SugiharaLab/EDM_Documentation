@@ -140,13 +140,17 @@ Note: Cross mappings are performed between column : target , and target : column
 | sample    | int    | 0     | CCM number of random samples |
 | random    | bool   | True  | CCM use random samples? |
 | seed      | unsigned | 0   | RNG seed, 0 = random seed |
+| includeData| bool  | False | Include output statistics on all predictions |
 | verbose   | bool   | False | Echo messages |
 
-** Returns **  :   
-The returned DataFrame has 3 columns.   
+** Returns **  :
+If `includeData` is `False` returns DataFrame with 3 columns.   
 The first column is `LibSize`, the second and third columns
 are Pearson correlation coefficients for `column` : `target` 
 and `target` : `column` cross mapping.
+
+If `includeData` is `True` returns a list with the above DataFrame
+and a DataFrame of all Simplex projection statistics. 
 
 # <function> Multiview </function> 
 ** Description **  :   
@@ -167,7 +171,8 @@ If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of
 | predictFile | string | ""  | Prediction output file | 
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
 | pred  | string or [] | ""  | Pairs of prediction start stop row indices |
-| E         | int    | 0     | Data dimension | 
+| D         | int    | 0     | Multiview state-space dimension | 
+| E         | int    | 1     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
 | tau       | int    | -1    | Embedding time shift | 
@@ -178,9 +183,9 @@ If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of
 
 ** Returns **  :   
 [Dict in `pyEDM`, named List in `rEDM`] with two DataFrames: { 
-Combo_rho, Predictions }
+View, Predictions }
 The `Predictions` DataFrame has 3 columns `Time`, `Observations`, `Predictions`.   
-The `Combo_rho` DataFrame will have `E`+3 columns.   
+The `View` DataFrame will have `E`+3 columns.   
 The first `E` columns are the the column indices in the input data DataFrame 
 that are embedded and applied to Simplex prediction.   
 The last three columns are "rho", "MAE", "RMSE" corresponding to the prediction 
