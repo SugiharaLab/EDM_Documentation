@@ -625,6 +625,12 @@ Note: Cross mappings are performed between column : target , and target : column
 <td>RNG seed, 0 = random seed</td>
 </tr>
 <tr>
+<td>includeData</td>
+<td>bool</td>
+<td>False</td>
+<td>Include output statistics on all predictions</td>
+</tr>
+<tr>
 <td>verbose</td>
 <td>bool</td>
 <td>False</td>
@@ -632,11 +638,13 @@ Note: Cross mappings are performed between column : target , and target : column
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  : <br />
-The returned DataFrame has 3 columns. <br />
+<p><strong> Returns </strong>  :
+If <code>includeData</code> is <code>False</code> returns DataFrame with 3 columns. <br />
 The first column is <code>LibSize</code>, the second and third columns
 are Pearson correlation coefficients for <code>column</code> : <code>target</code> 
 and <code>target</code> : <code>column</code> cross mapping.</p>
+<p>If <code>includeData</code> is <code>True</code> returns a list with the above DataFrame
+and a DataFrame of all Simplex projection statistics. </p>
 <h1 id="multiview"><function> Multiview </function></h1>
 <p><strong> Description </strong>  : <br />
 Multiview embedding and forecasting of the input data file or DataFrame.</p>
@@ -698,10 +706,16 @@ If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the
 <td>Pairs of prediction start stop row indices</td>
 </tr>
 <tr>
-<td>E</td>
+<td>D</td>
 <td>int</td>
 <td>0</td>
-<td>Data dimension</td>
+<td>Multiview state-space dimension</td>
+</tr>
+<tr>
+<td>E</td>
+<td>int</td>
+<td>1</td>
+<td>Embedding dimension</td>
 </tr>
 <tr>
 <td>Tp</td>
@@ -749,9 +763,9 @@ If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the
 </table>
 <p><strong> Returns </strong>  : <br />
 [Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with two DataFrames: { 
-Combo_rho, Predictions }
+View, Predictions }
 The <code>Predictions</code> DataFrame has 3 columns <code>Time</code>, <code>Observations</code>, <code>Predictions</code>. <br />
-The <code>Combo_rho</code> DataFrame will have <code>E</code>+3 columns. <br />
+The <code>View</code> DataFrame will have <code>E</code>+3 columns. <br />
 The first <code>E</code> columns are the the column indices in the input data DataFrame 
 that are embedded and applied to Simplex prediction. <br />
 The last three columns are "rho", "MAE", "RMSE" corresponding to the prediction 
