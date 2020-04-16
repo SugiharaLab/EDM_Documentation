@@ -112,11 +112,14 @@ The data cannot be multivariable; the first vector in columns
 is time-delay embedded to dimension E with time shift tau.
 `libSizes` specifies a string with "start stop increment" 
 row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 
-in increments of 10.  
+in increments of 10.
+
 If `random` is true , sample observations are randomly selected from the 
-subset of each library size.  
+subset of each library size.
+
 If `seed=0` , then a random seed is generated for the random number generator. 
-Otherwise, seed is used to initialise the random number generator.  
+Otherwise, seed is used to initialise the random number generator.
+
 If `random` is false, sample is ignored and contiguous library rows up to the 
 current library size are used.  
 Note: Cross mappings are performed between column : target , and target : column.
@@ -157,10 +160,13 @@ and a DataFrame of all Simplex projection statistics.
 Multiview embedding and forecasting of the input data file or DataFrame.
 
 See the Parameters table for parameter definitions.
+
 `nan` values are inserted where there is no observation or prediction.
+
 If `predictFile` is provided the Predictions will be written to it in csv format.
+
 If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of 
-`E`-dimensional combinations out of all available data vectors.
+`D`-dimensional combinations out of all available data vectors.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
@@ -178,7 +184,8 @@ If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of
 | tau       | int    | -1    | Embedding time shift | 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target library column name |
-| multiview | int    | 0     | Multiview parameter : (if 0 then set to 'sqrt(C)' where C is the number of  E-dimensional combinations out of all available data vectors)|
+| multiview | int    | 0     | Multiview parameter : (if 0 then set to 'sqrt(C)' where C is the number of  D-dimensional combinations out of all available data vectors)|
+| trainLib  | bool   | True  | Use in-sample (lib=pred) prediction for ranking |
 | nthreads  | int    | 4     | Number of threads to use |
 
 ** Returns **  :   
