@@ -194,7 +194,7 @@
 </tr>
 <tr>
 <td>tau</td>
-<td>Time delay of embedding specified as number of time column rows. tau &lt; 0 are lags, tau &gt; 0 future values.</td>
+<td>Time offset of embedding specified as number of time column rows. tau &lt; 0 are lags, tau &gt; 0 future values.</td>
 </tr>
 <tr>
 <td>theta</td>
@@ -230,7 +230,7 @@
 </tr>
 <tr>
 <td>libSizes</td>
-<td>String or vector of 3 integer values specifying the intial library size; the final library size; and the library size increment for CCM. String values must be whitespace separated.</td>
+<td>String or vector of integers specifying CCM library sizes. If three values are provided, and, if the third value is less than the second, they are treated as a sequence generator specifying the intial library size; the final library size; and the library size increment. String values must be whitespace separated.</td>
 </tr>
 <tr>
 <td>sample</td>
@@ -245,12 +245,20 @@
 <td>Logical to specify sampling with replacement in CCM.</td>
 </tr>
 <tr>
+<td>includeData</td>
+<td>Logical to return all CCM projection data frames.</td>
+</tr>
+<tr>
 <td>seed</td>
 <td>Integer specifying the random sampler seed in CCM.  If <code>seed=0</code>, then a random seed is generated.</td>
 </tr>
 <tr>
 <td>multiview</td>
 <td>Number of multiview ensembles to average for the final prediction estimate in Multiview.</td>
+</tr>
+<tr>
+<td>trainLib</td>
+<td>Use in-sample (lib=pred) prediction for multiview ranking</td>
 </tr>
 <tr>
 <td>maxE</td>

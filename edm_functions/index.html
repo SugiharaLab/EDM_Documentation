@@ -502,16 +502,14 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 against target.</p>
 <p>The data cannot be multivariable; the first vector in columns 
 is time-delay embedded to dimension E with time shift tau.
-<code>libSizes</code> specifies a string with "start stop increment" 
-row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 
-in increments of 10.</p>
-<p>If <code>random</code> is true , sample observations are randomly selected from the 
+<code>libSizes</code> specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, then the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
+<p>If <code>random</code> is true, sample observations are randomly selected from the 
 subset of each library size.</p>
 <p>If <code>seed=0</code> , then a random seed is generated for the random number generator. 
 Otherwise, seed is used to initialise the random number generator.</p>
 <p>If <code>random</code> is false, sample is ignored and contiguous library rows up to the 
 current library size are used.<br />
-Note: Cross mappings are performed between column : target , and target : column.</p>
+Note: Cross mappings are performed between column : target; and, the reverse mapping between target : column.</p>
 <table>
 <thead>
 <tr>
