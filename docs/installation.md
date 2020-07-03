@@ -7,24 +7,19 @@ pip install pyEDM
 
 See: [pyEDM on PyPI](https://pypi.org/project/pyEDM/)
 
-### R: EDM
+### R: rEDM
 ```
-> install.packages("rEDM")
+install.packages("rEDM")
 ```
 For the latest development code:
 ```
-> install.packages("devtools")
+install.packages("devtools")
 ```
 ```
-> devtools::install_github("SugiharaLab/rEDM")
+devtools::install_github("SugiharaLab/rEDM")
 ```
 
 See: [rEDM](https://github.com/SugiharaLab/rEDM "rEDM")
-
-<!----
-From the CRAN respository:  
-     install.packages("rEDM")
----->
 
 ## Note
 For OS's not supported by CRAN or PyPI, the packages can be built
