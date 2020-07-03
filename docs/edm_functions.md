@@ -110,11 +110,9 @@ against target.
 
 The data cannot be multivariable; the first vector in columns 
 is time-delay embedded to dimension E with time shift tau.
-`libSizes` specifies a string with "start stop increment" 
-row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 
-in increments of 10.
+`libSizes` specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, then the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.
 
-If `random` is true , sample observations are randomly selected from the 
+If `random` is true, sample observations are randomly selected from the 
 subset of each library size.
 
 If `seed=0` , then a random seed is generated for the random number generator. 
@@ -122,7 +120,7 @@ Otherwise, seed is used to initialise the random number generator.
 
 If `random` is false, sample is ignored and contiguous library rows up to the 
 current library size are used.  
-Note: Cross mappings are performed between column : target , and target : column.
+Note: Cross mappings are performed between column : target; and, the reverse mapping between target : column.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
