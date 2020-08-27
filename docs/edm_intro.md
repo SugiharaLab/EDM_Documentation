@@ -16,7 +16,7 @@ single (univariate, 1-D) timeseries observed from the system.  The embedding
 results in generation of a higher-dimensional representation of the system.
 
 The process of creating this representation is termed _embedding_.  In the
-EDM packages we can use the [`Embed()`](../edm_functions/#embeddimension)
+EDM packages we can use the [`Embed()`](../edm_functions/#embed)
 function to create an embedding.  This function creates successively
 time-lagged, if _τ_ < 0, or, time-advanced if _τ_ > 0, observation vectors
 from the input vectors.  Embedding is performed implicitly in EDM functions

@@ -11,9 +11,10 @@ nav:
 - Getting Started :
     - Installation : installation.md
     - EDM Framework : edm_intro.md
-- Documentation : 
-    - EDM Functions : edm_functions.md
+- Documentation :
+    - Embedding : embedding_parameters.md
     - Parameters : parameters.md
+    - EDM Functions : edm_functions.md
 - EDM Algorithms :
     - Examples : algorithms_high_level.md
     - EDM Algorithms in Depth : algorithms_in_depth.md

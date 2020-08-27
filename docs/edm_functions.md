@@ -176,7 +176,7 @@ If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of
 | predictFile | string | ""  | Prediction output file | 
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
 | pred  | string or [] | ""  | Pairs of prediction start stop row indices |
-| D         | int    | 0     | Multiview state-space dimension | 
+| D         | int    | N cols| Multiview state-space dimension | 
 | E         | int    | 1     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
