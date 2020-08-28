@@ -155,16 +155,21 @@
               
                 <h1 id="embedding">Embedding</h1>
 <p>The <a href="../edm_intro"><code>EDM Framework</code></a> is based on a multidimensional representation of system dynamics, colloquially referred to as an <em>embedding</em>.  Given a dynamical system of dimension D, the <a href="https://en.wikipedia.org/wiki/Whitney_embedding_theorem#See_also">Whitney Embedding Theorem</a> establishes limits on the embedding dimension, E, needed to completely represent the dynamics. Generally, EDM uses the parameter E to represent the dimension of the embedding, however, to support multivariate embeddings there are deviations from the above definitions as noted below.</p>
-<p>The combination of the <code>columns</code> and  <code>embedded</code> parameters control what variables are included in the embedding, and, whether a time-delay embedding is created.  The default <code>embedded = false</code> instructs EDM to create a time-delay embedding using each variable in <code>columns</code>.  If  <code>embedded = true</code>, the set of variables specified in <code>columns</code> is assumed to be a valid embedding, no time-delay embedding is performed. </p>
+<p>The combination of the <code>columns</code> and  <code>embedded</code> parameters control what
+variables are included in the embedding, and, whether a time-delay embedding
+is created.  The default <code>embedded = false</code> instructs EDM to create a
+time-delay embedding using each variable in <code>columns</code>.  If  <code>embedded = true</code>,
+the set of variables specified in <code>columns</code> is assumed to be a valid embedding,
+no time-delay embedding is performed. </p>
 <p>These functions accept multiple values for the <code>columns</code> parameter: 
 <a href="../edm_functions/#embed"><code>Embed()</code></a>
 <a href="../edm_functions/#embeddimension"><code>EmbedDimension()</code></a>
 <a href="../edm_functions/#predictinterval"><code>PredictInterval()</code></a>
 <a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a>
 <a href="../edm_functions/#simplex"><code>Simplex()</code></a>
-<a href="../edm_functions/#smap"><code>SMap()</code></a></p>
+<a href="../edm_functions/#smap"><code>SMap()</code></a>
+<a href="../edm_functions/#multiview"><code>Multiview()</code></a></p>
 <p>These functions accept the <code>embedded</code> parameter:
-<a href="../edm_functions/#embeddimension"><code>EmbedDimension()</code></a>
 <a href="../edm_functions/#predictinterval"><code>PredictInterval()</code></a>
 <a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a>
 <a href="../edm_functions/#simplex"><code>Simplex()</code></a>
@@ -173,36 +178,50 @@
 <li>
 <p>If <code>embedded = false</code> (default):</p>
 <ul>
-<li>If <code>columns</code> is a single value, then an E-dimensional time-delay embedding is created.  </li>
-<li>If <code>columns</code> has N multiple values, then each of the N column variables is time-delay embedded to dimension E.  The EDM state-space has overall dimension E*N.</li>
+<li>If <code>columns</code> is a single value, then an E-dimensional time-delay 
+embedding is created.  </li>
+<li>If <code>columns</code> has N values, then each of the N column variables 
+is time-delay embedded to dimension E.  The EDM state-space has overall 
+dimension E*N.</li>
 </ul>
 </li>
 <li>
 <p>If <code>embedded = true</code>:</p>
 <ul>
-<li>The EDM state-space has dimension N, the number of <code>columns</code>.</li>
+<li>The EDM state-space has dimension E = N, the number of <code>columns</code>.</li>
 </ul>
 </li>
 </ul>
 <h2 id="examples">Examples</h2>
 <ol>
 <li><code>Simplex( ..., columns = 'x', E = 2 )</code> : 2-dimensional univariate embedding.</li>
-<li><code>Simplex( ..., columns = 'x y', E = 2 )</code> : 4-dimensional multivariate embedding.</li>
-<li><code>Simplex( ..., columns = 'x y', E = 2, embedded = True )</code> : 2-dimensional multivariate embedding.</li>
+<li><code>Simplex( ..., columns = 'x y', E = 2 )</code> : 4-dimensional multivariate 
+embedding.</li>
+<li><code>Simplex( ..., columns = 'x y', E = 2, embedded = True )</code> : 2-dimensional 
+multivariate embedding.</li>
 </ol>
 <h2 id="ccm">CCM()</h2>
-<p><code>CCM()</code> only operates on the first column, other entries in columns are ignored. E is the time-lag embedding dimension applied to the first column.</p>
+<p><code>CCM()</code> only operates on the first column, other entries in columns are ignored.
+E is the time-lag embedding dimension applied to the first column.</p>
 <h2 id="multiview">Multiview()</h2>
 <p><code>Multiview()</code> has parameters <code>D</code>, <code>E</code>, <code>multiview</code>.</p>
 <ul>
 <li>
-<p><code>D</code> is the dimension of the state-space processed by simplex in each multivariate evaluation. <code>D</code> defaults to the number of columns.</p>
+<p><code>D</code> is the dimension of the state-space processed by simplex in each 
+multivariate evaluation. <code>D</code> defaults to the number of columns.</p>
 </li>
 <li>
-<p><code>E</code> is the embedding dimension of each variable. If <code>E</code> = 1, no time delay embedding is done, the state-space is the <code>D</code> columns.  If <code>E</code> &gt; 1, then each of the <code>D</code> columns are embedded to <code>E</code>, however, the state-space remains D-dimensional as combinations of the embeddings are evaluated D-at-a-time.</p>
+<p><code>E</code> is the embedding dimension of each variable. If <code>E</code> = 1, no time
+delay embedding is done, the state-space is the <code>D</code> columns.  If <code>E</code> &gt; 1,
+then each of the <code>D</code> columns are embedded to <code>E</code>, however, the state-space
+remains D-dimensional as combinations of the embeddings are evaluated 
+D-at-a-time.</p>
 </li>
 <li>
-<p><code>multiview</code> is the number of top-ranked D-dimensional predictions to average for the final prediction. Default <code>multiview</code> = sqrt(C) where C is the number of combinations C(n,D) available from the n = D * E variables taken D at-a-time.</p>
+<p><code>multiview</code> is the number of top-ranked D-dimensional predictions to
+average for the final prediction. Default <code>multiview</code> = sqrt(C) where C
+is the number of combinations C(n,D) available from the n = D * E variables
+taken D at-a-time.</p>
 </li>
 </ul>
               

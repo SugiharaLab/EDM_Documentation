@@ -71,6 +71,8 @@
         
             <li><a class="toctree-l4" href="#takens-theorem">Takens Theorem</a></li>
         
+            <li><a class="toctree-l4" href="#embedding">Embedding</a></li>
+        
             <li><a class="toctree-l4" href="#finding-the-optimal-embedding-dimension">Finding the optimal embedding dimension</a></li>
         
             <li><a class="toctree-l4" href="#nearerst-neighbor-forecasting-simplex-and-s-map">Nearerst Neighbor Forecasting: Simplex and S-map</a></li>
@@ -170,15 +172,15 @@ is a remarkable mathematical result that allows one to reconstruct a
 representation of the system dynamics (state-space manifold) from a
 single (univariate, 1-D) timeseries observed from the system.  The embedding
 results in generation of a higher-dimensional representation of the system.</p>
+<h3 id="embedding">Embedding</h3>
 <p>The process of creating this representation is termed <em>embedding</em>.  In the
 EDM packages we can use the <a href="../edm_functions/#embed"><code>Embed()</code></a>
 function to create an embedding.  This function creates successively
 time-lagged, if <em>τ</em> &lt; 0, or, time-advanced if <em>τ</em> &gt; 0, observation vectors
-from the input vectors.  Embedding is performed implicitly in EDM functions
-<a href="../edm_functions/#simplex"><code>Simplex()</code></a>,
-<a href="../edm_functions/#smap"><code>SMap()</code></a>, and <a href="../edm_functions/#ccm"><code>CCM()</code></a>,
-unless the <code>embedded</code> argument is set <code>True</code> indicating that the data are
-already embedded. Default embeddings are time-delay (lagged) with <em>τ</em> = -1.</p>
+from the input vectors.</p>
+<p>Embedding is performed implicitly in EDM functions unless the <code>embedded</code> 
+argument is set <code>True</code> indicating that the data are already embedded. 
+Default embeddings are time-delay (lagged) with <em>τ</em> = -1.</p>
 <!--- ![lorenz-logo](imgs/Lorenz_logo.png){: style="height:200px;width:200px"}--->
 
 <h3 id="finding-the-optimal-embedding-dimension">Finding the optimal embedding dimension</h3>
