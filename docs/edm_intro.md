@@ -15,15 +15,16 @@ representation of the system dynamics (state-space manifold) from a
 single (univariate, 1-D) timeseries observed from the system.  The embedding
 results in generation of a higher-dimensional representation of the system.
 
+### Embedding
 The process of creating this representation is termed _embedding_.  In the
 EDM packages we can use the [`Embed()`](../edm_functions/#embed)
 function to create an embedding.  This function creates successively
 time-lagged, if _τ_ < 0, or, time-advanced if _τ_ > 0, observation vectors
-from the input vectors.  Embedding is performed implicitly in EDM functions
-[`Simplex()`](../edm_functions/#simplex),
-[`SMap()`](../edm_functions/#smap), and [`CCM()`](../edm_functions/#ccm),
-unless the `embedded` argument is set `True` indicating that the data are
-already embedded. Default embeddings are time-delay (lagged) with _τ_ = -1.
+from the input vectors.
+
+Embedding is performed implicitly in EDM functions unless the `embedded` 
+argument is set `True` indicating that the data are already embedded. 
+Default embeddings are time-delay (lagged) with _τ_ = -1.
 
 <!--- ![lorenz-logo](imgs/Lorenz_logo.png){: style="height:200px;width:200px"}--->
 
