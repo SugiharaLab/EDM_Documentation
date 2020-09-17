@@ -63,11 +63,28 @@ See the Parameters table for parameter definitions.
 `nan` values are inserted in the output DataFrame where there is 
 no observation or prediction.
 
-If embedded is false, data columns are embedded to dimension E with shift tau.
-If predictFile is provided the predictions are written in csv format.
-If smapFile is provided the coefficients are written in csv format.
-If knn is not specified, it is set equal to the library size. 
-If knn is specified, it must be greater than E.
+If `embedded` is false, data columns are embedded to dimension E with shift tau.
+If `predictFile` is provided the predictions are written in csv format.
+If `smapFile` is provided the coefficients are written in csv format.
+If `knn` is not specified, it is set equal to the library size. 
+If `knn` is specified, it must be greater than `E`.
+
+** Note ** :   
+`SMap` should be called with columns explicitly corresponding to
+dimensions `E`. In the univariate case (number of `columns` = 1) with
+default `embedded = false`, the time series will be time-delay
+embedded to dimension E, `SMap` coefficients correspond to each dimension. 
+
+If a multivariate data set is used (number of `columns` > 1) it
+must use `embedded = true` with `E` equal to the number of columns.
+This prevents the function from internally time-delay embedding the
+multiple columns to dimension E.  If the internal time-delay embedding
+is performed, then state-space columns will not correspond to the
+intended dimensions in the matrix inversion, coefficient assignment,
+and prediction.  In the multivariate case, the user should first prepare
+the embedding (using [`Embed()`](../edm_functions/#embed) for time-delay
+embedding if desired), then pass this embedding to `SMap` with appropriately
+specified `columns`, `E`, and `embedded = true`.
 
 In PyEDM: The default LAPACK SVD solver `dgelss()` can be replaced with
 a class object instantiated from the sklearn.linear_model class.
@@ -101,7 +118,7 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 [Dict in `pyEDM`, named List in `rEDM`] with two DataFrames:
 {  
 `predictions` [ 3 columns : "Time", "Observations", "Predictions"],  
-`coefficients`[ 'E+2' columns : "Time", and 'E+1' SMap SVD fit coefficents]
+`coefficients`[ 'E+2' columns : "Time", and 'E+1' SMap coefficents]
 }
 
 # <function> CCM </function> 

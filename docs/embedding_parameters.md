@@ -62,3 +62,9 @@ D-at-a-time.
 average for the final prediction. Default `multiview` = sqrt(C) where C
 is the number of combinations C(n,D) available from the n = D * E variables
 taken D at-a-time.
+
+## SMap()
+`SMap()` should be called with `columns` explicity corresponding to
+dimensions `E`.  In the multivariate case (number of `columns` > 1)
+use `embedded = true` with `E` equal to the number of `columns`.
+See the note in [`SMap() documentation`](../edm_functions/#smap).
