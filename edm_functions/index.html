@@ -354,11 +354,26 @@ SMap projection of the input data file or DataFrame.</p>
 <p>See the Parameters table for parameter definitions.<br />
 <code>nan</code> values are inserted in the output DataFrame where there is 
 no observation or prediction.</p>
-<p>If embedded is false, data columns are embedded to dimension E with shift tau.
-If predictFile is provided the predictions are written in csv format.
-If smapFile is provided the coefficients are written in csv format.
-If knn is not specified, it is set equal to the library size. 
-If knn is specified, it must be greater than E.</p>
+<p>If <code>embedded</code> is false, data columns are embedded to dimension E with shift tau.
+If <code>predictFile</code> is provided the predictions are written in csv format.
+If <code>smapFile</code> is provided the coefficients are written in csv format.
+If <code>knn</code> is not specified, it is set equal to the library size. 
+If <code>knn</code> is specified, it must be greater than <code>E</code>.</p>
+<p><strong> Note </strong> : <br />
+<code>SMap</code> should be called with columns explicitly corresponding to
+dimensions <code>E</code>. In the univariate case (number of <code>columns</code> = 1) with
+default <code>embedded = false</code>, the time series will be time-delay
+embedded to dimension E, <code>SMap</code> coefficients correspond to each dimension. </p>
+<p>If a multivariate data set is used (number of <code>columns</code> &gt; 1) it
+must use <code>embedded = true</code> with <code>E</code> equal to the number of columns.
+This prevents the function from internally time-delay embedding the
+multiple columns to dimension E.  If the internal time-delay embedding
+is performed, then state-space columns will not correspond to the
+intended dimensions in the matrix inversion, coefficient assignment,
+and prediction.  In the multivariate case, the user should first prepare
+the embedding (using <a href="../edm_functions/#embed"><code>Embed()</code></a> for time-delay
+embedding if desired), then pass this embedding to <code>SMap</code> with appropriately
+specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.</p>
 <p>In PyEDM: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
 a class object instantiated from the sklearn.linear_model class.
 Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
@@ -499,7 +514,7 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 [Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with two DataFrames:
 {<br />
 <code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br />
-<code>coefficients</code>[ 'E+2' columns : "Time", and 'E+1' SMap SVD fit coefficents]
+<code>coefficients</code>[ 'E+2' columns : "Time", and 'E+1' SMap coefficents]
 }</p>
 <h1 id="ccm"><function> CCM </function></h1>
 <p>Convergent cross mapping of the first vector specified in columns 
