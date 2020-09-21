@@ -11,7 +11,6 @@ no time-delay embedding is performed.
 
 These functions accept multiple values for the `columns` parameter: 
 [`Embed()`](../edm_functions/#embed)
-[`EmbedDimension()`](../edm_functions/#embeddimension)
 [`PredictInterval()`](../edm_functions/#predictinterval)
 [`PredictNonlinear()`](../edm_functions/#predictnonlinear)
 [`Simplex()`](../edm_functions/#simplex)
