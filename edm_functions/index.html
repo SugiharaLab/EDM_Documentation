@@ -312,7 +312,13 @@ no observation or prediction.</p>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding time shift</td>
+<td>Embedding time shift (time series rows)</td>
+</tr>
+<tr>
+<td>exclusionRadius</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
 </tr>
 <tr>
 <td>columns</td>
@@ -452,7 +458,7 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding time shift</td>
+<td>Embedding time shift (time series rows)</td>
 </tr>
 <tr>
 <td>theta</td>
@@ -603,7 +609,13 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding time shift</td>
+<td>Embedding time shift (time series rows)</td>
+</tr>
+<tr>
+<td>exclusionRadius</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
 </tr>
 <tr>
 <td>columns</td>
@@ -750,7 +762,7 @@ Multiview embedding and forecasting of the input data file or DataFrame.</p>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding time shift</td>
+<td>Embedding time shift (time series rows)</td>
 </tr>
 <tr>
 <td>columns</td>
@@ -769,6 +781,12 @@ Multiview embedding and forecasting of the input data file or DataFrame.</p>
 <td>int</td>
 <td>0</td>
 <td>Multiview parameter : (if 0 then set to 'sqrt(C)' where C is the number of  D-dimensional combinations out of all available data vectors)</td>
+</tr>
+<tr>
+<td>exclusionRadius</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
 </tr>
 <tr>
 <td>trainLib</td>
@@ -866,7 +884,7 @@ The maximum number of threads is 10.</p>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding time shift</td>
+<td>Embedding time shift (time series rows)</td>
 </tr>
 <tr>
 <td>columns</td>
@@ -981,7 +999,7 @@ interval forecasts. The maximum number of threads is 10.</p>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding shift</td>
+<td>Embedding shift (time series rows)</td>
 </tr>
 <tr>
 <td>columns</td>
@@ -1103,7 +1121,7 @@ See the Parameters table for parameter definitions.</p>
 <td>tau</td>
 <td>int</td>
 <td>-1</td>
-<td>Embedding time shift</td>
+<td>Embedding time shift (time series rows)</td>
 </tr>
 <tr>
 <td>columns</td>
