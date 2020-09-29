@@ -45,7 +45,8 @@ If embedded is false (default) the data columns are embedded to dimension `E` wi
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
-| tau       | int    | -1    | Embedding time shift | 
+| tau       | int    | -1    | Embedding time shift (time series rows)| 
+| exclusionRadius | int | 0  | Prediction vector exclusion radius | 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding? If False, embed to E|
@@ -103,7 +104,7 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors | 
-| tau       | int    | -1    | Embedding time shift | 
+| tau       | int    | -1    | Embedding time shift (time series rows) | 
 | theta     | int    | 0     | SMap localization | 
 | exclusionRadius | int | 0  | Prediction vector exclusion radius | 
 | columns | string or []| "" | Column names for library | 
@@ -152,7 +153,8 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set as E+1)| 
-| tau       | int    | -1    | Embedding time shift | 
+| tau       | int    | -1    | Embedding time shift (time series rows) | 
+| exclusionRadius | int | 0  | Prediction vector exclusion radius | 
 | columns | string or []| "" | Column name for library | 
 | target    | string | ""    | Prediction target column name |
 | libSizes| string | ""      | CCM library sizes |
@@ -197,10 +199,11 @@ If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of
 | E         | int    | 1     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
-| tau       | int    | -1    | Embedding time shift | 
+| tau       | int    | -1    | Embedding time shift (time series rows) | 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target library column name |
 | multiview | int    | 0     | Multiview parameter : (if 0 then set to 'sqrt(C)' where C is the number of  D-dimensional combinations out of all available data vectors)|
+| exclusionRadius | int | 0  | Prediction vector exclusion radius | 
 | trainLib  | bool   | True  | Use in-sample (lib=pred) prediction for ranking |
 | nthreads  | int    | 4     | Number of threads to use |
 
@@ -232,7 +235,7 @@ The maximum number of threads is 10.
 | pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | maxE      | int    | 10    | Evaluate embedding up to maxE | 
 | Tp        | int    | 1     | Prediction Interval | 
-| tau       | int    | -1    | Embedding time shift | 
+| tau       | int    | -1    | Embedding time shift (time series rows) | 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding |
@@ -261,7 +264,7 @@ interval forecasts. The maximum number of threads is 10.
 | pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | maxTp     | int    | 10    | Evaluate forecast with Tp up to maxTp | 
 | E         | int    | 0     | Embedding dimension | 
-| tau       | int    | -1    | Embedding shift | 
+| tau       | int    | -1    | Embedding shift (time series rows) | 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding |
@@ -292,7 +295,7 @@ See the Parameters table for parameter definitions.
 | theta     | string | ""    | `theta` is a string of theta values with a delimiter of [',' , '\t', '\n']. |
 | E         | int    | 0     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
-| tau       | int    | -1    | Embedding time shift | 
+| tau       | int    | -1    | Embedding time shift (time series rows) | 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding |

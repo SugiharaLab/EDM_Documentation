@@ -13,7 +13,7 @@ D           |Multiview dimension.
 E           |Embedding dimension.
 Tp          |Prediction horizon (number of time column rows).
 knn         |Number of nearest neighbors. If knn=0; knn is set to E+1 for `Simplex()`; set to number of lib data rows for `SMap()`.
-tau         |Time offset of embedding specified as number of time column rows. tau < 0 are lags, tau > 0 future values.
+tau         |Time offset of embedding specified as number of time series rows. tau < 0 are lags, tau > 0 future values.
 theta       |In Smap: S-Map neighbor localisation exponent. Single numeric.
 theta       |In PredictNonlinear: A whitespace delimeted string with values of S-map localisation parameters to be evaluated.
 exclusionRadius|Excludes vectors from the search space of nearest neighbors if their relative time index is within exclusionRadius.
@@ -21,7 +21,7 @@ columns     |String or vector of column name(s) in the input data used to create
 target      |String of column name in the input data used for prediction.
 smapFile    |Output file containing S-map coefficients.
 solver      |In pyEDM: An instance of a sklearn.linear_model object.
-embedded    |Logical specifying if the input data are embedded.  If `embedded = True`, no emedding is performed.  If `embedded = False`, the input data are embedded to dimension `E` with time shift `tau`.
+embedded    |Logical specifying if the input data are embedded.  If `embedded = True`, no emedding is performed.  If `embedded = False`, all input data are embedded to dimension `E` with time shift `tau`.
 libSizes    |String or vector of integers specifying CCM library sizes. If three values are provided, and, if the third value is less than the second, they are treated as a sequence generator specifying the intial library size; the final library size; and the library size increment. String values must be whitespace separated.
 sample      |Integer specifying the number of random samples to draw at each library size evaluation for CCM.
 random      |Logical to specify random (`True`) or sequential library sampling (`False`) in CCM.
