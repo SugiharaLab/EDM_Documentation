@@ -52,6 +52,7 @@ If embedded is false (default) the data columns are embedded to dimension `E` wi
 | embedded  | bool   | False | Is data an embedding? If False, embed to E|
 | const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
+| showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 
 ** Returns **  :   
 DataFrame with columns "Time", "Observations", and "Predictions".
@@ -111,9 +112,10 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 | target    | string | ""    | Prediction target column name or index |
 | smapFile  | string | ""    | SMap coefficient output file |
 | solver    | sklearn.linear_model | None | Linear system solver |
-| embedded  | bool   | False | Is data an embedding |
+| embedded  | bool   | False | Is data an embedding? If False, embed to E |
 | const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
+| showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 
 ** Returns **  :   
 [Dict in `pyEDM`, named List in `rEDM`] with two DataFrames:
@@ -148,8 +150,6 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 | dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
-| lib   | string or [] | ""  | Pairs of library start stop row indices |
-| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | E         | int    | 0     | Data dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set as E+1)| 
@@ -160,9 +160,11 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 | libSizes| string | ""      | CCM library sizes |
 | sample    | int    | 0     | CCM number of random samples |
 | random    | bool   | True  | CCM use random samples? |
+| replacement | bool | False | CCM random sample with replacement? |
 | seed      | unsigned | 0   | RNG seed, 0 = random seed |
 | includeData| bool  | False | Include output statistics on all predictions |
 | verbose   | bool   | False | Echo messages |
+| showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 
 ** Returns **  :
 If `includeData` is `False` returns DataFrame with 3 columns.   
@@ -205,7 +207,10 @@ If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of
 | multiview | int    | 0     | Multiview parameter : (if 0 then set to 'sqrt(C)' where C is the number of  D-dimensional combinations out of all available data vectors)|
 | exclusionRadius | int | 0  | Prediction vector exclusion radius | 
 | trainLib  | bool   | True  | Use in-sample (lib=pred) prediction for ranking |
-| nthreads  | int    | 4     | Number of threads to use |
+| excludeTarget | bool | False | Exclude target variable from multiviews |
+| numThreads| int    | 4     | Number of threads to use |
+| verbose   | bool   | False | Echo messages |
+| showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 
 ** Returns **  :   
 [Dict in `pyEDM`, named List in `rEDM`] with two DataFrames: { 
@@ -240,8 +245,8 @@ The maximum number of threads is 10.
 | target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding |
 | verbose   | bool   | False | Echo messages |
-| nthreads  | int    | 4     | Number of threads to use |
-| showPlot  | bool   | True  | Show plot of E vs Rho |
+| numThreads| int    | 4     | Number of threads to use |
+| showPlot  | bool   | True  | Show plot of E vs Rho (pyEDM, rEDM) |
 
 ** Returns **  :   
 The returned DataFrame has columns `E` and `rho`.   
@@ -267,10 +272,10 @@ interval forecasts. The maximum number of threads is 10.
 | tau       | int    | -1    | Embedding shift (time series rows) | 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
-| embedded  | bool   | False | Is data an embedding |
+| embedded  | bool   | False | Is data an embedding?  |
 | verbose   | bool   | False | Echo messages |
-| nthreads  | int    | 4     | Number of threads to use |
-| showPlot  | bool   | True  | Show plot of E vs Rho |
+| numThreads| int    | 4     | Number of threads to use |
+| showPlot  | bool   | True  | Show plot of E vs Rho (pyEDM, rEDM) |
 
 ** Returns **  :   
 The returned DataFrame has columns `Tp` and `rho`. 
@@ -298,7 +303,7 @@ See the Parameters table for parameter definitions.
 | tau       | int    | -1    | Embedding time shift (time series rows) | 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
-| embedded  | bool   | False | Is data an embedding |
+| embedded  | bool   | False | Is data an embedding? If False, embed to E |
 | verbose   | bool   | False | Echo messages |
 | nthreads  | int    | 4     | Number of threads to use |
 | showPlot  | bool   | True  | Show plot of theta vs Rho |
