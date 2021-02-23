@@ -350,6 +350,12 @@ no observation or prediction.</p>
 <td>False</td>
 <td>Echo messages</td>
 </tr>
+<tr>
+<td>showPlot</td>
+<td>bool</td>
+<td>False</td>
+<td>Plot results (pyEDM, rEDM)</td>
+</tr>
 </tbody>
 </table>
 <p><strong> Returns </strong>  : <br />
@@ -500,7 +506,7 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 <td>embedded</td>
 <td>bool</td>
 <td>False</td>
-<td>Is data an embedding</td>
+<td>Is data an embedding? If False, embed to E</td>
 </tr>
 <tr>
 <td>const_pred</td>
@@ -513,6 +519,12 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 <td>bool</td>
 <td>False</td>
 <td>Echo messages</td>
+</tr>
+<tr>
+<td>showPlot</td>
+<td>bool</td>
+<td>False</td>
+<td>Plot results (pyEDM, rEDM)</td>
 </tr>
 </tbody>
 </table>
@@ -576,18 +588,6 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 <td>Prediction output file</td>
 </tr>
 <tr>
-<td>lib</td>
-<td>string or []</td>
-<td>""</td>
-<td>Pairs of library start stop row indices</td>
-</tr>
-<tr>
-<td>pred</td>
-<td>string or []</td>
-<td>""</td>
-<td>Pairs of prediction start stop row indices</td>
-</tr>
-<tr>
 <td>E</td>
 <td>int</td>
 <td>0</td>
@@ -648,6 +648,12 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 <td>CCM use random samples?</td>
 </tr>
 <tr>
+<td>replacement</td>
+<td>bool</td>
+<td>False</td>
+<td>CCM random sample with replacement?</td>
+</tr>
+<tr>
 <td>seed</td>
 <td>unsigned</td>
 <td>0</td>
@@ -664,6 +670,12 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 <td>bool</td>
 <td>False</td>
 <td>Echo messages</td>
+</tr>
+<tr>
+<td>showPlot</td>
+<td>bool</td>
+<td>False</td>
+<td>Plot results (pyEDM, rEDM)</td>
 </tr>
 </tbody>
 </table>
@@ -795,10 +807,28 @@ Multiview embedding and forecasting of the input data file or DataFrame.</p>
 <td>Use in-sample (lib=pred) prediction for ranking</td>
 </tr>
 <tr>
-<td>nthreads</td>
+<td>excludeTarget</td>
+<td>bool</td>
+<td>False</td>
+<td>Exclude target variable from multiviews</td>
+</tr>
+<tr>
+<td>numThreads</td>
 <td>int</td>
 <td>4</td>
 <td>Number of threads to use</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>bool</td>
+<td>False</td>
+<td>Echo messages</td>
+</tr>
+<tr>
+<td>showPlot</td>
+<td>bool</td>
+<td>False</td>
+<td>Plot results (pyEDM, rEDM)</td>
 </tr>
 </tbody>
 </table>
@@ -911,7 +941,7 @@ The maximum number of threads is 10.</p>
 <td>Echo messages</td>
 </tr>
 <tr>
-<td>nthreads</td>
+<td>numThreads</td>
 <td>int</td>
 <td>4</td>
 <td>Number of threads to use</td>
@@ -920,7 +950,7 @@ The maximum number of threads is 10.</p>
 <td>showPlot</td>
 <td>bool</td>
 <td>True</td>
-<td>Show plot of E vs Rho</td>
+<td>Show plot of E vs Rho (pyEDM, rEDM)</td>
 </tr>
 </tbody>
 </table>
@@ -1017,7 +1047,7 @@ interval forecasts. The maximum number of threads is 10.</p>
 <td>embedded</td>
 <td>bool</td>
 <td>False</td>
-<td>Is data an embedding</td>
+<td>Is data an embedding?</td>
 </tr>
 <tr>
 <td>verbose</td>
@@ -1026,7 +1056,7 @@ interval forecasts. The maximum number of threads is 10.</p>
 <td>Echo messages</td>
 </tr>
 <tr>
-<td>nthreads</td>
+<td>numThreads</td>
 <td>int</td>
 <td>4</td>
 <td>Number of threads to use</td>
@@ -1035,7 +1065,7 @@ interval forecasts. The maximum number of threads is 10.</p>
 <td>showPlot</td>
 <td>bool</td>
 <td>True</td>
-<td>Show plot of E vs Rho</td>
+<td>Show plot of E vs Rho (pyEDM, rEDM)</td>
 </tr>
 </tbody>
 </table>
@@ -1139,7 +1169,7 @@ See the Parameters table for parameter definitions.</p>
 <td>embedded</td>
 <td>bool</td>
 <td>False</td>
-<td>Is data an embedding</td>
+<td>Is data an embedding? If False, embed to E</td>
 </tr>
 <tr>
 <td>verbose</td>
