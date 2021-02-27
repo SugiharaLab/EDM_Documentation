@@ -84,9 +84,6 @@
     <a class="current" href="./">EDM Functions</a>
     <ul class="subnav">
             
-    <li class="toctree-l3"><a href="#embed"> Embed </a></li>
-    
-
     <li class="toctree-l3"><a href="#simplex"> Simplex </a></li>
     
 
@@ -106,6 +103,9 @@
     
 
     <li class="toctree-l3"><a href="#predictnonlinear"> PredictNonlinear </a></li>
+    
+
+    <li class="toctree-l3"><a href="#embed"> Embed </a></li>
     
 
     <li class="toctree-l3"><a href="#computeerror"> ComputeError </a></li>
@@ -167,72 +167,7 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="embed"><function> Embed </function></h1>
-<p><strong> Description </strong>  :
-Creates a data block of time-delay embedding from each of the 
-columns in the csv file or dataFrame.  </p>
-<p>The columns parameter can be a list of column names, a list of 
-column indices, or a whitespace separated string of column names or indices.</p>
-<p>Note: The returned DataFrame will have |tau| * (E-1) fewer 
-rows than the input data from the removal of partial vectors as 
-a result of the embedding.</p>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Type</th>
-<th>Default</th>
-<th>Purpose</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pathIn</td>
-<td>string</td>
-<td>"./"</td>
-<td>Input data file path</td>
-</tr>
-<tr>
-<td>dataFile</td>
-<td>string</td>
-<td>""</td>
-<td>Data file name</td>
-</tr>
-<tr>
-<td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
-<td>None</td>
-<td>Input DataFrame</td>
-</tr>
-<tr>
-<td>E</td>
-<td>int</td>
-<td>0</td>
-<td>Data dimension</td>
-</tr>
-<tr>
-<td>tau</td>
-<td>int</td>
-<td>-1</td>
-<td>Embedding shift. Negative: lag, positive: future</td>
-</tr>
-<tr>
-<td>columns</td>
-<td>string or []</td>
-<td>""</td>
-<td>Column names</td>
-</tr>
-<tr>
-<td>verbose</td>
-<td>bool</td>
-<td>False</td>
-<td>Echo messages</td>
-</tr>
-</tbody>
-</table>
-<p><strong> Returns </strong>  : <br />
-DataFrame with embedded columns.</p>
-<h1 id="simplex"><function> Simplex </function></h1>
+                <h1 id="simplex"><function> Simplex </function></h1>
 <p><strong> Description </strong>  : <br />
 Simplex projection of the input data file or DataFrame.</p>
 <p><code>nan</code> values are inserted in the output DataFrame where there is 
@@ -1193,6 +1128,70 @@ See the Parameters table for parameter definitions.</p>
 </table>
 <p><strong> Returns </strong>  : <br />
 The returned DataFrame has columns <code>theta</code> and <code>rho</code>. </p>
+<h1 id="embed"><function> Embed </function></h1>
+<p><strong> Description </strong>  :
+Creates a data block of time-delay embedding from each of the 
+columns in the csv file or dataFrame.  </p>
+<p>The columns parameter can be a list of column names, a list of 
+column indices, or a whitespace separated string of column names or indices.</p>
+<p>Note: The returned DataFrame will have |tau| * (E-1) rows of partial vectors 
+(rows with NaNs) as a result of the embedding. </p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pathIn</td>
+<td>string</td>
+<td>"./"</td>
+<td>Input data file path</td>
+</tr>
+<tr>
+<td>dataFile</td>
+<td>string</td>
+<td>""</td>
+<td>Data file name</td>
+</tr>
+<tr>
+<td>dataFrame</td>
+<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>None</td>
+<td>Input DataFrame</td>
+</tr>
+<tr>
+<td>E</td>
+<td>int</td>
+<td>0</td>
+<td>Data dimension</td>
+</tr>
+<tr>
+<td>tau</td>
+<td>int</td>
+<td>-1</td>
+<td>Embedding shift. Negative: lag, positive: future</td>
+</tr>
+<tr>
+<td>columns</td>
+<td>string or []</td>
+<td>""</td>
+<td>Column names</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>bool</td>
+<td>False</td>
+<td>Echo messages</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Returns </strong>  : <br />
+DataFrame with embedded columns.</p>
 <h1 id="computeerror"><function> ComputeError </function></h1>
 <p><strong> Description </strong>  : <br />
 Compute Pearson correlation coefficient, maximum absolute error (MAE) 
