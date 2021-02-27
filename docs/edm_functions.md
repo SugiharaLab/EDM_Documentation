@@ -1,29 +1,3 @@
-# <function> Embed </function>
-
-** Description **  :
-Creates a data block of time-delay embedding from each of the 
-columns in the csv file or dataFrame.  
-
-The columns parameter can be a list of column names, a list of 
-column indices, or a whitespace separated string of column names or indices.
-
-Note: The returned DataFrame will have |tau| * (E-1) fewer 
-rows than the input data from the removal of partial vectors as 
-a result of the embedding.
-
-| Parameter | Type | Default | Purpose |
-| --------- | ---- | ------- | ------- |
-| pathIn    | string | "./"  | Input data file path |
-| dataFile  | string | ""    | Data file name |
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame|
-| E         | int    | 0     | Data dimension | 
-| tau       | int    | -1    |Embedding shift. Negative: lag, positive: future|
-| columns   | string or [] | "" | Column names  |
-| verbose   | bool   | False | Echo messages |
-
-** Returns **  :   
-DataFrame with embedded columns.
-
 # <function> Simplex </function> 
 ** Description **  :   
 Simplex projection of the input data file or DataFrame.
@@ -310,6 +284,30 @@ See the Parameters table for parameter definitions.
 
 ** Returns **  :   
 The returned DataFrame has columns `theta` and `rho`. 
+
+# <function> Embed </function>
+** Description **  :
+Creates a data block of time-delay embedding from each of the 
+columns in the csv file or dataFrame.  
+
+The columns parameter can be a list of column names, a list of 
+column indices, or a whitespace separated string of column names or indices.
+
+Note: The returned DataFrame will have |tau| * (E-1) rows of partial vectors 
+(rows with NaNs) as a result of the embedding. 
+
+| Parameter | Type | Default | Purpose |
+| --------- | ---- | ------- | ------- |
+| pathIn    | string | "./"  | Input data file path |
+| dataFile  | string | ""    | Data file name |
+| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame|
+| E         | int    | 0     | Data dimension | 
+| tau       | int    | -1    |Embedding shift. Negative: lag, positive: future|
+| columns   | string or [] | "" | Column names  |
+| verbose   | bool   | False | Echo messages |
+
+** Returns **  :   
+DataFrame with embedded columns.
 
 # <function> ComputeError </function> 
 ** Description **  :   
