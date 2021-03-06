@@ -125,7 +125,7 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | E         | int    | 0     | Data dimension | 
-| Tp        | int    | 1     | Prediction Interval | 
+| Tp        | int    | 0     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set as E+1)| 
 | tau       | int    | -1    | Embedding time shift (time series rows) | 
 | exclusionRadius | int | 0  | Prediction vector exclusion radius | 
