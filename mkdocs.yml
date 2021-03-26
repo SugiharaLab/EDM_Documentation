@@ -3,6 +3,9 @@ theme:
     name: readthedocs
 extra_css: [extra.css]
 
+plugins:
+- mknotebooks
+
 markdown_extensions:
   - attr_list
 
@@ -16,5 +19,6 @@ nav:
     - Parameters : parameters.md
     - EDM Functions : edm_functions.md
 - EDM Algorithms :
-    - Examples : algorithms_high_level.md
+    - Basic EDM Examples : algorithms_high_level.md
     - EDM Algorithms in Depth : algorithms_in_depth.md
+    - Custom Solvers : solvers_demo.ipynb
