@@ -7,23 +7,29 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Examples - EDM (pyEDM, rEDM)</title>
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../extra.css" rel="stylesheet">
+  <title>Basic EDM Examples - EDM (pyEDM, rEDM)</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../extra.css" rel="stylesheet" />
+  <link href="../css/ansi-colours.css" rel="stylesheet" />
+  <link href="../css/jupyter-cells.css" rel="stylesheet" />
+  <link href="../css/pandas-dataframe.css" rel="stylesheet" />
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Examples";
+    var mkdocs_page_name = "Basic EDM Examples";
     var mkdocs_page_input_path = "algorithms_high_level.md";
     var mkdocs_page_url = null;
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -34,79 +40,44 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Getting Started</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../installation/">Installation</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../edm_intro/">EDM Framework</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Documentation</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../embedding_parameters/">Embedding</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../parameters/">Parameters</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../edm_functions/">EDM Functions</a>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">EDM Algorithms</span>
-    <ul class="subnav">
-                <li class=" current">
-                    
-    <a class="current" href="./">Examples</a>
-    <ul class="subnav">
-            
-    </ul>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../edm_intro/">EDM Framework</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Documentation</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">EDM Functions</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">EDM Algorithms</span></p>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Basic EDM Examples</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -130,20 +101,20 @@
         
       
     
-    <li>Examples</li>
+    <li>Basic EDM Examples</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
             <div class="section">
               
                 <!DOCTYPE html>
-<html>
-<head><meta charset="utf-8" />
-
+<p><html>
+<head><meta charset="utf-8" /></p>
 <p><title>EDM_Examples</title></p>
 <style type="text/css">
     /*!
@@ -13082,7 +13053,6 @@ ul.typeahead-list  > li > a.pull-right {
 }
 /*# sourceMappingURL=style.min.css.map */
     </style>
-
 <style type="text/css">
     .highlight .hll { background-color: #ffffcc }
 .highlight  { background: #f8f8f8; }
@@ -13182,11 +13152,11 @@ div#notebook {
 </style>
 
 <!-- Custom stylesheet, it must be in the same directory as the html file -->
-
 <p><link rel="stylesheet" href="custom.css"></p>
-<p><body>
+<body>
   <div tabindex="-1" id="notebook" class="border-box-sizing">
-    <div class="container" id="notebook-container"></p>
+    <div class="container" id="notebook-container">
+
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[17]:</div>
@@ -13201,7 +13171,6 @@ div#notebook {
 </div>
 
 </div>
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13209,7 +13178,6 @@ div#notebook {
 </div>
 </div>
 </div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[18]:</div>
@@ -13224,7 +13192,6 @@ div#notebook {
 </div>
 
 </div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[19]:</div>
@@ -13260,7 +13227,6 @@ div#notebook {
 </div>
 
 </div>
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13268,7 +13234,6 @@ div#notebook {
 </div>
 </div>
 </div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[22]:</div>
@@ -13304,7 +13269,6 @@ div#notebook {
 </div>
 
 </div>
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13312,7 +13276,6 @@ div#notebook {
 </div>
 </div>
 </div>
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13320,7 +13283,6 @@ div#notebook {
 </div>
 </div>
 </div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[23]:</div>
@@ -13356,7 +13318,6 @@ div#notebook {
 </div>
 
 </div>
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13364,7 +13325,6 @@ div#notebook {
 </div>
 </div>
 </div>
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13372,7 +13332,6 @@ div#notebook {
 </div>
 </div>
 </div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[24]:</div>
@@ -13425,7 +13384,6 @@ div#notebook {
 </div>
 
 </div>
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13433,7 +13391,6 @@ div#notebook {
 </div>
 </div>
 </div>
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13441,7 +13398,6 @@ div#notebook {
 </div>
 </div>
 </div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[14]:</div>
@@ -13455,7 +13411,6 @@ div#notebook {
 </div>
 
 </div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[15]:</div>
@@ -13491,7 +13446,6 @@ div#notebook {
 </div>
 
 </div>
-
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[16]:</div>
@@ -13528,7 +13482,6 @@ div#notebook {
 </div>
 
 </div>
-
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13538,7 +13491,8 @@ div#notebook {
 </div>
 </div>
 
-<p></body></p>
+</body>
+
 <p></html></p>
               
             </div>
@@ -13562,7 +13516,7 @@ div#notebook {
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -13572,7 +13526,7 @@ div#notebook {
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -13585,7 +13539,11 @@ div#notebook {
 </div>
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>

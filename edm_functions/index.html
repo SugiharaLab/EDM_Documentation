@@ -7,12 +7,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
+  
   <link rel="shortcut icon" href="../img/favicon.ico">
   <title>EDM Functions - EDM (pyEDM, rEDM)</title>
-  <link rel="stylesheet" href="../css/theme.css" type="text/css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" type="text/css" />
-  <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css">
-  <link href="../extra.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
+  <link href="../extra.css" rel="stylesheet" />
+  <link href="../css/ansi-colours.css" rel="stylesheet" />
+  <link href="../css/jupyter-cells.css" rel="stylesheet" />
+  <link href="../css/pandas-dataframe.css" rel="stylesheet" />
   
   <script>
     // Current page data
@@ -23,7 +29,7 @@
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
   <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
   <script>hljs.initHighlightingOnLoad();</script> 
   
 </head>
@@ -34,106 +40,66 @@
 
     
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
         <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)</a>
-        <div role="search">
-  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
-    <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
-  </form>
-</div>
+        
       </div>
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-	<ul class="current">
-	  
-          
-            <li class="toctree-l1">
-		
-    <a class="" href="..">Home</a>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Getting Started</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../installation/">Installation</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../edm_intro/">EDM Framework</a>
-                </li>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Getting Started</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../edm_intro/">EDM Framework</a>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">Documentation</span></p>
+                <ul class="current">
+                    <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">EDM Functions</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#simplex"> Simplex </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#smap"> SMap </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ccm"> CCM </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multiview"> Multiview </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#embeddimension"> EmbedDimension </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#predictinterval"> PredictInterval </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#predictnonlinear"> PredictNonlinear </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#embed"> Embed </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#makeblock"> MakeBlock </a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#computeerror"> ComputeError </a>
+    </li>
     </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">Documentation</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../embedding_parameters/">Embedding</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../parameters/">Parameters</a>
-                </li>
-                <li class=" current">
-                    
-    <a class="current" href="./">EDM Functions</a>
-    <ul class="subnav">
-            
-    <li class="toctree-l3"><a href="#simplex"> Simplex </a></li>
-    
-
-    <li class="toctree-l3"><a href="#smap"> SMap </a></li>
-    
-
-    <li class="toctree-l3"><a href="#ccm"> CCM </a></li>
-    
-
-    <li class="toctree-l3"><a href="#multiview"> Multiview </a></li>
-    
-
-    <li class="toctree-l3"><a href="#embeddimension"> EmbedDimension </a></li>
-    
-
-    <li class="toctree-l3"><a href="#predictinterval"> PredictInterval </a></li>
-    
-
-    <li class="toctree-l3"><a href="#predictnonlinear"> PredictNonlinear </a></li>
-    
-
-    <li class="toctree-l3"><a href="#embed"> Embed </a></li>
-    
-
-    <li class="toctree-l3"><a href="#computeerror"> ComputeError </a></li>
-    
-
-    </ul>
-                </li>
-    </ul>
-	    </li>
-          
-            <li class="toctree-l1">
-		
-    <span class="caption-text">EDM Algorithms</span>
-    <ul class="subnav">
-                <li class="">
-                    
-    <a class="" href="../algorithms_high_level/">Examples</a>
-                </li>
-                <li class="">
-                    
-    <a class="" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
-                </li>
-    </ul>
-	    </li>
-          
-        </ul>
+                    </li>
+                </ul>
+                <p class="caption"><span class="caption-text">EDM Algorithms</span></p>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../algorithms_high_level/">Basic EDM Examples</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                    </li>
+                </ul>
       </div>
-      &nbsp;
+    </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
@@ -162,12 +128,14 @@
       
     </li>
   </ul>
+  
   <hr/>
 </div>
           <div role="main">
             <div class="section">
               
-                <h1 id="simplex"><function> Simplex </function></h1>
+                <h1 id="api-reference">API Reference</h1>
+<h2 id="simplex"><function> Simplex </function></h2>
 <p><strong> Description </strong>  : <br />
 Simplex projection of the input data file or DataFrame.</p>
 <p><code>nan</code> values are inserted in the output DataFrame where there is 
@@ -295,7 +263,7 @@ no observation or prediction.</p>
 </table>
 <p><strong> Returns </strong>  : <br />
 DataFrame with columns "Time", "Observations", and "Predictions".</p>
-<h1 id="smap"><function> SMap </function></h1>
+<h2 id="smap"><function> SMap </function></h2>
 <p><strong> Description </strong>  : <br />
 SMap projection of the input data file or DataFrame.</p>
 <p>See the Parameters table for parameter definitions.<br />
@@ -469,7 +437,7 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 <code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br />
 <code>coefficients</code>[ 'E+2' columns : "Time", and 'E+1' SMap coefficents]
 }</p>
-<h1 id="ccm"><function> CCM </function></h1>
+<h2 id="ccm"><function> CCM </function></h2>
 <p>Convergent cross mapping of the first vector specified in columns 
 against target.</p>
 <p>The data cannot be multivariable; the first vector in columns 
@@ -621,7 +589,7 @@ are Pearson correlation coefficients for <code>column</code> : <code>target</cod
 and <code>target</code> : <code>column</code> cross mapping.</p>
 <p>If <code>includeData</code> is <code>True</code> returns a list with the above DataFrame
 and a DataFrame of all Simplex projection statistics. </p>
-<h1 id="multiview"><function> Multiview </function></h1>
+<h2 id="multiview"><function> Multiview </function></h2>
 <p><strong> Description </strong>  : <br />
 Multiview embedding and forecasting of the input data file or DataFrame.</p>
 <p>See the Parameters table for parameter definitions.</p>
@@ -776,7 +744,7 @@ The first <code>E</code> columns are the the column indices in the input data Da
 that are embedded and applied to Simplex prediction. <br />
 The last three columns are "rho", "MAE", "RMSE" corresponding to the prediction 
 Pearson correlation, maximum absolute error and root mean square error.</p>
-<h1 id="embeddimension"><function> EmbedDimension </function></h1>
+<h2 id="embeddimension"><function> EmbedDimension </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE</code>.</p>
 <p>Note: nThreads defines the number of worker threads for the 10 embeddings. 
@@ -891,7 +859,7 @@ The maximum number of threads is 10.</p>
 </table>
 <p><strong> Returns </strong>  : <br />
 The returned DataFrame has columns <code>E</code> and <code>rho</code>.   </p>
-<h1 id="predictinterval"><function> PredictInterval </function></h1>
+<h2 id="predictinterval"><function> PredictInterval </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.</p>
 <p>Note: <code>nThreads</code> defines the number of worker threads for the 10 prediction 
@@ -1006,7 +974,7 @@ interval forecasts. The maximum number of threads is 10.</p>
 </table>
 <p><strong> Returns </strong>  : <br />
 The returned DataFrame has columns <code>Tp</code> and <code>rho</code>. </p>
-<h1 id="predictnonlinear"><function> PredictNonlinear </function></h1>
+<h2 id="predictnonlinear"><function> PredictNonlinear </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate SMap prediction skill for localization parameter 
 <code>theta</code>  (default from 0.01 to 9).</p>
@@ -1128,14 +1096,16 @@ See the Parameters table for parameter definitions.</p>
 </table>
 <p><strong> Returns </strong>  : <br />
 The returned DataFrame has columns <code>theta</code> and <code>rho</code>. </p>
-<h1 id="embed"><function> Embed </function></h1>
+<h2 id="embed"><function> Embed </function></h2>
 <p><strong> Description </strong>  :
 Creates a data block of time-delay embedding from each of the 
 columns in the csv file or dataFrame.  </p>
 <p>The columns parameter can be a list of column names, a list of 
 column indices, or a whitespace separated string of column names or indices.</p>
-<p>Note: The returned DataFrame will have |tau| * (E-1) rows of partial vectors 
+<p>Note: The <code>MakeBlock</code> function can be called with <code>deletePartial = True</code> 
+to return a DataFrame with |tau| * (E-1) rows of partial vectors removed
 (rows with NaNs) as a result of the embedding. </p>
+<p>Note: The time column is not included in the returned DataFrame.</p>
 <table>
 <thead>
 <tr>
@@ -1192,9 +1162,62 @@ column indices, or a whitespace separated string of column names or indices.</p>
 </table>
 <p><strong> Returns </strong>  : <br />
 DataFrame with embedded columns.</p>
-<h1 id="computeerror"><function> ComputeError </function></h1>
+<h2 id="makeblock"><function> MakeBlock </function></h2>
+<p><strong> Description </strong>  :
+Creates a data block of time-delay embedding from each of the
+columnNames in the dataFrame.</p>
+<p>The <code>columnNames</code> is a list of column names.</p>
+<p>Note: The time column is not included in the returned DataFrame.</p>
+<p>Note: The <code>MakeBlock</code> function is a low level function that does not perform
+error checking.  The <code>Embed</code> function provides error checking and file-based
+input.</p>
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>dataFrame</td>
+<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>None</td>
+<td>Input DataFrame</td>
+</tr>
+<tr>
+<td>E</td>
+<td>int</td>
+<td>0</td>
+<td>Data dimension</td>
+</tr>
+<tr>
+<td>tau</td>
+<td>int</td>
+<td>-1</td>
+<td>Embedding shift. Negative: lag, positive: future</td>
+</tr>
+<tr>
+<td>columnNames</td>
+<td>[]</td>
+<td>""</td>
+<td>List of column names</td>
+</tr>
+<tr>
+<td>deletePartial</td>
+<td>bool</td>
+<td>False</td>
+<td>Remove rows with NaNs from embedding</td>
+</tr>
+</tbody>
+</table>
+<p><strong> Returns </strong>  :
+DataFrame with embedded columns.</p>
+<h2 id="computeerror"><function> ComputeError </function></h2>
 <p><strong> Description </strong>  : <br />
-Compute Pearson correlation coefficient, maximum absolute error (MAE) 
+Compute Pearson correlation coefficient, maximum absolute error (MAE)
 and root mean square error (RMSE) between two vectors.</p>
 <table>
 <thead>
@@ -1226,7 +1249,7 @@ and root mean square error (RMSE) between two vectors.</p>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../algorithms_high_level/" class="btn btn-neutral float-right" title="Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../algorithms_high_level/" class="btn btn-neutral float-right" title="Basic EDM Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href="../parameters/" class="btn btn-neutral" title="Parameters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -1241,7 +1264,7 @@ and root mean square error (RMSE) between two vectors.</p>
     
   </div>
 
-  Built with <a href="http://www.mkdocs.org">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
       
         </div>
@@ -1251,7 +1274,7 @@ and root mean square error (RMSE) between two vectors.</p>
 
   </div>
 
-  <div class="rst-versions" role="note" style="cursor: pointer">
+  <div class="rst-versions" role="note" aria-label="versions">
     <span class="rst-current-version" data-toggle="rst-current-version">
       
       
@@ -1264,7 +1287,11 @@ and root mean square error (RMSE) between two vectors.</p>
 </div>
     <script>var base_url = '..';</script>
     <script src="../js/theme.js" defer></script>
-      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
 
 </body>
 </html>
