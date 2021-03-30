@@ -1,4 +1,6 @@
-# <function> Simplex </function> 
+# API Reference
+
+## <function> Simplex </function> 
 ** Description **  :   
 Simplex projection of the input data file or DataFrame.
 
@@ -31,7 +33,7 @@ If embedded is false (default) the data columns are embedded to dimension `E` wi
 ** Returns **  :   
 DataFrame with columns "Time", "Observations", and "Predictions".
 
-# <function> SMap </function> 
+## <function> SMap </function> 
 ** Description **  :   
 SMap projection of the input data file or DataFrame.
 
@@ -98,7 +100,7 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 `coefficients`[ 'E+2' columns : "Time", and 'E+1' SMap coefficents]
 }
 
-# <function> CCM </function> 
+## <function> CCM </function> 
 Convergent cross mapping of the first vector specified in columns 
 against target.
 
@@ -149,7 +151,7 @@ and `target` : `column` cross mapping.
 If `includeData` is `True` returns a list with the above DataFrame
 and a DataFrame of all Simplex projection statistics. 
 
-# <function> Multiview </function> 
+## <function> Multiview </function> 
 ** Description **  :   
 Multiview embedding and forecasting of the input data file or DataFrame.
 
@@ -196,7 +198,7 @@ that are embedded and applied to Simplex prediction.
 The last three columns are "rho", "MAE", "RMSE" corresponding to the prediction 
 Pearson correlation, maximum absolute error and root mean square error.
 
-# <function> EmbedDimension </function> 
+## <function> EmbedDimension </function> 
 ** Description **  :   
 Evaluate Simplex prediction skill for embedding dimensions from 1 to `maxE`.
 
@@ -225,7 +227,7 @@ The maximum number of threads is 10.
 ** Returns **  :   
 The returned DataFrame has columns `E` and `rho`.   
 
-# <function> PredictInterval </function> 
+## <function> PredictInterval </function> 
 ** Description **  :   
 Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.
 
@@ -254,7 +256,7 @@ interval forecasts. The maximum number of threads is 10.
 ** Returns **  :   
 The returned DataFrame has columns `Tp` and `rho`. 
 
-# <function> PredictNonlinear </function> 
+## <function> PredictNonlinear </function> 
 ** Description **  :   
 Evaluate SMap prediction skill for localization parameter 
 `theta`  (default from 0.01 to 9).
@@ -285,7 +287,7 @@ See the Parameters table for parameter definitions.
 ** Returns **  :   
 The returned DataFrame has columns `theta` and `rho`. 
 
-# <function> Embed </function>
+## <function> Embed </function>
 ** Description **  :
 Creates a data block of time-delay embedding from each of the 
 columns in the csv file or dataFrame.  
@@ -293,8 +295,11 @@ columns in the csv file or dataFrame.
 The columns parameter can be a list of column names, a list of 
 column indices, or a whitespace separated string of column names or indices.
 
-Note: The returned DataFrame will have |tau| * (E-1) rows of partial vectors 
+Note: The `MakeBlock` function can be called with `deletePartial = True` 
+to return a DataFrame with |tau| * (E-1) rows of partial vectors removed
 (rows with NaNs) as a result of the embedding. 
+
+Note: The time column is not included in the returned DataFrame.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
@@ -309,9 +314,33 @@ Note: The returned DataFrame will have |tau| * (E-1) rows of partial vectors
 ** Returns **  :   
 DataFrame with embedded columns.
 
-# <function> ComputeError </function> 
+## <function> MakeBlock </function>
+** Description **  :
+Creates a data block of time-delay embedding from each of the
+columnNames in the dataFrame.
+
+The `columnNames` is a list of column names.
+
+Note: The time column is not included in the returned DataFrame.
+
+Note: The `MakeBlock` function is a low level function that does not perform
+error checking.  The `Embed` function provides error checking and file-based
+input.
+
+| Parameter | Type | Default | Purpose |
+| --------- | ---- | ------- | ------- |
+| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame|
+| E         | int    | 0     | Data dimension |
+| tau       | int    | -1    |Embedding shift. Negative: lag, positive: future|
+| columnNames  | []  | ""    | List of column names  |
+| deletePartial| bool| False | Remove rows with NaNs from embedding |
+
+** Returns **  :
+DataFrame with embedded columns.
+
+## <function> ComputeError </function> 
 ** Description **  :   
-Compute Pearson correlation coefficient, maximum absolute error (MAE) 
+Compute Pearson correlation coefficient, maximum absolute error (MAE)
 and root mean square error (RMSE) between two vectors.
 
 | Parameter | Type |  Purpose |
