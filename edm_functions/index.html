@@ -138,9 +138,9 @@
 <h2 id="simplex"><function> Simplex </function></h2>
 <p><strong> Description </strong>  : <br />
 Simplex projection of the input data file or DataFrame.</p>
+<p>If <code>embedded</code> is false (default) the data columns are embedded to dimension <code>E</code> with time shift <code>tau</code>.  If <code>knn</code> = 0, it is set to E+1.</p>
 <p><code>nan</code> values are inserted in the output DataFrame where there is 
 no observation or prediction.</p>
-<p>If embedded is false (default) the data columns are embedded to dimension <code>E</code> with time shift <code>tau</code>.  If knn = 0, it is set to E+1.</p>
 <table>
 <thead>
 <tr>
@@ -261,38 +261,38 @@ no observation or prediction.</p>
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  : <br />
-DataFrame with columns "Time", "Observations", and "Predictions".</p>
+<p><br/>
+<strong> Returns </strong>  : <br />
+DataFrame with columns : "Time", "Observations", "Predictions".</p>
 <h2 id="smap"><function> SMap </function></h2>
 <p><strong> Description </strong>  : <br />
 SMap projection of the input data file or DataFrame.</p>
-<p>See the Parameters table for parameter definitions.<br />
-<code>nan</code> values are inserted in the output DataFrame where there is 
-no observation or prediction.</p>
 <p>If <code>embedded</code> is false, data columns are embedded to dimension E with shift tau.
 If <code>predictFile</code> is provided the predictions are written in csv format.
 If <code>smapFile</code> is provided the coefficients are written in csv format.
 If <code>knn</code> is not specified, it is set equal to the library size. 
 If <code>knn</code> is specified, it must be greater than <code>E</code>.</p>
+<p><code>nan</code> values are inserted in the output DataFrame where there is 
+no observation or prediction.</p>
 <p><strong> Note </strong> : <br />
 <code>SMap</code> should be called with columns explicitly corresponding to
 dimensions <code>E</code>. In the univariate case (number of <code>columns</code> = 1) with
 default <code>embedded = false</code>, the time series will be time-delay
-embedded to dimension E, <code>SMap</code> coefficients correspond to each dimension. </p>
+embedded to dimension <code>E</code>, <code>SMap</code> coefficients correspond to each dimension. </p>
 <p>If a multivariate data set is used (number of <code>columns</code> &gt; 1) it
 must use <code>embedded = true</code> with <code>E</code> equal to the number of columns.
 This prevents the function from internally time-delay embedding the
-multiple columns to dimension E.  If the internal time-delay embedding
-is performed, then state-space columns will not correspond to the
+multiple columns to dimension <code>E</code>.  If internal time-delay embedding
+were performed, then state-space columns will not correspond to the
 intended dimensions in the matrix inversion, coefficient assignment,
-and prediction.  In the multivariate case, the user should first prepare
+and prediction.  In this multivariate case, the user can first prepare
 the embedding (using <a href="../edm_functions/#embed"><code>Embed()</code></a> for time-delay
-embedding if desired), then pass this embedding to <code>SMap</code> with appropriately
-specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.</p>
+embedding if desired, add a first column of time), then pass this embedding 
+to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.</p>
 <p>In PyEDM: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
-a class object instantiated from the sklearn.linear_model class.
+a class object instantiated from the <code>sklearn.linear_model</code> class.
 Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
-<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>.</p>
+<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. See  <a href="../solvers_demo/"><code>examples</code></a>. </p>
 <table>
 <thead>
 <tr>
@@ -431,25 +431,24 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  : <br />
-[Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with two DataFrames:
-{<br />
-<code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br />
-<code>coefficients</code>[ 'E+2' columns : "Time", and 'E+1' SMap coefficents]
-}</p>
+<p><br/>
+<strong> Returns </strong>  : <br />
+Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with two DataFrames:<br/>
+<code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br/>
+<code>coefficients</code>[ E+2 columns : "Time", and E+1 SMap coefficents]<br/></p>
 <h2 id="ccm"><function> CCM </function></h2>
 <p>Convergent cross mapping of the first vector specified in columns 
 against target.</p>
 <p>The data cannot be multivariable; the first vector in columns 
-is time-delay embedded to dimension E with time shift tau.  </p>
+is time-delay embedded to dimension <code>E</code> with time shift <code>tau</code>.  </p>
 <p><code>libSizes</code> specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, then the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
 <p>If <code>random</code> is true, sample observations are randomly selected from the 
 subset of each library size.</p>
+<p>If <code>random</code> is false, sample is ignored and contiguous library rows up to the 
+current library size are used.  </p>
 <p>If <code>seed=0</code> , then a random seed is generated for the random number generator. 
 Otherwise, seed is used to initialise the random number generator.</p>
-<p>If <code>random</code> is false, sample is ignored and contiguous library rows up to the 
-current library size are used.<br />
-Note: Cross mappings are performed between column : target; and, the reverse mapping between target : column.</p>
+<p>Note: Cross mappings are performed between <code>column</code> : <code>target</code>; and, the reverse mapping between <code>target</code> : <code>column</code>.</p>
 <table>
 <thead>
 <tr>
@@ -582,12 +581,13 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  :
-If <code>includeData</code> is <code>False</code> returns DataFrame with 3 columns. <br />
+<p><br/>
+<strong> Returns </strong>  :<br />
+If <code>includeData</code> is <code>False</code>: returns DataFrame with 3 columns. <br />
 The first column is <code>LibSize</code>, the second and third columns
 are Pearson correlation coefficients for <code>column</code> : <code>target</code> 
 and <code>target</code> : <code>column</code> cross mapping.</p>
-<p>If <code>includeData</code> is <code>True</code> returns a list with the above DataFrame
+<p>If <code>includeData</code> is <code>True</code>: returns a list with the above DataFrame
 and a DataFrame of all Simplex projection statistics. </p>
 <h2 id="multiview"><function> Multiview </function></h2>
 <p><strong> Description </strong>  : <br />
@@ -735,11 +735,13 @@ Multiview embedding and forecasting of the input data file or DataFrame.</p>
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  : <br />
-[Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with two DataFrames: { 
-View, Predictions }
-The <code>Predictions</code> DataFrame has 3 columns <code>Time</code>, <code>Observations</code>, <code>Predictions</code>. <br />
-The <code>View</code> DataFrame will have <code>E</code>+3 columns. <br />
+<p><br/>
+<strong> Returns </strong>  : <br />
+Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with two DataFrames:<br/>
+View<br/>
+Predictions<br/></p>
+<p>The <code>Predictions</code> DataFrame has 3 columns: <code>Time</code>, <code>Observations</code>, <code>Predictions</code>. <br />
+The <code>View</code> DataFrame has <code>E</code>+3 columns. <br />
 The first <code>E</code> columns are the the column indices in the input data DataFrame 
 that are embedded and applied to Simplex prediction. <br />
 The last three columns are "rho", "MAE", "RMSE" corresponding to the prediction 
@@ -857,8 +859,9 @@ The maximum number of threads is 10.</p>
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  : <br />
-The returned DataFrame has columns <code>E</code> and <code>rho</code>.   </p>
+<p><br/>
+<strong> Returns </strong>  : <br />
+DataFrame with columns <code>E</code> and <code>rho</code>.   </p>
 <h2 id="predictinterval"><function> PredictInterval </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.</p>
@@ -972,8 +975,9 @@ interval forecasts. The maximum number of threads is 10.</p>
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  : <br />
-The returned DataFrame has columns <code>Tp</code> and <code>rho</code>. </p>
+<p><br/>
+<strong> Returns </strong>  : <br />
+DataFrame with columns <code>Tp</code> and <code>rho</code>. </p>
 <h2 id="predictnonlinear"><function> PredictNonlinear </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate SMap prediction skill for localization parameter 
@@ -1094,8 +1098,9 @@ See the Parameters table for parameter definitions.</p>
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  : <br />
-The returned DataFrame has columns <code>theta</code> and <code>rho</code>. </p>
+<p><br/>
+<strong> Returns </strong>  : <br />
+DataFrame with columns <code>theta</code> and <code>rho</code>. </p>
 <h2 id="embed"><function> Embed </function></h2>
 <p><strong> Description </strong>  :
 Creates a data block of time-delay embedding from each of the 
@@ -1160,7 +1165,8 @@ to return a DataFrame with |tau| * (E-1) rows of partial vectors removed
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  : <br />
+<p><br/>
+<strong> Returns </strong>  : <br />
 DataFrame with embedded columns.</p>
 <h2 id="makeblock"><function> MakeBlock </function></h2>
 <p><strong> Description </strong>  :
@@ -1213,7 +1219,8 @@ input.</p>
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  :
+<p><br/>
+<strong> Returns </strong>  :
 DataFrame with embedded columns.</p>
 <h2 id="computeerror"><function> ComputeError </function></h2>
 <p><strong> Description </strong>  : <br />
@@ -1240,8 +1247,9 @@ and root mean square error (RMSE) between two vectors.</p>
 </tr>
 </tbody>
 </table>
-<p><strong> Returns </strong>  : <br />
-[Dict in <code>pyEDM</code>, named List in <code>rEDM</code>] with computed <code>rho</code>, <code>RMSE</code>, <code>MAE</code>.</p>
+<p><br/>
+<strong> Returns </strong>  : <br />
+Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with computed <code>rho</code>, <code>RMSE</code>, <code>MAE</code>.</p>
               
             </div>
           </div>
