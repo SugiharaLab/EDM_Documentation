@@ -4,10 +4,10 @@
 ** Description **  :   
 Simplex projection of the input data file or DataFrame.
 
+If `embedded` is false (default) the data columns are embedded to dimension `E` with time shift `tau`.  If `knn` = 0, it is set to E+1.
+
 `nan` values are inserted in the output DataFrame where there is 
 no observation or prediction.
-
-If embedded is false (default) the data columns are embedded to dimension `E` with time shift `tau`.  If knn = 0, it is set to E+1.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
@@ -30,16 +30,13 @@ If embedded is false (default) the data columns are embedded to dimension `E` wi
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 
+<br/>
 ** Returns **  :   
-DataFrame with columns "Time", "Observations", and "Predictions".
+DataFrame with columns : "Time", "Observations", "Predictions".
 
 ## <function> SMap </function> 
 ** Description **  :   
 SMap projection of the input data file or DataFrame.
-
-See the Parameters table for parameter definitions.  
-`nan` values are inserted in the output DataFrame where there is 
-no observation or prediction.
 
 If `embedded` is false, data columns are embedded to dimension E with shift tau.
 If `predictFile` is provided the predictions are written in csv format.
@@ -47,27 +44,30 @@ If `smapFile` is provided the coefficients are written in csv format.
 If `knn` is not specified, it is set equal to the library size. 
 If `knn` is specified, it must be greater than `E`.
 
+`nan` values are inserted in the output DataFrame where there is 
+no observation or prediction.
+
 ** Note ** :   
 `SMap` should be called with columns explicitly corresponding to
 dimensions `E`. In the univariate case (number of `columns` = 1) with
 default `embedded = false`, the time series will be time-delay
-embedded to dimension E, `SMap` coefficients correspond to each dimension. 
+embedded to dimension `E`, `SMap` coefficients correspond to each dimension. 
 
 If a multivariate data set is used (number of `columns` > 1) it
 must use `embedded = true` with `E` equal to the number of columns.
 This prevents the function from internally time-delay embedding the
-multiple columns to dimension E.  If the internal time-delay embedding
-is performed, then state-space columns will not correspond to the
+multiple columns to dimension `E`.  If internal time-delay embedding
+were performed, then state-space columns will not correspond to the
 intended dimensions in the matrix inversion, coefficient assignment,
-and prediction.  In the multivariate case, the user should first prepare
+and prediction.  In this multivariate case, the user can first prepare
 the embedding (using [`Embed()`](../edm_functions/#embed) for time-delay
-embedding if desired), then pass this embedding to `SMap` with appropriately
-specified `columns`, `E`, and `embedded = true`.
+embedding if desired, add a first column of time), then pass this embedding 
+to `SMap` with appropriately specified `columns`, `E`, and `embedded = true`.
 
 In PyEDM: The default LAPACK SVD solver `dgelss()` can be replaced with
-a class object instantiated from the sklearn.linear_model class.
+a class object instantiated from the `sklearn.linear_model` class.
 Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
-`ElasticNet`, `RidgeCV`, `LassoCV`, `ElasticNetCV`.
+`ElasticNet`, `RidgeCV`, `LassoCV`, `ElasticNetCV`. See  [`examples`](./solvers_demo.ipynb). 
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
@@ -93,31 +93,31 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 
+<br/>
 ** Returns **  :   
-[Dict in `pyEDM`, named List in `rEDM`] with two DataFrames:
-{  
-`predictions` [ 3 columns : "Time", "Observations", "Predictions"],  
-`coefficients`[ 'E+2' columns : "Time", and 'E+1' SMap coefficents]
-}
+Dict in `pyEDM`, named List in `rEDM`: with two DataFrames:<br/>
+`predictions` [ 3 columns : "Time", "Observations", "Predictions"],<br/>
+`coefficients`[ E+2 columns : "Time", and E+1 SMap coefficents]<br/>
 
 ## <function> CCM </function> 
 Convergent cross mapping of the first vector specified in columns 
 against target.
 
 The data cannot be multivariable; the first vector in columns 
-is time-delay embedded to dimension E with time shift tau.  
+is time-delay embedded to dimension `E` with time shift `tau`.  
 
 `libSizes` specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, then the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.
 
 If `random` is true, sample observations are randomly selected from the 
 subset of each library size.
 
+If `random` is false, sample is ignored and contiguous library rows up to the 
+current library size are used.  
+
 If `seed=0` , then a random seed is generated for the random number generator. 
 Otherwise, seed is used to initialise the random number generator.
 
-If `random` is false, sample is ignored and contiguous library rows up to the 
-current library size are used.  
-Note: Cross mappings are performed between column : target; and, the reverse mapping between target : column.
+Note: Cross mappings are performed between `column` : `target`; and, the reverse mapping between `target` : `column`.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
@@ -142,13 +142,14 @@ Note: Cross mappings are performed between column : target; and, the reverse map
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 
-** Returns **  :
-If `includeData` is `False` returns DataFrame with 3 columns.   
+<br/>
+** Returns **  :  
+If `includeData` is `False`: returns DataFrame with 3 columns.   
 The first column is `LibSize`, the second and third columns
 are Pearson correlation coefficients for `column` : `target` 
 and `target` : `column` cross mapping.
 
-If `includeData` is `True` returns a list with the above DataFrame
+If `includeData` is `True`: returns a list with the above DataFrame
 and a DataFrame of all Simplex projection statistics. 
 
 ## <function> Multiview </function> 
@@ -188,11 +189,14 @@ If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 
+<br/>
 ** Returns **  :   
-[Dict in `pyEDM`, named List in `rEDM`] with two DataFrames: { 
-View, Predictions }
-The `Predictions` DataFrame has 3 columns `Time`, `Observations`, `Predictions`.   
-The `View` DataFrame will have `E`+3 columns.   
+Dict in `pyEDM`, named List in `rEDM`: with two DataFrames:<br/>
+View<br/>
+Predictions<br/>
+
+The `Predictions` DataFrame has 3 columns: `Time`, `Observations`, `Predictions`.   
+The `View` DataFrame has `E`+3 columns.   
 The first `E` columns are the the column indices in the input data DataFrame 
 that are embedded and applied to Simplex prediction.   
 The last three columns are "rho", "MAE", "RMSE" corresponding to the prediction 
@@ -224,8 +228,9 @@ The maximum number of threads is 10.
 | numThreads| int    | 4     | Number of threads to use |
 | showPlot  | bool   | True  | Show plot of E vs Rho (pyEDM, rEDM) |
 
+<br/>
 ** Returns **  :   
-The returned DataFrame has columns `E` and `rho`.   
+DataFrame with columns `E` and `rho`.   
 
 ## <function> PredictInterval </function> 
 ** Description **  :   
@@ -253,8 +258,9 @@ interval forecasts. The maximum number of threads is 10.
 | numThreads| int    | 4     | Number of threads to use |
 | showPlot  | bool   | True  | Show plot of E vs Rho (pyEDM, rEDM) |
 
+<br/>
 ** Returns **  :   
-The returned DataFrame has columns `Tp` and `rho`. 
+DataFrame with columns `Tp` and `rho`. 
 
 ## <function> PredictNonlinear </function> 
 ** Description **  :   
@@ -284,8 +290,9 @@ See the Parameters table for parameter definitions.
 | nthreads  | int    | 4     | Number of threads to use |
 | showPlot  | bool   | True  | Show plot of theta vs Rho |
 
+<br/>
 ** Returns **  :   
-The returned DataFrame has columns `theta` and `rho`. 
+DataFrame with columns `theta` and `rho`. 
 
 ## <function> Embed </function>
 ** Description **  :
@@ -311,6 +318,7 @@ Note: The time column is not included in the returned DataFrame.
 | columns   | string or [] | "" | Column names  |
 | verbose   | bool   | False | Echo messages |
 
+<br/>
 ** Returns **  :   
 DataFrame with embedded columns.
 
@@ -335,6 +343,7 @@ input.
 | columnNames  | []  | ""    | List of column names  |
 | deletePartial| bool| False | Remove rows with NaNs from embedding |
 
+<br/>
 ** Returns **  :
 DataFrame with embedded columns.
 
@@ -348,5 +357,6 @@ and root mean square error (RMSE) between two vectors.
 | obsIn     | list |  Observations |
 | predIn    | list |  Predictions |
 
+<br/>
 ** Returns **  :   
-[Dict in `pyEDM`, named List in `rEDM`] with computed `rho`, `RMSE`, `MAE`.
+Dict in `pyEDM`, named List in `rEDM`: with computed `rho`, `RMSE`, `MAE`.
