@@ -37,3 +37,4 @@ numThreads  |Number of parallel threads for computation in EmbedDimension; Predi
 verbose     |Logical to produce additional console reporting.
 const_pred  |Logical to add a _constant predictor_ column to the output. The constant predictor is X(t+1) = X(t).
 showPlot    |Logical to plot results.
+validLib    |A boolean array of length at least as large as the end library index, where element `i` indicates whether data point `i` is a valid point to use in the library construction.

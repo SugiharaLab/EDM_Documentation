@@ -22,3 +22,4 @@ nav:
     - Basic EDM Examples : algorithms_high_level.md
     - EDM Algorithms in Depth : algorithms_in_depth.md
     - Custom Solvers : solvers_demo.ipynb
+    - Conditional Embedding : cond_emb_demo.ipynb

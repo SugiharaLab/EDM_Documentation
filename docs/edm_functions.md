@@ -29,6 +29,7 @@ no observation or prediction.
 | const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
+| validLib  | bool [] | None | A boolean array of length at least as large as the end library index, where element `i` indicates whether data point `i` is a valid point to use in the library construction.
 
 <br/>
 ** Returns **  :   
@@ -92,6 +93,7 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 | const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
+| validLib  | bool [] | None | A boolean array of length at least as large as the end library index, where element `i` indicates whether data point `i` is a valid point to use in the library construction.
 
 <br/>
 ** Returns **  :   
