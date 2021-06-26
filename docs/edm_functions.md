@@ -6,6 +6,8 @@ Simplex projection of the input data file or DataFrame.
 
 If `embedded` is false (default) the data columns are embedded to dimension `E` with time shift `tau`.  If `knn` = 0, it is set to E+1.
 
+`validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
+
 `nan` values are inserted in the output DataFrame where there is 
 no observation or prediction.
 
@@ -29,7 +31,7 @@ no observation or prediction.
 | const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
-| validLib  | bool [] | None | A boolean array of length at least as large as the end library index, where element `i` indicates whether data point `i` is a valid point to use in the library construction.
+| validLib  | bool [] | [] or None | Condtional embedding |
 
 <br/>
 ** Returns **  :   
@@ -47,6 +49,8 @@ If `knn` is specified, it must be greater than `E`.
 
 `nan` values are inserted in the output DataFrame where there is 
 no observation or prediction.
+
+`validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
 
 ** Note ** :   
 `SMap` should be called with columns explicitly corresponding to
@@ -68,7 +72,7 @@ to `SMap` with appropriately specified `columns`, `E`, and `embedded = true`.
 In PyEDM: The default LAPACK SVD solver `dgelss()` can be replaced with
 a class object instantiated from the `sklearn.linear_model` class.
 Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
-`ElasticNet`, `RidgeCV`, `LassoCV`, `ElasticNetCV`. See  [`examples`](./solvers_demo.ipynb). 
+`ElasticNet`, `RidgeCV`, `LassoCV`, `ElasticNetCV`. See [`examples`](./solvers_demo.ipynb). 
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
@@ -93,7 +97,7 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 | const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
-| validLib  | bool [] | None | A boolean array of length at least as large as the end library index, where element `i` indicates whether data point `i` is a valid point to use in the library construction.
+| validLib  | bool [] | [] or None | Conditional embedding |
 
 <br/>
 ** Returns **  :   
