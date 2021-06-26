@@ -97,6 +97,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
+                    </li>
                 </ul>
       </div>
     </div>
@@ -139,6 +141,7 @@
 <p><strong> Description </strong>  : <br />
 Simplex projection of the input data file or DataFrame.</p>
 <p>If <code>embedded</code> is false (default) the data columns are embedded to dimension <code>E</code> with time shift <code>tau</code>.  If <code>knn</code> = 0, it is set to E+1.</p>
+<p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
 <p><code>nan</code> values are inserted in the output DataFrame where there is 
 no observation or prediction.</p>
 <table>
@@ -259,6 +262,12 @@ no observation or prediction.</p>
 <td>False</td>
 <td>Plot results (pyEDM, rEDM)</td>
 </tr>
+<tr>
+<td>validLib</td>
+<td>bool []</td>
+<td>[] or None</td>
+<td>Condtional embedding</td>
+</tr>
 </tbody>
 </table>
 <p><br/>
@@ -274,6 +283,7 @@ If <code>knn</code> is not specified, it is set equal to the library size.
 If <code>knn</code> is specified, it must be greater than <code>E</code>.</p>
 <p><code>nan</code> values are inserted in the output DataFrame where there is 
 no observation or prediction.</p>
+<p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
 <p><strong> Note </strong> : <br />
 <code>SMap</code> should be called with columns explicitly corresponding to
 dimensions <code>E</code>. In the univariate case (number of <code>columns</code> = 1) with
@@ -292,7 +302,7 @@ to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E<
 <p>In PyEDM: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
 a class object instantiated from the <code>sklearn.linear_model</code> class.
 Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
-<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. See  <a href="../solvers_demo/"><code>examples</code></a>. </p>
+<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. See <a href="../solvers_demo/"><code>examples</code></a>. </p>
 <table>
 <thead>
 <tr>
@@ -428,6 +438,12 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 <td>bool</td>
 <td>False</td>
 <td>Plot results (pyEDM, rEDM)</td>
+</tr>
+<tr>
+<td>validLib</td>
+<td>bool []</td>
+<td>[] or None</td>
+<td>Conditional embedding</td>
 </tr>
 </tbody>
 </table>

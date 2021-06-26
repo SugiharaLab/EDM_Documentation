@@ -77,6 +77,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
+                    </li>
                 </ul>
       </div>
     </div>
@@ -169,11 +171,11 @@
 </tr>
 <tr>
 <td>knn</td>
-<td>Number of nearest neighbors. If knn=0; knn is set to E+1 for <code>Simplex()</code>; set to number of lib data rows for <code>SMap()</code>.</td>
+<td>Number of nearest neighbors. If <code>knn=0</code>; <code>knn</code> is set to <code>E+1</code> for <code>Simplex()</code>; set to number of <code>lib</code> data rows for <code>SMap()</code>.</td>
 </tr>
 <tr>
 <td>tau</td>
-<td>Time offset of embedding specified as number of time series rows. tau &lt; 0 are lags, tau &gt; 0 future values.</td>
+<td>Time offset of embedding specified as number of time series rows. <code>tau</code> &lt; 0 are lags, <code>tau</code> &gt; 0 future values.</td>
 </tr>
 <tr>
 <td>theta</td>
@@ -185,7 +187,7 @@
 </tr>
 <tr>
 <td>exclusionRadius</td>
-<td>Excludes vectors from the search space of nearest neighbors if their relative time index is within exclusionRadius.</td>
+<td>Excludes vectors from the search space of nearest neighbors if their relative time index is within <code>exclusionRadius</code>.</td>
 </tr>
 <tr>
 <td>columns</td>
@@ -197,11 +199,15 @@
 </tr>
 <tr>
 <td>solver</td>
-<td>In pyEDM: An instance of a sklearn.linear_model object.</td>
+<td>In pyEDM <code>SMap()</code>: An instance of a sklearn.linear_model object.</td>
 </tr>
 <tr>
 <td>embedded</td>
 <td>Logical specifying if the input data are embedded.  If <code>embedded = True</code>, no emedding is performed.  If <code>embedded = False</code>, all input data are embedded to dimension <code>E</code> with time shift <code>tau</code>.</td>
+</tr>
+<tr>
+<td>validLib</td>
+<td>Conditional embedding. Boolean vector identifying time series rows to use in state-space library.</td>
 </tr>
 <tr>
 <td>libSizes</td>
@@ -233,19 +239,19 @@
 </tr>
 <tr>
 <td>trainLib</td>
-<td>Use in-sample (lib=pred) prediction for multiview ranking</td>
+<td>Use in-sample (<code>lib</code>=<code>pred</code>) prediction for multiview ranking</td>
 </tr>
 <tr>
 <td>excludeTarget</td>
-<td>Exclude target variable from multiviews</td>
+<td>Exclude <code>target</code> variable from multiviews</td>
 </tr>
 <tr>
 <td>maxE</td>
-<td>Maximum value of E to evalulate in EmbedDimension.</td>
+<td>Maximum value of <code>E</code> to evalulate in EmbedDimension.</td>
 </tr>
 <tr>
 <td>maxTp</td>
-<td>Maximum value of Tp to evalulate in PredictInterval.</td>
+<td>Maximum value of <code>Tp</code> to evalulate in PredictInterval.</td>
 </tr>
 <tr>
 <td>numThreads</td>
@@ -257,11 +263,11 @@
 </tr>
 <tr>
 <td>const_pred</td>
-<td>Logical to add a <em>constant predictor</em> column to the output. The constant predictor is X(t+1) = X(t).</td>
+<td>Logical to add a constant predictor column to the output. The constant predictor is X(t+1) = X(t).</td>
 </tr>
 <tr>
 <td>showPlot</td>
-<td>Logical to plot results.</td>
+<td>Logical to plot results (pyEDM &amp; rEDM).</td>
 </tr>
 </tbody>
 </table>
