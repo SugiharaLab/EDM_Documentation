@@ -31,7 +31,7 @@ no observation or prediction.
 | const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
-| validLib  | bool [] | [] or None | Condtional embedding |
+| validLib  | bool [] | [] | Condtional embedding |
 
 <br/>
 ** Returns **  :   
@@ -97,7 +97,7 @@ Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 | const\_pred| bool  | False | Include non projected forecast data |
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
-| validLib  | bool [] | [] or None | Conditional embedding |
+| validLib  | bool [] | [] | Conditional embedding |
 
 <br/>
 ** Returns **  :   
