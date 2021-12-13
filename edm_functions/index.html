@@ -140,10 +140,6 @@
 <h2 id="simplex"><function> Simplex </function></h2>
 <p><strong> Description </strong>  : <br />
 Simplex projection of the input data file or DataFrame.</p>
-<p>If <code>embedded</code> is false (default) the data columns are embedded to dimension <code>E</code> with time shift <code>tau</code>.  If <code>knn</code> = 0, it is set to E+1.</p>
-<p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
-<p><code>nan</code> values are inserted in the output DataFrame where there is 
-no observation or prediction.</p>
 <table>
 <thead>
 <tr>
@@ -268,41 +264,34 @@ no observation or prediction.</p>
 <td>[] or None</td>
 <td>Condtional embedding</td>
 </tr>
+<tr>
+<td>generateSteps</td>
+<td>int</td>
+<td>0</td>
+<td>Number of recursive time step predictions</td>
+</tr>
+<tr>
+<td>parameterList</td>
+<td>bool</td>
+<td>False</td>
+<td>Include parameter dictionary in return</td>
+</tr>
 </tbody>
 </table>
 <p><br/>
-<strong> Returns </strong>  : <br />
-DataFrame with columns : "Time", "Observations", "Predictions".</p>
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong> : <br />
+If <code>embedded</code> is false (default) the data <code>columns</code> are embedded to dimension <code>E</code> with time shift <code>tau</code>.  If <code>knn</code> = 0, it is set to E+1.</p>
+<p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
+<p>If generateSteps &gt; 0 <code>Simplex</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
+<p><strong> Returns </strong>  : <br />
+If <code>parameterList = False</code>, (default) the returned object is a DataFrame with 3 columns : "Time", "Observations", "Predictions".</p>
+<p>If <code>parameterList = True</code>, a dictionary with keys <code>predictions</code>, <code>parameters</code> is returned. Dictionary values are the predictions DataFrame and parameter dictionary respectively.</p>
+<p><code>nan</code> values are inserted in the output DataFrame where there is 
+no observation or prediction.</p>
 <h2 id="smap"><function> SMap </function></h2>
 <p><strong> Description </strong>  : <br />
 SMap projection of the input data file or DataFrame.</p>
-<p>If <code>embedded</code> is false, data columns are embedded to dimension E with shift tau.
-If <code>predictFile</code> is provided the predictions are written in csv format.
-If <code>smapFile</code> is provided the coefficients are written in csv format.
-If <code>knn</code> is not specified, it is set equal to the library size. 
-If <code>knn</code> is specified, it must be greater than <code>E</code>.</p>
-<p><code>nan</code> values are inserted in the output DataFrame where there is 
-no observation or prediction.</p>
-<p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
-<p><strong> Note </strong> : <br />
-<code>SMap</code> should be called with columns explicitly corresponding to
-dimensions <code>E</code>. In the univariate case (number of <code>columns</code> = 1) with
-default <code>embedded = false</code>, the time series will be time-delay
-embedded to dimension <code>E</code>, <code>SMap</code> coefficients correspond to each dimension. </p>
-<p>If a multivariate data set is used (number of <code>columns</code> &gt; 1) it
-must use <code>embedded = true</code> with <code>E</code> equal to the number of columns.
-This prevents the function from internally time-delay embedding the
-multiple columns to dimension <code>E</code>.  If internal time-delay embedding
-were performed, then state-space columns will not correspond to the
-intended dimensions in the matrix inversion, coefficient assignment,
-and prediction.  In this multivariate case, the user can first prepare
-the embedding (using <a href="../edm_functions/#embed"><code>Embed()</code></a> for time-delay
-embedding if desired, add a first column of time), then pass this embedding 
-to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.</p>
-<p>In PyEDM: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
-a class object instantiated from the <code>sklearn.linear_model</code> class.
-Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
-<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. See <a href="../solvers_demo/"><code>examples</code></a>. </p>
 <table>
 <thead>
 <tr>
@@ -445,26 +434,60 @@ Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <co
 <td>[] or None</td>
 <td>Conditional embedding</td>
 </tr>
+<tr>
+<td>generateSteps</td>
+<td>int</td>
+<td>0</td>
+<td>Number of recursive time step predictions</td>
+</tr>
+<tr>
+<td>parameterList</td>
+<td>bool</td>
+<td>False</td>
+<td>Include parameter dictionary in return</td>
+</tr>
 </tbody>
 </table>
 <p><br/>
-<strong> Returns </strong>  : <br />
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong> : <br />
+If <code>embedded</code> is false, data columns are embedded to dimension E with shift tau.
+If <code>predictFile</code> is provided the predictions are written in csv format.
+If <code>smapFile</code> is provided the coefficients are written in csv format.
+If <code>knn</code> is not specified, it is set equal to the library size. 
+If <code>knn</code> is specified, it must be greater than <code>E</code>.</p>
+<p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
+<p>If generateSteps &gt; 0 <code>SMap</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
+<p><strong> Embedding </strong> : <br />
+<code>SMap</code> should be called with columns explicitly corresponding to
+dimensions <code>E</code>. In the univariate case (number of <code>columns</code> = 1) with
+default <code>embedded = false</code>, the time series will be time-delay
+embedded to dimension <code>E</code>, returned <code>SMap</code> coefficients correspond to each dimension. </p>
+<p>If a multivariate data set is used (number of <code>columns</code> &gt; 1) <code>SMap</code>
+must use <code>embedded = true</code> with <code>E</code> equal to the number of columns.
+This prevents the function from internally time-delay embedding the
+multiple columns to dimension <code>E</code>.  If internal time-delay embedding
+were performed, then state-space columns will not correspond to the
+intended dimensions in the matrix inversion, coefficient assignment,
+and prediction.  In this multivariate case, the user can first prepare
+the embedding (using <a href="../edm_functions/#embed"><code>Embed()</code></a> for time-delay
+embedding if desired, add a first column of time), then pass this embedding 
+to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.</p>
+<p><strong> Linear System Solver </strong> : <br />
+In PyEDM: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
+a class object instantiated from the <code>sklearn.linear_model</code> class.
+Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
+<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. See <a href="../solvers_demo/"><code>examples</code></a>. </p>
+<p><strong> Returns </strong>  : <br />
 Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with two DataFrames:<br/>
 <code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br/>
-<code>coefficients</code>[ E+2 columns : "Time", and E+1 SMap coefficents]<br/></p>
+<code>coefficients</code>[ E+2 columns : "Time", and E+1 SMap coefficents]<br/>
+If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p>
+<p><code>nan</code> values are inserted in the output DataFrame where there is 
+no observation or prediction.</p>
 <h2 id="ccm"><function> CCM </function></h2>
 <p>Convergent cross mapping of the first vector specified in columns 
 against target.</p>
-<p>The data cannot be multivariable; the first vector in columns 
-is time-delay embedded to dimension <code>E</code> with time shift <code>tau</code>.  </p>
-<p><code>libSizes</code> specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, then the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
-<p>If <code>random</code> is true, sample observations are randomly selected from the 
-subset of each library size.</p>
-<p>If <code>random</code> is false, sample is ignored and contiguous library rows up to the 
-current library size are used.  </p>
-<p>If <code>seed=0</code> , then a random seed is generated for the random number generator. 
-Otherwise, seed is used to initialise the random number generator.</p>
-<p>Note: Cross mappings are performed between <code>column</code> : <code>target</code>; and, the reverse mapping between <code>target</code> : <code>column</code>.</p>
 <table>
 <thead>
 <tr>
@@ -584,6 +607,12 @@ Otherwise, seed is used to initialise the random number generator.</p>
 <td>Include output statistics on all predictions</td>
 </tr>
 <tr>
+<td>parameterList</td>
+<td>bool</td>
+<td>False</td>
+<td>Include parameter dictionary in return</td>
+</tr>
+<tr>
 <td>verbose</td>
 <td>bool</td>
 <td>False</td>
@@ -598,21 +627,28 @@ Otherwise, seed is used to initialise the random number generator.</p>
 </tbody>
 </table>
 <p><br/>
-<strong> Returns </strong>  :<br />
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong>  :<br />
+The data cannot be multivariable; the first value in <code>columns</code> 
+is time-delay embedded to dimension <code>E</code> with time shift <code>tau</code>.  </p>
+<p>Cross mappings are performed between <code>column</code> : <code>target</code>; and, the reverse mapping between <code>target</code> : <code>column</code>.</p>
+<p><code>libSizes</code> specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, then the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
+<p>If <code>random</code> is true, sample observations are randomly selected from the 
+subset of each library size.</p>
+<p>If <code>random</code> is false, sample is ignored and contiguous library rows up to the 
+current library size are used.  </p>
+<p>If <code>seed=0</code> , then a random seed is generated for the random number generator. 
+Otherwise, seed is used to initialise the random number generator.</p>
+<p><strong> Returns </strong>  :<br />
 If <code>includeData</code> is <code>False</code>: returns DataFrame with 3 columns. <br />
 The first column is <code>LibSize</code>, the second and third columns
 are Pearson correlation coefficients for <code>column</code> : <code>target</code> 
 and <code>target</code> : <code>column</code> cross mapping.</p>
 <p>If <code>includeData</code> is <code>True</code>: returns a list with the above DataFrame
-and a DataFrame of all Simplex projection statistics. </p>
+and a DataFrame of all Simplex projection statistics. If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p>
 <h2 id="multiview"><function> Multiview </function></h2>
 <p><strong> Description </strong>  : <br />
 Multiview embedding and forecasting of the input data file or DataFrame.</p>
-<p>See the Parameters table for parameter definitions.</p>
-<p><code>nan</code> values are inserted where there is no observation or prediction.</p>
-<p>If <code>predictFile</code> is provided the Predictions will be written to it in csv format.</p>
-<p>If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the number of 
-<code>D</code>-dimensional combinations out of all available data vectors.</p>
 <table>
 <thead>
 <tr>
@@ -732,6 +768,12 @@ Multiview embedding and forecasting of the input data file or DataFrame.</p>
 <td>Exclude target variable from multiviews</td>
 </tr>
 <tr>
+<td>parameterList</td>
+<td>bool</td>
+<td>False</td>
+<td>Include parameter dictionary in return</td>
+</tr>
+<tr>
 <td>numThreads</td>
 <td>int</td>
 <td>4</td>
@@ -752,7 +794,12 @@ Multiview embedding and forecasting of the input data file or DataFrame.</p>
 </tbody>
 </table>
 <p><br/>
-<strong> Returns </strong>  : <br />
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong>  : <br />
+If <code>predictFile</code> is provided the Predictions will be written to it in csv format.</p>
+<p>If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the number of 
+<code>D</code>-dimensional combinations out of all available data vectors.</p>
+<p><strong> Returns </strong>  : <br />
 Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with two DataFrames:<br/>
 View<br/>
 Predictions<br/></p>
@@ -761,12 +808,12 @@ The <code>View</code> DataFrame has <code>E</code>+3 columns. <br />
 The first <code>E</code> columns are the the column indices in the input data DataFrame 
 that are embedded and applied to Simplex prediction. <br />
 The last three columns are "rho", "MAE", "RMSE" corresponding to the prediction 
-Pearson correlation, maximum absolute error and root mean square error.</p>
+Pearson correlation, maximum absolute error and root mean square error.<br/></p>
+<p>If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p>
+<p><code>nan</code> values are inserted where there is no observation or prediction.</p>
 <h2 id="embeddimension"><function> EmbedDimension </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE</code>.</p>
-<p>Note: nThreads defines the number of worker threads for the 10 embeddings. 
-The maximum number of threads is 10.</p>
 <table>
 <thead>
 <tr>
@@ -876,13 +923,15 @@ The maximum number of threads is 10.</p>
 </tbody>
 </table>
 <p><br/>
-<strong> Returns </strong>  : <br />
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong>  : <br />
+<code>nThreads</code> defines the number of worker threads for the 10 embeddings. 
+The maximum number of threads is 10.</p>
+<p><strong> Returns </strong>  : <br />
 DataFrame with columns <code>E</code> and <code>rho</code>.   </p>
 <h2 id="predictinterval"><function> PredictInterval </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.</p>
-<p>Note: <code>nThreads</code> defines the number of worker threads for the 10 prediction 
-interval forecasts. The maximum number of threads is 10.</p>
 <table>
 <thead>
 <tr>
@@ -992,14 +1041,16 @@ interval forecasts. The maximum number of threads is 10.</p>
 </tbody>
 </table>
 <p><br/>
-<strong> Returns </strong>  : <br />
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong>  : <br />
+<code>nThreads</code> defines the number of worker threads for the 10 prediction 
+interval forecasts. The maximum number of threads is 10.</p>
+<p><strong> Returns </strong>  : <br />
 DataFrame with columns <code>Tp</code> and <code>rho</code>. </p>
 <h2 id="predictnonlinear"><function> PredictNonlinear </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate SMap prediction skill for localization parameter 
 <code>theta</code>  (default from 0.01 to 9).</p>
-<p><code>theta</code> is a string of theta values with a delimiter of [',', '\t', '\n'].
-See the Parameters table for parameter definitions.</p>
 <table>
 <thead>
 <tr>
@@ -1115,18 +1166,16 @@ See the Parameters table for parameter definitions.</p>
 </tbody>
 </table>
 <p><br/>
-<strong> Returns </strong>  : <br />
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong>  : <br />
+<code>theta</code> is a string of theta values with a delimiter of [',', '\t', '\n'].
+See the Parameters table for parameter definitions.</p>
+<p><strong> Returns </strong>  : <br />
 DataFrame with columns <code>theta</code> and <code>rho</code>. </p>
 <h2 id="embed"><function> Embed </function></h2>
 <p><strong> Description </strong>  :
 Creates a data block of time-delay embedding from each of the 
 columns in the csv file or dataFrame.  </p>
-<p>The columns parameter can be a list of column names, a list of 
-column indices, or a whitespace separated string of column names or indices.</p>
-<p>Note: The <code>MakeBlock</code> function can be called with <code>deletePartial = True</code> 
-to return a DataFrame with |tau| * (E-1) rows of partial vectors removed
-(rows with NaNs) as a result of the embedding. </p>
-<p>Note: The time column is not included in the returned DataFrame.</p>
 <table>
 <thead>
 <tr>
@@ -1182,17 +1231,20 @@ to return a DataFrame with |tau| * (E-1) rows of partial vectors removed
 </tbody>
 </table>
 <p><br/>
-<strong> Returns </strong>  : <br />
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong>  : <br />
+The <code>columns</code> parameter can be a list of column names, a list of 
+column indices, or a whitespace separated string of column names or indices.</p>
+<p>The <code>MakeBlock</code> function can be called with <code>deletePartial = True</code> 
+to return a DataFrame with |<code>tau</code>| * (<code>E</code>-1) rows of partial vectors removed
+(rows with NaNs) as a result of the embedding. </p>
+<p>The time column is not included in the returned DataFrame.</p>
+<p><strong> Returns </strong>  : <br />
 DataFrame with embedded columns.</p>
 <h2 id="makeblock"><function> MakeBlock </function></h2>
 <p><strong> Description </strong>  :
 Creates a data block of time-delay embedding from each of the
 columnNames in the dataFrame.</p>
-<p>The <code>columnNames</code> is a list of column names.</p>
-<p>Note: The time column is not included in the returned DataFrame.</p>
-<p>Note: The <code>MakeBlock</code> function is a low level function that does not perform
-error checking.  The <code>Embed</code> function provides error checking and file-based
-input.</p>
 <table>
 <thead>
 <tr>
@@ -1236,7 +1288,14 @@ input.</p>
 </tbody>
 </table>
 <p><br/>
-<strong> Returns </strong>  :
+<strong> Notes </strong>  :
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p>The <code>columnNames</code> is a list of column names.</p>
+<p>The time column is not included in the returned DataFrame.</p>
+<p>The <code>MakeBlock</code> function is a low level function that does not perform
+error checking.  The <code>Embed</code> function provides error checking and file-based
+input.</p>
+<p><strong> Returns </strong>  :
 DataFrame with embedded columns.</p>
 <h2 id="computeerror"><function> ComputeError </function></h2>
 <p><strong> Description </strong>  : <br />
