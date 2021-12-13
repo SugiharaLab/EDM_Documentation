@@ -23,6 +23,8 @@ target      |String of column name in the input data used for prediction.
 solver      |In pyEDM `SMap()`: An instance of a sklearn.linear_model object.
 embedded    |Logical specifying if the input data are embedded.  If `embedded = True`, no emedding is performed.  If `embedded = False`, all input data are embedded to dimension `E` with time shift `tau`.
 validLib    |Conditional embedding. Boolean vector identifying time series rows to use in state-space library.
+generateSteps|Generative feedback predictions for `Simplex()` or `SMap()`.
+parameterList|Add parameter dictionary to return objects in `Simplex()`, `SMap()`, `CCM()`, `Multiview()`.
 libSizes    |String or vector of integers specifying CCM library sizes. If three values are provided, and, if the third value is less than the second, they are treated as a sequence generator specifying the intial library size; the final library size; and the library size increment. String values must be whitespace separated.
 sample      |Integer specifying the number of random samples to draw at each library size evaluation for CCM.
 random      |Logical to specify random (`True`) or sequential library sampling (`False`) in CCM.
