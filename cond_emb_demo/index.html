@@ -77,7 +77,9 @@
                     </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Conditional Embedding</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#using-only-the-first-30-library-points">Using only the first 30 library points</a>
+    <li class="toctree-l2"><a class="reference internal" href="#no-conditions">No Conditions</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#first-30-points-of-library-used">First 30 points of library used</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#condition-of-y-x-and-time-50">Condition of y &lt; x and time &gt; 50</a>
     </li>
@@ -151,7 +153,7 @@
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="conditional-embedding-ce">Conditional Embedding (CE)</h2>
-<p>In <code>Simplex()</code> and <code>SMap()</code> the <code>validLib</code> parameter can be used to create a "conditional embedding", specifying conditions on dataFrame variables to select valid state space points in library construction. Conditional embedding can test hypotheses about which relationships and regions of the constructed library state-space are useful for predicting specific states.</p>
+<p>In <code>Simplex()</code> and <code>SMap()</code> the <code>validLib</code> parameter can be used to create a <em>conditional embedding</em>, specifying conditions on dataFrame variables to select valid state space points in library construction. Conditional embedding can test hypotheses about which relationships and regions of the constructed library state-space are useful for predicting specific states.</p>
 <p>The <a href="https://github.com/SugiharaLab/jpyEDM#empirical-dynamic-modeling-edm-jupyter-notebook">jpyEDM Jupyter notebook GUI front end</a> for pyEDM provides an interactive interface for such explorations. </p>
 <p>In the following example different subsets of the constructed library are used for predicting different subsets of a target variable.</p>
 </div>
@@ -234,7 +236,8 @@ df.head(3)
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>### No conditions applied to the library</p>
+<hr />
+<h3 id="no-conditions">No Conditions</h3>
 </div>
 </div>
 </div>
@@ -264,7 +267,8 @@ PlotObsPred( pred,  &quot;Normal Lib 1:100&quot;, 2, 1 )
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="using-only-the-first-30-library-points">Using only the first 30 library points</h3>
+<hr />
+<h3 id="first-30-points-of-library-used">First 30 points of library used</h3>
 </div>
 </div>
 </div>
@@ -296,6 +300,7 @@ PlotObsPred( pred, &quot;CE Partial Lib 1:30&quot;, 2, 1 )
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<hr />
 <h3 id="condition-of-y-x-and-time-50">Condition of y &lt; x and time &gt; 50</h3>
 </div>
 </div>
