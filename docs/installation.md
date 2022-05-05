@@ -7,16 +7,12 @@ pip install pyEDM
 
 See: [pyEDM on PyPI](https://pypi.org/project/pyEDM/)
 
+### Jupyter Notebook
+A GUI front-end for pyEDM is available at [jpyEDM](https://github.com/SugiharaLab/jpyEDM#empirical-dynamic-modeling-edm-jupyter-notebook)
+
 ### R: rEDM
 ```
 install.packages("rEDM")
-```
-For the latest development code:
-```
-install.packages("devtools")
-```
-```
-devtools::install_github("SugiharaLab/rEDM")
 ```
 
 See: [rEDM](https://github.com/SugiharaLab/rEDM "rEDM")
@@ -27,4 +23,4 @@ from github. Please see:
 [pyEDM](https://github.com/SugiharaLab/pyEDM "pyEDM"), or, 
 [rEDM](https://github.com/SugiharaLab/rEDM "rEDM").
 
-EDM relies on the LAPACK libraries. If you build the package, or build the host system (R or python), you will need to ensure a working LAPACK installation.
+EDM relies on the [LAPACK](http://www.netlib.org/lapack/) libraries. If you build the package, or build the host system (R or python), you will need to ensure a working LAPACK installation.

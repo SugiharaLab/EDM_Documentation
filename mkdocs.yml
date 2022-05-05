@@ -19,7 +19,7 @@ nav:
     - Parameters : parameters.md
     - EDM Functions : edm_functions.md
 - EDM Algorithms :
-    - Basic EDM Examples : algorithms_high_level.md
+    - Basic EDM Examples : basic_examples.ipynb
     - EDM Algorithms in Depth : algorithms_in_depth.md
     - Custom Solvers : solvers_demo.ipynb
     - Conditional Embedding : cond_emb_demo.ipynb
