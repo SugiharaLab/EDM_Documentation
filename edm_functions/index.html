@@ -451,11 +451,12 @@ SMap projection of the input data file or DataFrame.</p>
 <p><br/>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
 <p><strong> Notes </strong> : <br />
-If <code>embedded</code> is false, data columns are embedded to dimension E with shift tau.
-If <code>predictFile</code> is provided the predictions are written in csv format.
-If <code>smapFile</code> is provided the coefficients are written in csv format.
-If <code>knn</code> is not specified, it is set equal to the library size. 
-If <code>knn</code> is specified, it must be greater than <code>E</code>.</p>
+If <code>embedded</code> is false, data columns are embedded to dimension <code>E</code> with shift <code>tau</code>.</br/>
+If <code>predictFile</code> is provided the predictions are written in csv format.<br/>
+If <code>smapFile</code> is provided the coefficients are written in csv format.<br/>
+If <code>knn</code> is not specified, it is set equal to the library size.<br/>
+If <code>knn</code> is specified, it must be greater than <code>E</code>.<br/>
+If <code>nan</code> are detected in <code>columns</code> or <code>target</code> the corresponding rows are removed prior to time-delay embedding. This may invalidate presumptions of Takens theorem.</p>
 <p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
 <p>If generateSteps &gt; 0 <code>SMap</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
 <p><strong> Embedding </strong> : <br />
@@ -474,7 +475,7 @@ the embedding (using <a href="../edm_functions/#embed"><code>Embed()</code></a> 
 embedding if desired, add a first column of time), then pass this embedding 
 to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.</p>
 <p><strong> Linear System Solver </strong> : <br />
-In PyEDM: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
+In <code>pyEDM</code>: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
 a class object instantiated from the <code>sklearn.linear_model</code> class.
 Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
 <code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. See <a href="../solvers_demo/"><code>examples</code></a>. </p>
@@ -885,6 +886,12 @@ Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE<
 <td>Embedding time shift (time series rows)</td>
 </tr>
 <tr>
+<td>exclusionRadius</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
+</tr>
+<tr>
 <td>columns</td>
 <td>string or []</td>
 <td>""</td>
@@ -907,6 +914,12 @@ Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE<
 <td>bool</td>
 <td>False</td>
 <td>Echo messages</td>
+</tr>
+<tr>
+<td>validLib</td>
+<td>bool []</td>
+<td>[] or None</td>
+<td>Conditional embedding</td>
 </tr>
 <tr>
 <td>numThreads</td>
@@ -1003,6 +1016,12 @@ Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.</p>
 <td>Embedding shift (time series rows)</td>
 </tr>
 <tr>
+<td>exclusionRadius</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
+</tr>
+<tr>
 <td>columns</td>
 <td>string or []</td>
 <td>""</td>
@@ -1025,6 +1044,12 @@ Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.</p>
 <td>bool</td>
 <td>False</td>
 <td>Echo messages</td>
+</tr>
+<tr>
+<td>validLib</td>
+<td>bool []</td>
+<td>[] or None</td>
+<td>Conditional embedding</td>
 </tr>
 <tr>
 <td>numThreads</td>
@@ -1128,6 +1153,12 @@ Evaluate SMap prediction skill for localization parameter
 <td>Embedding time shift (time series rows)</td>
 </tr>
 <tr>
+<td>exclusionRadius</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
+</tr>
+<tr>
 <td>columns</td>
 <td>string or []</td>
 <td>""</td>
@@ -1150,6 +1181,12 @@ Evaluate SMap prediction skill for localization parameter
 <td>bool</td>
 <td>False</td>
 <td>Echo messages</td>
+</tr>
+<tr>
+<td>validLib</td>
+<td>bool []</td>
+<td>[] or None</td>
+<td>Conditional embedding</td>
 </tr>
 <tr>
 <td>nthreads</td>
