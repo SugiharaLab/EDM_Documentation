@@ -17,7 +17,7 @@ Simplex projection of the input data file or DataFrame.
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
 | tau       | int    | -1    | Embedding time shift (time series rows)| 
-| exclusionRadius | int | 0  | Prediction vector exclusion radius | 
+| exclusionRadius | int | 0  | Prediction vector exclusion radius |
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding? If False, embed to E|
@@ -64,7 +64,7 @@ SMap projection of the input data file or DataFrame.
 | knn       | int    | 0     | Number nearest neighbors | 
 | tau       | int    | -1    | Embedding time shift (time series rows) | 
 | theta     | int    | 0     | SMap localization | 
-| exclusionRadius | int | 0  | Prediction vector exclusion radius | 
+| exclusionRadius | int | 0  | Prediction vector exclusion radius |
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name or index |
 | smapFile  | string | ""    | SMap coefficient output file |
@@ -81,11 +81,12 @@ SMap projection of the input data file or DataFrame.
 Refer to the [parameters](./parameters.md) table for general parameter definitions.
 
 ** Notes ** :   
-If `embedded` is false, data columns are embedded to dimension E with shift tau.
-If `predictFile` is provided the predictions are written in csv format.
-If `smapFile` is provided the coefficients are written in csv format.
-If `knn` is not specified, it is set equal to the library size. 
-If `knn` is specified, it must be greater than `E`.
+If `embedded` is false, data columns are embedded to dimension `E` with shift `tau`.</br/>
+If `predictFile` is provided the predictions are written in csv format.<br/>
+If `smapFile` is provided the coefficients are written in csv format.<br/>
+If `knn` is not specified, it is set equal to the library size.<br/>
+If `knn` is specified, it must be greater than `E`.<br/>
+If `nan` are detected in `columns` or `target` the corresponding rows are removed prior to time-delay embedding. This may invalidate presumptions of Takens theorem.
 
 `validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
 
@@ -109,7 +110,7 @@ embedding if desired, add a first column of time), then pass this embedding
 to `SMap` with appropriately specified `columns`, `E`, and `embedded = true`.
 
 ** Linear System Solver ** :   
-In PyEDM: The default LAPACK SVD solver `dgelss()` can be replaced with
+In `pyEDM`: The default LAPACK SVD solver `dgelss()` can be replaced with
 a class object instantiated from the `sklearn.linear_model` class.
 Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 `ElasticNet`, `RidgeCV`, `LassoCV`, `ElasticNetCV`. See [`examples`](./solvers_demo.ipynb). 
@@ -138,7 +139,7 @@ against target.
 | Tp        | int    | 0     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set as E+1)| 
 | tau       | int    | -1    | Embedding time shift (time series rows) | 
-| exclusionRadius | int | 0  | Prediction vector exclusion radius | 
+| exclusionRadius | int | 0  | Prediction vector exclusion radius |
 | columns | string or []| "" | Column name for library | 
 | target    | string | ""    | Prediction target column name |
 | libSizes| string | ""      | CCM library sizes |
@@ -201,7 +202,7 @@ Multiview embedding and forecasting of the input data file or DataFrame.
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target library column name |
 | multiview | int    | 0     | Multiview parameter : (if 0 then set to 'sqrt(C)' where C is the number of  D-dimensional combinations out of all available data vectors)|
-| exclusionRadius | int | 0  | Prediction vector exclusion radius | 
+| exclusionRadius | int | 0  | Prediction vector exclusion radius |
 | trainLib  | bool   | True  | Use in-sample (lib=pred) prediction for ranking |
 | excludeTarget | bool | False | Exclude target variable from multiviews |
 | parameterList | bool | False | Include parameter dictionary in return    |
@@ -250,10 +251,12 @@ Evaluate Simplex prediction skill for embedding dimensions from 1 to `maxE`.
 | maxE      | int    | 10    | Evaluate embedding up to maxE | 
 | Tp        | int    | 1     | Prediction Interval | 
 | tau       | int    | -1    | Embedding time shift (time series rows) | 
+| exclusionRadius | int | 0  | Prediction vector exclusion radius |
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding |
 | verbose   | bool   | False | Echo messages |
+| validLib  | bool [] | [] or None | Conditional embedding |
 | numThreads| int    | 4     | Number of threads to use |
 | showPlot  | bool   | True  | Show plot of E vs Rho (pyEDM, rEDM) |
 
@@ -283,10 +286,12 @@ Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.
 | maxTp     | int    | 10    | Evaluate forecast with Tp up to maxTp | 
 | E         | int    | 0     | Embedding dimension | 
 | tau       | int    | -1    | Embedding shift (time series rows) | 
+| exclusionRadius | int | 0  | Prediction vector exclusion radius |
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding?  |
 | verbose   | bool   | False | Echo messages |
+| validLib  | bool [] | [] or None | Conditional embedding |
 | numThreads| int    | 4     | Number of threads to use |
 | showPlot  | bool   | True  | Show plot of E vs Rho (pyEDM, rEDM) |
 
@@ -318,10 +323,12 @@ Evaluate SMap prediction skill for localization parameter
 | E         | int    | 0     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | tau       | int    | -1    | Embedding time shift (time series rows) | 
+| exclusionRadius | int | 0  | Prediction vector exclusion radius |
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding? If False, embed to E |
 | verbose   | bool   | False | Echo messages |
+| validLib  | bool [] | [] or None | Conditional embedding |
 | nthreads  | int    | 4     | Number of threads to use |
 | showPlot  | bool   | True  | Show plot of theta vs Rho |
 
