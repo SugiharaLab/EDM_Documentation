@@ -125,8 +125,7 @@ If `parameterList = True`, a dictionary of `parameters` is added.
 no observation or prediction.
 
 ## <function> CCM </function> 
-Convergent cross mapping of the first vector specified in columns 
-against target.
+Convergent cross mapping between `columns` : `target`; and, reverse mapping between `target` : `columns`.
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
@@ -157,9 +156,7 @@ against target.
 Refer to the [parameters](./parameters.md) table for general parameter definitions.
 
 ** Notes **  :  
-Convergent cross mapping of `columns` against `target` via `Simplex`. Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension `E`, cross mapped with the target time series.  The target time series is then embedded to `E` and cross mapped against the column as the "target" time series, not an embedding.
-
-Cross mappings are performed between `column` : `target`; and, the reverse mapping between `target` : `column`.
+Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension `E`, cross mapped with the target time series.  The target time series is then embedded to `E` and cross mapped against the column as the "target" time series, not an embedding.
 
 If there are multiple `columns` and `embedded` is false, each column is time-delay embedded to dimension `E` creating an N-columns * E dimensional "mixed" embedding.  If `embedded` is true, no time-delay embedding is done, creating a multivariate embedding of the speficied columns.  The same logic applies if multiple target are specified for the "reverse" mapping. If embedded is false, each target is time-delay embedded to dimension `E` creating an N-target * E dimensional "mixed" embedding cross mapped to the first column as the cross map target.  If `embedded` is true, no time-delay embedding is done, creating a multivariate embedding of the speficied target(s).
 
