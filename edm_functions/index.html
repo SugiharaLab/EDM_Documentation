@@ -487,8 +487,7 @@ If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is
 <p><code>nan</code> values are inserted in the output DataFrame where there is 
 no observation or prediction.</p>
 <h2 id="ccm"><function> CCM </function></h2>
-<p>Convergent cross mapping of the first vector specified in columns 
-against target.</p>
+<p>Convergent cross mapping between <code>columns</code> : <code>target</code>; and, reverse mapping between <code>target</code> : <code>columns</code>.</p>
 <table>
 <thead>
 <tr>
@@ -563,7 +562,7 @@ against target.</p>
 <td>columns</td>
 <td>string or []</td>
 <td>""</td>
-<td>Column name for library</td>
+<td>Column name(s) for library</td>
 </tr>
 <tr>
 <td>target</td>
@@ -602,6 +601,12 @@ against target.</p>
 <td>RNG seed, 0 = random seed</td>
 </tr>
 <tr>
+<td>embedded</td>
+<td>bool</td>
+<td>False</td>
+<td>Is data an embedding? If False, embed to E</td>
+</tr>
+<tr>
 <td>includeData</td>
 <td>bool</td>
 <td>False</td>
@@ -630,14 +635,13 @@ against target.</p>
 <p><br/>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
 <p><strong> Notes </strong>  :<br />
-The data cannot be multivariable; the first value in <code>columns</code> 
-is time-delay embedded to dimension <code>E</code> with time shift <code>tau</code>.  </p>
-<p>Cross mappings are performed between <code>column</code> : <code>target</code>; and, the reverse mapping between <code>target</code> : <code>column</code>.</p>
-<p><code>libSizes</code> specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, then the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
+Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension <code>E</code>, cross mapped with the target time series.  The target time series is then embedded to <code>E</code> and cross mapped against the column as the "target" time series, not an embedding.</p>
+<p>If there are multiple <code>columns</code> and <code>embedded</code> is false, each column is time-delay embedded to dimension <code>E</code> creating an N-columns * E dimensional "mixed" embedding.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the speficied columns.  The same logic applies if multiple target are specified for the "reverse" mapping. If embedded is false, each target is time-delay embedded to dimension <code>E</code> creating an N-target * E dimensional "mixed" embedding cross mapped to the first column as the cross map target.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the speficied target(s).</p>
+<p><code>libSizes</code> specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
 <p>If <code>random</code> is true, sample observations are randomly selected from the 
-subset of each library size.</p>
+subset of each library size. </p>
 <p>If <code>random</code> is false, sample is ignored and contiguous library rows up to the 
-current library size are used.  </p>
+current library size are used. Note this is <em>not</em> convergent cross mapping.  </p>
 <p>If <code>seed=0</code> , then a random seed is generated for the random number generator. 
 Otherwise, seed is used to initialise the random number generator.</p>
 <p><strong> Returns </strong>  :<br />
