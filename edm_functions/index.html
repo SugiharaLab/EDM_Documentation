@@ -1,70 +1,63 @@
 <!DOCTYPE html>
-<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
-  
-  
-  <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>EDM Functions - EDM (pyEDM, rEDM)</title>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
-
-  <link rel="stylesheet" href="../css/theme.css" />
-  <link rel="stylesheet" href="../css/theme_extra.css" />
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/github.min.css" />
-  <link href="../extra.css" rel="stylesheet" />
-  <link href="../css/ansi-colours.css" rel="stylesheet" />
-  <link href="../css/jupyter-cells.css" rel="stylesheet" />
-  <link href="../css/pandas-dataframe.css" rel="stylesheet" />
-  
-  <script>
-    // Current page data
-    var mkdocs_page_name = "EDM Functions";
-    var mkdocs_page_input_path = "edm_functions.md";
-    var mkdocs_page_url = null;
-  </script>
-  
-  <script src="../js/jquery-2.1.1.min.js" defer></script>
-  <script src="../js/modernizr-2.8.3.min.js" defer></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
-  <script>hljs.initHighlightingOnLoad();</script> 
-  
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>EDM Functions - EDM (pyEDM, rEDM)</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+        <link href="../css/ansi-colours.css" rel="stylesheet" />
+        <link href="../css/jupyter-cells.css" rel="stylesheet" />
+        <link href="../css/pandas-dataframe.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "EDM Functions";
+        var mkdocs_page_input_path = "edm_functions.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
 
   <div class="wy-grid-for-nav">
-
-    
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)</a>
-        
+          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+        </a>
       </div>
 
-      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Getting Started</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../edm_intro/">EDM Framework</a>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">Documentation</span></p>
-                <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
-                    </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">EDM Functions</a>
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../edm_intro/">EDM Framework</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">EDM Functions</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#simplex"> Simplex </a>
     </li>
@@ -87,59 +80,64 @@
     <li class="toctree-l2"><a class="reference internal" href="#computeerror"> ComputeError </a>
     </li>
     </ul>
-                    </li>
-                </ul>
-                <p class="caption"><span class="caption-text">EDM Algorithms</span></p>
-                <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../basic_examples/">Basic EDM Examples</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
-                    </li>
-                </ul>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EDM Algorithms</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic_examples/">Basic EDM Examples</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
+                  </li>
+              </ul>
       </div>
     </div>
     </nav>
 
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
-
-      
-      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
-        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">EDM (pyEDM, rEDM)</a>
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">EDM (pyEDM, rEDM)</a>
+        
       </nav>
-
-      
       <div class="wy-nav-content">
-        <div class="rst-content">
-          <div role="navigation" aria-label="breadcrumbs navigation">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="..">Docs</a> &raquo;</li>
-    
-      
-        
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
           <li>Documentation &raquo;</li>
-        
-      
-    
-    <li>EDM Functions</li>
+      <li>EDM Functions</li>
     <li class="wy-breadcrumbs-aside">
-      
     </li>
   </ul>
-  
   <hr/>
 </div>
-          <div role="main">
-            <div class="section">
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
               
                 <h1 id="api-reference">API Reference</h1>
 <h2 id="simplex"><function> Simplex </function></h2>
 <p><strong> Description </strong>  : <br />
 Simplex projection of the input data file or DataFrame.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">Simplex(pathIn='./', dataFile='', dataFrame=None, pathOut='./', 
+predictFile='', lib='', pred='', E=0, Tp=1, knn=0, tau=-1, 
+exclusionRadius=0, columns='', target='', embedded=False, 
+verbose=False, const_pred=False, showPlot=False, validLib=[], 
+generateSteps=0, generateLibrary=False, parameterList=False)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">Simplex(pathIn = &quot;./&quot;, dataFile = &quot;&quot;, dataFrame = NULL, 
+pathOut = &quot;./&quot;, predictFile = &quot;&quot;, lib = &quot;&quot;, pred = &quot;&quot;, 
+E = 0, Tp = 1, knn = 0, tau = -1, exclusionRadius = 0, 
+columns = &quot;&quot;, target = &quot;&quot;, embedded = FALSE, 
+const_pred = FALSE, verbose = FALSE, validLib = vector(), 
+generateSteps = 0, parameterList = FALSE, 
+showPlot = FALSE) 
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -164,7 +162,7 @@ Simplex projection of the input data file or DataFrame.</p>
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -292,6 +290,24 @@ no observation or prediction.</p>
 <h2 id="smap"><function> SMap </function></h2>
 <p><strong> Description </strong>  : <br />
 SMap projection of the input data file or DataFrame.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">SMap(pathIn='./', dataFile='', dataFrame=None, pathOut='./',
+predictFile='', lib='', pred='', E=0, Tp=1, knn=0, tau=-1,
+theta=0, exclusionRadius=0, columns='', target='',
+smapFile='', jacobians='', solver=None, embedded=False,
+verbose=False, const_pred=False, showPlot=False,
+validLib=[], generateSteps=0, generateLibrary=False,
+parameterList=False)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">SMap(pathIn = &quot;./&quot;, dataFile = &quot;&quot;, dataFrame = NULL,
+lib = &quot;&quot;, pred = &quot;&quot;, E = 0, Tp = 1, knn = 0, tau = -1,
+theta = 0, exclusionRadius = 0,  columns = &quot;&quot;,
+target = &quot;&quot;, smapFile = &quot;&quot;, embedded = FALSE,
+const_pred = FALSE, verbose = FALSE, validLib = vector(), 
+generateSteps = 0, parameterList = FALSE, showPlot = FALSE) 
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -316,7 +332,7 @@ SMap projection of the input data file or DataFrame.</p>
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -488,6 +504,22 @@ If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is
 no observation or prediction.</p>
 <h2 id="ccm"><function> CCM </function></h2>
 <p>Convergent cross mapping between <code>columns</code> : <code>target</code>; and, reverse mapping between <code>target</code> : <code>columns</code>.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">CCM(pathIn='./', dataFile='', dataFrame=None, pathOut='./',
+predictFile='', E=0, Tp=0, knn=0, tau=-1, exclusionRadius=0,
+columns='', target='', libSizes='', sample=0, random=True,
+replacement=False, seed=0, embedded=False, includeData=False,
+parameterList=False, verbose=False, showPlot=False)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">CCM(pathIn = &quot;./&quot;, dataFile = &quot;&quot;, dataFrame = NULL, E = 0, 
+Tp = 0, knn = 0, tau = -1, exclusionRadius = 0,
+columns = &quot;&quot;, target = &quot;&quot;, libSizes = &quot;&quot;, sample = 0,
+random = TRUE, replacement = FALSE, seed = 0,
+embedded = FALSE, includeData = FALSE, parameterList = FALSE, 
+verbose = FALSE, showPlot = FALSE)
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -512,7 +544,7 @@ no observation or prediction.</p>
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -654,6 +686,23 @@ and a DataFrame of all Simplex projection statistics. If <code>parameterList = T
 <h2 id="multiview"><function> Multiview </function></h2>
 <p><strong> Description </strong>  : <br />
 Multiview embedding and forecasting of the input data file or DataFrame.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">Multiview(pathIn='./', dataFile='', dataFrame=None,
+pathOut='./', predictFile='', lib='', pred='', D=0,
+E=1, Tp=1, knn=0, tau=-1, columns='', target='',
+multiview=0, exclusionRadius=0, trainLib=True,
+excludeTarget=False, parameterList=False,
+verbose=False, numThreads=4, showPlot=False)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">Multiview(pathIn = &quot;./&quot;, dataFile = &quot;&quot;, dataFrame = NULL,
+lib = &quot;&quot;, pred = &quot;&quot;, D = 0, E = 1, Tp = 1, knn = 0,
+tau = -1, columns = &quot;&quot;, target = &quot;&quot;, multiview = 0,
+exclusionRadius = 0, trainLib = TRUE, 
+excludeTarget = FALSE, parameterList = FALSE,
+verbose = FALSE,  numThreads = 4, showPlot = FALSE)
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -678,7 +727,7 @@ Multiview embedding and forecasting of the input data file or DataFrame.</p>
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -819,6 +868,21 @@ Pearson correlation, maximum absolute error and root mean square error.<br/></p>
 <h2 id="embeddimension"><function> EmbedDimension </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE</code>.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">EmbedDimension(pathIn='./', dataFile='', dataFrame=None,
+pathOut='./', predictFile='', lib='', pred='', maxE=10,
+Tp=1, tau=-1, exclusionRadius=0, columns='', target='',
+embedded=False, verbose=False, validLib=[], numThreads=4,
+showPlot=True)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">EmbedDimension(pathIn = &quot;./&quot;, dataFile = &quot;&quot;, dataFrame = NULL,
+pathOut = &quot;&quot;, predictFile = &quot;&quot;, lib = &quot;&quot;, pred = &quot;&quot;,
+maxE = 10, Tp = 1, tau = -1, exclusionRadius = 0,
+columns = &quot;&quot;, target = &quot;&quot;,  embedded = FALSE, verbose = FALSE,
+validLib = vector(), numThreads = 4, showPlot = TRUE)
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -843,7 +907,7 @@ Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE<
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -949,6 +1013,21 @@ DataFrame with columns <code>E</code> and <code>rho</code>.   </p>
 <h2 id="predictinterval"><function> PredictInterval </function></h2>
 <p><strong> Description </strong>  : <br />
 Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">PredictInterval(pathIn='./', dataFile='', dataFrame=None,
+pathOut='./', predictFile='', lib='', pred='', maxTp=10,
+E=1, tau=-1, exclusionRadius=0, columns='', target='',
+embedded=False, verbose=False, validLib=[], numThreads=4,
+showPlot=True)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">PredictInterval(pathIn = &quot;./&quot;, dataFile = &quot;&quot;, dataFrame = NULL,
+pathOut = &quot;./&quot;,  predictFile = &quot;&quot;, lib = &quot;&quot;, pred = &quot;&quot;,
+maxTp = 10, E = 1,  tau = -1, exclusionRadius = 0, columns = &quot;&quot;,
+target = &quot;&quot;, embedded = FALSE, verbose = FALSE,
+validLib = vector(), numThreads = 4, showPlot = TRUE)
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -973,7 +1052,7 @@ Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.</p>
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -1080,6 +1159,21 @@ DataFrame with columns <code>Tp</code> and <code>rho</code>. </p>
 <p><strong> Description </strong>  : <br />
 Evaluate SMap prediction skill for localization parameter 
 <code>theta</code>  (default from 0.01 to 9).</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">PredictNonlinear(pathIn='./', dataFile='', dataFrame=None, 
+pathOut='./', predictFile='', lib='', pred='', theta='', 
+E=1, Tp=1, knn=0, tau=-1, exclusionRadius=0, columns='', 
+target='', embedded=False, verbose=False, validLib=[], 
+numThreads=4, showPlot=True)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">PredictNonlinear(pathIn = &quot;./&quot;, dataFile = &quot;&quot;, dataFrame = NULL, 
+pathOut = &quot;./&quot;, predictFile = &quot;&quot;, lib = &quot;&quot;, pred = &quot;&quot;, theta = &quot;&quot;,
+E = 1, Tp = 1, knn = 0, tau = -1, exclusionRadius = 0,
+columns = &quot;&quot;, target = &quot;&quot;, embedded = FALSE, verbose = FALSE,
+validLib = vector(), numThreads = 4, showPlot = TRUE)
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -1104,7 +1198,7 @@ Evaluate SMap prediction skill for localization parameter
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -1217,6 +1311,15 @@ DataFrame with columns <code>theta</code> and <code>rho</code>. </p>
 <p><strong> Description </strong>  :
 Creates a data block of time-delay embedding from each of the 
 columns in the csv file or dataFrame.  </p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">Embed(pathIn='./', dataFile='', dataFrame=None, E=0,
+tau=-1, columns='', verbose=False)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">Embed(path = &quot;./&quot;, dataFile = &quot;&quot;, dataFrame = NULL, E = 0, 
+tau = -1, columns = &quot;&quot;, verbose = FALSE)
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -1241,7 +1344,7 @@ columns in the csv file or dataFrame.  </p>
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -1286,6 +1389,13 @@ DataFrame with embedded columns.</p>
 <p><strong> Description </strong>  :
 Creates a data block of time-delay embedding from each of the
 columnNames in the dataFrame.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">MakeBlock(dataFrame, E=0, tau=-1, columnNames=[], deletePartial=False)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">MakeBlock(dataFrame, E = 0, tau = -1, columns = c(), deletePartial = FALSE)
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -1298,7 +1408,7 @@ columnNames in the dataFrame.</p>
 <tbody>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: Pandas DataFrame, rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -1342,6 +1452,13 @@ DataFrame with embedded columns.</p>
 <p><strong> Description </strong>  : <br />
 Compute Pearson correlation coefficient, maximum absolute error (MAE)
 and root mean square error (RMSE) between two vectors.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">ComputeError(obs, pred)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">ComputeError(obs, pred)
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
@@ -1368,29 +1485,21 @@ and root mean square error (RMSE) between two vectors.</p>
 Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with computed <code>rho</code>, <code>RMSE</code>, <code>MAE</code>.</p>
               
             </div>
-          </div>
-          <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../parameters/" class="btn btn-neutral float-left" title="Parameters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../basic_examples/" class="btn btn-neutral float-right" title="Basic EDM Examples">Next <span class="icon icon-circle-arrow-right"></span></a>
-      
-      
-        <a href="../parameters/" class="btn btn-neutral" title="Parameters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-      
     </div>
-  
 
   <hr/>
 
   <div role="contentinfo">
     <!-- Copyright etc -->
-    
   </div>
 
-  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
 </footer>
-      
+          
         </div>
       </div>
 
@@ -1398,18 +1507,19 @@ Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with computed <code
 
   </div>
 
-  <div class="rst-versions" role="note" aria-label="versions">
-    <span class="rst-current-version" data-toggle="rst-current-version">
-      
-      
-        <span><a href="../parameters/" style="color: #fcfcfc;">&laquo; Previous</a></span>
-      
-      
-        <span style="margin-left: 15px"><a href="../basic_examples/" style="color: #fcfcfc">Next &raquo;</a></span>
-      
-    </span>
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../parameters/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../basic_examples/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
 </div>
     <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
     <script src="../js/theme.js" defer></script>
     <script defer>
         window.onload = function () {
