@@ -4,11 +4,33 @@
 ** Description **  :   
 Simplex projection of the input data file or DataFrame.
 
+** Python **  :   
+```python
+Simplex(pathIn='./', dataFile='', dataFrame=None, pathOut='./', 
+predictFile='', lib='', pred='', E=0, Tp=1, knn=0, tau=-1, 
+exclusionRadius=0, columns='', target='', embedded=False, 
+verbose=False, const_pred=False, showPlot=False, validLib=[], 
+generateSteps=0, generateLibrary=False, parameterList=False)
+```
+
+** R **  :   
+```R
+Simplex(pathIn = "./", dataFile = "", dataFrame = NULL, 
+pathOut = "./", predictFile = "", lib = "", pred = "", 
+E = 0, Tp = 1, knn = 0, tau = -1, exclusionRadius = 0, 
+columns = "", target = "", embedded = FALSE, 
+const_pred = FALSE, verbose = FALSE, validLib = vector(), 
+generateSteps = 0, parameterList = FALSE, 
+showPlot = FALSE) 
+```
+
+---
+
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None |Input DataFrame|
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame | None |Input DataFrame|
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
@@ -50,11 +72,34 @@ no observation or prediction.
 ** Description **  :   
 SMap projection of the input data file or DataFrame.
 
+** Python **  :   
+```python
+SMap(pathIn='./', dataFile='', dataFrame=None, pathOut='./',
+predictFile='', lib='', pred='', E=0, Tp=1, knn=0, tau=-1,
+theta=0, exclusionRadius=0, columns='', target='',
+smapFile='', jacobians='', solver=None, embedded=False,
+verbose=False, const_pred=False, showPlot=False,
+validLib=[], generateSteps=0, generateLibrary=False,
+parameterList=False)
+```
+
+** R **  :   
+```R
+SMap(pathIn = "./", dataFile = "", dataFrame = NULL,
+lib = "", pred = "", E = 0, Tp = 1, knn = 0, tau = -1,
+theta = 0, exclusionRadius = 0,  columns = "",
+target = "", smapFile = "", embedded = FALSE,
+const_pred = FALSE, verbose = FALSE, validLib = vector(), 
+generateSteps = 0, parameterList = FALSE, showPlot = FALSE) 
+```
+
+---
+
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None |Input DataFrame|
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame | None |Input DataFrame|
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
@@ -127,11 +172,32 @@ no observation or prediction.
 ## <function> CCM </function> 
 Convergent cross mapping between `columns` : `target`; and, reverse mapping between `target` : `columns`.
 
+** Python **  :   
+```python
+CCM(pathIn='./', dataFile='', dataFrame=None, pathOut='./',
+predictFile='', E=0, Tp=0, knn=0, tau=-1, exclusionRadius=0,
+columns='', target='', libSizes='', sample=0, random=True,
+replacement=False, seed=0, embedded=False, includeData=False,
+parameterList=False, verbose=False, showPlot=False)
+```
+
+** R **  :   
+```R
+CCM(pathIn = "./", dataFile = "", dataFrame = NULL, E = 0, 
+Tp = 0, knn = 0, tau = -1, exclusionRadius = 0,
+columns = "", target = "", libSizes = "", sample = 0,
+random = TRUE, replacement = FALSE, seed = 0,
+embedded = FALSE, includeData = FALSE, parameterList = FALSE, 
+verbose = FALSE, showPlot = FALSE)
+```
+
+---
+
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame | None|Input DataFrame| 
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame | None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | E         | int    | 0     | Data dimension | 
@@ -184,11 +250,33 @@ and a DataFrame of all Simplex projection statistics. If `parameterList = True`,
 ** Description **  :   
 Multiview embedding and forecasting of the input data file or DataFrame.
 
+** Python **  :   
+```python
+Multiview(pathIn='./', dataFile='', dataFrame=None,
+pathOut='./', predictFile='', lib='', pred='', D=0,
+E=1, Tp=1, knn=0, tau=-1, columns='', target='',
+multiview=0, exclusionRadius=0, trainLib=True,
+excludeTarget=False, parameterList=False,
+verbose=False, numThreads=4, showPlot=False)
+```
+
+** R **  :   
+```R
+Multiview(pathIn = "./", dataFile = "", dataFrame = NULL,
+lib = "", pred = "", D = 0, E = 1, Tp = 1, knn = 0,
+tau = -1, columns = "", target = "", multiview = 0,
+exclusionRadius = 0, trainLib = TRUE, 
+excludeTarget = FALSE, parameterList = FALSE,
+verbose = FALSE,  numThreads = 4, showPlot = FALSE)
+```
+
+---
+
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame| 
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
@@ -238,11 +326,31 @@ If `parameterList = True`, a dictionary of `parameters` is added.
 ** Description **  :   
 Evaluate Simplex prediction skill for embedding dimensions from 1 to `maxE`.
 
+** Python **  :   
+```python
+EmbedDimension(pathIn='./', dataFile='', dataFrame=None,
+pathOut='./', predictFile='', lib='', pred='', maxE=10,
+Tp=1, tau=-1, exclusionRadius=0, columns='', target='',
+embedded=False, verbose=False, validLib=[], numThreads=4,
+showPlot=True)
+```
+
+** R **  :   
+```R
+EmbedDimension(pathIn = "./", dataFile = "", dataFrame = NULL,
+pathOut = "", predictFile = "", lib = "", pred = "",
+maxE = 10, Tp = 1, tau = -1, exclusionRadius = 0,
+columns = "", target = "",  embedded = FALSE, verbose = FALSE,
+validLib = vector(), numThreads = 4, showPlot = TRUE)
+```
+
+---
+
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame| 
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
@@ -273,11 +381,31 @@ DataFrame with columns `E` and `rho`.
 ** Description **  :   
 Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.
 
+** Python **  :   
+```python
+PredictInterval(pathIn='./', dataFile='', dataFrame=None,
+pathOut='./', predictFile='', lib='', pred='', maxTp=10,
+E=1, tau=-1, exclusionRadius=0, columns='', target='',
+embedded=False, verbose=False, validLib=[], numThreads=4,
+showPlot=True)
+```
+
+** R **  :   
+```R
+PredictInterval(pathIn = "./", dataFile = "", dataFrame = NULL,
+pathOut = "./",  predictFile = "", lib = "", pred = "",
+maxTp = 10, E = 1,  tau = -1, exclusionRadius = 0, columns = "",
+target = "", embedded = FALSE, verbose = FALSE,
+validLib = vector(), numThreads = 4, showPlot = TRUE)
+```
+
+---
+
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame| 
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
@@ -309,11 +437,31 @@ DataFrame with columns `Tp` and `rho`.
 Evaluate SMap prediction skill for localization parameter 
 `theta`  (default from 0.01 to 9).
 
+** Python **  :   
+```python
+PredictNonlinear(pathIn='./', dataFile='', dataFrame=None, 
+pathOut='./', predictFile='', lib='', pred='', theta='', 
+E=1, Tp=1, knn=0, tau=-1, exclusionRadius=0, columns='', 
+target='', embedded=False, verbose=False, validLib=[], 
+numThreads=4, showPlot=True)
+```
+
+** R **  :   
+```R
+PredictNonlinear(pathIn = "./", dataFile = "", dataFrame = NULL, 
+pathOut = "./", predictFile = "", lib = "", pred = "", theta = "",
+E = 1, Tp = 1, knn = 0, tau = -1, exclusionRadius = 0,
+columns = "", target = "", embedded = FALSE, verbose = FALSE,
+validLib = vector(), numThreads = 4, showPlot = TRUE)
+```
+
+---
+
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame| 
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame| 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
@@ -346,11 +494,25 @@ DataFrame with columns `theta` and `rho`.
 Creates a data block of time-delay embedding from each of the 
 columns in the csv file or dataFrame.  
 
+** Python **  :   
+```python
+Embed(pathIn='./', dataFile='', dataFrame=None, E=0,
+tau=-1, columns='', verbose=False)
+```
+
+** R **  :   
+```R
+Embed(path = "./", dataFile = "", dataFrame = NULL, E = 0, 
+tau = -1, columns = "", verbose = FALSE)
+```
+
+---
+
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
 | pathIn    | string | "./"  | Input data file path |
 | dataFile  | string | ""    | Data file name |
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame|
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame|
 | E         | int    | 0     | Data dimension | 
 | tau       | int    | -1    |Embedding shift. Negative: lag, positive: future|
 | columns   | string or [] | "" | Column names  |
@@ -377,9 +539,21 @@ DataFrame with embedded columns.
 Creates a data block of time-delay embedding from each of the
 columnNames in the dataFrame.
 
+** Python **  :   
+```python
+MakeBlock(dataFrame, E=0, tau=-1, columnNames=[], deletePartial=False)
+```
+
+** R **  :   
+```R
+MakeBlock(dataFrame, E = 0, tau = -1, columns = c(), deletePartial = FALSE)
+```
+
+---
+
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
-| dataFrame | pyEDM: Pandas DataFrame, rEDM: data.frame |None|Input DataFrame|
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame|
 | E         | int    | 0     | Data dimension |
 | tau       | int    | -1    |Embedding shift. Negative: lag, positive: future|
 | columnNames  | []  | ""    | List of column names  |
@@ -404,6 +578,18 @@ DataFrame with embedded columns.
 ** Description **  :   
 Compute Pearson correlation coefficient, maximum absolute error (MAE)
 and root mean square error (RMSE) between two vectors.
+
+** Python **  :   
+```python
+ComputeError(obs, pred)
+```
+
+** R **  :   
+```R
+ComputeError(obs, pred)
+```
+
+---
 
 | Parameter | Type |  Purpose |
 | --------- | ---- |  ------- |

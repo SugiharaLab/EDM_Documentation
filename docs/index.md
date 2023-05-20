@@ -39,10 +39,10 @@ complex dynamics.
 
 ## Foundations of EDM
 
-##Time Series as Observations of a Dynamic System
+###Time Series as Observations of a Dynamic System
 
 <iframe width="100%" height="335"
-src="https://www.youtube.com/embed/QQwtrWBwxQg" 
+src="https://www.youtube.com/embed/fevurdpiRYg"
 frameborder="0" allow="autoplay; gyroscope; 
 picture-in-picture" allowfullscreen></iframe>
 

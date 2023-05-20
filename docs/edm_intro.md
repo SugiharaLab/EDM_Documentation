@@ -15,6 +15,11 @@ representation of the system dynamics (state-space manifold) from a
 single (univariate, 1-D) timeseries observed from the system.  The embedding
 results in generation of a higher-dimensional representation of the system.
 
+<iframe width="100%" height="335"
+src="https://www.youtube.com/embed/QQwtrWBwxQg" 
+frameborder="0" allow="autoplay; gyroscope; 
+picture-in-picture" allowfullscreen></iframe>
+
 ### Embedding
 The process of creating this representation is termed _embedding_.  In the
 EDM packages we can use the [`Embed()`](../edm_functions/#embed)
@@ -76,5 +81,11 @@ between variables, which have been shown to approximate the gradient
 
 [`CCM()`](../edm_functions/#ccm) applies convergent cross mapping
 to pairs of variables to infer possible causal links between variables.
+
+<iframe width="100%" height="335"
+src="https://www.youtube.com/embed/NrFdIz-D2yM" 
+frameborder="0" allow="autoplay; gyroscope; picture-in-picture"
+allowfullscreen></iframe>  
+
 Details on these algorithms are provided in the section
 [EDM Algorithms in Depth](../algorithms_in_depth).
