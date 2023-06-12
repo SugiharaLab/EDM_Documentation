@@ -491,7 +491,9 @@ intended dimensions in the matrix inversion, coefficient assignment,
 and prediction.  In this multivariate case, the user can first prepare
 the embedding (using <a href="../edm_functions/#embed"><code>Embed()</code></a> for time-delay
 embedding if desired, add a first column of time), then pass this embedding 
-to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.</p>
+to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.
+The <a href="https://github.com/SugiharaLab/pyEDM/blob/master/pyEDM/etc/apps/Embedding.py"><code>Embedding.py</code></a> application can be used to perform the embedding and
+insert the time vector for input to <code>SMap</code>.</p>
 <p><strong> Linear System Solver </strong> : <br />
 In <code>pyEDM</code>: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
 a class object instantiated from the <code>sklearn.linear_model</code> class.
