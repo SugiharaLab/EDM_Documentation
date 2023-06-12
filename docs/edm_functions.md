@@ -153,6 +153,8 @@ and prediction.  In this multivariate case, the user can first prepare
 the embedding (using [`Embed()`](../edm_functions/#embed) for time-delay
 embedding if desired, add a first column of time), then pass this embedding 
 to `SMap` with appropriately specified `columns`, `E`, and `embedded = true`.
+The [`Embedding.py`](https://github.com/SugiharaLab/pyEDM/blob/master/pyEDM/etc/apps/Embedding.py) application can be used to perform the embedding and
+insert the time vector for input to `SMap`.
 
 ** Linear System Solver ** :   
 In `pyEDM`: The default LAPACK SVD solver `dgelss()` can be replaced with

@@ -66,4 +66,4 @@ taken D at-a-time.
 `SMap()` should be called with `columns` explicity corresponding to
 dimensions `E`.  In the multivariate case (number of `columns` > 1)
 use `embedded = true` with `E` equal to the number of `columns`.
-See the note in [`SMap() documentation`](../edm_functions/#smap).
+See the embedding note in [`SMap() documentation`](../edm_functions/).
