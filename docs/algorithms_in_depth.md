@@ -35,7 +35,7 @@ one to identify an optimal local scale that may provide improved
 predictability over a `Simplex` projection. 
 
 For a demonstration of this localisation, see the
-[S-MAP Notebook](https://github.com/cameronosmith/EDM_notebooks/blob/master/SMAP.ipynb).
+[S-MAP Notebook](./SMap_Demo.ipynb).
 
 Another advantage of S-Map is that for a properly fit model, the regression
 coefficients between variables have been shown to approximate
