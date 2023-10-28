@@ -46,21 +46,18 @@
               </ul>
               <p class="caption"><span class="caption-text">Getting Started</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../edm_intro/">EDM Framework</a>
                   </li>
-              </ul>
-              <p class="caption"><span class="caption-text">Documentation</span></p>
-              <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
-                  </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Documentation</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">EDM Functions</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">API Reference</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding Parameters</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
@@ -295,8 +292,8 @@ parameterList=FALSE, verbose=FALSE, showPlot=FALSE, noTime=FALSE)
 <p><br/>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
 <p><strong> Notes </strong>  :<br />
-Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension <code>E</code>, cross mapped with the target time series.  The target time series is then embedded to <code>E</code> and cross mapped against the column as the "target" time series, not an embedding.</p>
-<p>If there are multiple <code>columns</code> and <code>embedded</code> is false, each column is time-delay embedded to dimension <code>E</code> creating an N-columns * E dimensional "mixed" embedding.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the speficied columns.  The same logic applies if multiple target are specified for the "reverse" mapping. If embedded is false, each target is time-delay embedded to dimension <code>E</code> creating an N-target * E dimensional "mixed" embedding cross mapped to the first column as the cross map target.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the speficied target(s).</p>
+Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension <code>E</code>, then cross mapped with the target time series.  In a separate thread, the target time series is embedded to <code>E</code> and cross mapped against the column acting as the "target". </p>
+<p>If there are multiple <code>columns</code> and <code>embedded</code> is false, each column is time-delay embedded to dimension <code>E</code> creating an N-columns * E dimensional "mixed" embedding.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the speficied columns.  The same logic applies if multiple target are specified for the "reverse" mapping. If embedded is false, each target is time-delay embedded to dimension <code>E</code> creating an N-target * E dimensional "mixed" embedding cross mapped to <em>only the first column</em> as the cross map target.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the specified target(s).</p>
 <p><code>libSizes</code> specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
 <p>If <code>random</code> is true, sample observations are randomly selected from the 
 subset of each library size. </p>
