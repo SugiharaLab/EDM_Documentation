@@ -46,13 +46,16 @@ src="https://www.youtube.com/embed/fevurdpiRYg"
 frameborder="0" allow="autoplay; gyroscope; 
 picture-in-picture" allowfullscreen></iframe>
 
+------
+
+### Prediction and system interactions
+
 Given a state space reconstructed via lagged embedding, or, from
 multivariate observations, system prediction can be performed using
-simplex or S-map projections. S-map (Sequentially Locally Weighted
-Global Linear Maps) can also be used to assess variable interactions.
-To infer causal relationships between variables,  Convergent Cross
+simplex or S-map (Sequentially Locally Weighted Global Linear Maps)
+projection. S-map can also be used to assess variable interactions
+and infer the degree of system nonlinearity.
+To infer causal relationships between variables, Convergent Cross
 Mapping (CCM) can be applied.  See the
 [algorithms in depth section](./algorithms_in_depth) for details on
 these functions.
-
-------

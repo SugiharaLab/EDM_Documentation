@@ -1,4 +1,4 @@
-# Embedding
+# Embedding Parameters
 
 The [`EDM Framework`](../edm_intro) is based on a multidimensional representation of system dynamics, colloquially referred to as an _embedding_.  Given a dynamical system of dimension D, the [Whitney Embedding Theorem](https://en.wikipedia.org/wiki/Whitney_embedding_theorem#See_also) establishes limits on the embedding dimension, E, needed to completely represent the dynamics. Generally, EDM uses the parameter E to represent the dimension of the embedding, however, to support multivariate embeddings there are deviations from the above definitions as noted below.
 
@@ -10,18 +10,18 @@ the set of variables specified in `columns` is assumed to be a valid embedding,
 no time-delay embedding is performed. 
 
 These functions accept multiple values for the `columns` parameter: 
-[`Embed()`](../edm_functions/#embed)
-[`PredictInterval()`](../edm_functions/#predictinterval)
-[`PredictNonlinear()`](../edm_functions/#predictnonlinear)
-[`Simplex()`](../edm_functions/#simplex)
-[`SMap()`](../edm_functions/#smap)
-[`Multiview()`](../edm_functions/#multiview)
+[`Embed()`](../embed_)
+[`Simplex()`](../simplex_)
+[`SMap()`](../smap_)
+[`Multiview()`](../multiview_)
+[`PredictInterval()`](../predictInterval_)
+[`PredictNonlinear()`](../predictNonlinear_)
 
 These functions accept the `embedded` parameter:
-[`PredictInterval()`](../edm_functions/#predictinterval)
-[`PredictNonlinear()`](../edm_functions/#predictnonlinear)
-[`Simplex()`](../edm_functions/#simplex)
-[`SMap()`](../edm_functions/#smap)
+[`Simplex()`](../simplex_)
+[`SMap()`](../smap_)
+[`PredictInterval()`](../predictInterval_)
+[`PredictNonlinear()`](../predictNonlinear_)
 
 - If `embedded = false` (default):
     - If `columns` is a single value, then an E-dimensional time-delay 
@@ -42,8 +42,7 @@ embedding.
 multivariate embedding.
 
 ## CCM()
-`CCM()` only operates on the first column, other entries in columns are ignored.
-E is the time-lag embedding dimension applied to the first column.
+`CCM()` normally operates on a single column cross-mapped to a single target. It is possible to cross map multivariate embeddings, however, full application of *convergent* cross mapping has not been validated in the literature. See the `CCM()` function for embedding details. 
 
 ## Multiview()
 `Multiview()` has parameters `D`, `E`, `multiview`.

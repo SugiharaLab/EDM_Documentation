@@ -12,13 +12,12 @@ markdown_extensions:
 nav:
 - Home : index.md
 - Getting Started :
-    - Installation  : installation.md
     - EDM Framework : edm_intro.md
+    - Installation  : installation.md
 - Documentation :
-    - Embedding : embedding_parameters.md
-    - Parameters : parameters.md
-- Documentation :
-    - EDM Functions : edm_functions.md
+    - API Reference    : edm_functions.md
+    - Parameters       : parameters.md
+    - Embedding Parameters : embedding_parameters.md
     - Simplex          : simplex_.md
     - SMap             : smap_.md
     - CCM              : ccm_.md
