@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Embedding - EDM (pyEDM, rEDM)</title>
+    <title>EmbedDimension - EDM (pyEDM, rEDM)</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -16,8 +16,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Embedding";
-        var mkdocs_page_input_path = "embedding_parameters.md";
+        var mkdocs_page_name = "EmbedDimension";
+        var mkdocs_page_input_path = "embedDimension_.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,24 +52,14 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Documentation</span></p>
-              <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Embedding</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#ccm">CCM()</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#multiview">Multiview()</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#smap">SMap()</a>
-    </li>
-    </ul>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Documentation</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">EDM Functions</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
@@ -80,7 +70,9 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../multiview_/">Multiview</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedDimension_/">EmbedDimension</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">EmbedDimension</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../predictInterval_/">PredictInterval</a>
                   </li>
@@ -124,7 +116,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
           <li>Documentation &raquo;</li>
-      <li>Embedding</li>
+      <li>EmbedDimension</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -133,87 +125,162 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="embedding">Embedding</h1>
-<p>The <a href="../edm_intro"><code>EDM Framework</code></a> is based on a multidimensional representation of system dynamics, colloquially referred to as an <em>embedding</em>.  Given a dynamical system of dimension D, the <a href="https://en.wikipedia.org/wiki/Whitney_embedding_theorem#See_also">Whitney Embedding Theorem</a> establishes limits on the embedding dimension, E, needed to completely represent the dynamics. Generally, EDM uses the parameter E to represent the dimension of the embedding, however, to support multivariate embeddings there are deviations from the above definitions as noted below.</p>
-<p>The combination of the <code>columns</code> and  <code>embedded</code> parameters control what
-variables are included in the embedding, and, whether a time-delay embedding
-is created.  The default <code>embedded = false</code> instructs EDM to create a
-time-delay embedding using each variable in <code>columns</code>.  If  <code>embedded = true</code>,
-the set of variables specified in <code>columns</code> is assumed to be a valid embedding,
-no time-delay embedding is performed. </p>
-<p>These functions accept multiple values for the <code>columns</code> parameter: 
-<a href="../edm_functions/#embed"><code>Embed()</code></a>
-<a href="../edm_functions/#predictinterval"><code>PredictInterval()</code></a>
-<a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a>
-<a href="../edm_functions/#simplex"><code>Simplex()</code></a>
-<a href="../edm_functions/#smap"><code>SMap()</code></a>
-<a href="../edm_functions/#multiview"><code>Multiview()</code></a></p>
-<p>These functions accept the <code>embedded</code> parameter:
-<a href="../edm_functions/#predictinterval"><code>PredictInterval()</code></a>
-<a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a>
-<a href="../edm_functions/#simplex"><code>Simplex()</code></a>
-<a href="../edm_functions/#smap"><code>SMap()</code></a></p>
-<ul>
-<li>
-<p>If <code>embedded = false</code> (default):</p>
-<ul>
-<li>If <code>columns</code> is a single value, then an E-dimensional time-delay 
-embedding is created.  </li>
-<li>If <code>columns</code> has N values, then each of the N column variables 
-is time-delay embedded to dimension E.  The EDM state-space has overall 
-dimension E*N.</li>
-</ul>
-</li>
-<li>
-<p>If <code>embedded = true</code>:</p>
-<ul>
-<li>The EDM state-space has dimension E = N, the number of <code>columns</code>.</li>
-</ul>
-</li>
-</ul>
-<h2 id="examples">Examples</h2>
-<ol>
-<li><code>Simplex( ..., columns = 'x', E = 2 )</code> : 2-dimensional univariate embedding.</li>
-<li><code>Simplex( ..., columns = 'x y', E = 2 )</code> : 4-dimensional multivariate 
-embedding.</li>
-<li><code>Simplex( ..., columns = 'x y', E = 2, embedded = True )</code> : 2-dimensional 
-multivariate embedding.</li>
-</ol>
-<h2 id="ccm">CCM()</h2>
-<p><code>CCM()</code> only operates on the first column, other entries in columns are ignored.
-E is the time-lag embedding dimension applied to the first column.</p>
-<h2 id="multiview">Multiview()</h2>
-<p><code>Multiview()</code> has parameters <code>D</code>, <code>E</code>, <code>multiview</code>.</p>
-<ul>
-<li>
-<p><code>D</code> is the dimension of the state-space processed by simplex in each 
-multivariate evaluation. <code>D</code> defaults to the number of columns.</p>
-</li>
-<li>
-<p><code>E</code> is the embedding dimension of each variable. If <code>E</code> = 1, no time
-delay embedding is done, the state-space is the <code>D</code> columns.  If <code>E</code> &gt; 1,
-then each of the <code>D</code> columns are embedded to <code>E</code>, however, the state-space
-remains D-dimensional as combinations of the embeddings are evaluated 
-D-at-a-time.</p>
-</li>
-<li>
-<p><code>multiview</code> is the number of top-ranked D-dimensional predictions to
-average for the final prediction. Default <code>multiview</code> = sqrt(C) where C
-is the number of combinations C(n,D) available from the n = D * E variables
-taken D at-a-time.</p>
-</li>
-</ul>
-<h2 id="smap">SMap()</h2>
-<p><code>SMap()</code> should be called with <code>columns</code> explicity corresponding to
-dimensions <code>E</code>.  In the multivariate case (number of <code>columns</code> &gt; 1)
-use <code>embedded = true</code> with <code>E</code> equal to the number of <code>columns</code>.
-See the embedding note in <a href="../edm_functions/"><code>SMap() documentation</code></a>.</p>
+                <h2 id="embeddimension"><function> EmbedDimension </function></h2>
+<p><strong> Description </strong>  : <br />
+Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE</code>.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">EmbedDimension(pathIn='./', dataFile='', dataFrame=None,
+pathOut='./', predictFile='', lib='', pred='', maxE=10,
+Tp=1, tau=-1, exclusionRadius=0, columns='', target='',
+embedded=False, verbose=False, validLib=[], numThreads=4,
+showPlot=True, noTime=False)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">EmbedDimension(pathIn=&quot;./&quot;, dataFile=&quot;&quot;, dataFrame=NULL,
+pathOut=&quot;&quot;, predictFile=&quot;&quot;, lib=&quot;&quot;, pred=&quot;&quot;,
+maxE=10, Tp=1, tau=-1, exclusionRadius=0,
+columns=&quot;&quot;, target=&quot;&quot;,  embedded=FALSE, verbose=FALSE,
+validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
+</code></pre>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pathIn</td>
+<td>string</td>
+<td>"./"</td>
+<td>Input data file path</td>
+</tr>
+<tr>
+<td>dataFile</td>
+<td>string</td>
+<td>""</td>
+<td>Data file name</td>
+</tr>
+<tr>
+<td>dataFrame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
+<td>None</td>
+<td>Input DataFrame</td>
+</tr>
+<tr>
+<td>pathOut</td>
+<td>string</td>
+<td>"./"</td>
+<td>Output file path</td>
+</tr>
+<tr>
+<td>predictFile</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction output file</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>string or []</td>
+<td>""</td>
+<td>Pairs of library start stop row indices</td>
+</tr>
+<tr>
+<td>pred</td>
+<td>string or []</td>
+<td>""</td>
+<td>Pairs of prediction start stop row indices</td>
+</tr>
+<tr>
+<td>maxE</td>
+<td>int</td>
+<td>10</td>
+<td>Evaluate embedding up to maxE</td>
+</tr>
+<tr>
+<td>Tp</td>
+<td>int</td>
+<td>1</td>
+<td>Prediction Interval</td>
+</tr>
+<tr>
+<td>tau</td>
+<td>int</td>
+<td>-1</td>
+<td>Embedding time shift (time series rows)</td>
+</tr>
+<tr>
+<td>exclusionRadius</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
+</tr>
+<tr>
+<td>columns</td>
+<td>string or []</td>
+<td>""</td>
+<td>Column names for library</td>
+</tr>
+<tr>
+<td>target</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction target column name</td>
+</tr>
+<tr>
+<td>embedded</td>
+<td>bool</td>
+<td>False</td>
+<td>Is data an embedding</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>bool</td>
+<td>False</td>
+<td>Echo messages</td>
+</tr>
+<tr>
+<td>validLib</td>
+<td>bool []</td>
+<td>[] or None</td>
+<td>Conditional embedding</td>
+</tr>
+<tr>
+<td>numThreads</td>
+<td>int</td>
+<td>4</td>
+<td>Number of threads to use</td>
+</tr>
+<tr>
+<td>showPlot</td>
+<td>bool</td>
+<td>True</td>
+<td>Show plot of E vs Rho (pyEDM, rEDM)</td>
+</tr>
+<tr>
+<td>noTime</td>
+<td>bool</td>
+<td>False</td>
+<td>Do not require first data column of time or index</td>
+</tr>
+</tbody>
+</table>
+<p><br/>
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong>  : <br />
+<code>numThreads</code> defines the number of worker threads for the <code>maxE</code> embeddings.</p>
+<p><strong> Returns </strong>  : <br />
+DataFrame with columns <code>E</code> and <code>rho</code>.   </p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../edm_intro/" class="btn btn-neutral float-left" title="EDM Framework"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../parameters/" class="btn btn-neutral float-right" title="Parameters">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../multiview_/" class="btn btn-neutral float-left" title="Multiview"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../predictInterval_/" class="btn btn-neutral float-right" title="PredictInterval">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -236,10 +303,10 @@ See the embedding note in <a href="../edm_functions/"><code>SMap() documentation
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../edm_intro/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../multiview_/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../parameters/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../predictInterval_/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Parameters - EDM (pyEDM, rEDM)</title>
+    <title>CCM - EDM (pyEDM, rEDM)</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -16,8 +16,8 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Parameters";
-        var mkdocs_page_input_path = "parameters.md";
+        var mkdocs_page_name = "CCM";
+        var mkdocs_page_input_path = "ccm_.md";
         var mkdocs_page_url = null;
       </script>
     
@@ -52,23 +52,23 @@
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Documentation</span></p>
-              <ul class="current">
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Parameters</a>
-    <ul class="current">
-    </ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Documentation</span></p>
-              <ul>
+              <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">EDM Functions</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../smap_/">SMap</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../ccm_/">CCM</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">CCM</a>
+    <ul class="current">
+    </ul>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../multiview_/">Multiview</a>
                   </li>
@@ -116,7 +116,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
           <li>Documentation &raquo;</li>
-      <li>Parameters</li>
+      <li>CCM</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -125,187 +125,198 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="parameters">Parameters</h1>
+                <h2 id="ccm"><function> CCM </function></h2>
+<p>Convergent cross mapping between <code>columns</code> : <code>target</code>; and, reverse mapping between <code>target</code> : <code>columns</code>.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">CCM(pathIn='./', dataFile='', dataFrame=None, pathOut='./',
+predictFile='', E=0, Tp=0, knn=0, tau=-1, exclusionRadius=0,
+columns='', target='', libSizes='', sample=0, random=True,
+replacement=False, seed=0, embedded=False, includeData=False,
+parameterList=False, verbose=False, showPlot=False, noTime=False)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">CCM(pathIn=&quot;./&quot;, dataFile=&quot;&quot;, dataFrame=NULL, E=0, 
+Tp=0, knn=0, tau=-1, exclusionRadius=0,
+columns=&quot;&quot;, target=&quot;&quot;, libSizes=&quot;&quot;, sample=0,
+random=TRUE, seed=0, embedded=FALSE, includeData=FALSE,
+parameterList=FALSE, verbose=FALSE, showPlot=FALSE, noTime=FALSE)
+</code></pre>
+<hr />
 <table>
 <thead>
 <tr>
 <th>Parameter</th>
-<th>Description</th>
+<th>Type</th>
+<th>Default</th>
+<th>Purpose</th>
 </tr>
 </thead>
 <tbody>
 <tr>
 <td>pathIn</td>
-<td>Filesystem path to input <code>dataFile</code>. CSV format.</td>
+<td>string</td>
+<td>"./"</td>
+<td>Input data file path</td>
 </tr>
 <tr>
 <td>dataFile</td>
-<td>CSV format data file name. The first row must be column names. The first column must be a time index, time strings or time values unless <code>noTime = True</code>.</td>
+<td>string</td>
+<td>""</td>
+<td>Data file name</td>
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>Input data.frame. The columns must be named. The first column must be a time index , time strings or time values unless <code>noTime = True</code>.</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
+<td>None</td>
+<td>Input DataFrame</td>
 </tr>
 <tr>
 <td>pathOut</td>
-<td>Filesystem path for <code>predictFile</code> containing output predictions.</td>
+<td>string</td>
+<td>"./"</td>
+<td>Output file path</td>
 </tr>
 <tr>
 <td>predictFile</td>
-<td>Observation and Prediction output file name. CSV format.</td>
-</tr>
-<tr>
-<td>smapCoefFile</td>
-<td>SMap coefficient output file name. CSV format.</td>
-</tr>
-<tr>
-<td>smapSVFile</td>
-<td>SMap singular value output file name. CSV format.</td>
-</tr>
-<tr>
-<td>lib</td>
-<td>String or vector with pairs of start and stop indices of input data rows used to create the library of E-dimensional embedding vectors. String indices must be whitespace separated.</td>
-</tr>
-<tr>
-<td>pred</td>
-<td>String or vector with pairs of start and stop indices of input data rows predictions. String indices must be whitespace separated.</td>
-</tr>
-<tr>
-<td>D</td>
-<td>Multiview dimension.</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction output file</td>
 </tr>
 <tr>
 <td>E</td>
-<td>Embedding dimension.</td>
+<td>int</td>
+<td>0</td>
+<td>Data dimension</td>
 </tr>
 <tr>
 <td>Tp</td>
-<td>Prediction horizon (number of time column rows).</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction Interval</td>
 </tr>
 <tr>
 <td>knn</td>
-<td>Number of nearest neighbors. If <code>knn=0</code>; <code>knn</code> is set to <code>E+1</code> for <code>Simplex()</code>; set to number of <code>lib</code> data rows for <code>SMap()</code>.</td>
+<td>int</td>
+<td>0</td>
+<td>Number nearest neighbors (if 0 then set as E+1)</td>
 </tr>
 <tr>
 <td>tau</td>
-<td>Time offset of embedding specified as number of time series rows. <code>tau</code> &lt; 0 are lags, <code>tau</code> &gt; 0 future values.</td>
-</tr>
-<tr>
-<td>theta</td>
-<td>In Smap: S-Map neighbor localisation exponent. Single numeric.</td>
-</tr>
-<tr>
-<td>theta</td>
-<td>In PredictNonlinear: A whitespace delimeted string or numeric vector with values of S-map localisation parameters to be evaluated.</td>
+<td>int</td>
+<td>-1</td>
+<td>Embedding time shift (time series rows)</td>
 </tr>
 <tr>
 <td>exclusionRadius</td>
-<td>Excludes vectors from the search space of nearest neighbors if their relative time index is within <code>exclusionRadius</code>.</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
 </tr>
 <tr>
 <td>columns</td>
-<td>String or vector of column name(s) in the input data used to create the library. String names must be whitespace separated.</td>
+<td>string or []</td>
+<td>""</td>
+<td>Column name(s) for library</td>
 </tr>
 <tr>
 <td>target</td>
-<td>String of column name in the input data used for prediction.</td>
-</tr>
-<tr>
-<td>solver</td>
-<td>In pyEDM <code>SMap()</code>: An instance of a sklearn.linear_model object.</td>
-</tr>
-<tr>
-<td>embedded</td>
-<td>Logical specifying if the input data are embedded.  If <code>embedded = True</code>, no emedding is performed.  If <code>embedded = False</code>, all input data are embedded to dimension <code>E</code> with time shift <code>tau</code>.</td>
-</tr>
-<tr>
-<td>ignoreNan</td>
-<td>Logical specifying whether data NaN values are to be ignored in <code>SMap</code>: default <code>True</code>.</td>
-</tr>
-<tr>
-<td>noTime</td>
-<td>Logical indicating whether input data lack a time vector in the first column: default <code>False</code>.</td>
-</tr>
-<tr>
-<td>validLib</td>
-<td>Conditional embedding. Boolean vector identifying time series rows whose corresponding embedding vectors define the state-space library.</td>
-</tr>
-<tr>
-<td>generateSteps</td>
-<td>Generative feedback predictions for <code>Simplex()</code> or <code>SMap()</code>.</td>
-</tr>
-<tr>
-<td>parameterList</td>
-<td>Add parameter dictionary to return objects in <code>Simplex()</code>, <code>SMap()</code>, <code>CCM()</code>, <code>Multiview()</code>.</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction target column name</td>
 </tr>
 <tr>
 <td>libSizes</td>
-<td>String or vector of integers specifying CCM library sizes. If three values are provided, and, if the third value is less than the second, they are treated as a sequence generator specifying the intial library size; the final library size; and the library size increment. String values must be whitespace separated.</td>
+<td>string</td>
+<td>""</td>
+<td>CCM library sizes</td>
 </tr>
 <tr>
 <td>sample</td>
-<td>Integer specifying the number of random samples to draw at each library size evaluation for CCM.</td>
+<td>int</td>
+<td>0</td>
+<td>CCM number of random samples</td>
 </tr>
 <tr>
 <td>random</td>
-<td>Logical to specify random (<code>True</code>) or sequential library sampling (<code>False</code>) in CCM.</td>
+<td>bool</td>
+<td>True</td>
+<td>CCM use random samples?</td>
 </tr>
 <tr>
 <td>replacement</td>
-<td>Logical to specify sampling with replacement in CCM. Not recommended.</td>
-</tr>
-<tr>
-<td>includeData</td>
-<td>Logical to return all CCM projection data frames.</td>
+<td>bool</td>
+<td>False</td>
+<td>CCM random sample with replacement?</td>
 </tr>
 <tr>
 <td>seed</td>
-<td>Integer specifying the random sampler seed in CCM.  If <code>seed=0</code>, then a random seed is generated.</td>
+<td>unsigned</td>
+<td>0</td>
+<td>RNG seed, 0 = random seed</td>
 </tr>
 <tr>
-<td>multiview</td>
-<td>Number of multiview ensembles to average for the final prediction estimate in Multiview.</td>
+<td>embedded</td>
+<td>bool</td>
+<td>False</td>
+<td>Is data an embedding? If False, embed to E</td>
 </tr>
 <tr>
-<td>trainLib</td>
-<td>Use in-sample (<code>lib</code>=<code>pred</code>) prediction for multiview ranking</td>
+<td>includeData</td>
+<td>bool</td>
+<td>False</td>
+<td>Include output statistics on all predictions</td>
 </tr>
 <tr>
-<td>excludeTarget</td>
-<td>Exclude <code>target</code> variable from multiviews</td>
-</tr>
-<tr>
-<td>maxE</td>
-<td>Maximum value of <code>E</code> to evalulate in EmbedDimension.</td>
-</tr>
-<tr>
-<td>maxTp</td>
-<td>Maximum value of <code>Tp</code> to evalulate in PredictInterval.</td>
-</tr>
-<tr>
-<td>numThreads</td>
-<td>Number of parallel threads for computation in EmbedDimension; PredictInterval and PredictNonlinear.</td>
+<td>parameterList</td>
+<td>bool</td>
+<td>False</td>
+<td>Include parameter dictionary in return</td>
 </tr>
 <tr>
 <td>verbose</td>
-<td>Logical to produce additional console reporting.</td>
-</tr>
-<tr>
-<td>const_pred</td>
-<td>Logical to add a constant predictor column to the output. The constant predictor is X(t+1) = X(t).</td>
+<td>bool</td>
+<td>False</td>
+<td>Echo messages</td>
 </tr>
 <tr>
 <td>showPlot</td>
-<td>Logical to plot results (pyEDM &amp; rEDM).</td>
+<td>bool</td>
+<td>False</td>
+<td>Plot results (pyEDM, rEDM)</td>
+</tr>
+<tr>
+<td>noTime</td>
+<td>bool</td>
+<td>False</td>
+<td>Do not require first data column of time or index</td>
 </tr>
 </tbody>
 </table>
+<p><br/>
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong>  :<br />
+Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension <code>E</code>, cross mapped with the target time series.  The target time series is then embedded to <code>E</code> and cross mapped against the column as the "target" time series, not an embedding.</p>
+<p>If there are multiple <code>columns</code> and <code>embedded</code> is false, each column is time-delay embedded to dimension <code>E</code> creating an N-columns * E dimensional "mixed" embedding.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the speficied columns.  The same logic applies if multiple target are specified for the "reverse" mapping. If embedded is false, each target is time-delay embedded to dimension <code>E</code> creating an N-target * E dimensional "mixed" embedding cross mapped to the first column as the cross map target.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the speficied target(s).</p>
+<p><code>libSizes</code> specifies a string  of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
+<p>If <code>random</code> is true, sample observations are randomly selected from the 
+subset of each library size. </p>
+<p>If <code>random</code> is false, sample is ignored and contiguous library rows up to the 
+current library size are used. Note this is <em>not</em> convergent cross mapping.  </p>
+<p>If <code>seed=0</code> , then a random seed is generated for the random number generator. 
+Otherwise, seed is used to initialise the random number generator.</p>
+<p><strong> Returns </strong>  :<br />
+If <code>includeData</code> is <code>False</code>: returns DataFrame with 3 columns. <br />
+The first column is <code>LibSize</code>, the second and third columns
+are Pearson correlation coefficients for <code>column</code> : <code>target</code> 
+and <code>target</code> : <code>column</code> cross mapping.</p>
+<p>If <code>includeData</code> is <code>True</code>: returns a list with the above DataFrame
+and a DataFrame of all Simplex projection statistics. If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../embedding_parameters/" class="btn btn-neutral float-left" title="Embedding"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../edm_functions/" class="btn btn-neutral float-right" title="EDM Functions">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../smap_/" class="btn btn-neutral float-left" title="SMap"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../multiview_/" class="btn btn-neutral float-right" title="Multiview">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
@@ -328,10 +339,10 @@
   <span class="rst-current-version" data-toggle="rst-current-version">
     
     
-      <span><a href="../embedding_parameters/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../smap_/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../edm_functions/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../multiview_/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

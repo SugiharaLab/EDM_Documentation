@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>S-map - EDM (pyEDM, rEDM)</title>
+    <title>S-map first principles - EDM (pyEDM, rEDM)</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -16,7 +16,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "S-map";
+        var mkdocs_page_name = "S-map first principles";
         var mkdocs_page_input_path = "SMap_Demo.ipynb";
         var mkdocs_page_url = null;
       </script>
@@ -57,16 +57,42 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">EDM Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../smap_/">SMap</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ccm_/">CCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../multiview_/">Multiview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedDimension_/">EmbedDimension</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../predictInterval_/">PredictInterval</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../predictNonlinear_/">PredictNonlinear</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../embed_/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../makeBlock_/">MakeBlock</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../computeError_/">ComputeError</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic_examples/">Basic EDM Examples</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">EDM Algorithms</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../basic_examples/">Basic EDM Examples</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">S-map</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">S-map first principles</a>
     <ul class="current">
     </ul>
                   </li>
@@ -90,7 +116,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
           <li>EDM Algorithms &raquo;</li>
-      <li>S-map</li>
+      <li>S-map first principles</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -133,38 +159,31 @@
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="smap-sequentially-locally-weighted-global-linear-maps">SMAP - Sequentially Locally Weighted Global Linear Maps</h2>
+<h2 id="s-map-sequentially-locally-weighted-global-linear-maps">S-map - Sequentially Locally Weighted Global Linear Maps</h2>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>SMAP is a powerful prediction algorithm for nonlinear systems.</p>
+<p>S-map can predict nonlinear systems with high accuracy by using a linear predictor localized to state-space points (nearest neighbors) such that a linear prediction in the state-space is appropriate.</p>
+<p>For example, consider the Lorenz 3-D butterfly system and its state-space (attractor). The relationship between x and z changes with time (positively correlated in one lobe and negatively in the other). Using a global linear predictor in the state-space for the entire system would predict poorly since the relationship between x and z is not globally linear. However, if we limit the scope of the library of state-space points to a neighborhood local to the query point, the relationship between x and z becomes approximately linear.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>SMAP can predict nonlinear systems with high accuracy by using a linear predictor localized to state-space points (nearest neighbors) such that a linear prediction  is appropriate.</p>
-<p>For example, consider the Lorenz system and its state-space (attractor). The relationship between $x$ and $z$ changes with time (positively correlated in one lobe and negatively in the other). Using a global linear predictor in the state-space for the entire system would predict poorly since the relationship between $x$ and $z$ is not globally linear. However, if we limit the scope of the library of state-space points to a neighborhood local to the query point, the relationship between $x$ and $z$ becomes approximately linear.</p>
+<p>S-map localization is implemented by attributing each state-space vector a weight w = exp(-θd/D), where d is the distance from the query point, D the average distance of all state-space points from the query point, and θ the localization parameter. As a result, state-space points far from the query point are attributed a vanishing weight, while data close to the query point are given high weight such that the linear predictor is more "informed" by data in the same state-space locale as the query point.</p>
+<p>If the system dynamics are state-dependent, and therefore nonlinear, θ is related to the degree of nonlinearity, that is, as theta increases and the linear predictor is localized to increasingly smaller regions of the state-space, predictability will increase if the system is state-dependent. We can use this property to evaluate the degree of nonlinearity of the system by varying θ and comparing prediction accuracy at each localized scale in the state-space. Such evaluations can be peformed with the <code>PredictNonlinear()</code> function.</p>
 </div>
 </div>
 </div>
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>SMAP localization is implemented by attributing each state-space vector a weight $w = e^{-\theta d / D}$, where $d$ is the distance from the query point, and $D$ the average distance of all state-space points from the query point (for normalization). As a result, state-space points far from the query point are attributed a low weight, where data close to the query point are given a high weight such that the linear predictor is more "informed" by data in the same state-space locale as the query point.
-If the system dynamics are state-dependent, and therefore nonlinear, $\theta$ should be related to the degree of nonlinearity, that is as theta increases and the linear predictor is localized to increasingly smaller regions of the state-space, predictability will increase if the system is state-dependent. We can use this property to evaluate how nonlinear the system is - varying $\theta$ and comparing the prediction accuracy (more on this later using the <code>PredictNonlinear()</code> function).</p>
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing text_cell rendered">
-<div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Let's visualize SMAP's weighting/localization function on the Lorenz system. 
-Here, we have the entire system dynamics available, all three variables $x,y,z$ that define the Lorenz system. In most cases one instead has a single time series observed from the system and creates a state-space from time-delay embedding. This embedding is done by default in the EDM code.</p>
+<p>Let's visualize S-map's weighting/localization function on the Lorenz system. 
+Here, we have the entire system dynamics available, all three variables [x,y,z] that define the Lorenz system. In most cases one instead has a single time series observed from the system and creates a state-space from time-delay embedding. This embedding is done by default in the EDM code.</p>
 </div>
 </div>
 </div>
@@ -261,9 +280,9 @@ plt.show()
 <div class="cell border-box-sizing text_cell rendered">
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>The linear model is just an <a href="https://en.wikipedia.org/wiki/Autoregressive_model">autoregressive model</a>, but when evaluating the least-squares solution, we apply our computed weights to the library. Note that normally in EDM we use embeddings to reconstruct the state space via lags of an observer, which is more consistent with the idea of an autoregressive model, but in this case we're just using the entire Lorenz system as our input data.
-A quick recap on an autoregressive (AR) model: it's a linear function for predicting the next point in a time series  given the past $p$ previous values (lags). Basically, we are trying to construct a linear transformation from point $x$ to point $x+1$ with the $p$ values preceding $x$, by showing the model |libary| instances of going from $x,x-1,..,x-p$ to $x+1$.
-Also note that the response vector is the next point for every library point, since we are trying to compute a function that outputs the next point given the current point and its $p$ prior values.</p>
+<p>The linear model can be viewed as an <a href="https://en.wikipedia.org/wiki/Autoregressive_model">autoregressive model</a>. An autoregressive (AR) model applied to time series is a linear function for predicting the next point in a time series given the past p previous values. The AR model seeks to construct a linear transformation from point x(t) to point x(t+1) based on the p values preceding x(t): [x(t),x(t-1),..,x(t-p)].
+Here, the state-space lagged embedding vectors correspond to previous values. In comparison to Simplex that projects from knn = E+1 nearest neighbors at the state-space query point, S-Map uses the entire state-space library, but with states weighted corresponding to how close (similar) in state-space they are to the query point.
+Also note that the response vector is the next point for every library point, since we are trying to compute a function that outputs the next point given the current point and its p prior values.</p>
 </div>
 </div>
 </div>
@@ -374,7 +393,7 @@ print(&quot;true point {}, predict {}, error {}&quot;.format(
 <div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>The prediction is accurate.
-Note that <code>SMAP()</code> repeats this process on every query point since every query point is potentially in a different state in state-space, hence <em>sequential locally</em> weighted global linear maps.</p>
+Note that <code>SMap()</code> repeats this process on every query point since every query point is potentially in a different state in state-space, hence <em>sequential locally</em> weighted global linear maps.</p>
 </div>
 </div>
 </div>

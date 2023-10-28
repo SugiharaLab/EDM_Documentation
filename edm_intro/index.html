@@ -69,16 +69,42 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">EDM Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../smap_/">SMap</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ccm_/">CCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../multiview_/">Multiview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedDimension_/">EmbedDimension</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../predictInterval_/">PredictInterval</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../predictNonlinear_/">PredictNonlinear</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../embed_/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../makeBlock_/">MakeBlock</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../computeError_/">ComputeError</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic_examples/">Basic EDM Examples</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">EDM Algorithms</span></p>
               <ul>
-                  <li class="toctree-l1"><a class="reference internal" href="../basic_examples/">Basic EDM Examples</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
                   </li>
@@ -158,21 +184,23 @@ Both operate in the embedding state-space, using nearest neighbors
 of a query point (location in the state-space from which a prediction is
 desired) to project a new estimate along the manifold.</p>
 <p><a href="../edm_functions/#simplex"><code>Simplex()</code></a> uses the centroid of the k-nearest
-neighbors (knn) of the query point as the estimate.  The number of neighbors,
-knn, is conventionally set as the number of dimensions plus one: knn = E + 1. </p>
-<p><a href="../edm_functions/#smap"><code>SMap()</code></a> uses a linear regression of query
+neighbors (knn) of the query point projected <code>Tp</code> time steps ahead as the 
+estimate.  The number of neighbors, knn, is conventionally set as the number
+of state-space dimensions plus one: knn = E + 1. </p>
+<p><a href="../edm_functions/#smap"><code>SMap()</code></a> uses a localized linear regression of query
 point neighbors to project a new estimate along the manifold.  By default,
 the number of
-neighbors knn in the regression are set to the total number of state-space
-observation points. An exponential localisation function F(θ) = exp(-θd/D)
-is used to selectively ignore neighbors beyond the localisation radius. 
-θ is the localisation parameter, d a neighbor distance, and D the mean
+neighbors in the regression are set to the total number of state-space
+observation points. An exponential localization function F(θ) = exp(-θd/D)
+is used to selectively ignore neighbors beyond the localization radius where 
+θ is the localization parameter, d a neighbor distance, and D the mean
 distance to all neighbors.  This allows one to vary the
 extent to which local neighbors are considered in the linear projection,
 effectively modeling different local "resolutions" on the attractor.
-The effect of this knn localisation can be assessed with the
-<a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a> function that
-evaluates S-map predictive skill over a range of localisations θ. </p>
+Since the scale of these local resolutions reflect the degree to which
+the dynamics are state-dependent, evaluating S-map predictive skill over
+a range of localizations θ can reveal the degree of state-dependence, and
+thus nonlinearity of the dynamics. The <a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a> function can be used for this purpose. </p>
 <h3 id="variable-interactions">Variable interactions</h3>
 <p>EDM also provides methods to assess interactions between state-space
 variables, as well as inference of causal relationships.</p>

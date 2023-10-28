@@ -57,13 +57,39 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+              <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">EDM Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../smap_/">SMap</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ccm_/">CCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../multiview_/">Multiview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedDimension_/">EmbedDimension</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../predictInterval_/">PredictInterval</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../predictNonlinear_/">PredictNonlinear</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../embed_/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../makeBlock_/">MakeBlock</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../computeError_/">ComputeError</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic_examples/">Basic EDM Examples</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">EDM Algorithms</span></p>
               <ul class="current">
-                  <li class="toctree-l1"><a class="reference internal" href="../basic_examples/">Basic EDM Examples</a>
-                  </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">EDM Algorithms in Depth</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#simplex-nearest-neighbor-projection">Simplex : Nearest Neighbor Projection</a>
@@ -74,7 +100,7 @@
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
                   </li>
@@ -109,10 +135,10 @@
 <h2 id="simplex-nearest-neighbor-projection">Simplex : Nearest Neighbor Projection</h2>
 <p><code>Simplex</code> is a nearest neighbor projection. It locates the <code>knn</code> 
 nearest neighbors to the query point (location in the state-space from
-which a prediction is desired) within the library phase-space. <code>knn</code> is
+which a prediction is desired) within the library state-space. <code>knn</code> is
 typically set to <code>E</code>+1, where <code>E</code> is the system dimension.  These <code>knn</code>
 points define an <code>E</code>+1 dimensional simplex in the state-space.  The
-prediction is computed as the average of the weighted phase-space simplex
+prediction is computed as the average of the weighted state-space simplex
 projected <code>Tp</code> points ahead.  Each neighbor is weighted
 proportional to their distance to the query point as described in
 <a href="https://www.nature.com/articles/344734a0">Sugihara and May 1990</a>.
@@ -125,19 +151,22 @@ temporal forecast predictability
 convergent cross mapping <a href="../edm_functions/#ccm"><code>CCM()</code></a>,
 and multiview embedding <a href="../edm_functions/#multiview"><code>Multiview()</code></a>.</p>
 <h2 id="s-map-sequential-locally-weighted-global-linear-maps">S-Map : Sequential Locally Weighted Global Linear Maps</h2>
-<p>S-Map extends the phase space prediction in <code>Simplex</code> from an
+<p>S-Map extends the state-space prediction in <code>Simplex</code> from an
 average of the <code>E</code>+1 knn neighbors, to a linear regression fit to all
-neighbors, but localised with an exponential decay kernel as described
-in <a href="https://royalsocietypublishing.org/doi/abs/10.1098/rsta.1994.0106">Sugihara 1994</a>. The exponential localisation function is F(θ) = exp(-θd/D), where d
+neighbors, but localized with an exponential decay kernel as described
+in <a href="https://royalsocietypublishing.org/doi/abs/10.1098/rsta.1994.0106">Sugihara 1994</a>. The exponential localization function is F(θ) = exp(-θd/D), where d
 is the neighbor distance and D the mean distance.
 In this way, neighbors close to the query point have a higher weight
-than those further from it, such that a locally linear approximation to
-the nonlinear system is reasonable. This <em>localisation</em> ability allows
+than those further from it, such that a local linear approximation to
+the nonlinear system can be reasonable. This <em>localization</em> ability allows
 one to identify an optimal local scale that may provide improved
-predictability over a <code>Simplex</code> projection. </p>
-<p>For a demonstration of this localisation, see the
+predictability over a <code>Simplex</code> projection. Notably, assessing predictability
+over a spectrum of localization parameters θ allows one to infer
+state-dependence, and thus nonlinearity of the dynamics. See 
+<a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a>.</p>
+<p>For a demonstration of S-Map state-space localization, see the
 <a href="../SMap_Demo/">S-MAP Notebook</a>.</p>
-<p>Another advantage of S-Map is that for a properly fit model, the regression
+<p>Another feature of S-Map is that for a properly fit model, the regression
 coefficients between variables have been shown to approximate
 the gradient (directional derivative) of variables along the manifold
 (<a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2015.2258">Deyle et al. 2016</a>). These Jacobians represent the time-varying interaction strengths
@@ -166,7 +195,7 @@ frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../basic_examples/" class="btn btn-neutral float-left" title="Basic EDM Examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../SMap_Demo/" class="btn btn-neutral float-right" title="S-map">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../SMap_Demo/" class="btn btn-neutral float-right" title="S-map first principles">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>

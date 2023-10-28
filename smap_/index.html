@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <link rel="shortcut icon" href="../img/favicon.ico" />
+    <title>SMap - EDM (pyEDM, rEDM)</title>
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/theme_extra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link href="../extra.css" rel="stylesheet" />
+        <link href="../css/ansi-colours.css" rel="stylesheet" />
+        <link href="../css/jupyter-cells.css" rel="stylesheet" />
+        <link href="../css/pandas-dataframe.css" rel="stylesheet" />
+    
+      <script>
+        // Current page data
+        var mkdocs_page_name = "SMap";
+        var mkdocs_page_input_path = "smap_.md";
+        var mkdocs_page_url = null;
+      </script>
+    
+    <script src="../js/jquery-3.6.0.min.js" defer></script>
+    <!--[if lt IE 9]>
+      <script src="../js/html5shiv.min.js"></script>
+    <![endif]-->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+      <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+        </a>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <ul>
+                <li class="toctree-l1"><a class="reference internal" href="..">Home</a>
+                </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Getting Started</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../installation/">Installation</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../edm_intro/">EDM Framework</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Documentation</span></p>
+              <ul class="current">
+                  <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">EDM Functions</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
+                  </li>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">SMap</a>
+    <ul class="current">
+    </ul>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../ccm_/">CCM</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../multiview_/">Multiview</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedDimension_/">EmbedDimension</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../predictInterval_/">PredictInterval</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../predictNonlinear_/">PredictNonlinear</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../embed_/">Embed</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../makeBlock_/">MakeBlock</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../computeError_/">ComputeError</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Examples</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../basic_examples/">Basic EDM Examples</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">EDM Algorithms</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  </li>
+                  <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
+                  </li>
+              </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+      <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="..">EDM (pyEDM, rEDM)</a>
+        
+      </nav>
+      <div class="wy-nav-content">
+        <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
+          <li>Documentation &raquo;</li>
+      <li>SMap</li>
+    <li class="wy-breadcrumbs-aside">
+    </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+            <div class="section" itemprop="articleBody">
+              
+                <h2 id="smap"><function> SMap </function></h2>
+<p><strong> Description </strong>  : <br />
+SMap projection of the input data file or DataFrame.</p>
+<p><strong> Python </strong>  :   </p>
+<pre><code class="language-python">SMap(pathIn='./', dataFile='', dataFrame=None, pathOut='./',
+predictFile='', lib='', pred='', E=0, Tp=1, knn=0, tau=-1,
+theta=0, exclusionRadius=0, columns='', target='',
+smapCoefFile='', smapSVFile='', solver=None, embedded=False,
+verbose=False, const_pred=False, showPlot=False,
+validLib=[], ignoreNan=True, generateSteps=0,
+generateLibrary=False, parameterList=False, noTime=False)
+</code></pre>
+<p><strong> R </strong>  :   </p>
+<pre><code class="language-R">SMap(pathIn=&quot;./&quot;, dataFile=&quot;&quot;, dataFrame=NULL,
+lib=&quot;&quot;, pred=&quot;&quot;, E=0, Tp=1, knn=0, tau=-1,
+theta=0, exclusionRadius=0, columns=&quot;&quot;, target=&quot;&quot;, 
+embedded=FALSE, verbose=FALSE, validLib=vector(), 
+ignoreNan=TRUE, generateSteps=0, parameterList=FALSE, 
+showPlot=FALSE, noTime=FALSE) 
+</code></pre>
+<hr />
+<table>
+<thead>
+<tr>
+<th>Parameter</th>
+<th>Type</th>
+<th>Default</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>pathIn</td>
+<td>string</td>
+<td>"./"</td>
+<td>Input data file path</td>
+</tr>
+<tr>
+<td>dataFile</td>
+<td>string</td>
+<td>""</td>
+<td>Data file name</td>
+</tr>
+<tr>
+<td>dataFrame</td>
+<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
+<td>None</td>
+<td>Input DataFrame</td>
+</tr>
+<tr>
+<td>pathOut</td>
+<td>string</td>
+<td>"./"</td>
+<td>Output file path</td>
+</tr>
+<tr>
+<td>predictFile</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction output file</td>
+</tr>
+<tr>
+<td>lib</td>
+<td>string or []</td>
+<td>""</td>
+<td>Pairs of library start stop row indices</td>
+</tr>
+<tr>
+<td>pred</td>
+<td>string or []</td>
+<td>""</td>
+<td>Pairs of prediction start stop row indices</td>
+</tr>
+<tr>
+<td>E</td>
+<td>int</td>
+<td>0</td>
+<td>Data dimension</td>
+</tr>
+<tr>
+<td>Tp</td>
+<td>int</td>
+<td>1</td>
+<td>Prediction Interval</td>
+</tr>
+<tr>
+<td>knn</td>
+<td>int</td>
+<td>0</td>
+<td>Number nearest neighbors</td>
+</tr>
+<tr>
+<td>tau</td>
+<td>int</td>
+<td>-1</td>
+<td>Embedding time shift (time series rows)</td>
+</tr>
+<tr>
+<td>theta</td>
+<td>int</td>
+<td>0</td>
+<td>SMap localization</td>
+</tr>
+<tr>
+<td>exclusionRadius</td>
+<td>int</td>
+<td>0</td>
+<td>Prediction vector exclusion radius</td>
+</tr>
+<tr>
+<td>columns</td>
+<td>string or []</td>
+<td>""</td>
+<td>Column names for library</td>
+</tr>
+<tr>
+<td>target</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction target column name or index</td>
+</tr>
+<tr>
+<td>smapCoefFile</td>
+<td>string</td>
+<td>""</td>
+<td>SMap coefficient output file</td>
+</tr>
+<tr>
+<td>smapSVFile</td>
+<td>string</td>
+<td>""</td>
+<td>SMap singular value output file</td>
+</tr>
+<tr>
+<td>solver</td>
+<td>sklearn.linear_model</td>
+<td>None</td>
+<td>Linear system solver</td>
+</tr>
+<tr>
+<td>embedded</td>
+<td>bool</td>
+<td>False</td>
+<td>Is data an embedding? If False, embed to E</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>bool</td>
+<td>False</td>
+<td>Echo messages</td>
+</tr>
+<tr>
+<td>const_pred</td>
+<td>bool</td>
+<td>False</td>
+<td>Include non projected forecast data</td>
+</tr>
+<tr>
+<td>showPlot</td>
+<td>bool</td>
+<td>False</td>
+<td>Plot results (pyEDM, rEDM)</td>
+</tr>
+<tr>
+<td>validLib</td>
+<td>bool []</td>
+<td>[] or None</td>
+<td>Conditional embedding</td>
+</tr>
+<tr>
+<td>ignoreNan</td>
+<td>bool</td>
+<td>True</td>
+<td>Adjust lib to exlcude NaN</td>
+</tr>
+<tr>
+<td>generateSteps</td>
+<td>int</td>
+<td>0</td>
+<td>Number of recursive time step predictions</td>
+</tr>
+<tr>
+<td>generateLibrary</td>
+<td>bool</td>
+<td>False</td>
+<td>Add generated data to library</td>
+</tr>
+<tr>
+<td>parameterList</td>
+<td>bool</td>
+<td>False</td>
+<td>Include parameter dictionary in return</td>
+</tr>
+<tr>
+<td>noTime</td>
+<td>bool</td>
+<td>False</td>
+<td>Do not require first data column of time or index</td>
+</tr>
+</tbody>
+</table>
+<p><br/>
+Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
+<p><strong> Notes </strong> : <br />
+If <code>embedded</code> is false, data columns are embedded to dimension <code>E</code> with shift <code>tau</code>.</br/>
+If <code>predictFile</code> is provided the predictions are written in csv format.<br/>
+If <code>smapFile</code> is provided the coefficients are written in csv format.<br/>
+If <code>knn</code> is not specified, it is set equal to the library size.<br/>
+If <code>knn</code> is specified, it must be greater than <code>E</code>.<br/>
+If <code>nan</code> are detected in <code>columns</code> or <code>target</code> the corresponding rows are removed prior to time-delay embedding. This may invalidate presumptions of Takens theorem.</p>
+<p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
+<p>If generateSteps &gt; 0 <code>SMap</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
+<p><strong> Embedding </strong> : <br />
+<code>SMap</code> should be called with columns explicitly corresponding to
+dimensions <code>E</code>. In the univariate case (number of <code>columns</code> = 1) with
+default <code>embedded = false</code>, the time series will be time-delay
+embedded to dimension <code>E</code>, returned <code>SMap</code> coefficients correspond to each dimension. </p>
+<p>If a multivariate data is used (number of <code>columns</code> &gt; 1) <code>SMap</code>
+must use <code>embedded = true</code> with <code>E</code> equal to the number of columns.
+This prevents the function from internally time-delay embedding the
+multiple columns to dimension <code>E</code>.  If internal time-delay embedding
+were performed, then state-space columns will not correspond to the
+intended dimensions in the matrix inversion, coefficient assignment,
+and prediction.  In this multivariate case, the user can first prepare
+the embedding (using <a href="../edm_functions/#embed"><code>Embed()</code></a> for time-delay
+embedding if desired, add a first column of time), then pass this embedding 
+to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.
+The <a href="https://github.com/SugiharaLab/pyEDM/blob/master/pyEDM/etc/apps/Embedding.py"><code>Embedding.py</code></a> application can be used to perform the embedding and
+insert the time vector for input to <code>SMap</code>.</p>
+<p><strong> Linear System Solver </strong> : <br />
+In <code>pyEDM</code>: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
+a class object instantiated from the <code>sklearn.linear_model</code> class.
+Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
+<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. See <a href="../solvers_demo/"><code>examples</code></a>.</p>
+<p><strong> Returns </strong>  : <br />
+Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with two DataFrames:<br/>
+<code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br/>
+<code>coefficients</code>[ E+2 columns : "Time", and E+1 SMap coefficents]<br/>
+If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p>
+<p><code>nan</code> values are inserted in the output DataFrame where there is 
+no observation or prediction.</p>
+              
+            </div>
+          </div><footer>
+    <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
+        <a href="../simplex_/" class="btn btn-neutral float-left" title="Simplex"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../ccm_/" class="btn btn-neutral float-right" title="CCM">Next <span class="icon icon-circle-arrow-right"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+          
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="Versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../simplex_/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+      <span><a href="../ccm_/" style="color: #fcfcfc">Next &raquo;</a></span>
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
