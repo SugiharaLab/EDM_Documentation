@@ -1,6 +1,6 @@
 # Empirical Dynamic Modeling (EDM)
 
-Empirical dynamic modeling (EDM) is an emerging non-parametric framework
+[Empirical dynamic modeling (EDM)](https://en.wikipedia.org/wiki/Empirical_dynamic_modeling) is an emerging non-parametric framework
 for modeling nonlinear dynamic systems. EDM is based on the mathematical
 theory of reconstructing attractor manifolds from time series data
 ([Takens 1981](https://en.wikipedia.org/wiki/Takens%27s_theorem)).
@@ -27,8 +27,8 @@ Python and R interfaces to the library are provided in the
 
 ## Motivation
 Many analytic approaches use models as approximations of real world
-systems (e.g. testing hypotheses to explain mechanisms or processes,
-or, for predicting future outcomes). However, real world systems are
+systems to test hypotheses, explain mechanisms,
+or, predict future outcomes. However, real world systems are
 often nonlinear and multidimensional, rendering explicit parametric
 equations problematic. Empirical models, which infer patterns and
 associations from the data instead of using discrete, hypothesized

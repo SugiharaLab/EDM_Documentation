@@ -12,15 +12,27 @@ markdown_extensions:
 nav:
 - Home : index.md
 - Getting Started :
-    - Installation : installation.md
+    - Installation  : installation.md
     - EDM Framework : edm_intro.md
 - Documentation :
     - Embedding : embedding_parameters.md
     - Parameters : parameters.md
+- Documentation :
     - EDM Functions : edm_functions.md
-- EDM Algorithms :
+    - Simplex          : simplex_.md
+    - SMap             : smap_.md
+    - CCM              : ccm_.md
+    - Multiview        : multiview_.md
+    - EmbedDimension   : embedDimension_.md
+    - PredictInterval  : predictInterval_.md
+    - PredictNonlinear : predictNonlinear_.md
+    - Embed            : embed_.md
+    - MakeBlock        : makeBlock_.md
+    - ComputeError     : computeError_.md
+- Examples :
     - Basic EDM Examples : basic_examples.ipynb
+- EDM Algorithms :
     - EDM Algorithms in Depth : algorithms_in_depth.md
-    - S-map : SMap_Demo.ipynb
-    - Custom Solvers : solvers_demo.ipynb
-    - Conditional Embedding : cond_emb_demo.ipynb
+    - S-map first principles  : SMap_Demo.ipynb
+    - Custom Solvers          : solvers_demo.ipynb
+    - Conditional Embedding   : cond_emb_demo.ipynb

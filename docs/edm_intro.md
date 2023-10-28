@@ -53,22 +53,24 @@ of a query point (location in the state-space from which a prediction is
 desired) to project a new estimate along the manifold.
 
 [`Simplex()`](../edm_functions/#simplex) uses the centroid of the k-nearest
-neighbors (knn) of the query point as the estimate.  The number of neighbors,
-knn, is conventionally set as the number of dimensions plus one: knn = E + 1. 
+neighbors (knn) of the query point projected `Tp` time steps ahead as the 
+estimate.  The number of neighbors, knn, is conventionally set as the number
+of state-space dimensions plus one: knn = E + 1. 
 
-[`SMap()`](../edm_functions/#smap) uses a linear regression of query
+[`SMap()`](../edm_functions/#smap) uses a localized linear regression of query
 point neighbors to project a new estimate along the manifold.  By default,
 the number of
-neighbors knn in the regression are set to the total number of state-space
-observation points. An exponential localisation function F(θ) = exp(-θd/D)
-is used to selectively ignore neighbors beyond the localisation radius. 
-θ is the localisation parameter, d a neighbor distance, and D the mean
+neighbors in the regression are set to the total number of state-space
+observation points. An exponential localization function F(θ) = exp(-θd/D)
+is used to selectively ignore neighbors beyond the localization radius where 
+θ is the localization parameter, d a neighbor distance, and D the mean
 distance to all neighbors.  This allows one to vary the
 extent to which local neighbors are considered in the linear projection,
 effectively modeling different local "resolutions" on the attractor.
-The effect of this knn localisation can be assessed with the
-[`PredictNonlinear()`](../edm_functions/#predictnonlinear) function that
-evaluates S-map predictive skill over a range of localisations θ. 
+Since the scale of these local resolutions reflect the degree to which
+the dynamics are state-dependent, evaluating S-map predictive skill over
+a range of localizations θ can reveal the degree of state-dependence, and
+thus nonlinearity of the dynamics. The [`PredictNonlinear()`](../edm_functions/#predictnonlinear) function can be used for this purpose. 
 
 ### Variable interactions
 EDM also provides methods to assess interactions between state-space
