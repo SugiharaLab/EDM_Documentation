@@ -65,7 +65,7 @@ If `predictFile` is provided the predictions are written in csv format.<br/>
 If `smapFile` is provided the coefficients are written in csv format.<br/>
 If `knn` is not specified, it is set equal to the library size.<br/>
 If `knn` is specified, it must be greater than `E`.<br/>
-If `nan` are detected in `columns` or `target` the corresponding rows are removed prior to time-delay embedding. This may invalidate presumptions of Takens theorem.
+If `nan` are detected in `columns` or `target` and `ignoreNan = True` (default), the library is automatically redefined to exclude data and embedding vectors containing `nan`.
 
 `validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
 
@@ -96,11 +96,14 @@ a class object instantiated from the `sklearn.linear_model` class.
 Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
 `ElasticNet`, `RidgeCV`, `LassoCV`, `ElasticNetCV`. See [`examples`](./solvers_demo.ipynb).
 
+Note: Windows does not support community compiler standards creating binary library compatibility barriers, specifically the use of OpenBLAS for the SVD solver. As a result, the Windows pyEDM implementation does not use the cppEDM default solver `dgelss` from BLAS/LAPACK. All other implementations use BLAS/LAPACK `dgelss` directly.
+
 ** Returns **  :   
-Dict in `pyEDM`, named List in `rEDM`: with two DataFrames:<br/>
+Dict in `pyEDM`, named List in `rEDM`: with three DataFrames:<br/>
 `predictions` [ 3 columns : "Time", "Observations", "Predictions"],<br/>
 `coefficients`[ E+2 columns : "Time", and E+1 SMap coefficents]<br/>
+`singularValues`[ E+2 columns : "Time", and E+1 SVD singular values] If available from the linear system solver.<br/>
 If `parameterList = True`, a dictionary of `parameters` is added.
 
 `nan` values are inserted in the output DataFrame where there is 
-no observation or prediction.
+no observation or prediction if `ignoreNan = True` (default). 
