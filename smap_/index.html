@@ -57,8 +57,6 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
-                  </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">SMap</a>
@@ -80,6 +78,11 @@
                   <li class="toctree-l1"><a class="reference internal" href="../makeBlock_/">MakeBlock</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../computeError_/">ComputeError</a>
+                  </li>
+              </ul>
+              <p class="caption"><span class="caption-text">Embedding Parameters</span></p>
+              <ul>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
               </ul>
               <p class="caption"><span class="caption-text">Examples</span></p>
@@ -347,7 +350,7 @@ The <a href="https://github.com/SugiharaLab/pyEDM/blob/master/pyEDM/etc/apps/Emb
 insert the time vector for input to <code>SMap</code>.</p>
 <p><strong> Conditional Embedding </strong> : <br>
 <code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
-<p><strong> Generative Mode </strong> :
+<p><strong> Generative Mode </strong> : <br>
 If generateSteps &gt; 0 <code>SMap</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
 <p><strong> Linear System Solver </strong> : <br>
 In <code>pyEDM</code>: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
