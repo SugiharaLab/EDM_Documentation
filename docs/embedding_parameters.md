@@ -1,4 +1,4 @@
-# Embedding Parameters
+# Embedding
 
 The [`EDM Framework`](../edm_intro) is based on a multidimensional representation of system dynamics, colloquially referred to as an _embedding_.  Given a dynamical system of dimension D, the [Whitney Embedding Theorem](https://en.wikipedia.org/wiki/Whitney_embedding_theorem#See_also) establishes limits on the embedding dimension, E, needed to completely represent the dynamics. Generally, EDM uses the parameter E to represent the dimension of the embedding, however, to support multivariate embeddings there are deviations from the above definitions as noted below.
 

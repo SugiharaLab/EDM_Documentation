@@ -65,7 +65,7 @@ If `knn` is not specified, it is set to the full library size.<br/>
 If `knn` is specified, it must be greater than `E`.<br/>
 
 ** nan ** :   
-Any prediction row (`pred`) with `nan` will result in `SMap` `nan` prediction. Any library vector with `nan` , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in `SMap` `nan` prediction. By default `SMap` uses all library vectors as neighbors. If `nan` are included in any library vector, the result will be `nan` prediction. To address this, if `nan` are detected in `columns` or `target` and `ignoreNan = True` (default), the library is automatically redefined to exclude data and embedding vectors containing `nan`. If `ignoreNan = False` the library is not changed. The user can manually specify library (`lib`) row segments to ignore nan values.
+Any prediction row (`pred`) with `nan` will result in `SMap` `nan` prediction. Any library vector with `nan` , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in `SMap` `nan` prediction. By default `SMap` uses all library vectors as neighbors. To address this, if `nan` are detected in `columns` or `target` and `ignoreNan = True` (default), the library is automatically redefined to exclude data and embedding vectors containing `nan`. If `ignoreNan = False` the library is not changed. The user can manually specify library (`lib`) row segments to ignore nan values.
 
 ** Multivariate Embedding ** :   
 `SMap` should be called with columns explicitly corresponding to dimensions `E`. In the univariate case (number of `columns` = 1) with default `embedded = false`, the time series will be time-delay embedded to dimension `E`, returned `SMap` coefficients correspond to each dimension. 
@@ -84,8 +84,10 @@ The [`Embedding.py`](https://github.com/SugiharaLab/pyEDM/blob/master/pyEDM/etc/
 insert the time vector for input to `SMap`.
 
 
+** Conditional Embedding ** :   
 `validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
 
+** Generative Mode ** :
 If generateSteps > 0 `SMap` operates in feedback generative mode. The values of `pred` are over-riden to start at the end of the data. At each step one prediction is made, added to the `columns` data, a new time-delay embedded is created, and the cycle repeated for `generateSteps`. Feedback generation only operates on a univariate time series that is time-delay embedded. The `columns` and `target` variables must be the same.
 
 ** Linear System Solver ** :   

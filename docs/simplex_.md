@@ -57,9 +57,9 @@ Refer to the [parameters](./parameters.md) table for general parameter definitio
 ** Notes ** :   
 If `embedded` is false (default) the data `columns` are embedded to dimension `E` with time shift `tau`.  If `knn` = 0, it is set to E+1.
 
-`validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
-
 `nan` values are passed through all numeric computations in `cppEDM`. Any prediction row (`pred`) with `nan` will result in `nan` simplex prediction. Any library vector with a `nan` , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in `nan` simplex prediction.
+
+`validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
 
 If generateSteps > 0 `Simplex` operates in feedback generative mode. The values of `pred` are over-riden to start at the end of the data. At each step one prediction is made, added to the `columns` data, a new time-delay embedded is created, and the cycle repeated for `generateSteps`. Feedback generation only operates on a univariate time series that is time-delay embedded. The `columns` and `target` variables must be the same.
 
