@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>EmbedDimension - EDM (pyEDM, rEDM)</title>
+    <title>EmbedDimension - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href=".." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -57,7 +57,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
@@ -91,9 +91,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -105,7 +105,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">EDM (pyEDM, rEDM)</a>
+          <a href="..">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -122,8 +122,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="embeddimension"><function> EmbedDimension </function></h2>
-<p><strong> Description </strong>  : <br />
+                <div><h2 id="embeddimension"><function> EmbedDimension </function></h2>
+<p><strong> Description </strong>  : <br>
 Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE</code>.</p>
 <p><strong> Python </strong>  :   </p>
 <pre><code class="language-python">EmbedDimension(pathIn='./', dataFile='', dataFrame=None,
@@ -133,13 +133,13 @@ embedded=False, verbose=False, validLib=[], numThreads=4,
 showPlot=True, noTime=False)
 </code></pre>
 <p><strong> R </strong>  :   </p>
-<pre><code class="language-R">EmbedDimension(pathIn=&quot;./&quot;, dataFile=&quot;&quot;, dataFrame=NULL,
-pathOut=&quot;&quot;, predictFile=&quot;&quot;, lib=&quot;&quot;, pred=&quot;&quot;,
+<pre><code class="language-R">EmbedDimension(pathIn="./", dataFile="", dataFrame=NULL,
+pathOut="", predictFile="", lib="", pred="",
 maxE=10, Tp=1, tau=-1, exclusionRadius=0,
-columns=&quot;&quot;, target=&quot;&quot;,  embedded=FALSE, verbose=FALSE,
+columns="", target="",  embedded=FALSE, verbose=FALSE,
 validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 </code></pre>
-<hr />
+<hr>
 <table>
 <thead>
 <tr>
@@ -164,7 +164,7 @@ validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -266,12 +266,12 @@ validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 </tr>
 </tbody>
 </table>
-<p><br/>
+<p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
-<p><strong> Notes </strong>  : <br />
+<p><strong> Notes </strong>  : <br>
 <code>numThreads</code> defines the number of worker threads for the <code>maxE</code> embeddings.</p>
-<p><strong> Returns </strong>  : <br />
-DataFrame with columns <code>E</code> and <code>rho</code>.   </p>
+<p><strong> Returns </strong>  : <br>
+DataFrame with columns <code>E</code> and <code>rho</code>.   </p></div>
               
             </div>
           </div><footer>

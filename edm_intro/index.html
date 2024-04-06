@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>EDM Framework - EDM (pyEDM, rEDM)</title>
+    <title>EDM Framework - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href=".." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -69,7 +69,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
@@ -101,9 +101,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -115,7 +115,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">EDM (pyEDM, rEDM)</a>
+          <a href="..">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -132,7 +132,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="the-edm-framework">The EDM Framework</h2>
+                <div><h2 id="the-edm-framework">The EDM Framework</h2>
 <p>The EDM framework is predicated on the availability of a multidimensional
 representation of the system dynamics.  For example, the well-known
 <a href="https://en.wikipedia.org/wiki/R%C3%B6ssler_attractor">Rössler attractor</a>
@@ -147,12 +147,10 @@ is a remarkable mathematical result that allows one to reconstruct a
 representation of the system dynamics (state-space manifold) from a
 single (univariate, 1-D) timeseries observed from the system.  The embedding
 results in generation of a higher-dimensional representation of the system.</p>
-<iframe width="100%" height="335"
-src="https://www.youtube.com/embed/QQwtrWBwxQg" 
-frameborder="0" allow="autoplay; gyroscope; 
+<iframe width="100%" height="335" src="https://www.youtube.com/embed/QQwtrWBwxQg" frameborder="0" allow="autoplay; gyroscope; 
 picture-in-picture" allowfullscreen></iframe>
 
-<hr />
+<hr>
 <h3 id="embedding">Embedding</h3>
 <p>The process of creating this representation is termed <em>embedding</em>.  In the
 EDM packages we can use the <a href="../edm_functions/#embed"><code>Embed()</code></a>
@@ -208,14 +206,11 @@ between variables, which have been shown to approximate the gradient
 (<a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2015.2258">Deyle et al. 2016</a>).</p>
 <p><a href="../edm_functions/#ccm"><code>CCM()</code></a> applies convergent cross mapping
 to pairs of variables to infer possible causal links between variables.</p>
-<iframe width="100%" height="335"
-src="https://www.youtube.com/embed/NrFdIz-D2yM" 
-frameborder="0" allow="autoplay; gyroscope; picture-in-picture"
-allowfullscreen></iframe>
+<iframe width="100%" height="335" src="https://www.youtube.com/embed/NrFdIz-D2yM" frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
-<hr />
+<hr>
 <p>Details on these algorithms are provided in the section
-<a href="../algorithms_in_depth">EDM Algorithms in Depth</a>.</p>
+<a href="../algorithms_in_depth">EDM Algorithms in Depth</a>.</p></div>
               
             </div>
           </div><footer>

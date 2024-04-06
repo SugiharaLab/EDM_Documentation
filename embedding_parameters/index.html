@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Embedding Parameters - EDM (pyEDM, rEDM)</title>
+    <title>Embedding - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -16,7 +16,7 @@
     
       <script>
         // Current page data
-        var mkdocs_page_name = "Embedding Parameters";
+        var mkdocs_page_name = "Embedding";
         var mkdocs_page_input_path = "embedding_parameters.md";
         var mkdocs_page_url = null;
       </script>
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href=".." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -57,7 +57,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Embedding Parameters</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Embedding</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
     </li>
@@ -99,9 +99,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -113,7 +113,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">EDM (pyEDM, rEDM)</a>
+          <a href="..">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -121,7 +121,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
           <li>Documentation &raquo;</li>
-      <li>Embedding Parameters</li>
+      <li>Embedding</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -130,7 +130,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="embedding-parameters">Embedding Parameters</h1>
+                <div><h1 id="embedding-parameters">Embedding Parameters</h1>
 <p>The <a href="../edm_intro"><code>EDM Framework</code></a> is based on a multidimensional representation of system dynamics, colloquially referred to as an <em>embedding</em>.  Given a dynamical system of dimension D, the <a href="https://en.wikipedia.org/wiki/Whitney_embedding_theorem#See_also">Whitney Embedding Theorem</a> establishes limits on the embedding dimension, E, needed to completely represent the dynamics. Generally, EDM uses the parameter E to represent the dimension of the embedding, however, to support multivariate embeddings there are deviations from the above definitions as noted below.</p>
 <p>The combination of the <code>columns</code> and  <code>embedded</code> parameters control what
 variables are included in the embedding, and, whether a time-delay embedding
@@ -203,7 +203,7 @@ taken D at-a-time.</p>
 <p><code>SMap()</code> should be called with <code>columns</code> explicity corresponding to
 dimensions <code>E</code>.  In the multivariate case (number of <code>columns</code> &gt; 1)
 use <code>embedded = true</code> with <code>E</code> equal to the number of <code>columns</code>.
-See the embedding note in <a href="../edm_functions/"><code>SMap() documentation</code></a>.</p>
+See the embedding note in <a href="../edm_functions/"><code>SMap() documentation</code></a>.</p></div>
               
             </div>
           </div><footer>

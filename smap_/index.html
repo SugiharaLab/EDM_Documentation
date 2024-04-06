@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>SMap - EDM (pyEDM, rEDM)</title>
+    <title>SMap - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href=".." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -57,7 +57,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
@@ -91,9 +91,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -105,7 +105,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">EDM (pyEDM, rEDM)</a>
+          <a href="..">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -122,8 +122,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="smap"><function> SMap </function></h2>
-<p><strong> Description </strong>  : <br />
+                <div><h2 id="smap"><function> SMap </function></h2>
+<p><strong> Description </strong>  : <br>
 SMap projection of the input data file or DataFrame.</p>
 <p><strong> Python </strong>  :   </p>
 <pre><code class="language-python">SMap(pathIn='./', dataFile='', dataFrame=None, pathOut='./',
@@ -135,14 +135,14 @@ validLib=[], ignoreNan=True, generateSteps=0,
 generateLibrary=False, parameterList=False, noTime=False)
 </code></pre>
 <p><strong> R </strong>  :   </p>
-<pre><code class="language-R">SMap(pathIn=&quot;./&quot;, dataFile=&quot;&quot;, dataFrame=NULL,
-lib=&quot;&quot;, pred=&quot;&quot;, E=0, Tp=1, knn=0, tau=-1,
-theta=0, exclusionRadius=0, columns=&quot;&quot;, target=&quot;&quot;, 
+<pre><code class="language-R">SMap(pathIn="./", dataFile="", dataFrame=NULL,
+lib="", pred="", E=0, Tp=1, knn=0, tau=-1,
+theta=0, exclusionRadius=0, columns="", target="", 
 embedded=FALSE, verbose=FALSE, validLib=vector(), 
 ignoreNan=TRUE, generateSteps=0, parameterList=FALSE, 
 showPlot=FALSE, noTime=FALSE) 
 </code></pre>
-<hr />
+<hr>
 <table>
 <thead>
 <tr>
@@ -167,7 +167,7 @@ showPlot=FALSE, noTime=FALSE)
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -323,23 +323,17 @@ showPlot=FALSE, noTime=FALSE)
 </tr>
 </tbody>
 </table>
-<p><br/>
+<p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
-<p><strong> Notes </strong> : <br />
-If <code>embedded</code> is false, data columns are embedded to dimension <code>E</code> with shift <code>tau</code>.</br/>
-If <code>predictFile</code> is provided the predictions are written in csv format.<br/>
-If <code>smapFile</code> is provided the coefficients are written in csv format.<br/>
-If <code>knn</code> is not specified, it is set equal to the library size.<br/>
-If <code>knn</code> is specified, it must be greater than <code>E</code>.<br/>
-If <code>nan</code> are detected in <code>columns</code> or <code>target</code> and <code>ignoreNan = True</code> (default), the library is automatically redefined to exclude data and embedding vectors containing <code>nan</code>.</p>
-<p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
-<p>If generateSteps &gt; 0 <code>SMap</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
-<p><strong> Embedding </strong> : <br />
-<code>SMap</code> should be called with columns explicitly corresponding to
-dimensions <code>E</code>. In the univariate case (number of <code>columns</code> = 1) with
-default <code>embedded = false</code>, the time series will be time-delay
-embedded to dimension <code>E</code>, returned <code>SMap</code> coefficients correspond to each dimension. </p>
-<p>If a multivariate data is used (number of <code>columns</code> &gt; 1) <code>SMap</code>
+<p><strong> Notes </strong> : <br>
+If <code>embedded</code> is false, data columns are embedded to dimension <code>E</code> with shift <code>tau</code>.
+If <code>knn</code> is not specified, it is set to the full library size.<br>
+If <code>knn</code> is specified, it must be greater than <code>E</code>.<br></p>
+<p><strong> nan </strong> : <br>
+Any prediction row (<code>pred</code>) with <code>nan</code> will result in <code>SMap</code> <code>nan</code> prediction. Any library vector with <code>nan</code> , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in <code>SMap</code> <code>nan</code> prediction. By default <code>SMap</code> uses all library vectors as neighbors. If <code>nan</code> are included in any library vector, the result will be <code>nan</code> prediction. To address this, if <code>nan</code> are detected in <code>columns</code> or <code>target</code> and <code>ignoreNan = True</code> (default), the library is automatically redefined to exclude data and embedding vectors containing <code>nan</code>. If <code>ignoreNan = False</code> the library is not changed. The user can manually specify library (<code>lib</code>) row segments to ignore nan values.</p>
+<p><strong> Multivariate Embedding </strong> : <br>
+<code>SMap</code> should be called with columns explicitly corresponding to dimensions <code>E</code>. In the univariate case (number of <code>columns</code> = 1) with default <code>embedded = false</code>, the time series will be time-delay embedded to dimension <code>E</code>, returned <code>SMap</code> coefficients correspond to each dimension. </p>
+<p>If multivariate data is used (number of <code>columns</code> &gt; 1) <code>SMap</code>
 must use <code>embedded = true</code> with <code>E</code> equal to the number of columns.
 This prevents the function from internally time-delay embedding the
 multiple columns to dimension <code>E</code>.  If internal time-delay embedding
@@ -351,20 +345,21 @@ embedding if desired, add a first column of time), then pass this embedding
 to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.
 The <a href="https://github.com/SugiharaLab/pyEDM/blob/master/pyEDM/etc/apps/Embedding.py"><code>Embedding.py</code></a> application can be used to perform the embedding and
 insert the time vector for input to <code>SMap</code>.</p>
-<p><strong> Linear System Solver </strong> : <br />
+<p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
+<p>If generateSteps &gt; 0 <code>SMap</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
+<p><strong> Linear System Solver </strong> : <br>
 In <code>pyEDM</code>: The default LAPACK SVD solver <code>dgelss()</code> can be replaced with
 a class object instantiated from the <code>sklearn.linear_model</code> class.
 Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
-<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. See <a href="../solvers_demo/"><code>examples</code></a>.</p>
-<p>Note: Windows does not support community compiler standards creating binary library compatibility barriers, specifically the use of OpenBLAS for the SVD solver. As a result, the Windows pyEDM implementation does not use the cppEDM default solver <code>dgelss</code> from BLAS/LAPACK. All other implementations use BLAS/LAPACK <code>dgelss</code> directly.</p>
-<p><strong> Returns </strong>  : <br />
-Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with three DataFrames:<br/>
-<code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br/>
-<code>coefficients</code>[ E+2 columns : "Time", and E+1 SMap coefficents]<br/>
-<code>singularValues</code>[ E+2 columns : "Time", and E+1 SVD singular values] If available from the linear system solver.<br/>
-If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p>
-<p><code>nan</code> values are inserted in the output DataFrame where there is 
-no observation or prediction if <code>ignoreNan = True</code> (default). </p>
+<code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. 
+See <a href="../solvers_demo/"><code>examples</code></a>.</p>
+<p>Note: Windows does not support community compiler standards thereby creating binary library compatibility barriers, specifically the use of OpenBLAS for the SVD solver. As a result, the Windows pyEDM implementation does not use the cppEDM default solver <code>dgelss</code> from BLAS/LAPACK. All other implementations use BLAS/LAPACK <code>dgelss</code> directly.</p>
+<p><strong> Returns </strong>  : <br>
+Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with three DataFrames:<br>
+<code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br>
+<code>coefficients</code>[ E+2 columns : "Time", and E+1 SMap coefficents]<br>
+<code>singularValues</code>[ E+2 columns : "Time", and E+1 SVD singular values] If available from the linear system solver.<br>
+If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p></div>
               
             </div>
           </div><footer>

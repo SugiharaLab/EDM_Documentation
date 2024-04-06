@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>MakeBlock - EDM (pyEDM, rEDM)</title>
+    <title>MakeBlock - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href=".." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -57,7 +57,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
@@ -91,9 +91,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -105,7 +105,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">EDM (pyEDM, rEDM)</a>
+          <a href="..">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -122,7 +122,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="makeblock"><function> MakeBlock </function></h2>
+                <div><h2 id="makeblock"><function> MakeBlock </function></h2>
 <p><strong> Description </strong>  :
 Creates a data block of time-delay embedding from each of the
 columnNames in the dataFrame.</p>
@@ -132,7 +132,7 @@ columnNames in the dataFrame.</p>
 <p><strong> R </strong>  :   </p>
 <pre><code class="language-R">MakeBlock(dataFrame, E = 0, tau = -1, columns = c(), deletePartial = FALSE)
 </code></pre>
-<hr />
+<hr>
 <table>
 <thead>
 <tr>
@@ -145,7 +145,7 @@ columnNames in the dataFrame.</p>
 <tbody>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -175,7 +175,7 @@ columnNames in the dataFrame.</p>
 </tr>
 </tbody>
 </table>
-<p><br/>
+<p><br>
 <strong> Notes </strong>  :
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
 <p>The <code>columnNames</code> is a list of column names.</p>
@@ -184,7 +184,7 @@ Refer to the <a href="../parameters/">parameters</a> table for general parameter
 error checking.  The <code>Embed</code> function provides error checking and file-based
 input.</p>
 <p><strong> Returns </strong>  :
-DataFrame with embedded columns.</p>
+DataFrame with embedded columns.</p></div>
               
             </div>
           </div><footer>

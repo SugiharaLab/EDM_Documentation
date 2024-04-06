@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Multiview - EDM (pyEDM, rEDM)</title>
+    <title>Multiview - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href=".." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -57,7 +57,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
@@ -91,9 +91,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -105,7 +105,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">EDM (pyEDM, rEDM)</a>
+          <a href="..">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -122,8 +122,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="multiview"><function> Multiview </function></h2>
-<p><strong> Description </strong>  : <br />
+                <div><h2 id="multiview"><function> Multiview </function></h2>
+<p><strong> Description </strong>  : <br>
 Multiview embedding and forecasting of the input data file or DataFrame.</p>
 <p><strong> Python </strong>  :   </p>
 <pre><code class="language-python">Multiview(pathIn='./', dataFile='', dataFrame=None,
@@ -135,14 +135,14 @@ verbose=False, numThreads=4, showPlot=False,
 noTime = False)
 </code></pre>
 <p><strong> R </strong>  :   </p>
-<pre><code class="language-R">Multiview(pathIn=&quot;./&quot;, dataFile=&quot;&quot;, dataFrame=NULL,
-lib=&quot;&quot;, pred=&quot;&quot;, D=0, E=1, Tp=1, knn=0,
-tau=-1, columns=&quot;&quot;, target=&quot;&quot;, multiview=0,
+<pre><code class="language-R">Multiview(pathIn="./", dataFile="", dataFrame=NULL,
+lib="", pred="", D=0, E=1, Tp=1, knn=0,
+tau=-1, columns="", target="", multiview=0,
 exclusionRadius=0, trainLib=TRUE, 
 excludeTarget=FALSE, parameterList=FALSE,
 verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
 </code></pre>
-<hr />
+<hr>
 <table>
 <thead>
 <tr>
@@ -167,7 +167,7 @@ verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -293,24 +293,24 @@ verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
 </tr>
 </tbody>
 </table>
-<p><br/>
+<p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
-<p><strong> Notes </strong>  : <br />
+<p><strong> Notes </strong>  : <br>
 If <code>predictFile</code> is provided the Predictions will be written to it in csv format.</p>
 <p>If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the number of 
 <code>D</code>-dimensional combinations out of all available data vectors.</p>
-<p><strong> Returns </strong>  : <br />
-Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with two DataFrames:<br/>
-View<br/>
-Predictions<br/></p>
-<p>The <code>Predictions</code> DataFrame has 3 columns: <code>Time</code>, <code>Observations</code>, <code>Predictions</code>. <br />
-The <code>View</code> DataFrame has <code>E</code>+3 columns. <br />
+<p><strong> Returns </strong>  : <br>
+Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with two DataFrames:<br>
+View<br>
+Predictions<br></p>
+<p>The <code>Predictions</code> DataFrame has 3 columns: <code>Time</code>, <code>Observations</code>, <code>Predictions</code>. <br>
+The <code>View</code> DataFrame has <code>E</code>+3 columns. <br>
 The first <code>E</code> columns are the the column indices in the input data DataFrame 
-that are embedded and applied to Simplex prediction. <br />
+that are embedded and applied to Simplex prediction. <br>
 The last three columns are "rho", "MAE", "RMSE" corresponding to the prediction 
-Pearson correlation, maximum absolute error and root mean square error.<br/></p>
+Pearson correlation, maximum absolute error and root mean square error.<br></p>
 <p>If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p>
-<p><code>nan</code> values are inserted where there is no observation or prediction.</p>
+<p><code>nan</code> values are inserted where there is no observation or prediction.</p></div>
               
             </div>
           </div><footer>

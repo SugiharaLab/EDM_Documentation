@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>EDM Algorithms in Depth - EDM (pyEDM, rEDM)</title>
+    <title>EDM Algorithms in Depth - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href=".." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -57,7 +57,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
@@ -90,16 +90,26 @@
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">EDM Algorithms in Depth</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#simplex-nearest-neighbor-projection">Simplex : Nearest Neighbor Projection</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#video-of-simplex-prediction-at-varying-library-sizes">Video of Simplex prediction at varying library sizes</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#s-map-sequential-locally-weighted-global-linear-maps">S-Map : Sequential Locally Weighted Global Linear Maps</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#video-of-s-map-prediction-at-varying-theta">Video of S-Map prediction at varying theta</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#s-map-interaction-coefficients">S-Map Interaction Coefficients</a>
+    </li>
+        </ul>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#ccm-convergent-cross-mapping">CCM : Convergent Cross Mapping</a>
     </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -111,7 +121,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">EDM (pyEDM, rEDM)</a>
+          <a href="..">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -128,7 +138,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="edm-algorithms">EDM Algorithms</h1>
+                <div><h1 id="edm-algorithms">EDM Algorithms</h1>
 <h2 id="simplex-nearest-neighbor-projection">Simplex : Nearest Neighbor Projection</h2>
 <p><code>Simplex</code> is a nearest neighbor projection. It locates the <code>knn</code> 
 nearest neighbors to the query point (location in the state-space from
@@ -147,6 +157,10 @@ temporal forecast predictability
 <a href="../edm_functions/#predictinterval"><code>PredictInterval()</code></a>, 
 convergent cross mapping <a href="../edm_functions/#ccm"><code>CCM()</code></a>,
 and multiview embedding <a href="../edm_functions/#multiview"><code>Multiview()</code></a>.</p>
+<h3 id="video-of-simplex-prediction-at-varying-library-sizes">Video of Simplex prediction at varying library sizes</h3>
+<p>This video illustrates how denser state space representations with increasing
+number of library vectors improves Simplex prediction.</p>
+<p><div class="video-container"><video style="width:75%" muted controls alt="type:video"><source src="../imgs/TentMap_Library.mp4" type="video/mp4"></source></video></div><br></p>
 <h2 id="s-map-sequential-locally-weighted-global-linear-maps">S-Map : Sequential Locally Weighted Global Linear Maps</h2>
 <p>S-Map extends the state-space prediction in <code>Simplex</code> from an
 average of the <code>E</code>+1 knn neighbors, to a linear regression fit to all
@@ -161,8 +175,12 @@ best represents local dynamics. As a result, assessing predictability
 over a spectrum of localization parameters θ allows one to infer
 state-dependence, and thus nonlinearity of the dynamics. See 
 <a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a>.</p>
-<p>For a demonstration of S-Map state-space localization, see the
+<h3 id="video-of-s-map-prediction-at-varying-theta">Video of S-Map prediction at varying theta</h3>
+<p>This video illustrates S-Map predictions with increasing values (higher localization) of <code>theta</code>.</p>
+<p><div class="video-container"><video style="width:75%" muted controls alt="type:video"><source src="../imgs/Rossler_Theta.mp4" type="video/mp4"></source></video></div><br></p>
+<p>For a first-principles exploration of S-Map state-space localization, see the
 <a href="../SMap_Demo/">S-Map Notebook</a>.</p>
+<h3 id="s-map-interaction-coefficients">S-Map Interaction Coefficients</h3>
 <p>Another feature of S-Map is that for a properly fit model, the regression
 coefficients between variables have been shown to approximate
 the gradient (directional derivative) of variables along the manifold
@@ -185,14 +203,13 @@ are used. If the prediction skill of <em>X</em> increases and saturates as the
 entire <em>My</em> is used, this provides evidence that <em>X</em> is casually
 influencing <em>Y</em> as described in
 <a href="https://science.sciencemag.org/content/338/6106/496">Sugihara et al. 2012</a>.</p>
-<iframe width="100%" height="335" src="https://www.youtube.com/embed/NrFdIz-D2yM" 
-frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe>
+<iframe width="100%" height="335" src="https://www.youtube.com/embed/NrFdIz-D2yM" frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe></div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../basic_examples/" class="btn btn-neutral float-left" title="Basic EDM Examples"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../SMap_Demo/" class="btn btn-neutral float-right" title="S-map first principles">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../SMap_Demo/" class="btn btn-neutral float-right" title="S-map First Principles">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>

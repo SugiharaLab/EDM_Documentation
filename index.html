@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="description" content="None" />
       <link rel="shortcut icon" href="img/favicon.ico" />
-    <title>EDM (pyEDM, rEDM)</title>
+    <title>pyEDM, rEDM</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href="." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href="." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -69,7 +69,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="embedding_parameters/">Embedding Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="simplex_/">Simplex</a>
                   </li>
@@ -101,9 +101,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -115,7 +115,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href=".">EDM (pyEDM, rEDM)</a>
+          <a href=".">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -131,7 +131,7 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="empirical-dynamic-modeling-edm">Empirical Dynamic Modeling (EDM)</h1>
+                <div><h1 id="empirical-dynamic-modeling-edm">Empirical Dynamic Modeling (EDM)</h1>
 <p><a href="https://en.wikipedia.org/wiki/Empirical_dynamic_modeling">Empirical dynamic modeling (EDM)</a> is an emerging non-parametric framework
 for modeling nonlinear dynamic systems. EDM is based on the mathematical
 theory of reconstructing attractor manifolds from time series data
@@ -153,7 +153,7 @@ functionality with examples.  </p>
 Python and R interfaces to the library are provided in the
 <a href="https://github.com/SugiharaLab/pyEDM" title="pyEDM">pyEDM</a> and
 <a href="https://github.com/SugiharaLab/rEDM" title="rEDM">rEDM</a> packages.  </p>
-<hr />
+<hr>
 <h2 id="motivation">Motivation</h2>
 <p>Many analytic approaches use models as approximations of real world
 systems to test hypotheses, explain mechanisms,
@@ -163,15 +163,13 @@ equations problematic. Empirical models, which infer patterns and
 associations from the data instead of using discrete, hypothesized
 equations, represent a natural and flexible approach to modeling 
 complex dynamics.  </p>
-<hr />
+<hr>
 <h2 id="foundations-of-edm">Foundations of EDM</h2>
 <h3 id="time-series-as-observations-of-a-dynamic-system">Time Series as Observations of a Dynamic System</h3>
-<iframe width="100%" height="335"
-src="https://www.youtube.com/embed/fevurdpiRYg"
-frameborder="0" allow="autoplay; gyroscope; 
+<iframe width="100%" height="335" src="https://www.youtube.com/embed/fevurdpiRYg" frameborder="0" allow="autoplay; gyroscope; 
 picture-in-picture" allowfullscreen></iframe>
 
-<hr />
+<hr>
 <h3 id="prediction-and-system-interactions">Prediction and system interactions</h3>
 <p>Given a state space reconstructed via lagged embedding, or, from
 multivariate observations, system prediction can be performed using
@@ -181,7 +179,7 @@ and infer the degree of system nonlinearity.
 To infer causal relationships between variables, Convergent Cross
 Mapping (CCM) can be applied.  See the
 <a href="./algorithms_in_depth">algorithms in depth section</a> for details on
-these functions.</p>
+these functions.</p></div>
               
             </div>
           </div><footer>
@@ -228,5 +226,5 @@ these functions.</p>
 
 <!--
 MkDocs version : 1.4.3
-Build Date UTC : 2023-10-29 13:57:28.768482+00:00
+Build Date UTC : 2024-04-06 15:06:16.431309+00:00
 -->

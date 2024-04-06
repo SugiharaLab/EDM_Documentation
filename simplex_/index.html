@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Simplex - EDM (pyEDM, rEDM)</title>
+    <title>Simplex - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href=".." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -57,7 +57,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Simplex</a>
     <ul class="current">
@@ -91,9 +91,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -105,7 +105,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">EDM (pyEDM, rEDM)</a>
+          <a href="..">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -122,8 +122,8 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h2 id="simplex"><function> Simplex </function></h2>
-<p><strong> Description </strong>  : <br />
+                <div><h2 id="simplex"><function> Simplex </function></h2>
+<p><strong> Description </strong>  : <br>
 Simplex projection of the input data file or DataFrame.</p>
 <p><strong> Python </strong>  :   </p>
 <pre><code class="language-python">Simplex(pathIn='./', dataFile='', dataFrame=None, pathOut='./', 
@@ -134,15 +134,15 @@ generateSteps=0, generateLibrary=False, parameterList=False,
 noTime=False)
 </code></pre>
 <p><strong> R </strong>  :   </p>
-<pre><code class="language-R">Simplex(pathIn=&quot;./&quot;, dataFile=&quot;&quot;, dataFrame=NULL, 
-pathOut=&quot;./&quot;, predictFile=&quot;&quot;, lib=&quot;&quot;, pred=&quot;&quot;, 
+<pre><code class="language-R">Simplex(pathIn="./", dataFile="", dataFrame=NULL, 
+pathOut="./", predictFile="", lib="", pred="", 
 E=0, Tp=1, knn=0, tau=-1, exclusionRadius=0, 
-columns=&quot;&quot;, target=&quot;&quot;, embedded=FALSE, 
+columns="", target="", embedded=FALSE, 
 const_pred=FALSE, verbose=FALSE, validLib=vector(), 
 generateSteps=0, parameterList=FALSE, 
 showPlot=FALSE, noTime=FALSE) 
 </code></pre>
-<hr />
+<hr>
 <table>
 <thead>
 <tr>
@@ -167,7 +167,7 @@ showPlot=FALSE, noTime=FALSE)
 </tr>
 <tr>
 <td>dataFrame</td>
-<td>pyEDM: pandas DataFrame<br/>rEDM: data.frame</td>
+<td>pyEDM: pandas DataFrame<br>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
@@ -293,22 +293,21 @@ showPlot=FALSE, noTime=FALSE)
 </tr>
 </tbody>
 </table>
-<p><br/>
+<p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
-<p><strong> Notes </strong> : <br />
+<p><strong> Notes </strong> : <br>
 If <code>embedded</code> is false (default) the data <code>columns</code> are embedded to dimension <code>E</code> with time shift <code>tau</code>.  If <code>knn</code> = 0, it is set to E+1.</p>
 <p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
+<p><code>nan</code> values are passed through all numeric computations in <code>cppEDM</code>. Any prediction row (<code>pred</code>) with <code>nan</code> will result in <code>nan</code> simplex prediction. Any library vector with a <code>nan</code> , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in <code>nan</code> simplex prediction.</p>
 <p>If generateSteps &gt; 0 <code>Simplex</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
-<p><strong> Returns </strong>  : <br />
+<p><strong> Returns </strong>  : <br>
 If <code>parameterList = False</code>, (default) the returned object is a DataFrame with 3 columns : "Time", "Observations", "Predictions".</p>
-<p>If <code>parameterList = True</code>, a dictionary with keys <code>predictions</code>, <code>parameters</code> is returned. Dictionary values are the predictions DataFrame and parameter dictionary respectively.</p>
-<p><code>nan</code> values are inserted in the output DataFrame where there is 
-no observation or prediction.</p>
+<p>If <code>parameterList = True</code>, a dictionary with keys <code>predictions</code>, <code>parameters</code> is returned. Dictionary values are the predictions DataFrame and parameter dictionary respectively.</p></div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
-        <a href="../embedding_parameters/" class="btn btn-neutral float-left" title="Embedding Parameters"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+        <a href="../embedding_parameters/" class="btn btn-neutral float-left" title="Embedding"><span class="icon icon-circle-arrow-left"></span> Previous</a>
         <a href="../smap_/" class="btn btn-neutral float-right" title="SMap">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 

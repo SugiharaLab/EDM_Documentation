@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
       <link rel="shortcut icon" href="../img/favicon.ico" />
-    <title>Parameters - EDM (pyEDM, rEDM)</title>
+    <title>Parameters - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
@@ -35,7 +35,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-          <a href=".." class="icon icon-home"> EDM (pyEDM, rEDM)
+          <a href=".." class="icon icon-home"> pyEDM, rEDM
         </a>
       </div>
 
@@ -57,9 +57,89 @@
                   </li>
                   <li class="toctree-l1 current"><a class="reference internal current" href="./">Parameters</a>
     <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#dataframe">dataFrame</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#columns">columns</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#target">target</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#lib">lib</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pred">pred</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tp">Tp</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#e">E</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#tau">tau</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#theta">theta</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#knn">knn</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#exclusionradius">exclusionRadius</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#embedded">embedded</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#libsizes">libSizes</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sample">sample</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#random">random</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#replacement">replacement</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#includedata">includeData</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#seed">seed</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#multiview">multiview</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#d">D</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#trainlib">trainLib</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#excludetarget">excludeTarget</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maxe">maxE</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#maxtp">maxTp</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#numthreads">numThreads</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pathin">pathIn</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#datafile">dataFile</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#pathout">pathOut</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#predictfile">predictFile</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#smapcoeffilesmap">smapCoefFileSMap</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#smapsvfile">smapSVFile</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#solver">solver</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#ignorenan">ignoreNan</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#notime">noTime</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#validlib">validLib</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#generatesteps">generateSteps</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#parameterlist">parameterList</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#verbose">verbose</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#const_pred">const_pred</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#showplot">showPlot</a>
+    </li>
     </ul>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding Parameters</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../embedding_parameters/">Embedding</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
@@ -91,9 +171,9 @@
               <ul>
                   <li class="toctree-l1"><a class="reference internal" href="../algorithms_in_depth/">EDM Algorithms in Depth</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map first principles</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../SMap_Demo/">S-map First Principles</a>
                   </li>
-                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">Custom Solvers</a>
+                  <li class="toctree-l1"><a class="reference internal" href="../solvers_demo/">S-map Custom Solvers</a>
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../cond_emb_demo/">Conditional Embedding</a>
                   </li>
@@ -105,7 +185,7 @@
     <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
       <nav class="wy-nav-top" role="navigation" aria-label="Mobile navigation menu">
           <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-          <a href="..">EDM (pyEDM, rEDM)</a>
+          <a href="..">pyEDM, rEDM</a>
         
       </nav>
       <div class="wy-nav-content">
@@ -122,187 +202,97 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
             <div class="section" itemprop="articleBody">
               
-                <h1 id="parameters">Parameters</h1>
-<table>
-<thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>pathIn</td>
-<td>Filesystem path to input <code>dataFile</code>. CSV format.</td>
-</tr>
-<tr>
-<td>dataFile</td>
-<td>CSV format data file name. The first row must be column names. The first column must be a time index, time strings or time values unless <code>noTime = True</code>.</td>
-</tr>
-<tr>
-<td>dataFrame</td>
-<td>Input data.frame. The columns must be named. The first column must be a time index , time strings or time values unless <code>noTime = True</code>.</td>
-</tr>
-<tr>
-<td>pathOut</td>
-<td>Filesystem path for <code>predictFile</code> containing output predictions.</td>
-</tr>
-<tr>
-<td>predictFile</td>
-<td>Observation and Prediction output file name. CSV format.</td>
-</tr>
-<tr>
-<td>smapCoefFile</td>
-<td>SMap coefficient output file name. CSV format.</td>
-</tr>
-<tr>
-<td>smapSVFile</td>
-<td>SMap singular value output file name. CSV format.</td>
-</tr>
-<tr>
-<td>lib</td>
-<td>String or vector with pairs of start and stop indices of input data rows used to create the library of E-dimensional embedding vectors. String indices must be whitespace separated.</td>
-</tr>
-<tr>
-<td>pred</td>
-<td>String or vector with pairs of start and stop indices of input data rows predictions. String indices must be whitespace separated.</td>
-</tr>
-<tr>
-<td>D</td>
-<td>Multiview dimension.</td>
-</tr>
-<tr>
-<td>E</td>
-<td>Embedding dimension.</td>
-</tr>
-<tr>
-<td>Tp</td>
-<td>Prediction horizon (number of time column rows).</td>
-</tr>
-<tr>
-<td>knn</td>
-<td>Number of nearest neighbors. If <code>knn=0</code>; <code>knn</code> is set to <code>E+1</code> for <code>Simplex()</code>; set to number of <code>lib</code> data rows for <code>SMap()</code>.</td>
-</tr>
-<tr>
-<td>tau</td>
-<td>Time offset of embedding specified as number of time series rows. <code>tau</code> &lt; 0 are lags, <code>tau</code> &gt; 0 future values.</td>
-</tr>
-<tr>
-<td>theta</td>
-<td>In Smap: S-Map neighbor localisation exponent. Single numeric.</td>
-</tr>
-<tr>
-<td>theta</td>
-<td>In PredictNonlinear: A whitespace delimeted string or numeric vector with values of S-map localisation parameters to be evaluated.</td>
-</tr>
-<tr>
-<td>exclusionRadius</td>
-<td>Excludes vectors from the search space of nearest neighbors if their relative time index is within <code>exclusionRadius</code>.</td>
-</tr>
-<tr>
-<td>columns</td>
-<td>String or vector of column name(s) in the input data used to create the library. String names must be whitespace separated.</td>
-</tr>
-<tr>
-<td>target</td>
-<td>String of column name in the input data used for prediction.</td>
-</tr>
-<tr>
-<td>solver</td>
-<td>In pyEDM <code>SMap()</code>: An instance of a sklearn.linear_model object.</td>
-</tr>
-<tr>
-<td>embedded</td>
-<td>Logical specifying if the input data are embedded.  If <code>embedded = True</code>, no emedding is performed.  If <code>embedded = False</code>, all input data are embedded to dimension <code>E</code> with time shift <code>tau</code>.</td>
-</tr>
-<tr>
-<td>ignoreNan</td>
-<td>Logical specifying whether data NaN values are to be ignored in <code>SMap</code>: default <code>True</code>.</td>
-</tr>
-<tr>
-<td>noTime</td>
-<td>Logical indicating whether input data lack a time vector in the first column: default <code>False</code>.</td>
-</tr>
-<tr>
-<td>validLib</td>
-<td>Conditional embedding. Boolean vector identifying time series rows whose corresponding embedding vectors define the state-space library.</td>
-</tr>
-<tr>
-<td>generateSteps</td>
-<td>Generative feedback predictions for <code>Simplex()</code> or <code>SMap()</code>.</td>
-</tr>
-<tr>
-<td>parameterList</td>
-<td>Add parameter dictionary to return objects in <code>Simplex()</code>, <code>SMap()</code>, <code>CCM()</code>, <code>Multiview()</code>.</td>
-</tr>
-<tr>
-<td>libSizes</td>
-<td>String or vector of integers specifying CCM library sizes. If three values are provided, and, if the third value is less than the second, they are treated as a sequence generator specifying the intial library size; the final library size; and the library size increment. String values must be whitespace separated.</td>
-</tr>
-<tr>
-<td>sample</td>
-<td>Integer specifying the number of random samples to draw at each library size evaluation for CCM.</td>
-</tr>
-<tr>
-<td>random</td>
-<td>Logical to specify random (<code>True</code>) or sequential library sampling (<code>False</code>) in CCM.</td>
-</tr>
-<tr>
-<td>replacement</td>
-<td>Logical to specify sampling with replacement in CCM. Not recommended.</td>
-</tr>
-<tr>
-<td>includeData</td>
-<td>Logical to return all CCM projection data frames.</td>
-</tr>
-<tr>
-<td>seed</td>
-<td>Integer specifying the random sampler seed in CCM.  If <code>seed=0</code>, then a random seed is generated.</td>
-</tr>
-<tr>
-<td>multiview</td>
-<td>Number of multiview ensembles to average for the final prediction estimate in Multiview.</td>
-</tr>
-<tr>
-<td>trainLib</td>
-<td>Use in-sample (<code>lib</code>=<code>pred</code>) prediction for multiview ranking</td>
-</tr>
-<tr>
-<td>excludeTarget</td>
-<td>Exclude <code>target</code> variable from multiviews</td>
-</tr>
-<tr>
-<td>maxE</td>
-<td>Maximum value of <code>E</code> to evalulate in EmbedDimension.</td>
-</tr>
-<tr>
-<td>maxTp</td>
-<td>Maximum value of <code>Tp</code> to evalulate in PredictInterval.</td>
-</tr>
-<tr>
-<td>numThreads</td>
-<td>Number of parallel threads for computation in EmbedDimension; PredictInterval and PredictNonlinear.</td>
-</tr>
-<tr>
-<td>verbose</td>
-<td>Logical to produce additional console reporting.</td>
-</tr>
-<tr>
-<td>const_pred</td>
-<td>Logical to add a constant predictor column to the output. The constant predictor is X(t+1) = X(t).</td>
-</tr>
-<tr>
-<td>showPlot</td>
-<td>Logical to plot results (pyEDM &amp; rEDM).</td>
-</tr>
-</tbody>
-</table>
+                <div><h1 id="parameters">Parameters</h1>
+<h5 id="dataframe">dataFrame</h5>
+<p>Input data.frame. The columns must be named.<br>
+The first column must be time index, strings or values unless <code>noTime = True</code>.</p>
+<h5 id="columns">columns</h5>
+<p>String or vector of column name(s) in the input data used to create the library. String names must be whitespace separated.</p>
+<h5 id="target">target</h5>
+<p>String of column name in the input data used for prediction.</p>
+<h5 id="lib">lib</h5>
+<p>String or vector with pairs of start and stop indices of input data rows used to create the library of E-dimensional embedding vectors. String indices must be whitespace separated.</p>
+<h5 id="pred">pred</h5>
+<p>String or vector with pairs of start and stop indices of input data rows<br>
+where predictions are made. String indices must be whitespace separated.</p>
+<h5 id="tp">Tp</h5>
+<p>Prediction horizon (number of time column rows).</p>
+<h5 id="e">E</h5>
+<p>Embedding dimension.</p>
+<h5 id="tau">tau</h5>
+<p>Time offset of embedding specified as number of time series rows. <code>tau</code> &lt; 0 are lags, <code>tau</code> &gt; 0 future values.</p>
+<h5 id="theta">theta</h5>
+<p>In <code>Smap</code>: S-Map neighbor localisation exponent. Single numeric.<br>
+In <code>PredictNonlinear</code>: A whitespace delimeted string or numeric vector with  values of S-map localisation parameters to be evaluated.</p>
+<h5 id="knn">knn</h5>
+<p>Number of nearest neighbors. If <code>knn=0</code>; <code>knn</code> is set to <code>E+1</code> for <code>Simplex()</code>; set to number of <code>lib</code> data rows for <code>SMap()</code>.</p>
+<h5 id="exclusionradius">exclusionRadius</h5>
+<p>Excludes library vectors from the search space of nearest neighbors if their relative time index is within <code>exclusionRadius</code>.</p>
+<h5 id="embedded">embedded</h5>
+<p>Logical specifying if the input data are embedded.  If <code>embedded = True</code>, no emedding is performed.  If <code>embedded = False</code>, all input data are embedded  to dimension <code>E</code> with time shift <code>tau</code>.</p>
+<h5 id="libsizes">libSizes</h5>
+<p>String or vector of integers specifying CCM library sizes. If three values are provided, and, if the third value is less than the second, they are treated as a sequence generator specifying the intial library size; the final library size; and the library size increment. String values must be whitespace separated.</p>
+<h5 id="sample">sample</h5>
+<p>Integer specifying the number of random samples to draw at each library size evaluation for CCM.</p>
+<h5 id="random">random</h5>
+<p>Logical to specify random (<code>True</code>) or sequential library sampling (<code>False</code>) in CCM.</p>
+<h5 id="replacement">replacement</h5>
+<p>Logical to specify sampling with replacement in CCM. Not recommended.</p>
+<h5 id="includedata">includeData</h5>
+<p>Logical to return all CCM projection data frames.</p>
+<h5 id="seed">seed</h5>
+<p>Integer specifying the random sampler seed in CCM.  If <code>seed=0</code>, then a random seed is generated.</p>
+<h5 id="multiview">multiview</h5>
+<p>Number of multiview ensembles to average for the final prediction estimate in Multiview.</p>
+<h5 id="d">D</h5>
+<p>Multiview dimension.</p>
+<h5 id="trainlib">trainLib</h5>
+<p>Use in-sample (<code>lib</code>=<code>pred</code>) prediction for multiview ranking</p>
+<h5 id="excludetarget">excludeTarget</h5>
+<p>Exclude <code>target</code> variable from multiviews </p>
+<h5 id="maxe">maxE</h5>
+<p>Maximum value of <code>E</code> to evalulate in <code>EmbedDimension</code>.</p>
+<h5 id="maxtp">maxTp</h5>
+<p>Maximum value of <code>Tp</code> to evalulate in <code>PredictInterval</code>.</p>
+<h5 id="numthreads">numThreads</h5>
+<p>Number of parallel threads for computation in <code>EmbedDimension</code>; <code>PredictInterval</code> and <code>PredictNonlinear</code>.</p>
+<h5 id="pathin">pathIn</h5>
+<p>Filesystem path to input <code>dataFile</code>. CSV format.</p>
+<h5 id="datafile">dataFile</h5>
+<p>CSV format data file name. The first row must be column names.<br>
+The first column must be time index, strings or values unless <code>noTime = True</code>.</p>
+<h5 id="pathout">pathOut</h5>
+<p>Filesystem path for <code>predictFile</code> containing output predictions.</p>
+<h5 id="predictfile">predictFile</h5>
+<p>Observation and Prediction output file name. CSV format.</p>
+<h5 id="smapcoeffilesmap">smapCoefFileSMap</h5>
+<p>Coefficient output file name. CSV format.</p>
+<h5 id="smapsvfile">smapSVFile</h5>
+<p><code>SMap</code> singular value output file name. CSV format.</p>
+<h5 id="solver">solver</h5>
+<p>In pyEDM <code>SMap()</code>: An instance of a sklearn.linear_model object.</p>
+<h5 id="ignorenan">ignoreNan</h5>
+<p>Logical specifying whether data NaN values are to be ignored in <code>SMap</code>: default <code>True</code>. </p>
+<h5 id="notime">noTime</h5>
+<p>Logical indicating whether input data lack a time vector in first column: default <code>False</code>.</p>
+<h5 id="validlib">validLib</h5>
+<p>Conditional embedding. Boolean vector identifying time series rows whose  corresponding embedding vectors define the state-space library.</p>
+<h5 id="generatesteps">generateSteps</h5>
+<p>Generative feedback predictions for <code>Simplex()</code> or <code>SMap()</code>.</p>
+<h5 id="parameterlist">parameterList</h5>
+<p>Add parameter dictionary to return objects in <code>Simplex()</code>,<code>SMap()</code>,<code>CCM()</code>,<code>Multiview()</code>.</p>
+<h5 id="verbose">verbose</h5>
+<p>Logical to produce additional console reporting.</p>
+<h5 id="const_pred">const_pred</h5>
+<p>Logical to add a constant predictor column to the output.  The constant predictor is X(t+1) = X(t).</p>
+<h5 id="showplot">showPlot</h5>
+<p>Logical to plot results (pyEDM &amp; rEDM).</p></div>
               
             </div>
           </div><footer>
     <div class="rst-footer-buttons" role="navigation" aria-label="Footer Navigation">
         <a href="../edm_functions/" class="btn btn-neutral float-left" title="API Reference"><span class="icon icon-circle-arrow-left"></span> Previous</a>
-        <a href="../embedding_parameters/" class="btn btn-neutral float-right" title="Embedding Parameters">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../embedding_parameters/" class="btn btn-neutral float-right" title="Embedding">Next <span class="icon icon-circle-arrow-right"></span></a>
     </div>
 
   <hr/>
