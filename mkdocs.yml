@@ -1,10 +1,16 @@
-site_name: EDM (pyEDM, rEDM)
-theme: 
+site_name: pyEDM, rEDM
+theme:
     name: readthedocs
 extra_css: [extra.css]
 
 plugins:
-- mknotebooks
+  - mknotebooks
+  - mkdocs-video:
+      is_video: True
+      video_muted: True
+      video_controls: True
+      css_style:
+        width: "75%"
 
 markdown_extensions:
 - attr_list
@@ -12,12 +18,12 @@ markdown_extensions:
 nav:
 - Home : index.md
 - Getting Started :
-    - EDM Framework : edm_intro.md
-    - Installation  : installation.md
+    - EDM Framework    : edm_intro.md
+    - Installation     : installation.md
 - Documentation :
     - API Reference    : edm_functions.md
     - Parameters       : parameters.md
-    - Embedding Parameters : embedding_parameters.md
+    - Embedding        : embedding_parameters.md
     - Simplex          : simplex_.md
     - SMap             : smap_.md
     - CCM              : ccm_.md
@@ -32,6 +38,6 @@ nav:
     - Basic EDM Examples : basic_examples.ipynb
 - EDM Algorithms :
     - EDM Algorithms in Depth : algorithms_in_depth.md
-    - S-map first principles  : SMap_Demo.ipynb
-    - Custom Solvers          : solvers_demo.ipynb
+    - S-map First Principles  : SMap_Demo.ipynb
+    - S-map Custom Solvers    : solvers_demo.ipynb
     - Conditional Embedding   : cond_emb_demo.ipynb

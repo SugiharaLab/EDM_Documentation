@@ -22,6 +22,12 @@ temporal forecast predictability
 convergent cross mapping [`CCM()`](../edm_functions/#ccm),
 and multiview embedding [`Multiview()`](../edm_functions/#multiview).
 
+### Video of Simplex prediction at varying library sizes
+This video illustrates how denser state space representations with increasing
+number of library vectors improves Simplex prediction.
+
+![type:video](imgs/TentMap_Library.mp4)<br>
+
 
 ## S-Map : Sequential Locally Weighted Global Linear Maps
 
@@ -39,8 +45,16 @@ over a spectrum of localization parameters θ allows one to infer
 state-dependence, and thus nonlinearity of the dynamics. See 
 [`PredictNonlinear()`](../edm_functions/#predictnonlinear).
 
-For a demonstration of S-Map state-space localization, see the
+### Video of S-Map prediction at varying theta
+This video illustrates S-Map predictions with increasing values (higher localization) of `theta`.
+
+![type:video](imgs/Rossler_Theta.mp4)<br>
+
+
+For a first-principles exploration of S-Map state-space localization, see the
 [S-Map Notebook](./SMap_Demo.ipynb).
+
+### S-Map Interaction Coefficients
 
 Another feature of S-Map is that for a properly fit model, the regression
 coefficients between variables have been shown to approximate

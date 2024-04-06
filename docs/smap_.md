@@ -61,23 +61,16 @@ Refer to the [parameters](./parameters.md) table for general parameter definitio
 
 ** Notes ** :   
 If `embedded` is false, data columns are embedded to dimension `E` with shift `tau`.</br/>
-If `predictFile` is provided the predictions are written in csv format.<br/>
-If `smapFile` is provided the coefficients are written in csv format.<br/>
-If `knn` is not specified, it is set equal to the library size.<br/>
+If `knn` is not specified, it is set to the full library size.<br/>
 If `knn` is specified, it must be greater than `E`.<br/>
-If `nan` are detected in `columns` or `target` and `ignoreNan = True` (default), the library is automatically redefined to exclude data and embedding vectors containing `nan`.
 
-`validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
+** nan ** :   
+Any prediction row (`pred`) with `nan` will result in `SMap` `nan` prediction. Any library vector with `nan` , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in `SMap` `nan` prediction. By default `SMap` uses all library vectors as neighbors. If `nan` are included in any library vector, the result will be `nan` prediction. To address this, if `nan` are detected in `columns` or `target` and `ignoreNan = True` (default), the library is automatically redefined to exclude data and embedding vectors containing `nan`. If `ignoreNan = False` the library is not changed. The user can manually specify library (`lib`) row segments to ignore nan values.
 
-If generateSteps > 0 `SMap` operates in feedback generative mode. The values of `pred` are over-riden to start at the end of the data. At each step one prediction is made, added to the `columns` data, a new time-delay embedded is created, and the cycle repeated for `generateSteps`. Feedback generation only operates on a univariate time series that is time-delay embedded. The `columns` and `target` variables must be the same.
+** Multivariate Embedding ** :   
+`SMap` should be called with columns explicitly corresponding to dimensions `E`. In the univariate case (number of `columns` = 1) with default `embedded = false`, the time series will be time-delay embedded to dimension `E`, returned `SMap` coefficients correspond to each dimension. 
 
-** Embedding ** :   
-`SMap` should be called with columns explicitly corresponding to
-dimensions `E`. In the univariate case (number of `columns` = 1) with
-default `embedded = false`, the time series will be time-delay
-embedded to dimension `E`, returned `SMap` coefficients correspond to each dimension. 
-
-If a multivariate data is used (number of `columns` > 1) `SMap`
+If multivariate data is used (number of `columns` > 1) `SMap`
 must use `embedded = true` with `E` equal to the number of columns.
 This prevents the function from internally time-delay embedding the
 multiple columns to dimension `E`.  If internal time-delay embedding
@@ -90,13 +83,19 @@ to `SMap` with appropriately specified `columns`, `E`, and `embedded = true`.
 The [`Embedding.py`](https://github.com/SugiharaLab/pyEDM/blob/master/pyEDM/etc/apps/Embedding.py) application can be used to perform the embedding and
 insert the time vector for input to `SMap`.
 
+
+`validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
+
+If generateSteps > 0 `SMap` operates in feedback generative mode. The values of `pred` are over-riden to start at the end of the data. At each step one prediction is made, added to the `columns` data, a new time-delay embedded is created, and the cycle repeated for `generateSteps`. Feedback generation only operates on a univariate time series that is time-delay embedded. The `columns` and `target` variables must be the same.
+
 ** Linear System Solver ** :   
 In `pyEDM`: The default LAPACK SVD solver `dgelss()` can be replaced with
 a class object instantiated from the `sklearn.linear_model` class.
 Supported solvers include `LinearRegression`, `Ridge`, `Lasso`,
-`ElasticNet`, `RidgeCV`, `LassoCV`, `ElasticNetCV`. See [`examples`](./solvers_demo.ipynb).
+`ElasticNet`, `RidgeCV`, `LassoCV`, `ElasticNetCV`. 
+See [`examples`](./solvers_demo.ipynb).
 
-Note: Windows does not support community compiler standards creating binary library compatibility barriers, specifically the use of OpenBLAS for the SVD solver. As a result, the Windows pyEDM implementation does not use the cppEDM default solver `dgelss` from BLAS/LAPACK. All other implementations use BLAS/LAPACK `dgelss` directly.
+Note: Windows does not support community compiler standards thereby creating binary library compatibility barriers, specifically the use of OpenBLAS for the SVD solver. As a result, the Windows pyEDM implementation does not use the cppEDM default solver `dgelss` from BLAS/LAPACK. All other implementations use BLAS/LAPACK `dgelss` directly.
 
 ** Returns **  :   
 Dict in `pyEDM`, named List in `rEDM`: with three DataFrames:<br/>
@@ -104,6 +103,3 @@ Dict in `pyEDM`, named List in `rEDM`: with three DataFrames:<br/>
 `coefficients`[ E+2 columns : "Time", and E+1 SMap coefficents]<br/>
 `singularValues`[ E+2 columns : "Time", and E+1 SVD singular values] If available from the linear system solver.<br/>
 If `parameterList = True`, a dictionary of `parameters` is added.
-
-`nan` values are inserted in the output DataFrame where there is 
-no observation or prediction if `ignoreNan = True` (default). 
