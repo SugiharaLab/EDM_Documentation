@@ -87,7 +87,7 @@ insert the time vector for input to `SMap`.
 ** Conditional Embedding ** :   
 `validLib` implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A `false` entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See [`examples`](./cond_emb_demo.ipynb).
 
-** Generative Mode ** :
+** Generative Mode ** :   
 If generateSteps > 0 `SMap` operates in feedback generative mode. The values of `pred` are over-riden to start at the end of the data. At each step one prediction is made, added to the `columns` data, a new time-delay embedded is created, and the cycle repeated for `generateSteps`. Feedback generation only operates on a univariate time series that is time-delay embedded. The `columns` and `target` variables must be the same.
 
 ** Linear System Solver ** :   

@@ -23,7 +23,6 @@ nav:
 - Documentation :
     - API Reference    : edm_functions.md
     - Parameters       : parameters.md
-    - Embedding        : embedding_parameters.md
     - Simplex          : simplex_.md
     - SMap             : smap_.md
     - CCM              : ccm_.md
@@ -34,6 +33,8 @@ nav:
     - Embed            : embed_.md
     - MakeBlock        : makeBlock_.md
     - ComputeError     : computeError_.md
+- Embedding Parameters:
+    - Embedding        : embedding_parameters.md
 - Examples :
     - Basic EDM Examples : basic_examples.ipynb
 - EDM Algorithms :
