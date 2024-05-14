@@ -129,12 +129,11 @@
 <p><strong> Description </strong>  : <br>
 Simplex projection of the input data file or DataFrame.</p>
 <p><strong> Python </strong>  :   </p>
-<pre><code class="language-python">Simplex(pathIn='./', dataFile='', dataFrame=None, pathOut='./', 
-predictFile='', lib='', pred='', E=0, Tp=1, knn=0, tau=-1, 
-exclusionRadius=0, columns='', target='', embedded=False, 
-verbose=False, const_pred=False, showPlot=False, validLib=[], 
-generateSteps=0, generateLibrary=False, parameterList=False,
-noTime=False)
+<pre><code class="language-python">Simplex(dataFrame=None, columns='', target='', 
+lib='', pred='', E=0, Tp=1, knn=0, tau=-1, 
+exclusionRadius=0, embedded=False, validLib=[], 
+noTime = False, verbose=False, showPlot=False, 
+ignoreNan = True, returnObject=False)
 </code></pre>
 <p><strong> R </strong>  :   </p>
 <pre><code class="language-R">Simplex(pathIn="./", dataFile="", dataFrame=NULL, 
@@ -157,34 +156,22 @@ showPlot=FALSE, noTime=FALSE)
 </thead>
 <tbody>
 <tr>
-<td>pathIn</td>
-<td>string</td>
-<td>"./"</td>
-<td>Input data file path</td>
-</tr>
-<tr>
-<td>dataFile</td>
-<td>string</td>
-<td>""</td>
-<td>Data file name</td>
-</tr>
-<tr>
 <td>dataFrame</td>
 <td>pyEDM: pandas DataFrame<br>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
 <tr>
-<td>pathOut</td>
-<td>string</td>
-<td>"./"</td>
-<td>Output file path</td>
+<td>columns</td>
+<td>string or []</td>
+<td>""</td>
+<td>Column names for library</td>
 </tr>
 <tr>
-<td>predictFile</td>
+<td>target</td>
 <td>string</td>
 <td>""</td>
-<td>Prediction output file</td>
+<td>Prediction target column name</td>
 </tr>
 <tr>
 <td>lib</td>
@@ -229,18 +216,6 @@ showPlot=FALSE, noTime=FALSE)
 <td>Prediction vector exclusion radius</td>
 </tr>
 <tr>
-<td>columns</td>
-<td>string or []</td>
-<td>""</td>
-<td>Column names for library</td>
-</tr>
-<tr>
-<td>target</td>
-<td>string</td>
-<td>""</td>
-<td>Prediction target column name</td>
-</tr>
-<tr>
 <td>embedded</td>
 <td>bool</td>
 <td>False</td>
@@ -253,12 +228,6 @@ showPlot=FALSE, noTime=FALSE)
 <td>Echo messages</td>
 </tr>
 <tr>
-<td>const_pred</td>
-<td>bool</td>
-<td>False</td>
-<td>Include non projected forecast data</td>
-</tr>
-<tr>
 <td>showPlot</td>
 <td>bool</td>
 <td>False</td>
@@ -269,6 +238,18 @@ showPlot=FALSE, noTime=FALSE)
 <td>bool []</td>
 <td>[] or None</td>
 <td>Condtional embedding</td>
+</tr>
+<tr>
+<td>noTime</td>
+<td>bool</td>
+<td>False</td>
+<td>Do not require first data column of time or index</td>
+</tr>
+<tr>
+<td>returnObject</td>
+<td>bool</td>
+<td>False</td>
+<td>pyEDM : return Simplex class object</td>
 </tr>
 <tr>
 <td>generateSteps</td>
@@ -289,10 +270,34 @@ showPlot=FALSE, noTime=FALSE)
 <td>Include parameter dictionary in return</td>
 </tr>
 <tr>
-<td>noTime</td>
+<td>const_pred</td>
 <td>bool</td>
 <td>False</td>
-<td>Do not require first data column of time or index</td>
+<td>Include non projected forecast data</td>
+</tr>
+<tr>
+<td>pathIn</td>
+<td>string</td>
+<td>"./"</td>
+<td>Input data file path</td>
+</tr>
+<tr>
+<td>dataFile</td>
+<td>string</td>
+<td>""</td>
+<td>Data file name</td>
+</tr>
+<tr>
+<td>pathOut</td>
+<td>string</td>
+<td>"./"</td>
+<td>Output file path</td>
+</tr>
+<tr>
+<td>predictFile</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction output file</td>
 </tr>
 </tbody>
 </table>
@@ -300,12 +305,13 @@ showPlot=FALSE, noTime=FALSE)
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
 <p><strong> Notes </strong> : <br>
 If <code>embedded</code> is false (default) the data <code>columns</code> are embedded to dimension <code>E</code> with time shift <code>tau</code>.  If <code>knn</code> = 0, it is set to E+1.</p>
-<p><code>nan</code> values are passed through all numeric computations in <code>cppEDM</code>. Any prediction row (<code>pred</code>) with <code>nan</code> will result in <code>nan</code> simplex prediction. Any library vector with a <code>nan</code> , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in <code>nan</code> simplex prediction.</p>
+<p>Version 1.x : <code>nan</code> values are passed through all numeric computations in <code>cppEDM</code>. Any prediction row (<code>pred</code>) with <code>nan</code> will result in <code>nan</code> simplex prediction. Any library vector with a <code>nan</code> , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in <code>nan</code> simplex prediction.</p>
+<p>Version 2.x : <code>nan</code> values are removed from the data unless <code>ignoreNan = True</code>. </p>
 <p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
 <p>If generateSteps &gt; 0 <code>Simplex</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
 <p><strong> Returns </strong>  : <br>
-If <code>parameterList = False</code>, (default) the returned object is a DataFrame with 3 columns : "Time", "Observations", "Predictions".</p>
-<p>If <code>parameterList = True</code>, a dictionary with keys <code>predictions</code>, <code>parameters</code> is returned. Dictionary values are the predictions DataFrame and parameter dictionary respectively.</p></div>
+Version 1.x : If <code>parameterList = False</code>, (default) returns a DataFrame with 3 columns : "Time", "Observations", "Predictions". If <code>parameterList = True</code>, returns a list with <code>predictions</code>, <code>parameters</code>.</p>
+<p>Version 2.x : Returns a DataFrame with 3 columns : "Time", "Observations", "Predictions". If <code>returnObject = True</code> returns the Simplex class object with all data and variables. </p></div>
               
             </div>
           </div><footer>

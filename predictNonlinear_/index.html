@@ -130,11 +130,11 @@
 Evaluate SMap prediction skill for localization parameter 
 <code>theta</code>  (default from 0.01 to 9).</p>
 <p><strong> Python </strong>  :   </p>
-<pre><code class="language-python">PredictNonlinear(pathIn='./', dataFile='', dataFrame=None, 
-pathOut='./', predictFile='', lib='', pred='', theta='', 
-E=1, Tp=1, knn=0, tau=-1, exclusionRadius=0, columns='', 
-target='', embedded=False, verbose=False, ignoreNan=True,
-validLib=[], numThreads=4, showPlot=True, noTime=False)
+<pre><code class="language-python">PredictNonlinear(dataFrame=None, columns='', target='', 
+theta='', lib='', pred='', E=1, Tp=1, knn=0, tau=-1,
+exclusionRadius=0, solver=None, embedded=False, 
+validLib=[], noTime=False, ignoreNan=True, 
+verbose=False, numProcess=4, showPlot=True)
 </code></pre>
 <p><strong> R </strong>  :   </p>
 <pre><code class="language-R">PredictNonlinear(pathIn="./", dataFile="", dataFrame=NULL, 
@@ -156,40 +156,28 @@ showPlot=TRUE, noTime=FALSE)
 </thead>
 <tbody>
 <tr>
-<td>pathIn</td>
-<td>string</td>
-<td>"./"</td>
-<td>Input data file path</td>
-</tr>
-<tr>
-<td>dataFile</td>
-<td>string</td>
-<td>""</td>
-<td>Data file name</td>
-</tr>
-<tr>
 <td>dataFrame</td>
 <td>pyEDM: pandas DataFrame<br>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
 <tr>
-<td>pathOut</td>
-<td>string</td>
-<td>"./"</td>
-<td>Output file path</td>
-</tr>
-<tr>
-<td>predictFile</td>
-<td>string</td>
-<td>""</td>
-<td>Prediction output file</td>
-</tr>
-<tr>
-<td>lib</td>
+<td>columns</td>
 <td>string or []</td>
 <td>""</td>
-<td>Pairs of library start stop row indices</td>
+<td>Column names for library</td>
+</tr>
+<tr>
+<td>target</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction target column name</td>
+</tr>
+<tr>
+<td>theta</td>
+<td>string</td>
+<td>""</td>
+<td><code>theta</code> is a string of theta values with a delimit</td>
 </tr>
 <tr>
 <td>pred</td>
@@ -198,10 +186,10 @@ showPlot=TRUE, noTime=FALSE)
 <td>Pairs of prediction start stop row indices</td>
 </tr>
 <tr>
-<td>theta</td>
-<td>string</td>
-<td>""</td>
-<td><code>theta</code> is a string of theta values with a delimiter of [',' , '\t', '\n'].</td>
+<td>er of [',' , '\t', '\n'].</td>
+<td></td>
+<td></td>
+<td></td>
 </tr>
 <tr>
 <td>E</td>
@@ -228,16 +216,10 @@ showPlot=TRUE, noTime=FALSE)
 <td>Prediction vector exclusion radius</td>
 </tr>
 <tr>
-<td>columns</td>
-<td>string or []</td>
-<td>""</td>
-<td>Column names for library</td>
-</tr>
-<tr>
-<td>target</td>
-<td>string</td>
-<td>""</td>
-<td>Prediction target column name</td>
+<td>solver</td>
+<td>sklearn.linear_model</td>
+<td>None</td>
+<td>Linear system solver</td>
 </tr>
 <tr>
 <td>embedded</td>
@@ -246,22 +228,28 @@ showPlot=TRUE, noTime=FALSE)
 <td>Is data an embedding? If False, embed to E</td>
 </tr>
 <tr>
-<td>verbose</td>
-<td>bool</td>
-<td>False</td>
-<td>Echo messages</td>
-</tr>
-<tr>
 <td>validLib</td>
 <td>bool []</td>
 <td>[] or None</td>
 <td>Conditional embedding</td>
 </tr>
 <tr>
+<td>noTime</td>
+<td>bool</td>
+<td>False</td>
+<td>Do not require first data column of time or index</td>
+</tr>
+<tr>
 <td>ignoreNan</td>
 <td>bool</td>
 <td>True</td>
 <td>Adjust lib to exlcude NaN</td>
+</tr>
+<tr>
+<td>verbose</td>
+<td>bool</td>
+<td>False</td>
+<td>Echo messages</td>
 </tr>
 <tr>
 <td>numThreads</td>
@@ -276,18 +264,39 @@ showPlot=TRUE, noTime=FALSE)
 <td>Show plot of theta vs Rho</td>
 </tr>
 <tr>
-<td>noTime</td>
-<td>bool</td>
-<td>False</td>
-<td>Do not require first data column of time or index</td>
+<td>pathIn</td>
+<td>string</td>
+<td>"./"</td>
+<td>Input data file path</td>
+</tr>
+<tr>
+<td>dataFile</td>
+<td>string</td>
+<td>""</td>
+<td>Data file name</td>
+</tr>
+<tr>
+<td>pathOut</td>
+<td>string</td>
+<td>"./"</td>
+<td>Output file path</td>
+</tr>
+<tr>
+<td>predictFile</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction output file</td>
 </tr>
 </tbody>
 </table>
 <p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
 <p><strong> Notes </strong>  : <br>
-<code>theta</code> is a string of theta values with a delimiter of [',', '\t', '\n'].
+<code>theta</code> is a list or string of theta values with a delimiter of 
+[',', '\t', '\n'].
 See the Parameters table for parameter definitions.</p>
+<p>Version 1.x: <code>numThreads</code> defines the number of worker threads for the <code>maxTp</code> embeddings.</p>
+<p>Version 2.x: <code>numProcess</code> defines the number of processes for the <code>maxTp</code> embeddings.</p>
 <p><strong> Returns </strong>  : <br>
 DataFrame with columns <code>theta</code> and <code>rho</code>. </p></div>
               

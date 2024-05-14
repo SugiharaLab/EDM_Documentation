@@ -129,11 +129,10 @@
 <p><strong> Description </strong>  : <br>
 Evaluate Simplex prediction skill for embedding dimensions from 1 to <code>maxE</code>.</p>
 <p><strong> Python </strong>  :   </p>
-<pre><code class="language-python">EmbedDimension(pathIn='./', dataFile='', dataFrame=None,
-pathOut='./', predictFile='', lib='', pred='', maxE=10,
-Tp=1, tau=-1, exclusionRadius=0, columns='', target='',
-embedded=False, verbose=False, validLib=[], numThreads=4,
-showPlot=True, noTime=False)
+<pre><code class="language-python">EmbedDimension(dataFrame=None, columns='', target='',
+maxE=10, lib='', pred='', Tp=1, tau=-1, exclusionRadius=0, 
+embedded=False, validLib=[], noTime=False, ignoreNan=True,
+verbose=False, numProcess=4, showPlot=True)
 </code></pre>
 <p><strong> R </strong>  :   </p>
 <pre><code class="language-R">EmbedDimension(pathIn="./", dataFile="", dataFrame=NULL,
@@ -154,34 +153,28 @@ validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 </thead>
 <tbody>
 <tr>
-<td>pathIn</td>
-<td>string</td>
-<td>"./"</td>
-<td>Input data file path</td>
-</tr>
-<tr>
-<td>dataFile</td>
-<td>string</td>
-<td>""</td>
-<td>Data file name</td>
-</tr>
-<tr>
 <td>dataFrame</td>
 <td>pyEDM: pandas DataFrame<br>rEDM: data.frame</td>
 <td>None</td>
 <td>Input DataFrame</td>
 </tr>
 <tr>
-<td>pathOut</td>
-<td>string</td>
-<td>"./"</td>
-<td>Output file path</td>
+<td>columns</td>
+<td>string or []</td>
+<td>""</td>
+<td>Column names for library</td>
 </tr>
 <tr>
-<td>predictFile</td>
+<td>target</td>
 <td>string</td>
 <td>""</td>
-<td>Prediction output file</td>
+<td>Prediction target column name</td>
+</tr>
+<tr>
+<td>maxE</td>
+<td>int</td>
+<td>10</td>
+<td>Evaluate embedding up to maxE</td>
 </tr>
 <tr>
 <td>lib</td>
@@ -194,12 +187,6 @@ validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 <td>string or []</td>
 <td>""</td>
 <td>Pairs of prediction start stop row indices</td>
-</tr>
-<tr>
-<td>maxE</td>
-<td>int</td>
-<td>10</td>
-<td>Evaluate embedding up to maxE</td>
 </tr>
 <tr>
 <td>Tp</td>
@@ -218,18 +205,6 @@ validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 <td>int</td>
 <td>0</td>
 <td>Prediction vector exclusion radius</td>
-</tr>
-<tr>
-<td>columns</td>
-<td>string or []</td>
-<td>""</td>
-<td>Column names for library</td>
-</tr>
-<tr>
-<td>target</td>
-<td>string</td>
-<td>""</td>
-<td>Prediction target column name</td>
 </tr>
 <tr>
 <td>embedded</td>
@@ -267,12 +242,37 @@ validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 <td>False</td>
 <td>Do not require first data column of time or index</td>
 </tr>
+<tr>
+<td>pathIn</td>
+<td>string</td>
+<td>"./"</td>
+<td>Input data file path</td>
+</tr>
+<tr>
+<td>dataFile</td>
+<td>string</td>
+<td>""</td>
+<td>Data file name</td>
+</tr>
+<tr>
+<td>pathOut</td>
+<td>string</td>
+<td>"./"</td>
+<td>Output file path</td>
+</tr>
+<tr>
+<td>predictFile</td>
+<td>string</td>
+<td>""</td>
+<td>Prediction output file</td>
+</tr>
 </tbody>
 </table>
 <p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
 <p><strong> Notes </strong>  : <br>
-<code>numThreads</code> defines the number of worker threads for the <code>maxE</code> embeddings.</p>
+Version 1.x: <code>numThreads</code> defines the number of worker threads for the <code>maxE</code> embeddings.</p>
+<p>Version 2.x: <code>numProcess</code> defines the number of processes for the <code>maxE</code> embeddings.</p>
 <p><strong> Returns </strong>  : <br>
 DataFrame with columns <code>E</code> and <code>rho</code>.   </p></div>
               

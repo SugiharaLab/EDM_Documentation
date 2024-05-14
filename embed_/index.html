@@ -130,8 +130,8 @@
 Creates a data block of time-delay embedding from each of the 
 columns in the csv file or dataFrame.  </p>
 <p><strong> Python </strong>  :   </p>
-<pre><code class="language-python">Embed(pathIn='./', dataFile='', dataFrame=None, E=0,
-tau=-1, columns='', verbose=False)
+<pre><code class="language-python">Embed(dataFrame=None, E=0, tau=-1, columns='', 
+includeTime=False, pathIn='./', dataFile=None, )
 </code></pre>
 <p><strong> R </strong>  :   </p>
 <pre><code class="language-R">Embed(path = "./", dataFile = "", dataFrame = NULL, E = 0, 
@@ -148,18 +148,6 @@ tau = -1, columns = "", verbose = FALSE)
 </tr>
 </thead>
 <tbody>
-<tr>
-<td>pathIn</td>
-<td>string</td>
-<td>"./"</td>
-<td>Input data file path</td>
-</tr>
-<tr>
-<td>dataFile</td>
-<td>string</td>
-<td>""</td>
-<td>Data file name</td>
-</tr>
 <tr>
 <td>dataFrame</td>
 <td>pyEDM: pandas DataFrame<br>rEDM: data.frame</td>
@@ -185,10 +173,22 @@ tau = -1, columns = "", verbose = FALSE)
 <td>Column names</td>
 </tr>
 <tr>
-<td>verbose</td>
+<td>pathIn</td>
+<td>string</td>
+<td>"./"</td>
+<td>Input data file path</td>
+</tr>
+<tr>
+<td>dataFile</td>
+<td>string</td>
+<td>""</td>
+<td>Data file name</td>
+</tr>
+<tr>
+<td>includeTime</td>
 <td>bool</td>
 <td>False</td>
-<td>Echo messages</td>
+<td>Include time vector in output</td>
 </tr>
 </tbody>
 </table>
@@ -197,10 +197,9 @@ Refer to the <a href="../parameters/">parameters</a> table for general parameter
 <p><strong> Notes </strong>  : <br>
 The <code>columns</code> parameter can be a list of column names, a list of 
 column indices, or a whitespace separated string of column names or indices.</p>
-<p>The <code>MakeBlock</code> function can be called with <code>deletePartial = True</code> 
-to return a DataFrame with |<code>tau</code>| * (<code>E</code>-1) rows of partial vectors removed
-(rows with NaNs) as a result of the embedding. </p>
-<p>The time column is not included in the returned DataFrame.</p>
+<p>Version 1.x: The time column is not included in the returned DataFrame.</p>
+<p>Version 2.x: The time column is included in the returned DataFrame
+if <code>includeTime = True</code>. </p>
 <p><strong> Returns </strong>  : <br>
 DataFrame with embedded columns.</p></div>
               
