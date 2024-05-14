@@ -23,4 +23,4 @@ from github. Please see:
 [pyEDM](https://github.com/SugiharaLab/pyEDM "pyEDM"), or, 
 [rEDM](https://github.com/SugiharaLab/rEDM "rEDM").
 
-EDM relies on the [LAPACK](http://www.netlib.org/lapack/) libraries. If you build the package, or build the host system (R or python), you will need to ensure a working LAPACK installation.
+Version 1.x of pyEDM and rEDM rely on the [LAPACK](http://www.netlib.org/lapack/) libraries. If you build the package, or build the host system (R or python), you will need to ensure a working LAPACK installation. pyEDM version 2.x does not have this dependence. 

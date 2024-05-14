@@ -5,13 +5,11 @@ Multiview embedding and forecasting of the input data file or DataFrame.
 
 ** Python **  :   
 ```python
-Multiview(pathIn='./', dataFile='', dataFrame=None,
-pathOut='./', predictFile='', lib='', pred='', D=0,
-E=1, Tp=1, knn=0, tau=-1, columns='', target='',
+Multiview(dataFrame=None, columns='', target='',
+lib='', pred='', D=0, E=1, Tp=1, knn=0, tau=-1, 
 multiview=0, exclusionRadius=0, trainLib=True,
-excludeTarget=False, parameterList=False,
-verbose=False, numThreads=4, showPlot=False, 
-noTime = False)
+excludeTarget=False, verbose=False,
+verbose=False, numProcess=4, showPlot=False)
 ```
 
 ** R **  :   
@@ -28,11 +26,8 @@ verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
-| pathIn    | string | "./"  | Input data file path | 
-| dataFile  | string | ""    | Data file name | 
-| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame| 
-| pathOut   | string | "./"  | Output file path | 
-| predictFile | string | ""  | Prediction output file | 
+| dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame|| columns | string or []| "" | Column names for library | 
+| target    | string | ""    | Prediction target library column name | 
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
 | pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | D         | int    | N cols| Multiview state-space dimension | 
@@ -40,8 +35,6 @@ verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
 | tau       | int    | -1    | Embedding time shift (time series rows) | 
-| columns | string or []| "" | Column names for library | 
-| target    | string | ""    | Prediction target library column name |
 | multiview | int    | 0     | Multiview parameter : (if 0 then set to 'sqrt(C)' where C is the number of  D-dimensional combinations out of all available data vectors)|
 | exclusionRadius | int | 0  | Prediction vector exclusion radius |
 | trainLib  | bool   | True  | Use in-sample (lib=pred) prediction for ranking |
@@ -51,6 +44,10 @@ verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
 | verbose   | bool   | False | Echo messages |
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 | noTime    | bool | False | Do not require first data column of time or index |
+| pathIn    | string | "./"  | Input data file path | 
+| dataFile  | string | ""    | Data file name | 
+| pathOut   | string | "./"  | Output file path | 
+| predictFile | string | ""  | Prediction output file | 
 
 <br/>
 Refer to the [parameters](./parameters.md) table for general parameter definitions.
@@ -75,4 +72,4 @@ Pearson correlation, maximum absolute error and root mean square error.<br/>
 
 If `parameterList = True`, a dictionary of `parameters` is added.
 
-`nan` values are inserted where there is no observation or prediction.
+Version 2.x: If `returnObject = True` returns the Multiview class object with all data and variables. 

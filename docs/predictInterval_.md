@@ -5,11 +5,10 @@ Evaluate Simplex prediction skill for forecast intervals from 1 to maxTp.
 
 ** Python **  :   
 ```python
-PredictInterval(pathIn='./', dataFile='', dataFrame=None,
-pathOut='./', predictFile='', lib='', pred='', maxTp=10,
-E=1, tau=-1, exclusionRadius=0, columns='', target='',
-embedded=False, verbose=False, validLib=[], numThreads=4,
-showPlot=True, noTime=False)
+PredictInterval(dataFrame=None, columns='', target='',
+lib='', pred='', maxTp=10, E=1, tau=-1, exclusionRadius=0,
+embedded=False, validLib=[], noTime=False, ignoreNan=True,
+verbose=False, numProcess=4, showPlot=True)
 ```
 
 ** R **  :   
@@ -25,32 +24,33 @@ validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 
 | Parameter | Type | Default | Purpose |
 | --------- | ---- | ------- | ------- |
-| pathIn    | string | "./"  | Input data file path | 
-| dataFile  | string | ""    | Data file name | 
 | dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame| 
-| pathOut   | string | "./"  | Output file path | 
-| predictFile | string | ""  | Prediction output file | 
+| columns | string or []| "" | Column names for library | 
+| target    | string | ""    | Prediction target column name |
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
 | pred  | string or [] | ""  | Pairs of prediction start stop row indices |
 | maxTp     | int    | 10    | Evaluate forecast with Tp up to maxTp | 
 | E         | int    | 0     | Embedding dimension | 
 | tau       | int    | -1    | Embedding shift (time series rows) | 
 | exclusionRadius | int | 0  | Prediction vector exclusion radius |
-| columns | string or []| "" | Column names for library | 
-| target    | string | ""    | Prediction target column name |
 | embedded  | bool   | False | Is data an embedding?  |
-| verbose   | bool   | False | Echo messages |
 | validLib  | bool [] | [] or None | Conditional embedding |
+| noTime    | bool | False | Do not require first data column of time or index |
+| verbose   | bool   | False | Echo messages |
 | numThreads| int    | 4     | Number of threads to use |
 | showPlot  | bool   | True  | Show plot of E vs Rho (pyEDM, rEDM) |
-| noTime    | bool | False | Do not require first data column of time or index |
+| pathIn    | string | "./"  | Input data file path | 
+| dataFile  | string | ""    | Data file name | 
+| pathOut   | string | "./"  | Output file path | 
+| predictFile | string | ""  | Prediction output file | 
 
 <br/>
 Refer to the [parameters](./parameters.md) table for general parameter definitions.
 
 ** Notes **  :   
-`numThreads` defines the number of worker threads for the `maxTp` prediction 
-interval forecasts.
+Version 1.x: `numThreads` defines the number of worker threads for the `maxTp` embeddings.
+
+Version 2.x: `numProcess` defines the number of processes for the `maxTp` embeddings.
 
 ** Returns **  :   
 DataFrame with columns `Tp` and `rho`. 

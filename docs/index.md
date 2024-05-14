@@ -16,13 +16,6 @@ and multiview embedding
 ([Ye and Sugihara 2016](https://science.sciencemag.org/content/353/6302/922)).
 These documents introduce the underlying theory, and illustrate analytical 
 functionality with examples.  
-
-The core EDM algorithms are implemented in the
-[cppEDM library](https://github.com/SugiharaLab/cppEDM "cppEDM").
-Python and R interfaces to the library are provided in the
-[pyEDM](https://github.com/SugiharaLab/pyEDM "pyEDM") and
-[rEDM](https://github.com/SugiharaLab/rEDM "rEDM") packages.  
-
 ------
 
 ## Motivation
