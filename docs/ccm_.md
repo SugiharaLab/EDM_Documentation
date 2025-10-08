@@ -2,16 +2,17 @@
 ## <function> CCM </function> 
 Convergent cross mapping between `columns` : `target`; and, reverse mapping between `target` : `columns`.
 
-** Python **  :   
+**Python** :   
 ```python
 CCM(dataFrame=None, columns='', target='', 
 libSizes='', sample=0, E=0, Tp=0, knn=0, tau=-1, 
 exclusionRadius=0, seed=0, embedded=False, 
 includeData=False, noTime=False, ignoreNan=True,
+mpMethod=None, sequential=False,
 verbose=False, showPlot=False, returnObject=False)
 ```
 
-** R **  :   
+**R** :   
 ```R
 CCM(pathIn="./", dataFile="", dataFrame=NULL, E=0, 
 Tp=0, knn=0, tau=-1, exclusionRadius=0,
@@ -29,7 +30,7 @@ parameterList=FALSE, verbose=FALSE, showPlot=FALSE, noTime=FALSE)
 | target    | string | ""    | Prediction target column name |
 | libSizes| string | ""      | CCM library sizes |
 | sample    | int    | 0     | CCM number of random samples |
-| E         | int    | 0     | Data dimension | 
+| E         | int    | 0     | Embedding dimension | 
 | Tp        | int    | 0     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set as E+1)| 
 | tau       | int    | -1    | Embedding time shift (time series rows) | 
@@ -44,13 +45,13 @@ parameterList=FALSE, verbose=FALSE, showPlot=FALSE, noTime=FALSE)
 | showPlot  | bool   | False | Plot results (pyEDM, rEDM) |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| pathOut   | string | "./"  | Output file path | 
-| predictFile | string | ""  | Prediction output file | 
+| mpMethod  | string | None  | multiprocessing context start method | 
+| sequential | bool | False | Disable multiprocessing | 
 
 <br/>
 Refer to the [parameters](./parameters.md) table for general parameter definitions.
 
-** Notes **  :  
+**Notes**  :  
 Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension `E`, then cross mapped with the target time series.  In a separate thread, the target time series is embedded to `E` and cross mapped against the column acting as the "target". 
 
 If there are multiple `columns` and `embedded` is false, each column is time-delay embedded to dimension `E` creating an N-columns * E dimensional "mixed" embedding.  If `embedded` is true, no time-delay embedding is done, creating a multivariate embedding of the speficied columns.  The same logic applies if multiple target are specified for the "reverse" mapping. If embedded is false, each target is time-delay embedded to dimension `E` creating an N-target * E dimensional "mixed" embedding cross mapped to *only the first column* as the cross map target.  If `embedded` is true, no time-delay embedding is done, creating a multivariate embedding of the specified target(s).
@@ -65,7 +66,7 @@ this is *not* convergent cross mapping.
 If `seed=0` a random seed is generated for the random number generator. 
 Otherwise, seed is used to initialise the random number generator.
 
-** Returns **  :  
+**Returns**  :  
 If `includeData` is `False`: returns DataFrame with 3 columns.   
 The first column is `LibSize`, the second and third columns
 are Pearson correlation coefficients for `column` : `target` 

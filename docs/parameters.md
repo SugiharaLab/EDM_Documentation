@@ -75,8 +75,17 @@ Maximum value of `E` to evalulate in `EmbedDimension`.
 ##### maxTp
 Maximum value of `Tp` to evalulate in `PredictInterval`.
 
-##### numThreads
-Number of parallel threads for computation in `EmbedDimension`; `PredictInterval` and `PredictNonlinear`.
+##### numProcess
+Number of parallel processes for computation in `EmbedDimension`; `PredictInterval` and `PredictNonlinear`.
+
+##### mpMethod
+Python multiprocessing context start method. 
+
+##### chunksize
+Python multiprocessing chunksize.
+
+##### sequential
+CCM flag to disable multiprocessing. 
 
 ##### pathIn
 Filesystem path to input `dataFile`. CSV format.
@@ -84,18 +93,6 @@ Filesystem path to input `dataFile`. CSV format.
 ##### dataFile
 CSV format data file name. The first row must be column names.<br>
 The first column must be time index, strings or values unless `noTime = True`.
-
-##### pathOut
-Filesystem path for `predictFile` containing output predictions.
-
-##### predictFile
-Observation and Prediction output file name. CSV format.
-
-##### smapCoefFileSMap
-Coefficient output file name. CSV format.
-
-##### smapSVFile
-`SMap` singular value output file name. CSV format.
 
 ##### solver
 In pyEDM `SMap()`: An instance of a sklearn.linear_model object.
@@ -112,14 +109,8 @@ Conditional embedding. Boolean vector identifying time series rows whose  corres
 ##### generateSteps
 Generative feedback predictions for `Simplex()` or `SMap()`.
 
-##### parameterList
-Add parameter dictionary to return objects in `Simplex()`,`SMap()`,`CCM()`,`Multiview()`.
-
 ##### verbose
 Logical to produce additional console reporting.
-
-##### const_pred
-Logical to add a constant predictor column to the output.  The constant predictor is X(t+1) = X(t).
 
 ##### showPlot
 Logical to plot results (pyEDM & rEDM).

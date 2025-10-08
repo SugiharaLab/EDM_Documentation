@@ -1,19 +1,20 @@
 
 ## <function> PredictNonlinear </function> 
-** Description **  :   
+**Description** :   
 Evaluate SMap prediction skill for localization parameter 
 `theta`  (default from 0.01 to 9).
 
-** Python **  :   
+**Python** :   
 ```python
 PredictNonlinear(dataFrame=None, columns='', target='', 
 theta='', lib='', pred='', E=1, Tp=1, knn=0, tau=-1,
 exclusionRadius=0, solver=None, embedded=False, 
 validLib=[], noTime=False, ignoreNan=True, 
-verbose=False, numProcess=4, showPlot=True)
+verbose=False, numProcess=4, mpMethod=None, 
+chunksize=1, showPlot=True)
 ```
 
-** R **  :   
+**R** :   
 ```R
 PredictNonlinear(pathIn="./", dataFile="", dataFrame=NULL, 
 pathOut="./", predictFile="", lib="", pred="", theta="",
@@ -47,13 +48,13 @@ er of [',' , '\t', '\n']. |
 | showPlot  | bool   | True  | Show plot of theta vs Rho |
 | pathIn    | string | "./"  | Input data file path | 
 | dataFile  | string | ""    | Data file name | 
-| pathOut   | string | "./"  | Output file path | 
-| predictFile | string | ""  | Prediction output file | 
+| mpMethod  | string | None  | multiprocessing context start method | 
+| chunksize | int | 1 | multiprocessing chunksize | 
 
 <br/>
 Refer to the [parameters](./parameters.md) table for general parameter definitions.
 
-** Notes **  :   
+**Notes** :   
 `theta` is a list or string of theta values with a delimiter of 
 [',', '\t', '\n'].
 See the Parameters table for parameter definitions.
@@ -62,5 +63,5 @@ Version 1.x: `numThreads` defines the number of worker threads for the `maxTp` e
 
 Version 2.x: `numProcess` defines the number of processes for the `maxTp` embeddings.
 
-** Returns **  :   
+**Returns** :   
 DataFrame with columns `theta` and `rho`. 

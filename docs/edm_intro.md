@@ -24,7 +24,7 @@ picture-in-picture" allowfullscreen></iframe>
 
 ### Embedding
 The process of creating this representation is termed _embedding_.  In the
-EDM packages we can use the [`Embed()`](../edm_functions/#embed)
+EDM packages we can use the [`Embed()`](embed_.md)
 function to create an embedding.  This function creates successively
 time-lagged, if _τ_ < 0, or, time-advanced if _τ_ > 0, observation vectors
 from the input vectors.
@@ -40,7 +40,7 @@ In the case of the Rössler attractor we know that 3 dimensions will
 best represent the system.  If Takens theorem is used to create an
 embedding, there will exist an optimal number of dimensions that best represent
 the dynamics.  We can estimate an optimal embedding dimension with the
-[`EmbedDimension()`](../edm_functions/#embeddimension) function.
+[`EmbedDimension()`](embedDimension_.md) function.
 This function evaluates simplex prediction accuracy over a range of embedding
 dimensions, the embedding dimension E with the highest predictive accuracy is
 selected for system analysis.  This embedding is presumed to best represent
@@ -48,18 +48,18 @@ and "disentangle" the manifold.
 
 ### Nearerst Neighbor Forecasting: Simplex and S-map
 EDM implements two timeseries prediction algorithms:
-[`Simplex()`](../edm_functions/#simplex), and
-[`SMap()`](../edm_functions/#smap).
+[`Simplex()`](simplex_.md), and
+[`SMap()`](smap_.md).
 Both operate in the embedding state-space, using nearest neighbors
 of a query point (location in the state-space from which a prediction is
 desired) to project a new estimate along the manifold.
 
-[`Simplex()`](../edm_functions/#simplex) uses the centroid of the k-nearest
+[`Simplex()`](simplex_.md) uses the centroid of the k-nearest
 neighbors (knn) of the query point projected `Tp` time steps ahead as the 
 estimate.  The number of neighbors, knn, is conventionally set as the number
 of state-space dimensions plus one: knn = E + 1. 
 
-[`SMap()`](../edm_functions/#smap) uses a localized linear regression of query
+[`SMap()`](smap_.md) uses a localized linear regression of query
 point neighbors to project a new estimate along the manifold.  By default,
 the number of
 neighbors in the regression are set to the total number of state-space
@@ -72,18 +72,18 @@ effectively modeling different local "resolutions" on the attractor.
 Since the scale of these local resolutions reflect the degree to which
 the dynamics are state-dependent, evaluating S-map predictive skill over
 a range of localizations θ can reveal the degree of state-dependence, and
-thus nonlinearity of the dynamics. The [`PredictNonlinear()`](../edm_functions/#predictnonlinear) function can be used for this purpose. 
+thus nonlinearity of the dynamics. The [`PredictNonlinear()`](predictNonlinear_.md) function can be used for this purpose. 
 
 ### Variable interactions
 EDM also provides methods to assess interactions between state-space
 variables, as well as inference of causal relationships.
 
-[`SMap()`](../edm_functions/#smap) returns the regression coefficients
+[`SMap()`](smap_.md) returns the regression coefficients
 between variables, which have been shown to approximate the gradient
 (directional derivative) of variables along the manifold
 ([Deyle et al. 2016](https://royalsocietypublishing.org/doi/full/10.1098/rspb.2015.2258)).
 
-[`CCM()`](../edm_functions/#ccm) applies convergent cross mapping
+[`CCM()`](ccm_.md) applies convergent cross mapping
 to pairs of variables to infer possible causal links between variables.
 
 <iframe width="100%" height="335"
@@ -94,4 +94,4 @@ allowfullscreen></iframe>
 ------
 
 Details on these algorithms are provided in the section
-[EDM Algorithms in Depth](../algorithms_in_depth).
+[EDM Algorithms in Depth](algorithms_in_depth.md).

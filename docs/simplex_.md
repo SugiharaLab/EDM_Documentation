@@ -1,8 +1,8 @@
 ## <function> Simplex </function> 
-** Description **  :   
+**Description**  :   
 Simplex projection of the input data file or DataFrame.
 
-** Python **  :   
+**Python**  :   
 ```python
 Simplex(dataFrame=None, columns='', target='', 
 lib='', pred='', E=0, Tp=1, knn=0, tau=-1, 
@@ -11,7 +11,7 @@ noTime = False, verbose=False, showPlot=False,
 ignoreNan = True, returnObject=False)
 ```
 
-** R **  :   
+**R**  :   
 ```R
 Simplex(pathIn="./", dataFile="", dataFrame=NULL, 
 pathOut="./", predictFile="", lib="", pred="", 
@@ -31,7 +31,7 @@ showPlot=FALSE, noTime=FALSE)
 | target    | string | ""    | Prediction target column name |
 | lib   | string or [] | ""  | Pairs of library start stop row indices |
 | pred  | string or [] | ""  | Pairs of prediction start stop row indices |
-| E         | int    | 0     | Data dimension | 
+| E         | int    | 0     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
 | tau       | int    | -1    | Embedding time shift (time series rows)| 
@@ -54,7 +54,7 @@ showPlot=FALSE, noTime=FALSE)
 <br/>
 Refer to the [parameters](./parameters.md) table for general parameter definitions.
 
-** Notes ** :   
+**Notes** :   
 If `embedded` is false (default) the data `columns` are embedded to dimension `E` with time shift `tau`.  If `knn` = 0, it is set to E+1.
 
 Version 1.x : `nan` values are passed through all numeric computations in `cppEDM`. Any prediction row (`pred`) with `nan` will result in `nan` simplex prediction. Any library vector with a `nan` , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in `nan` simplex prediction.
@@ -65,7 +65,7 @@ Version 2.x : `nan` values are removed from the data unless `ignoreNan = True`.
 
 If generateSteps > 0 `Simplex` operates in feedback generative mode. The values of `pred` are over-riden to start at the end of the data. At each step one prediction is made, added to the `columns` data, a new time-delay embedded is created, and the cycle repeated for `generateSteps`. Feedback generation only operates on a univariate time series that is time-delay embedded. The `columns` and `target` variables must be the same.
 
-** Returns **  :   
+**Returns**  :   
 Version 1.x : If `parameterList = False`, (default) returns a DataFrame with 3 columns : "Time", "Observations", "Predictions". If `parameterList = True`, returns a list with `predictions`, `parameters`.
 
 Version 2.x : Returns a DataFrame with 3 columns : "Time", "Observations", "Predictions". If `returnObject = True` returns the Simplex class object with all data and variables. 

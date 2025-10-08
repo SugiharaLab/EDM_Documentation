@@ -16,11 +16,11 @@ proportional to their distance to the query point as described in
 `Simplex` is the most direct projection technique in the
 EDM package, operates with minimal assumptions, and is the core algorithm
 for the evaluation of embedding dimension
-[`EmbedDimension()`](../edm_functions/#embeddimension), evaluation of
+[`EmbedDimension()`](embedDimension_.md), evaluation of
 temporal forecast predictability
-[`PredictInterval()`](../edm_functions/#predictinterval), 
-convergent cross mapping [`CCM()`](../edm_functions/#ccm),
-and multiview embedding [`Multiview()`](../edm_functions/#multiview).
+[`PredictInterval()`](predictInterval_.md), 
+convergent cross mapping [`CCM()`](ccm_.md/),
+and multiview embedding [`Multiview()`](multiview_.md).
 
 ### Video of Simplex prediction at varying library sizes
 This video illustrates how denser state space representations with increasing
@@ -43,7 +43,7 @@ This _localization_ ability allows one to identify an optimal local scale that
 best represents local dynamics. As a result, assessing predictability
 over a spectrum of localization parameters θ allows one to infer
 state-dependence, and thus nonlinearity of the dynamics. See 
-[`PredictNonlinear()`](../edm_functions/#predictnonlinear).
+[`PredictNonlinear()`](predictNonlinear_.md).
 
 ### Video of S-Map prediction at varying theta
 This video illustrates S-Map predictions with increasing values (higher localization) of `theta`.

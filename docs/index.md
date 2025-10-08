@@ -9,7 +9,7 @@ EDM algorithms include simplex projection
 S-map
 ([Sugihara 1994](https://royalsocietypublishing.org/doi/abs/10.1098/rsta.1994.0106)),
 multivariate embedding
-([Dixon, Milicich, and Sugihara 1999](https://science.sciencemag.org/content/283/5407/1528)),
+([Deyle and Sugihara 2011](https://doi.org/10.1371/journal.pone.0018295)),
 convergent cross mapping
 ([Sugihara et al. 2012](https://science.sciencemag.org/content/338/6106/496)),
 and multiview embedding
@@ -50,5 +50,5 @@ projection. S-map can also be used to assess variable interactions
 and infer the degree of system nonlinearity.
 To infer causal relationships between variables, Convergent Cross
 Mapping (CCM) can be applied.  See the
-[algorithms in depth section](./algorithms_in_depth) for details on
+[algorithms in depth section](algorithms_in_depth.md) for details on
 these functions.

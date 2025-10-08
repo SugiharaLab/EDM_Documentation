@@ -1,6 +1,6 @@
 # Embedding
 
-The [`EDM Framework`](../edm_intro) is based on a multidimensional representation of system dynamics, colloquially referred to as an _embedding_.  Given a dynamical system of dimension D, the [Whitney Embedding Theorem](https://en.wikipedia.org/wiki/Whitney_embedding_theorem#See_also) establishes limits on the embedding dimension, E, needed to completely represent the dynamics. Generally, EDM uses the parameter E to represent the dimension of the embedding, however, to support multivariate embeddings there are deviations from the above definitions as noted below.
+The [`EDM Framework`](edm_intro.md) is based on a multidimensional representation of system dynamics, colloquially referred to as an _embedding_.  Given a dynamical system of dimension D, the [Whitney Embedding Theorem](https://en.wikipedia.org/wiki/Whitney_embedding_theorem#See_also) establishes limits on the embedding dimension, E, needed to completely represent the dynamics. Generally, EDM uses the parameter E to represent the dimension of the embedding, however, to support multivariate embeddings there are deviations from the above definitions as noted below.
 
 The combination of the `columns` and  `embedded` parameters control what
 variables are included in the embedding, and, whether a time-delay embedding
@@ -10,18 +10,18 @@ the set of variables specified in `columns` is assumed to be a valid embedding,
 no time-delay embedding is performed. 
 
 These functions accept multiple values for the `columns` parameter: 
-[`Embed()`](../embed_)
-[`Simplex()`](../simplex_)
-[`SMap()`](../smap_)
-[`Multiview()`](../multiview_)
-[`PredictInterval()`](../predictInterval_)
-[`PredictNonlinear()`](../predictNonlinear_)
+[`Embed()`](embed_.md)
+[`Simplex()`](simplex_.md)
+[`SMap()`](smap_.md)
+[`Multiview()`](multiview_.md)
+[`PredictInterval()`](predictInterval_.md)
+[`PredictNonlinear()`](predictNonlinear_.md)
 
 These functions accept the `embedded` parameter:
-[`Simplex()`](../simplex_)
-[`SMap()`](../smap_)
-[`PredictInterval()`](../predictInterval_)
-[`PredictNonlinear()`](../predictNonlinear_)
+[`Simplex()`](simplex_.md)
+[`SMap()`](smap_.md)
+[`PredictInterval()`](predictInterval_.md)
+[`PredictNonlinear()`](predictNonlinear_.md)
 
 - If `embedded = false` (default):
     - If `columns` is a single value, then an E-dimensional time-delay 
@@ -65,4 +65,4 @@ taken D at-a-time.
 `SMap()` should be called with `columns` explicity corresponding to
 dimensions `E`.  In the multivariate case (number of `columns` > 1)
 use `embedded = true` with `E` equal to the number of `columns`.
-See the embedding note in [`SMap() documentation`](../edm_functions/).
+See the embedding note in [`SMap() documentation`](edm_functions.md/).

@@ -1,25 +1,26 @@
 
 ## <function> Multiview </function> 
-** Description **  :   
+**Description** :   
 Multiview embedding and forecasting of the input data file or DataFrame.
 
-** Python **  :   
+**Python** :   
 ```python
 Multiview(dataFrame=None, columns='', target='',
 lib='', pred='', D=0, E=1, Tp=1, knn=0, tau=-1, 
 multiview=0, exclusionRadius=0, trainLib=True,
 excludeTarget=False, verbose=False,
-verbose=False, numProcess=4, showPlot=False)
+verbose=False, numProcess=4, mpMethod=None,
+chunksize=1, showPlot=False, returnObject=False )
 ```
 
-** R **  :   
+**R** :   
 ```R
 Multiview(pathIn="./", dataFile="", dataFrame=NULL,
 lib="", pred="", D=0, E=1, Tp=1, knn=0,
 tau=-1, columns="", target="", multiview=0,
 exclusionRadius=0, trainLib=TRUE, 
 excludeTarget=FALSE, parameterList=FALSE,
-verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
+verbose=FALSE, numThreads=4, showPlot=FALSE, noTime=FALSE)
 ```
 
 ---
@@ -48,17 +49,17 @@ verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
 | dataFile  | string | ""    | Data file name | 
 | pathOut   | string | "./"  | Output file path | 
 | predictFile | string | ""  | Prediction output file | 
+| mpMethod  | string | None  | multiprocessing context start method | 
+| chunksize | int | 1 | multiprocessing chunksize | 
 
 <br/>
 Refer to the [parameters](./parameters.md) table for general parameter definitions.
 
-** Notes **  :   
-If `predictFile` is provided the Predictions will be written to it in csv format.
-
+**Notes**  :   
 If `multiview` is not specified it is set to 'sqrt(C)' where C is the number of 
 `D`-dimensional combinations out of all available data vectors.
 
-** Returns **  :   
+**Returns**  :   
 Dict in `pyEDM`, named List in `rEDM`: with two DataFrames:<br/>
 View<br/>
 Predictions<br/>
