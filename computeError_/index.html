@@ -126,7 +126,7 @@
               
                 <div><h2 id="computeerror"><function> ComputeError </function></h2>
 <p><strong>Description</strong>  : <br>
-Compute Pearson correlation coefficient, maximum absolute error (MAE) and root mean square error (RMSE) between two vectors. A minimum of 5 observation and prediction pairs are required. </p>
+Compute Pearson correlation coefficient (rho), maximum absolute error (MAE), cumulative absolute error (CAE) and root mean square error (RMSE) between two vectors. A minimum of 5 observation and prediction pairs are required. </p>
 <p>If <code>nan</code> are present in <code>obs</code> or <code>pred</code>, they are removed before computing results. </p>
 <p><strong>Python</strong>  :   </p>
 <pre><code class="language-python">ComputeError(obs, pred)
@@ -158,7 +158,7 @@ Compute Pearson correlation coefficient, maximum absolute error (MAE) and root m
 </table>
 <p><br>
 <strong>Returns</strong>  : <br>
-Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with computed <code>rho</code>, <code>RMSE</code>, <code>MAE</code>.</p></div>
+Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with computed <code>rho</code>, <code>RMSE</code>, <code>MAE</code>, <code>CAE</code>. </p></div>
               
             </div>
           </div><footer>
