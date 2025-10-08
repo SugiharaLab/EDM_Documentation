@@ -8,7 +8,7 @@
     <title>MakeBlock - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -73,7 +72,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../embed_/">Embed</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">MakeBlock</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">MakeBlock</a>
     <ul class="current">
     </ul>
                   </li>
@@ -114,9 +113,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Documentation &raquo;</li>
-      <li>MakeBlock</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Documentation</li>
+      <li class="breadcrumb-item active">MakeBlock</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -126,13 +125,13 @@
             <div class="section" itemprop="articleBody">
               
                 <div><h2 id="makeblock"><function> MakeBlock </function></h2>
-<p><strong> Description </strong>  :
+<p><strong>Description</strong>  :
 Creates a data block of time-delay embedding from each of the
 columnNames in the dataFrame.</p>
-<p><strong> Python </strong>  :   </p>
+<p><strong>Python</strong>  :   </p>
 <pre><code class="language-python">MakeBlock(dataFrame, E=0, tau=-1, columnNames=[], deletePartial=False)
 </code></pre>
-<p><strong> R </strong>  :   </p>
+<p><strong>R</strong>  :   </p>
 <pre><code class="language-R">MakeBlock(dataFrame, E = 0, tau = -1, columns = c(), deletePartial = FALSE)
 </code></pre>
 <hr>
@@ -156,7 +155,7 @@ columnNames in the dataFrame.</p>
 <td>E</td>
 <td>int</td>
 <td>0</td>
-<td>Data dimension</td>
+<td>Embedding dimension</td>
 </tr>
 <tr>
 <td>tau</td>
@@ -179,14 +178,14 @@ columnNames in the dataFrame.</p>
 </tbody>
 </table>
 <p><br>
-<strong> Notes </strong>  :
+<strong>Notes</strong>  :
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
 <p>The <code>columnNames</code> is a list of column names.</p>
 <p>The time column is not included in the returned DataFrame.</p>
 <p>The <code>MakeBlock</code> function is a low level function that does not perform
 error checking.  The <code>Embed</code> function provides error checking and file-based
 input.</p>
-<p><strong> Returns </strong>  :
+<p><strong>Returns</strong>  :
 DataFrame with embedded columns.</p></div>
               
             </div>
@@ -223,13 +222,14 @@ DataFrame with embedded columns.</p></div>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

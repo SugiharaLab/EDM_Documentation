@@ -8,7 +8,7 @@
     <title>SMap - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -59,7 +58,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../simplex_/">Simplex</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">SMap</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">SMap</a>
     <ul class="current">
     </ul>
                   </li>
@@ -114,9 +113,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Documentation &raquo;</li>
-      <li>SMap</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Documentation</li>
+      <li class="breadcrumb-item active">SMap</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -126,16 +125,16 @@
             <div class="section" itemprop="articleBody">
               
                 <div><h2 id="smap"><function> SMap </function></h2>
-<p><strong> Description </strong>  : <br>
+<p><strong>Description</strong>  : <br>
 SMap projection of the input data file or DataFrame.</p>
-<p><strong> Python </strong>  :   </p>
+<p><strong>Python</strong> :   </p>
 <pre><code class="language-python">SMap(dataFrame=None, columns='', target='',
 lib='', pred='', E=0, Tp=1, knn=0, tau=-1,
 theta=0, exclusionRadius=0, solver=None, embedded=False,
 validLib=[], noTime=False, ignoreNan = True,
 showPlot=False, verbose=False, returnObject=False)
 </code></pre>
-<p><strong> R </strong>  :   </p>
+<p><strong>R</strong> :   </p>
 <pre><code class="language-R">SMap(pathIn="./", dataFile="", dataFrame=NULL,
 lib="", pred="", E=0, Tp=1, knn=0, tau=-1,
 theta=0, exclusionRadius=0, columns="", target="", 
@@ -188,7 +187,7 @@ showPlot=FALSE, noTime=FALSE)
 <td>E</td>
 <td>int</td>
 <td>0</td>
-<td>Data dimension</td>
+<td>Embedding dimension</td>
 </tr>
 <tr>
 <td>Tp</td>
@@ -326,14 +325,14 @@ showPlot=FALSE, noTime=FALSE)
 </table>
 <p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
-<p><strong> Notes </strong> : <br>
+<p><strong>Notes</strong> : <br>
 If <code>embedded</code> is false, data columns are embedded to dimension <code>E</code> with shift <code>tau</code>.
 If <code>knn</code> is not specified, it is set to the full library size.<br>
 If <code>knn</code> is specified, it must be greater than <code>E</code>.<br></p>
-<p><strong> nan </strong> : <br>
+<p><strong>nan</strong> : <br>
 Version 1.x : Any prediction row (<code>pred</code>) with <code>nan</code> will result in <code>SMap</code> <code>nan</code> prediction. Any library vector with <code>nan</code> , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in <code>SMap</code> <code>nan</code> prediction. By default <code>SMap</code> uses all library vectors as neighbors. To address this, if <code>nan</code> are detected in <code>columns</code> or <code>target</code> and <code>ignoreNan = True</code> (default), the library is automatically redefined to exclude data and embedding vectors containing <code>nan</code>. If <code>ignoreNan = False</code> the library is not changed. The user can manually specify library (<code>lib</code>) row segments to ignore nan values.</p>
 <p>Version 2.x : <code>nan</code> values are removed from the data unless <code>ignoreNan = True</code>. </p>
-<p><strong> Multivariate Embedding </strong> : <br>
+<p><strong>Multivariate Embedding</strong> : <br>
 <code>SMap</code> should be called with columns explicitly corresponding to dimensions <code>E</code>. In the univariate case (number of <code>columns</code> = 1) with default <code>embedded = false</code>, the time series will be time-delay embedded to dimension <code>E</code>, returned <code>SMap</code> coefficients correspond to each dimension. </p>
 <p>If multivariate data is used (number of <code>columns</code> &gt; 1) <code>SMap</code>
 must use <code>embedded = true</code> with <code>E</code> equal to the number of columns.
@@ -342,23 +341,23 @@ multiple columns to dimension <code>E</code>.  If internal time-delay embedding
 were performed, then state-space columns will not correspond to the
 intended dimensions in the matrix inversion, coefficient assignment,
 and prediction.  In this multivariate case, the user can first prepare
-the embedding (using <a href="../edm_functions/#embed"><code>Embed()</code></a> for time-delay
+the embedding (using <a href="../embed_/"><code>Embed()</code></a> for time-delay
 embedding if desired, add a first column of time), then pass this embedding 
 to <code>SMap</code> with appropriately specified <code>columns</code>, <code>E</code>, and <code>embedded = true</code>.
 The <a href="https://github.com/SugiharaLab/pyEDM/blob/master/pyEDM/etc/apps/Embedding.py"><code>Embedding.py</code></a> application can be used to perform the embedding and
 insert the time vector for input to <code>SMap</code>.</p>
-<p><strong> Conditional Embedding </strong> : <br>
+<p><strong>Conditional Embedding</strong> : <br>
 <code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
-<p><strong> Generative Mode </strong> : <br>
+<p><strong>Generative Mode</strong> : <br>
 If generateSteps &gt; 0 <code>SMap</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
-<p><strong> Linear System Solver </strong> : <br>
+<p><strong>Linear System Solver</strong> : <br>
 In <code>pyEDM</code>: The default LAPACK SVD solver <code>dgelsd()</code> can be replaced with
 a class object instantiated from the <code>sklearn.linear_model</code> class.
 Supported solvers include <code>LinearRegression</code>, <code>Ridge</code>, <code>Lasso</code>,
 <code>ElasticNet</code>, <code>RidgeCV</code>, <code>LassoCV</code>, <code>ElasticNetCV</code>. 
 See <a href="../solvers_demo/"><code>examples</code></a>.</p>
 <p>Version 1.x Note: Windows does not support community compiler standards thereby creating binary library compatibility barriers, specifically the use of OpenBLAS for the SVD solver. As a result, the Windows pyEDM implementation does not use the cppEDM default solver <code>dgelss</code> from BLAS/LAPACK. All other implementations use BLAS/LAPACK <code>dgelss</code> directly.</p>
-<p><strong> Returns </strong>  : <br>
+<p><strong>Returns</strong> : <br>
 Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with three DataFrames:<br>
 <code>predictions</code> [ 3 columns : "Time", "Observations", "Predictions"],<br>
 <code>coefficients</code>[ E+2 columns : "Time", and E+1 SMap coefficents]<br>
@@ -400,13 +399,14 @@ Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with three DataFram
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

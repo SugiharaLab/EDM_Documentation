@@ -8,7 +8,7 @@
     <title>pyEDM, rEDM</title>
     <link rel="stylesheet" href="css/theme.css" />
     <link rel="stylesheet" href="css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="extra.css" rel="stylesheet" />
         <link href="css/ansi-colours.css" rel="stylesheet" />
         <link href="css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -41,7 +40,7 @@
 
       <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
               <ul class="current">
-                <li class="toctree-l1 current"><a class="reference internal current" href=".">Home</a>
+                <li class="toctree-l1 current"><a class="reference internal current" href="#">Home</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#motivation">Motivation</a>
     </li>
@@ -124,8 +123,8 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href="." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-      <li>Home</li>
+    <li><a href="." class="icon icon-home" aria-label="Docs"></a></li>
+      <li class="breadcrumb-item active">Home</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -144,7 +143,7 @@ EDM algorithms include simplex projection
 S-map
 (<a href="https://royalsocietypublishing.org/doi/abs/10.1098/rsta.1994.0106">Sugihara 1994</a>),
 multivariate embedding
-(<a href="https://science.sciencemag.org/content/283/5407/1528">Dixon, Milicich, and Sugihara 1999</a>),
+(<a href="https://doi.org/10.1371/journal.pone.0018295">Deyle and Sugihara 2011</a>),
 convergent cross mapping
 (<a href="https://science.sciencemag.org/content/338/6106/496">Sugihara et al. 2012</a>),
 and multiview embedding
@@ -176,7 +175,7 @@ projection. S-map can also be used to assess variable interactions
 and infer the degree of system nonlinearity.
 To infer causal relationships between variables, Convergent Cross
 Mapping (CCM) can be applied.  See the
-<a href="./algorithms_in_depth">algorithms in depth section</a> for details on
+<a href="algorithms_in_depth/">algorithms in depth section</a> for details on
 these functions.</p></div>
               
             </div>
@@ -210,19 +209,20 @@ these functions.</p></div>
     
   </span>
 </div>
-    <script>var base_url = '.';</script>
-    <script src="js/theme_extra.js" defer></script>
-    <script src="js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = ".";</script>
+    <script src="js/theme_extra.js"></script>
+    <script src="js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
 </html>
 
 <!--
-MkDocs version : 1.4.3
-Build Date UTC : 2024-05-14 00:29:20.664919+00:00
+MkDocs version : 1.6.1
+Build Date UTC : 2025-10-08 23:20:03.127081+00:00
 -->

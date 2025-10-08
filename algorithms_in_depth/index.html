@@ -8,7 +8,7 @@
     <title>EDM Algorithms in Depth - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -90,7 +89,7 @@
               </ul>
               <p class="caption"><span class="caption-text">EDM Algorithms</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">EDM Algorithms in Depth</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">EDM Algorithms in Depth</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#simplex-nearest-neighbor-projection">Simplex : Nearest Neighbor Projection</a>
         <ul>
@@ -130,9 +129,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>EDM Algorithms &raquo;</li>
-      <li>EDM Algorithms in Depth</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">EDM Algorithms</li>
+      <li class="breadcrumb-item active">EDM Algorithms in Depth</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -155,11 +154,11 @@ proportional to their distance to the query point as described in
 <p><code>Simplex</code> is the most direct projection technique in the
 EDM package, operates with minimal assumptions, and is the core algorithm
 for the evaluation of embedding dimension
-<a href="../edm_functions/#embeddimension"><code>EmbedDimension()</code></a>, evaluation of
+<a href="../embedDimension_/"><code>EmbedDimension()</code></a>, evaluation of
 temporal forecast predictability
-<a href="../edm_functions/#predictinterval"><code>PredictInterval()</code></a>, 
-convergent cross mapping <a href="../edm_functions/#ccm"><code>CCM()</code></a>,
-and multiview embedding <a href="../edm_functions/#multiview"><code>Multiview()</code></a>.</p>
+<a href="../predictInterval_/"><code>PredictInterval()</code></a>, 
+convergent cross mapping <a href="../ccm_/"><code>CCM()</code></a>,
+and multiview embedding <a href="../multiview_/"><code>Multiview()</code></a>.</p>
 <h3 id="video-of-simplex-prediction-at-varying-library-sizes">Video of Simplex prediction at varying library sizes</h3>
 <p>This video illustrates how denser state space representations with increasing
 number of library vectors improves Simplex prediction.</p>
@@ -177,7 +176,7 @@ This <em>localization</em> ability allows one to identify an optimal local scale
 best represents local dynamics. As a result, assessing predictability
 over a spectrum of localization parameters θ allows one to infer
 state-dependence, and thus nonlinearity of the dynamics. See 
-<a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a>.</p>
+<a href="../predictNonlinear_/"><code>PredictNonlinear()</code></a>.</p>
 <h3 id="video-of-s-map-prediction-at-varying-theta">Video of S-Map prediction at varying theta</h3>
 <p>This video illustrates S-Map predictions with increasing values (higher localization) of <code>theta</code>.</p>
 <p><div class="video-container"><video style="width:75%" muted controls alt="type:video"><source src="../imgs/Rossler_Theta.mp4" type="video/mp4"></source></video></div><br></p>
@@ -242,13 +241,14 @@ influencing <em>Y</em> as described in
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

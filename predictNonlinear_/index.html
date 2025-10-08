@@ -8,7 +8,7 @@
     <title>PredictNonlinear - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -69,7 +68,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../predictInterval_/">PredictInterval</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">PredictNonlinear</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">PredictNonlinear</a>
     <ul class="current">
     </ul>
                   </li>
@@ -114,9 +113,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Documentation &raquo;</li>
-      <li>PredictNonlinear</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Documentation</li>
+      <li class="breadcrumb-item active">PredictNonlinear</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -126,17 +125,18 @@
             <div class="section" itemprop="articleBody">
               
                 <div><h2 id="predictnonlinear"><function> PredictNonlinear </function></h2>
-<p><strong> Description </strong>  : <br>
+<p><strong>Description</strong> : <br>
 Evaluate SMap prediction skill for localization parameter 
 <code>theta</code>  (default from 0.01 to 9).</p>
-<p><strong> Python </strong>  :   </p>
+<p><strong>Python</strong> :   </p>
 <pre><code class="language-python">PredictNonlinear(dataFrame=None, columns='', target='', 
 theta='', lib='', pred='', E=1, Tp=1, knn=0, tau=-1,
 exclusionRadius=0, solver=None, embedded=False, 
 validLib=[], noTime=False, ignoreNan=True, 
-verbose=False, numProcess=4, showPlot=True)
+verbose=False, numProcess=4, mpMethod=None, 
+chunksize=1, showPlot=True)
 </code></pre>
-<p><strong> R </strong>  :   </p>
+<p><strong>R</strong> :   </p>
 <pre><code class="language-R">PredictNonlinear(pathIn="./", dataFile="", dataFrame=NULL, 
 pathOut="./", predictFile="", lib="", pred="", theta="",
 E=1, Tp=1, knn=0, tau=-1, exclusionRadius=0,
@@ -276,28 +276,28 @@ showPlot=TRUE, noTime=FALSE)
 <td>Data file name</td>
 </tr>
 <tr>
-<td>pathOut</td>
+<td>mpMethod</td>
 <td>string</td>
-<td>"./"</td>
-<td>Output file path</td>
+<td>None</td>
+<td>multiprocessing context start method</td>
 </tr>
 <tr>
-<td>predictFile</td>
-<td>string</td>
-<td>""</td>
-<td>Prediction output file</td>
+<td>chunksize</td>
+<td>int</td>
+<td>1</td>
+<td>multiprocessing chunksize</td>
 </tr>
 </tbody>
 </table>
 <p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
-<p><strong> Notes </strong>  : <br>
+<p><strong>Notes</strong> : <br>
 <code>theta</code> is a list or string of theta values with a delimiter of 
 [',', '\t', '\n'].
 See the Parameters table for parameter definitions.</p>
 <p>Version 1.x: <code>numThreads</code> defines the number of worker threads for the <code>maxTp</code> embeddings.</p>
 <p>Version 2.x: <code>numProcess</code> defines the number of processes for the <code>maxTp</code> embeddings.</p>
-<p><strong> Returns </strong>  : <br>
+<p><strong>Returns</strong> : <br>
 DataFrame with columns <code>theta</code> and <code>rho</code>. </p></div>
               
             </div>
@@ -334,13 +334,14 @@ DataFrame with columns <code>theta</code> and <code>rho</code>. </p></div>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

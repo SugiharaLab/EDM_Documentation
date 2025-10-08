@@ -8,7 +8,7 @@
     <title>Simplex - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -57,7 +56,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../parameters/">Parameters</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Simplex</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Simplex</a>
     <ul class="current">
     </ul>
                   </li>
@@ -114,9 +113,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Documentation &raquo;</li>
-      <li>Simplex</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Documentation</li>
+      <li class="breadcrumb-item active">Simplex</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -126,16 +125,16 @@
             <div class="section" itemprop="articleBody">
               
                 <div><h2 id="simplex"><function> Simplex </function></h2>
-<p><strong> Description </strong>  : <br>
+<p><strong>Description</strong>  : <br>
 Simplex projection of the input data file or DataFrame.</p>
-<p><strong> Python </strong>  :   </p>
+<p><strong>Python</strong>  :   </p>
 <pre><code class="language-python">Simplex(dataFrame=None, columns='', target='', 
 lib='', pred='', E=0, Tp=1, knn=0, tau=-1, 
 exclusionRadius=0, embedded=False, validLib=[], 
 noTime = False, verbose=False, showPlot=False, 
 ignoreNan = True, returnObject=False)
 </code></pre>
-<p><strong> R </strong>  :   </p>
+<p><strong>R</strong>  :   </p>
 <pre><code class="language-R">Simplex(pathIn="./", dataFile="", dataFrame=NULL, 
 pathOut="./", predictFile="", lib="", pred="", 
 E=0, Tp=1, knn=0, tau=-1, exclusionRadius=0, 
@@ -189,7 +188,7 @@ showPlot=FALSE, noTime=FALSE)
 <td>E</td>
 <td>int</td>
 <td>0</td>
-<td>Data dimension</td>
+<td>Embedding dimension</td>
 </tr>
 <tr>
 <td>Tp</td>
@@ -303,13 +302,13 @@ showPlot=FALSE, noTime=FALSE)
 </table>
 <p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
-<p><strong> Notes </strong> : <br>
+<p><strong>Notes</strong> : <br>
 If <code>embedded</code> is false (default) the data <code>columns</code> are embedded to dimension <code>E</code> with time shift <code>tau</code>.  If <code>knn</code> = 0, it is set to E+1.</p>
 <p>Version 1.x : <code>nan</code> values are passed through all numeric computations in <code>cppEDM</code>. Any prediction row (<code>pred</code>) with <code>nan</code> will result in <code>nan</code> simplex prediction. Any library vector with a <code>nan</code> , whether in the observation, or from time delay embedding used as a nearest neighbor, will result in <code>nan</code> simplex prediction.</p>
 <p>Version 2.x : <code>nan</code> values are removed from the data unless <code>ignoreNan = True</code>. </p>
 <p><code>validLib</code> implements conditional embedding (CE). It is a boolean vector the same length as the number of time series rows. A <code>false</code> entry means that the state-space vector derived from the corresponding time series row will not be included in the state-space library. See <a href="../cond_emb_demo/"><code>examples</code></a>.</p>
 <p>If generateSteps &gt; 0 <code>Simplex</code> operates in feedback generative mode. The values of <code>pred</code> are over-riden to start at the end of the data. At each step one prediction is made, added to the <code>columns</code> data, a new time-delay embedded is created, and the cycle repeated for <code>generateSteps</code>. Feedback generation only operates on a univariate time series that is time-delay embedded. The <code>columns</code> and <code>target</code> variables must be the same.</p>
-<p><strong> Returns </strong>  : <br>
+<p><strong>Returns</strong>  : <br>
 Version 1.x : If <code>parameterList = False</code>, (default) returns a DataFrame with 3 columns : "Time", "Observations", "Predictions". If <code>parameterList = True</code>, returns a list with <code>predictions</code>, <code>parameters</code>.</p>
 <p>Version 2.x : Returns a DataFrame with 3 columns : "Time", "Observations", "Predictions". If <code>returnObject = True</code> returns the Simplex class object with all data and variables. </p></div>
               
@@ -347,13 +346,14 @@ Version 1.x : If <code>parameterList = False</code>, (default) returns a DataFra
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

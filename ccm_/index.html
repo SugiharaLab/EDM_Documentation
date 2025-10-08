@@ -8,7 +8,7 @@
     <title>CCM - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -61,7 +60,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../smap_/">SMap</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">CCM</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">CCM</a>
     <ul class="current">
     </ul>
                   </li>
@@ -114,9 +113,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Documentation &raquo;</li>
-      <li>CCM</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Documentation</li>
+      <li class="breadcrumb-item active">CCM</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -127,14 +126,15 @@
               
                 <div><h2 id="ccm"><function> CCM </function></h2>
 <p>Convergent cross mapping between <code>columns</code> : <code>target</code>; and, reverse mapping between <code>target</code> : <code>columns</code>.</p>
-<p><strong> Python </strong>  :   </p>
+<p><strong>Python</strong> :   </p>
 <pre><code class="language-python">CCM(dataFrame=None, columns='', target='', 
 libSizes='', sample=0, E=0, Tp=0, knn=0, tau=-1, 
 exclusionRadius=0, seed=0, embedded=False, 
 includeData=False, noTime=False, ignoreNan=True,
+mpMethod=None, sequential=False,
 verbose=False, showPlot=False, returnObject=False)
 </code></pre>
-<p><strong> R </strong>  :   </p>
+<p><strong>R</strong> :   </p>
 <pre><code class="language-R">CCM(pathIn="./", dataFile="", dataFrame=NULL, E=0, 
 Tp=0, knn=0, tau=-1, exclusionRadius=0,
 columns="", target="", libSizes="", sample=0,
@@ -186,7 +186,7 @@ parameterList=FALSE, verbose=FALSE, showPlot=FALSE, noTime=FALSE)
 <td>E</td>
 <td>int</td>
 <td>0</td>
-<td>Data dimension</td>
+<td>Embedding dimension</td>
 </tr>
 <tr>
 <td>Tp</td>
@@ -273,22 +273,22 @@ parameterList=FALSE, verbose=FALSE, showPlot=FALSE, noTime=FALSE)
 <td>Data file name</td>
 </tr>
 <tr>
-<td>pathOut</td>
+<td>mpMethod</td>
 <td>string</td>
-<td>"./"</td>
-<td>Output file path</td>
+<td>None</td>
+<td>multiprocessing context start method</td>
 </tr>
 <tr>
-<td>predictFile</td>
-<td>string</td>
-<td>""</td>
-<td>Prediction output file</td>
+<td>sequential</td>
+<td>bool</td>
+<td>False</td>
+<td>Disable multiprocessing</td>
 </tr>
 </tbody>
 </table>
 <p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
-<p><strong> Notes </strong>  :<br>
+<p><strong>Notes</strong>  :<br>
 Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension <code>E</code>, then cross mapped with the target time series.  In a separate thread, the target time series is embedded to <code>E</code> and cross mapped against the column acting as the "target". </p>
 <p>If there are multiple <code>columns</code> and <code>embedded</code> is false, each column is time-delay embedded to dimension <code>E</code> creating an N-columns * E dimensional "mixed" embedding.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the speficied columns.  The same logic applies if multiple target are specified for the "reverse" mapping. If embedded is false, each target is time-delay embedded to dimension <code>E</code> creating an N-target * E dimensional "mixed" embedding cross mapped to <em>only the first column</em> as the cross map target.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the specified target(s).</p>
 <p><code>libSizes</code> is a list values or string of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
@@ -298,7 +298,7 @@ and contiguous library rows up to the  current library size are used. Note
 this is <em>not</em> convergent cross mapping.  </p>
 <p>If <code>seed=0</code> a random seed is generated for the random number generator. 
 Otherwise, seed is used to initialise the random number generator.</p>
-<p><strong> Returns </strong>  :<br>
+<p><strong>Returns</strong>  :<br>
 If <code>includeData</code> is <code>False</code>: returns DataFrame with 3 columns. <br>
 The first column is <code>LibSize</code>, the second and third columns
 are Pearson correlation coefficients for <code>column</code> : <code>target</code> 
@@ -341,13 +341,14 @@ and a DataFrame of all Simplex projection statistics. If <code>parameterList = T
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

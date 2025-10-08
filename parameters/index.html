@@ -8,7 +8,7 @@
     <title>Parameters - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -55,7 +54,7 @@
               <ul class="current">
                   <li class="toctree-l1"><a class="reference internal" href="../edm_functions/">API Reference</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Parameters</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Parameters</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#dataframe">dataFrame</a>
     </li>
@@ -105,19 +104,17 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#maxtp">maxTp</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#numthreads">numThreads</a>
+    <li class="toctree-l2"><a class="reference internal" href="#numprocess">numProcess</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#mpmethod">mpMethod</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#chunksize">chunksize</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#sequential">sequential</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#pathin">pathIn</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#datafile">dataFile</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#pathout">pathOut</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#predictfile">predictFile</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#smapcoeffilesmap">smapCoefFileSMap</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#smapsvfile">smapSVFile</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#solver">solver</a>
     </li>
@@ -129,11 +126,7 @@
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#generatesteps">generateSteps</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#parameterlist">parameterList</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#verbose">verbose</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#const_pred">const_pred</a>
     </li>
     <li class="toctree-l2"><a class="reference internal" href="#showplot">showPlot</a>
     </li>
@@ -194,9 +187,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Documentation &raquo;</li>
-      <li>Parameters</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Documentation</li>
+      <li class="breadcrumb-item active">Parameters</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -257,21 +250,19 @@ In <code>PredictNonlinear</code>: A whitespace delimeted string or numeric vecto
 <p>Maximum value of <code>E</code> to evalulate in <code>EmbedDimension</code>.</p>
 <h5 id="maxtp">maxTp</h5>
 <p>Maximum value of <code>Tp</code> to evalulate in <code>PredictInterval</code>.</p>
-<h5 id="numthreads">numThreads</h5>
-<p>Number of parallel threads for computation in <code>EmbedDimension</code>; <code>PredictInterval</code> and <code>PredictNonlinear</code>.</p>
+<h5 id="numprocess">numProcess</h5>
+<p>Number of parallel processes for computation in <code>EmbedDimension</code>; <code>PredictInterval</code> and <code>PredictNonlinear</code>.</p>
+<h5 id="mpmethod">mpMethod</h5>
+<p>Python multiprocessing context start method. </p>
+<h5 id="chunksize">chunksize</h5>
+<p>Python multiprocessing chunksize.</p>
+<h5 id="sequential">sequential</h5>
+<p>CCM flag to disable multiprocessing. </p>
 <h5 id="pathin">pathIn</h5>
 <p>Filesystem path to input <code>dataFile</code>. CSV format.</p>
 <h5 id="datafile">dataFile</h5>
 <p>CSV format data file name. The first row must be column names.<br>
 The first column must be time index, strings or values unless <code>noTime = True</code>.</p>
-<h5 id="pathout">pathOut</h5>
-<p>Filesystem path for <code>predictFile</code> containing output predictions.</p>
-<h5 id="predictfile">predictFile</h5>
-<p>Observation and Prediction output file name. CSV format.</p>
-<h5 id="smapcoeffilesmap">smapCoefFileSMap</h5>
-<p>Coefficient output file name. CSV format.</p>
-<h5 id="smapsvfile">smapSVFile</h5>
-<p><code>SMap</code> singular value output file name. CSV format.</p>
 <h5 id="solver">solver</h5>
 <p>In pyEDM <code>SMap()</code>: An instance of a sklearn.linear_model object.</p>
 <h5 id="ignorenan">ignoreNan</h5>
@@ -282,12 +273,8 @@ The first column must be time index, strings or values unless <code>noTime = Tru
 <p>Conditional embedding. Boolean vector identifying time series rows whose  corresponding embedding vectors define the state-space library.</p>
 <h5 id="generatesteps">generateSteps</h5>
 <p>Generative feedback predictions for <code>Simplex()</code> or <code>SMap()</code>.</p>
-<h5 id="parameterlist">parameterList</h5>
-<p>Add parameter dictionary to return objects in <code>Simplex()</code>,<code>SMap()</code>,<code>CCM()</code>,<code>Multiview()</code>.</p>
 <h5 id="verbose">verbose</h5>
 <p>Logical to produce additional console reporting.</p>
-<h5 id="const_pred">const_pred</h5>
-<p>Logical to add a constant predictor column to the output.  The constant predictor is X(t+1) = X(t).</p>
 <h5 id="showplot">showPlot</h5>
 <p>Logical to plot results (pyEDM &amp; rEDM).</p></div>
               
@@ -325,13 +312,14 @@ The first column must be time index, strings or values unless <code>noTime = Tru
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

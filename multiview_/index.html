@@ -8,7 +8,7 @@
     <title>Multiview - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -63,7 +62,7 @@
                   </li>
                   <li class="toctree-l1"><a class="reference internal" href="../ccm_/">CCM</a>
                   </li>
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Multiview</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Multiview</a>
     <ul class="current">
     </ul>
                   </li>
@@ -114,9 +113,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Documentation &raquo;</li>
-      <li>Multiview</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Documentation</li>
+      <li class="breadcrumb-item active">Multiview</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -126,22 +125,23 @@
             <div class="section" itemprop="articleBody">
               
                 <div><h2 id="multiview"><function> Multiview </function></h2>
-<p><strong> Description </strong>  : <br>
+<p><strong>Description</strong> : <br>
 Multiview embedding and forecasting of the input data file or DataFrame.</p>
-<p><strong> Python </strong>  :   </p>
+<p><strong>Python</strong> :   </p>
 <pre><code class="language-python">Multiview(dataFrame=None, columns='', target='',
 lib='', pred='', D=0, E=1, Tp=1, knn=0, tau=-1, 
 multiview=0, exclusionRadius=0, trainLib=True,
 excludeTarget=False, verbose=False,
-verbose=False, numProcess=4, showPlot=False)
+verbose=False, numProcess=4, mpMethod=None,
+chunksize=1, showPlot=False, returnObject=False )
 </code></pre>
-<p><strong> R </strong>  :   </p>
+<p><strong>R</strong> :   </p>
 <pre><code class="language-R">Multiview(pathIn="./", dataFile="", dataFrame=NULL,
 lib="", pred="", D=0, E=1, Tp=1, knn=0,
 tau=-1, columns="", target="", multiview=0,
 exclusionRadius=0, trainLib=TRUE, 
 excludeTarget=FALSE, parameterList=FALSE,
-verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
+verbose=FALSE, numThreads=4, showPlot=FALSE, noTime=FALSE)
 </code></pre>
 <hr>
 <table>
@@ -286,15 +286,26 @@ verbose=FALSE,  numThreads=4, showPlot=FALSE, noTime=FALSE)
 <td>""</td>
 <td>Prediction output file</td>
 </tr>
+<tr>
+<td>mpMethod</td>
+<td>string</td>
+<td>None</td>
+<td>multiprocessing context start method</td>
+</tr>
+<tr>
+<td>chunksize</td>
+<td>int</td>
+<td>1</td>
+<td>multiprocessing chunksize</td>
+</tr>
 </tbody>
 </table>
 <p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
-<p><strong> Notes </strong>  : <br>
-If <code>predictFile</code> is provided the Predictions will be written to it in csv format.</p>
-<p>If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the number of 
+<p><strong>Notes</strong>  : <br>
+If <code>multiview</code> is not specified it is set to 'sqrt(C)' where C is the number of 
 <code>D</code>-dimensional combinations out of all available data vectors.</p>
-<p><strong> Returns </strong>  : <br>
+<p><strong>Returns</strong>  : <br>
 Dict in <code>pyEDM</code>, named List in <code>rEDM</code>: with two DataFrames:<br>
 View<br>
 Predictions<br></p>
@@ -341,13 +352,14 @@ Pearson correlation, maximum absolute error and root mean square error.<br></p>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

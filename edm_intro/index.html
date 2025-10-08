@@ -8,7 +8,7 @@
     <title>EDM Framework - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -46,7 +45,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Getting Started</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">EDM Framework</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">EDM Framework</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#takens-theorem">Takens Theorem</a>
     </li>
@@ -124,9 +123,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Getting Started &raquo;</li>
-      <li>EDM Framework</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Getting Started</li>
+      <li class="breadcrumb-item active">EDM Framework</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -156,7 +155,7 @@ picture-in-picture" allowfullscreen></iframe>
 <hr>
 <h3 id="embedding">Embedding</h3>
 <p>The process of creating this representation is termed <em>embedding</em>.  In the
-EDM packages we can use the <a href="../edm_functions/#embed"><code>Embed()</code></a>
+EDM packages we can use the <a href="../embed_/"><code>Embed()</code></a>
 function to create an embedding.  This function creates successively
 time-lagged, if <em>τ</em> &lt; 0, or, time-advanced if <em>τ</em> &gt; 0, observation vectors
 from the input vectors.</p>
@@ -170,23 +169,23 @@ Default embeddings are time-delay (lagged) with <em>τ</em> = -1.</p>
 best represent the system.  If Takens theorem is used to create an
 embedding, there will exist an optimal number of dimensions that best represent
 the dynamics.  We can estimate an optimal embedding dimension with the
-<a href="../edm_functions/#embeddimension"><code>EmbedDimension()</code></a> function.
+<a href="../embedDimension_/"><code>EmbedDimension()</code></a> function.
 This function evaluates simplex prediction accuracy over a range of embedding
 dimensions, the embedding dimension E with the highest predictive accuracy is
 selected for system analysis.  This embedding is presumed to best represent
 and "disentangle" the manifold.</p>
 <h3 id="nearerst-neighbor-forecasting-simplex-and-s-map">Nearerst Neighbor Forecasting: Simplex and S-map</h3>
 <p>EDM implements two timeseries prediction algorithms:
-<a href="../edm_functions/#simplex"><code>Simplex()</code></a>, and
-<a href="../edm_functions/#smap"><code>SMap()</code></a>.
+<a href="../simplex_/"><code>Simplex()</code></a>, and
+<a href="../smap_/"><code>SMap()</code></a>.
 Both operate in the embedding state-space, using nearest neighbors
 of a query point (location in the state-space from which a prediction is
 desired) to project a new estimate along the manifold.</p>
-<p><a href="../edm_functions/#simplex"><code>Simplex()</code></a> uses the centroid of the k-nearest
+<p><a href="../simplex_/"><code>Simplex()</code></a> uses the centroid of the k-nearest
 neighbors (knn) of the query point projected <code>Tp</code> time steps ahead as the 
 estimate.  The number of neighbors, knn, is conventionally set as the number
 of state-space dimensions plus one: knn = E + 1. </p>
-<p><a href="../edm_functions/#smap"><code>SMap()</code></a> uses a localized linear regression of query
+<p><a href="../smap_/"><code>SMap()</code></a> uses a localized linear regression of query
 point neighbors to project a new estimate along the manifold.  By default,
 the number of
 neighbors in the regression are set to the total number of state-space
@@ -199,21 +198,21 @@ effectively modeling different local "resolutions" on the attractor.
 Since the scale of these local resolutions reflect the degree to which
 the dynamics are state-dependent, evaluating S-map predictive skill over
 a range of localizations θ can reveal the degree of state-dependence, and
-thus nonlinearity of the dynamics. The <a href="../edm_functions/#predictnonlinear"><code>PredictNonlinear()</code></a> function can be used for this purpose. </p>
+thus nonlinearity of the dynamics. The <a href="../predictNonlinear_/"><code>PredictNonlinear()</code></a> function can be used for this purpose. </p>
 <h3 id="variable-interactions">Variable interactions</h3>
 <p>EDM also provides methods to assess interactions between state-space
 variables, as well as inference of causal relationships.</p>
-<p><a href="../edm_functions/#smap"><code>SMap()</code></a> returns the regression coefficients
+<p><a href="../smap_/"><code>SMap()</code></a> returns the regression coefficients
 between variables, which have been shown to approximate the gradient
 (directional derivative) of variables along the manifold
 (<a href="https://royalsocietypublishing.org/doi/full/10.1098/rspb.2015.2258">Deyle et al. 2016</a>).</p>
-<p><a href="../edm_functions/#ccm"><code>CCM()</code></a> applies convergent cross mapping
+<p><a href="../ccm_/"><code>CCM()</code></a> applies convergent cross mapping
 to pairs of variables to infer possible causal links between variables.</p>
 <iframe width="100%" height="335" src="https://www.youtube.com/embed/NrFdIz-D2yM" frameborder="0" allow="autoplay; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
 <hr>
 <p>Details on these algorithms are provided in the section
-<a href="../algorithms_in_depth">EDM Algorithms in Depth</a>.</p></div>
+<a href="../algorithms_in_depth/">EDM Algorithms in Depth</a>.</p></div>
               
             </div>
           </div><footer>
@@ -249,13 +248,14 @@ to pairs of variables to infer possible causal links between variables.</p>
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>

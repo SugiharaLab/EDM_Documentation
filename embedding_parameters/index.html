@@ -8,7 +8,7 @@
     <title>Embedding - pyEDM, rEDM</title>
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/theme_extra.css" />
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
         <link href="../css/ansi-colours.css" rel="stylesheet" />
         <link href="../css/jupyter-cells.css" rel="stylesheet" />
@@ -21,12 +21,11 @@
         var mkdocs_page_url = null;
       </script>
     
-    <script src="../js/jquery-3.6.0.min.js" defer></script>
     <!--[if lt IE 9]>
       <script src="../js/html5shiv.min.js"></script>
     <![endif]-->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
-      <script>hljs.initHighlightingOnLoad();</script> 
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/highlight.min.js"></script>
+      <script>hljs.highlightAll();</script> 
 </head>
 
 <body class="wy-body-for-nav" role="document">
@@ -80,7 +79,7 @@
               </ul>
               <p class="caption"><span class="caption-text">Embedding Parameters</span></p>
               <ul class="current">
-                  <li class="toctree-l1 current"><a class="reference internal current" href="./">Embedding</a>
+                  <li class="toctree-l1 current"><a class="reference internal current" href="#">Embedding</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a>
     </li>
@@ -122,9 +121,9 @@
       <div class="wy-nav-content">
         <div class="rst-content"><div role="navigation" aria-label="breadcrumbs navigation">
   <ul class="wy-breadcrumbs">
-    <li><a href=".." class="icon icon-home" aria-label="Docs"></a> &raquo;</li>
-          <li>Embedding Parameters &raquo;</li>
-      <li>Embedding</li>
+    <li><a href=".." class="icon icon-home" aria-label="Docs"></a></li>
+          <li class="breadcrumb-item">Embedding Parameters</li>
+      <li class="breadcrumb-item active">Embedding</li>
     <li class="wy-breadcrumbs-aside">
     </li>
   </ul>
@@ -134,7 +133,7 @@
             <div class="section" itemprop="articleBody">
               
                 <div><h1 id="embedding">Embedding</h1>
-<p>The <a href="../edm_intro"><code>EDM Framework</code></a> is based on a multidimensional representation of system dynamics, colloquially referred to as an <em>embedding</em>.  Given a dynamical system of dimension D, the <a href="https://en.wikipedia.org/wiki/Whitney_embedding_theorem#See_also">Whitney Embedding Theorem</a> establishes limits on the embedding dimension, E, needed to completely represent the dynamics. Generally, EDM uses the parameter E to represent the dimension of the embedding, however, to support multivariate embeddings there are deviations from the above definitions as noted below.</p>
+<p>The <a href="../edm_intro/"><code>EDM Framework</code></a> is based on a multidimensional representation of system dynamics, colloquially referred to as an <em>embedding</em>.  Given a dynamical system of dimension D, the <a href="https://en.wikipedia.org/wiki/Whitney_embedding_theorem#See_also">Whitney Embedding Theorem</a> establishes limits on the embedding dimension, E, needed to completely represent the dynamics. Generally, EDM uses the parameter E to represent the dimension of the embedding, however, to support multivariate embeddings there are deviations from the above definitions as noted below.</p>
 <p>The combination of the <code>columns</code> and  <code>embedded</code> parameters control what
 variables are included in the embedding, and, whether a time-delay embedding
 is created.  The default <code>embedded = false</code> instructs EDM to create a
@@ -142,17 +141,17 @@ time-delay embedding using each variable in <code>columns</code>.  If  <code>emb
 the set of variables specified in <code>columns</code> is assumed to be a valid embedding,
 no time-delay embedding is performed. </p>
 <p>These functions accept multiple values for the <code>columns</code> parameter: 
-<a href="../embed_"><code>Embed()</code></a>
-<a href="../simplex_"><code>Simplex()</code></a>
-<a href="../smap_"><code>SMap()</code></a>
-<a href="../multiview_"><code>Multiview()</code></a>
-<a href="../predictInterval_"><code>PredictInterval()</code></a>
-<a href="../predictNonlinear_"><code>PredictNonlinear()</code></a></p>
+<a href="../embed_/"><code>Embed()</code></a>
+<a href="../simplex_/"><code>Simplex()</code></a>
+<a href="../smap_/"><code>SMap()</code></a>
+<a href="../multiview_/"><code>Multiview()</code></a>
+<a href="../predictInterval_/"><code>PredictInterval()</code></a>
+<a href="../predictNonlinear_/"><code>PredictNonlinear()</code></a></p>
 <p>These functions accept the <code>embedded</code> parameter:
-<a href="../simplex_"><code>Simplex()</code></a>
-<a href="../smap_"><code>SMap()</code></a>
-<a href="../predictInterval_"><code>PredictInterval()</code></a>
-<a href="../predictNonlinear_"><code>PredictNonlinear()</code></a></p>
+<a href="../simplex_/"><code>Simplex()</code></a>
+<a href="../smap_/"><code>SMap()</code></a>
+<a href="../predictInterval_/"><code>PredictInterval()</code></a>
+<a href="../predictNonlinear_/"><code>PredictNonlinear()</code></a></p>
 <ul>
 <li>
 <p>If <code>embedded = false</code> (default):</p>
@@ -242,13 +241,14 @@ See the embedding note in <a href="../edm_functions/"><code>SMap() documentation
     
   </span>
 </div>
-    <script>var base_url = '..';</script>
-    <script src="../js/theme_extra.js" defer></script>
-    <script src="../js/theme.js" defer></script>
-    <script defer>
-        window.onload = function () {
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script>var base_url = "..";</script>
+    <script src="../js/theme_extra.js"></script>
+    <script src="../js/theme.js"></script>
+    <script>
+        jQuery(function () {
             SphinxRtdTheme.Navigation.enable(true);
-        };
+        });
     </script>
 
 </body>
