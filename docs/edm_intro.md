@@ -33,6 +33,9 @@ Embedding is performed implicitly in EDM functions unless the `embedded`
 argument is set `True` indicating that the data are already embedded. 
 Default embeddings are time-delay (lagged) with _τ_ = -1.
 
+Details on embedding and parameters are provided in the 
+[Embedding](embedding_parameters.md) section.
+
 <!--- ![lorenz-logo](imgs/Lorenz_logo.png){: style="height:200px;width:200px"}--->
 
 ### Finding the optimal embedding dimension

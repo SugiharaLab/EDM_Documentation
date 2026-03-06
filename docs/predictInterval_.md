@@ -28,8 +28,8 @@ validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 | dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame| 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
-| lib   | string or [] | ""  | Pairs of library start stop row indices |
-| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
+| lib   | string or [] | ""  | Pairs of library start stop row indices, 1-offset|
+| pred  | string or [] |""| Pairs of prediction start stop row indices, 1-offset|
 | maxTp     | int    | 10    | Evaluate forecast with Tp up to maxTp | 
 | E         | int    | 0     | Embedding dimension | 
 | tau       | int    | -1    | Embedding shift (time series rows) | 

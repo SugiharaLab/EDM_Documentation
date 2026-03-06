@@ -31,8 +31,8 @@ showPlot=TRUE, noTime=FALSE)
 | dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame| 
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
-| theta     | string | ""    | `theta` is a string of theta values with a delimit| lib   | string or [] | ""  | Pairs of library start stop row indices |
-| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
+| theta     | string | ""    | `theta` is a string of theta values with a delimit| lib   | string or [] | ""  | Pairs of library start stop row indices, 1-offset|
+| pred  | string or [] |""| Pairs of prediction start stop row indices, 1-offset|
 er of [',' , '\t', '\n']. |
 | E         | int    | 0     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 

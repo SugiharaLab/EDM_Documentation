@@ -19,9 +19,10 @@ ComputeError(obs, pred)
 
 | Parameter | Type |  Purpose |
 | --------- | ---- |  ------- |
-| obs       | list |  Observations |
-| pred      | list |  Predictions |
+| obs       | vector | Observations |
+| pred      | vector | Predictions  |
 
 <br/>
 **Returns**  :   
-Dict in `pyEDM`, named List in `rEDM`: with computed `rho`, `RMSE`, `MAE`, `CAE`. 
+`pyEDM`: dictionary with computed `rho`, `RMSE`, `MAE`, `CAE`<br>
+`rEDM`: named list with computed `rho`, `RMSE`, `MAE` 

@@ -28,8 +28,8 @@ validLib=vector(), numThreads=4, showPlot=TRUE, noTime=FALSE)
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
 | maxE      | int    | 10    | Evaluate embedding up to maxE | 
-| lib   | string or [] | ""  | Pairs of library start stop row indices |
-| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
+| lib   | string or [] | ""  | Pairs of library start stop row indices, 1-offset|
+| pred  | string or [] |""| Pairs of prediction start stop row indices, 1-offset|
 | Tp        | int    | 1     | Prediction Interval | 
 | tau       | int    | -1    | Embedding time shift (time series rows) | 
 | exclusionRadius | int | 0  | Prediction vector exclusion radius |

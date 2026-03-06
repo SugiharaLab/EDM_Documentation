@@ -1,7 +1,7 @@
 # Parameters
 
 ##### dataFrame
-Input data.frame. The columns must be named.<br>
+Input data frame. The columns must be named.<br>
 The first column must be time index, strings or values unless `noTime = True`.
 
 ##### columns
@@ -11,11 +11,10 @@ String or vector of column name(s) in the input data used to create the library.
 String of column name in the input data used for prediction.
 
 ##### lib
-String or vector with pairs of start and stop indices of input data rows used to create the library of E-dimensional embedding vectors. String indices must be whitespace separated.
+String or vector with pairs of start and stop indices of input data rows used to create the library of E-dimensional embedding vectors. String indices must be whitespace separated. Note: Index values are _not_ 0-offset, index `1` is the first observation. 
 
 ##### pred
-String or vector with pairs of start and stop indices of input data rows<br>
-where predictions are made. String indices must be whitespace separated.
+String or vector with pairs of start and stop indices of input data rows where predictions are made. String indices must be whitespace separated. Note: Index values are _not_ 0-offset, index `1` is the first observation. 
 
 ##### Tp
 Prediction horizon (number of time column rows).
@@ -27,17 +26,17 @@ Embedding dimension.
 Time offset of embedding specified as number of time series rows. `tau` < 0 are lags, `tau` > 0 future values.
 
 ##### theta
-In `Smap`: S-Map neighbor localisation exponent. Single numeric.<br>
-In `PredictNonlinear`: A whitespace delimeted string or numeric vector with  values of S-map localisation parameters to be evaluated.
+In `Smap`: S-Map neighbor localization exponent. Single numeric.<br>
+In `PredictNonlinear`: A whitespace delimeted string or numeric vector with  values of S-map localization parameters to be evaluated.
 
 ##### knn
 Number of nearest neighbors. If `knn=0`; `knn` is set to `E+1` for `Simplex()`; set to number of `lib` data rows for `SMap()`.
 
 ##### exclusionRadius
-Excludes library vectors from the search space of nearest neighbors if their relative time index is within `exclusionRadius`.
+Excludes library vectors from the search space of nearest neighbors if their relative time index is within `exclusionRadius`. Note: only has meaning if `lib` and `pred` overlap. 
 
 ##### embedded
-Logical specifying if the input data are embedded.  If `embedded = True`, no emedding is performed.  If `embedded = False`, all input data are embedded  to dimension `E` with time shift `tau`.
+Logical specifying if the input data are an embedding. If `embedded = True` no emedding is performed, the input data are used as the embedding.  If `embedded = False`, all input data are embedded  to dimension `E` with time shift `tau`.
 
 ##### libSizes
 String or vector of integers specifying CCM library sizes. If three values are provided, and, if the third value is less than the second, they are treated as a sequence generator specifying the intial library size; the final library size; and the library size increment. String values must be whitespace separated.
@@ -55,7 +54,7 @@ Logical to specify sampling with replacement in CCM. Not recommended.
 Logical to return all CCM projection data frames.
 
 ##### seed
-Integer specifying the random sampler seed in CCM.  If `seed=0`, then a random seed is generated.
+Integer specifying the random sampler seed in CCM.  If `seed=0` a random seed is generated.
 
 ##### multiview
 Number of multiview ensembles to average for the final prediction estimate in Multiview.

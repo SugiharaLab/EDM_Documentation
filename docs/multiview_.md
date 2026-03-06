@@ -8,9 +8,9 @@ Multiview embedding and forecasting of the input data file or DataFrame.
 Multiview(dataFrame=None, columns='', target='',
 lib='', pred='', D=0, E=1, Tp=1, knn=0, tau=-1, 
 multiview=0, exclusionRadius=0, trainLib=True,
-excludeTarget=False, verbose=False,
-verbose=False, numProcess=4, mpMethod=None,
-chunksize=1, showPlot=False, returnObject=False )
+excludeTarget=False, ignoreNan=True, verbose=False,
+numProcess=4, mpMethod=None, chunksize=1,
+showPlot=False, returnObject=False )
 ```
 
 **R** :   
@@ -29,8 +29,8 @@ verbose=FALSE, numThreads=4, showPlot=FALSE, noTime=FALSE)
 | --------- | ---- | ------- | ------- |
 | dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame |None|Input DataFrame|| columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target library column name | 
-| lib   | string or [] | ""  | Pairs of library start stop row indices |
-| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
+| lib   | string or [] | ""  | Pairs of library start stop row indices, 1-offset|
+| pred  | string or [] |""| Pairs of prediction start stop row indices, 1-offset|
 | D         | int    | N cols| Multiview state-space dimension | 
 | E         | int    | 1     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 

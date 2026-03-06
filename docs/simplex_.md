@@ -7,8 +7,10 @@ Simplex projection of the input data file or DataFrame.
 Simplex(dataFrame=None, columns='', target='', 
 lib='', pred='', E=0, Tp=1, knn=0, tau=-1, 
 exclusionRadius=0, embedded=False, validLib=[], 
-noTime = False, verbose=False, showPlot=False, 
-ignoreNan = True, returnObject=False)
+noTime = False, generateSteps = 0,
+generateConcat = False, verbose=False,
+showPlot=False, ignoreNan = True,
+returnObject=False)
 ```
 
 **R**  :   
@@ -29,8 +31,8 @@ showPlot=FALSE, noTime=FALSE)
 | dataFrame | pyEDM: pandas DataFrame<br/>rEDM: data.frame | None |Input DataFrame|
 | columns | string or []| "" | Column names for library | 
 | target    | string | ""    | Prediction target column name |
-| lib   | string or [] | ""  | Pairs of library start stop row indices |
-| pred  | string or [] | ""  | Pairs of prediction start stop row indices |
+| lib   | string or [] |""| Pairs of library start stop row indices, 1-offset|
+| pred  | string or [] |""| Pairs of prediction start stop row indices, 1-offset|
 | E         | int    | 0     | Embedding dimension | 
 | Tp        | int    | 1     | Prediction Interval | 
 | knn       | int    | 0     | Number nearest neighbors (if 0 then set to E+1)| 
@@ -43,7 +45,7 @@ showPlot=FALSE, noTime=FALSE)
 | noTime    | bool | False | Do not require first data column of time or index |
 | returnObject | bool | False | pyEDM : return Simplex class object |
 | generateSteps | int  | 0   | Number of recursive time step predictions | 
-| generateLibrary | bool | False | Add generated data to library | 
+| generateConcat | bool | False | Add generated data to library | 
 | parameterList | bool | False | Include parameter dictionary in return |
 | const\_pred| bool  | False | Include non projected forecast data |
 | pathIn    | string | "./"  | Input data file path | 
