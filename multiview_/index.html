@@ -131,9 +131,9 @@ Multiview embedding and forecasting of the input data file or DataFrame.</p>
 <pre><code class="language-python">Multiview(dataFrame=None, columns='', target='',
 lib='', pred='', D=0, E=1, Tp=1, knn=0, tau=-1, 
 multiview=0, exclusionRadius=0, trainLib=True,
-excludeTarget=False, verbose=False,
-verbose=False, numProcess=4, mpMethod=None,
-chunksize=1, showPlot=False, returnObject=False )
+excludeTarget=False, ignoreNan=True, verbose=False,
+numProcess=4, mpMethod=None, chunksize=1,
+showPlot=False, returnObject=False )
 </code></pre>
 <p><strong>R</strong> :   </p>
 <pre><code class="language-R">Multiview(pathIn="./", dataFile="", dataFrame=NULL,
@@ -170,13 +170,13 @@ verbose=FALSE, numThreads=4, showPlot=FALSE, noTime=FALSE)
 <td>lib</td>
 <td>string or []</td>
 <td>""</td>
-<td>Pairs of library start stop row indices</td>
+<td>Pairs of library start stop row indices, 1-offset</td>
 </tr>
 <tr>
 <td>pred</td>
 <td>string or []</td>
 <td>""</td>
-<td>Pairs of prediction start stop row indices</td>
+<td>Pairs of prediction start stop row indices, 1-offset</td>
 </tr>
 <tr>
 <td>D</td>

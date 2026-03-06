@@ -131,7 +131,8 @@ SMap projection of the input data file or DataFrame.</p>
 <pre><code class="language-python">SMap(dataFrame=None, columns='', target='',
 lib='', pred='', E=0, Tp=1, knn=0, tau=-1,
 theta=0, exclusionRadius=0, solver=None, embedded=False,
-validLib=[], noTime=False, ignoreNan = True,
+validLib=[], noTime=False, generateSteps = 0,
+generateConcat = False, ignoreNan = True,
 showPlot=False, verbose=False, returnObject=False)
 </code></pre>
 <p><strong>R</strong> :   </p>
@@ -175,13 +176,13 @@ showPlot=FALSE, noTime=FALSE)
 <td>lib</td>
 <td>string or []</td>
 <td>""</td>
-<td>Pairs of library start stop row indices</td>
+<td>Pairs of library start stop row indices, 1-offset</td>
 </tr>
 <tr>
 <td>pred</td>
 <td>string or []</td>
 <td>""</td>
-<td>Pairs of prediction start stop row indices</td>
+<td>Pairs of prediction start stop row indices, 1-offset</td>
 </tr>
 <tr>
 <td>E</td>
@@ -268,7 +269,7 @@ showPlot=FALSE, noTime=FALSE)
 <td>Number of recursive time step predictions</td>
 </tr>
 <tr>
-<td>generateLibrary</td>
+<td>generateConcat</td>
 <td>bool</td>
 <td>False</td>
 <td>Add generated data to library</td>
