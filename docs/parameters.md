@@ -5,7 +5,7 @@ Input data frame. The columns must be named.<br>
 The first column must be time index, strings or values unless `noTime = True`.
 
 ##### columns
-String or vector of column name(s) in the input data used to create the library. String names must be whitespace separated.
+String or vector of column name(s) in the input data used to create the library. If string then names must be whitespace separated.
 
 ##### target
 String of column name in the input data used for prediction.
@@ -17,7 +17,7 @@ String or vector with pairs of start and stop indices of input data rows used to
 String or vector with pairs of start and stop indices of input data rows where predictions are made. String indices must be whitespace separated. Note: Index values are _not_ 0-offset, index `1` is the first observation. 
 
 ##### Tp
-Prediction horizon (number of time column rows).
+Prediction horizon (number of rows).
 
 ##### E
 Embedding dimension.
@@ -27,7 +27,7 @@ Time offset of embedding specified as number of time series rows. `tau` < 0 are 
 
 ##### theta
 In `Smap`: S-Map neighbor localization exponent. Single numeric.<br>
-In `PredictNonlinear`: A whitespace delimeted string or numeric vector with  values of S-map localization parameters to be evaluated.
+In `PredictNonlinear`: A whitespace delimeted string or numeric vector with values of S-map localization parameters to be evaluated.
 
 ##### knn
 Number of nearest neighbors. If `knn=0`; `knn` is set to `E+1` for `Simplex()`; set to number of `lib` data rows for `SMap()`.
@@ -45,13 +45,13 @@ String or vector of integers specifying CCM library sizes. If three values are p
 Integer specifying the number of random samples to draw at each library size evaluation for CCM.
 
 ##### random
-Logical to specify random (`True`) or sequential library sampling (`False`) in CCM.
+Logical to specify random (`True`) or sequential library sampling (`False`) in CCM. Only in version 1.x. 
 
 ##### replacement
-Logical to specify sampling with replacement in CCM. Not recommended.
+Logical to specify sampling with replacement in CCM. Only in version 1.x. Not recommended.
 
 ##### includeData
-Logical to return all CCM projection data frames.
+Logical to return statistics on CCM sample(s). 
 
 ##### seed
 Integer specifying the random sampler seed in CCM.  If `seed=0` a random seed is generated.
@@ -84,7 +84,10 @@ Python multiprocessing context start method.
 Python multiprocessing chunksize.
 
 ##### sequential
-CCM flag to disable multiprocessing. 
+Before version 2.5: CCM flag to disable multiprocessing. 
+
+##### parallel
+Version 2.5: Boolean to enable/disable parallelization, or int specifying number of workers. 
 
 ##### pathIn
 Filesystem path to input `dataFile`. CSV format.
