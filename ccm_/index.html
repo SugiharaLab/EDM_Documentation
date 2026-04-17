@@ -10,9 +10,6 @@
     <link rel="stylesheet" href="../css/theme_extra.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/github.min.css" />
         <link href="../extra.css" rel="stylesheet" />
-        <link href="../css/ansi-colours.css" rel="stylesheet" />
-        <link href="../css/jupyter-cells.css" rel="stylesheet" />
-        <link href="../css/pandas-dataframe.css" rel="stylesheet" />
     
       <script>
         // Current page data
@@ -128,11 +125,11 @@
 <p>Convergent cross mapping between <code>columns</code> : <code>target</code>; and, reverse mapping between <code>target</code> : <code>columns</code>.</p>
 <p><strong>Python</strong> :   </p>
 <pre><code class="language-python">CCM(dataFrame=None, columns='', target='', 
-libSizes='', sample=0, E=0, Tp=0, knn=0, tau=-1, 
+libSizes=[], sample=0, E=0, Tp=0, knn=0, tau=-1, 
 exclusionRadius=0, seed=0, embedded=False, 
 validLib=[], includeData=False, noTime=False,
-ignoreNan=True, mpMethod=None, sequential=False,
-verbose=False, showPlot=False, returnObject=False)
+mpMethod=None, parallel=True, sharedMB=0.01,
+verbose=False, showPlot=False, returnObject=False, legacy=False)
 </code></pre>
 <p><strong>R</strong> :   </p>
 <pre><code class="language-R">CCM(pathIn="./", dataFile="", dataFrame=NULL, E=0, 
@@ -279,23 +276,37 @@ parameterList=FALSE, verbose=FALSE, showPlot=FALSE, noTime=FALSE)
 <td>multiprocessing context start method</td>
 </tr>
 <tr>
+<td>parallel</td>
+<td>bool or int</td>
+<td>True</td>
+<td>Use parallel dispatch, or number of workers</td>
+</tr>
+<tr>
+<td>sharedMB</td>
+<td>float</td>
+<td>0.01</td>
+<td>Input data size MB threshold for shared memory</td>
+</tr>
+<tr>
+<td>legacy</td>
+<td>bool</td>
+<td>False</td>
+<td>Use version 2.4 CCM</td>
+</tr>
+<tr>
 <td>sequential</td>
 <td>bool</td>
 <td>False</td>
-<td>Disable multiprocessing</td>
+<td>Disable multiprocessing &lt; version 2.5</td>
 </tr>
 </tbody>
 </table>
 <p><br>
 Refer to the <a href="../parameters/">parameters</a> table for general parameter definitions.</p>
 <p><strong>Notes</strong>  :<br>
-Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension <code>E</code>, then cross mapped with the target time series.  In a separate thread, the target time series is embedded to <code>E</code> and cross mapped against the column acting as the "target". </p>
+Normally, one column and one target are specified.  The column time series is time-delay embedded to dimension <code>E</code>, then cross mapped with the target time series. The target time series is embedded to <code>E</code> and cross mapped against the column acting as the "target". </p>
 <p>If there are multiple <code>columns</code> and <code>embedded</code> is false, each column is time-delay embedded to dimension <code>E</code> creating an N-columns * E dimensional "mixed" embedding.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the speficied columns.  The same logic applies if multiple target are specified for the "reverse" mapping. If embedded is false, each target is time-delay embedded to dimension <code>E</code> creating an N-target * E dimensional "mixed" embedding cross mapped to <em>only the first column</em> as the cross map target.  If <code>embedded</code> is true, no time-delay embedding is done, creating a multivariate embedding of the specified target(s).</p>
-<p><code>libSizes</code> is a list values or string of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
-<p>Version 1.x: If <code>random</code> is true, sample observations are randomly selected 
-from the subset of each library size. If <code>random</code> is false, sample is ignored 
-and contiguous library rows up to the  current library size are used. Note 
-this is <em>not</em> convergent cross mapping.  </p>
+<p><code>libSizes</code> is a list of values or string of whitespace or comma separated library sizes.  If the string has 3 values, and, if the third value is less than the second value, the three values are interpreted as a sequence generator specifying "start stop increment" row values, i.e. "10 80 10" will evaluate library sizes from 10 to 80 in increments of 10.</p>
 <p>If <code>seed=0</code> a random seed is generated for the random number generator. 
 Otherwise, seed is used to initialise the random number generator.</p>
 <p><strong>Returns</strong>  :<br>
@@ -303,9 +314,16 @@ If <code>includeData</code> is <code>False</code>: returns DataFrame with 3 colu
 The first column is <code>LibSize</code>, the second and third columns
 are Pearson correlation coefficients for <code>column</code> : <code>target</code> 
 and <code>target</code> : <code>column</code> cross mapping.</p>
-<p>If <code>includeData</code> is <code>True</code>: returns a list with the above DataFrame
-and a DataFrame of all Simplex projection statistics. If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p>
-<p>Version 2.x: If <code>returnObject = True</code> returns the CCM class object with all data and variables.</p></div>
+<p>If <code>includeData</code> is <code>True</code>: <br>
+Version &lt; 2.5: Returns a list with the above DataFrame and a DataFrame of all Simplex projection statistics.  <br>
+Version 2.5: The sample variance of each mapping are added as columns to the returned DataFrame. <br>
+Version &lt; 2.5: If <code>parameterList = True</code>, a dictionary of <code>parameters</code> is added.</p>
+<p><strong>Version Specific</strong>  :<br>
+Version 2.x: If <code>returnObject = True</code> returns the CCM class object with all data and variables.</p>
+<p>Version 1.x: If <code>random</code> is true, sample observations are randomly selected 
+from the subset of each library size. If <code>random</code> is false, sample is ignored 
+and contiguous library rows up to the  current library size are used. Note 
+this is <em>not</em> convergent cross mapping.  </p></div>
               
             </div>
           </div><footer>
